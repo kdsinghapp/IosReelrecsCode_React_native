@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+// scripts/ios-launcher.mjs
+// Launches iOS app with automatic simulator detection
+
+import { spawn } from "node:child_process";
+import { detectAndBootSimulator } from "./detect-sim.mjs";
+
+async function launchIOS() {
+  try {
+    // Detect and boot the best simulator
+    console.log("🔍 Detecting iOS simulator...");
+    const simulator = detectAndBootSimulator();
+    console.log(`✅ Using: ${simulator.name} (${simulator.udid})`);
+
+    // Launch the app with react-native CLI
+    console.log("🚀 Launching app...");
+    const child = spawn("npx", ["react-native", "run-ios", "--udid", simulator.udid], {
+      stdio: "inherit",
+      shell: true
+    });
+
+    child.on("error", (error) => {
+      console.error("Failed to launch:", error);
+      process.exit(1);
+    });
+
+    child.on("exit", (code) => {
+      process.exit(code || 0);
+    });
+  } catch (error) {
+    console.error("Error:", error.message);
+    process.exit(1);
+  }
+}
+
+launchIOS();

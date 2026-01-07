@@ -1,0 +1,34 @@
+import 'react-native-gesture-handler';
+import React, { FunctionComponent, useEffect } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+//  import  from '../routes/routes';
+import { View } from 'react-native';
+import { Color } from '../theme/color';
+import _routes from '../routes/routes';
+ const Stack = createNativeStackNavigator();
+
+
+const RegistrationRoutes: FunctionComponent = () => {
+  
+  return (
+     <Stack.Navigator
+      // initialRouteName={ScreenNameEnum.SPLASH_SCREEN}
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
+
+      }}>
+      {_routes()?.REGISTRATION_ROUTE.map(screen => (
+        <Stack.Screen
+          key={screen.name}
+          name={screen.name}
+          component={screen.Component}
+        />
+      ))}
+  
+    </Stack.Navigator>
+  );
+};
+
+export default RegistrationRoutes;
