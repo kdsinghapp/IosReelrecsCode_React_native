@@ -106,7 +106,7 @@ const FollowersScreen = () => {
       <View style={styles.avatarContainer}>
         <ProfilePhotoCom item={item} imageUri={`${BASE_IMAGE_URL}${item.avatar}`} />
       </View>
-      <Text style={styles.userName}>{item?.name}</Text>
+      <Text style={styles.userName}>{item?.name ? item?.name : item?.username}</Text>
 
       <TouchableOpacity
         style={[styles.followprimary, item.following && styles.followingprimary]}

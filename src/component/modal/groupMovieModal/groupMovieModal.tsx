@@ -87,7 +87,7 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
 
 
     console.log("===== =============")
-         return bubbleLeft -1;
+         return bubbleLeft -2.5;
         }
         // Calculate available track width (excluding thumb radius on both ends)
 
@@ -206,7 +206,7 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
                                                 style={[
                                                     styles.bubbleContainer,
                                                     { 
-left: groupValue  == 0 ?  -12 :  groupValue  == groupTotalMember ?   sliderWidth-40:getBubblePosition(),                                                    }
+left: groupValue  == 0 ?  -9.5 :  groupValue  == groupTotalMember ?   sliderWidth-42:getBubblePosition(),                                                    }
                                                 ]}
                                             >
                                                 <View style={styles.bubble}>
@@ -415,15 +415,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 20,
         left: 20,
-        width: Dimensions.get('window').height * 1,
-        // backgroundColor: "rgba(26, 26, 26,0.8)",
+         // backgroundColor: "rgba(26, 26, 26,0.8)",
     },
     bottomButtonContainer: {
         flexDirection: 'row',
         marginBottom: 14,
         marginTop: 24,
-        width: '42%',
+        // maxHeight: '42%',
         justifyContent: 'space-between',
+        flex:1
     },
     selectButton: {
         width: '46%',

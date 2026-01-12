@@ -556,6 +556,7 @@ ListEmptyComponent={() => {
           key={item?.movie?.imdb_id} // <-- unique key per video
           avatar={{ uri: avatarUri }}
           poster={{ uri: posterUri }}
+          activity={item?.activity}
           user={item.user?.name}
           title={item.movie?.title}
           comment={item.comment}
@@ -667,46 +668,65 @@ ListEmptyComponent={() => {
       </View>)};
 
 
- const mergedData = [];
+function mergeFeedByImdbId(data = []) {
+  const result = [];
+  const feedMap = new Map();
 
-const movieMap = new Map();
-
-combinedData.forEach(item => {
-  if (item.type !== 'feed') {
-    mergedData.push(item);
-    return;
-  }
-
-  const imdbId = item.movie?.imdb_id;
-
-  if (!movieMap.has(imdbId)) {
-    movieMap.set(imdbId, { ...item });
-  } else {
-    const existing = movieMap.get(imdbId);
-
-    // activity merge logic
-    if (
-      (existing.activity === 'ranked' && item.activity === 'bookmarked') ||
-      (existing.activity === 'bookmarked' && item.activity === 'ranked')
-    ) {
-      existing.activity = 'ranked_and_bookmarked';
+  data.forEach(item => {
+    // 1️⃣ Non-feed items
+    if (item?.type !== "feed") {
+      result.push(item);
+      return;
     }
 
-    // bookmark true rakho agar kisi me true ho
-    existing.is_bookmarked =
-      existing.is_bookmarked || item.is_bookmarked;
+    const imdbId = item?.movie?.imdb_id;
 
-    // rec_score preference (ranked ka score)
-    existing.rec_score =
-      item.activity === 'ranked'
-        ? item.rec_score
-        : existing.rec_score;
-  }
-});
+    // 2️⃣ Invalid feed → skip
+    if (!imdbId || !item.activity || item.rec_score === -1) {
+      return;
+    }
 
-mergedData.push(...movieMap.values());
+    // 3️⃣ First occurrence
+    if (!feedMap.has(imdbId)) {
+      feedMap.set(imdbId, {
+        ...item,
+        _activities: new Set([item.activity]),
+      });
+      return;
+    }
 
+    // 4️⃣ Merge
+    const existing = feedMap.get(imdbId);
 
+    existing._activities.add(item.activity);
+
+    // // ranked has priority
+    // if (item.activity === "ranked") {
+    //   existing.rec_score = item.rec_score;
+    //   existing.comment = item.comment;
+    // }
+
+    // bookmarked once → always bookmarked
+    if (item.is_bookmarked === true) {
+      existing.is_bookmarked = true;
+    }
+  });
+
+  // 5️⃣ Finalize
+  feedMap.forEach(item => {
+    const activityOrder = ["ranked", "bookmarked"];
+
+    item.activity = activityOrder
+      .filter(a => item._activities.has(a))
+      .join(", ");
+
+    delete item._activities;
+    result.push(item);
+  });
+
+  return result;
+}
+  const fiter = mergeFeedByImdbId(combinedData)
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar />
@@ -720,7 +740,7 @@ mergedData.push(...movieMap.values());
           onRightPress={() => navigation.navigate(ScreenNameEnum.MainSetting)}
         />
         <FlatList
-          data={mergedData}
+          data={fiter}
           // data={combinedData}
           renderItem={renderItem}
           //  keyExtractor={(item, index) => item?.id?.toString() || `index-${index}`}

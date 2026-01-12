@@ -7,6 +7,7 @@ import font from '../../../theme/font';
 import BlurViewCom from '../../common/BlurViewCom/BlurViewCom';
 import { BlurView } from '@react-native-community/blur';
 import { addMembersToGroup, getGroupMembers } from '../../../redux/Api/GroupApi';
+import AddSelectFriendComCopy from '../../common/SelectFriendCom/AddSelectFriendCom copy';
 
 
 interface props {
@@ -15,12 +16,12 @@ interface props {
 }
 const AddFrindModal = ({ visible, onClose, groupId, token ,fetchGroups}) => {
     const [addmembers, setAddMembers] = useState<string[]>([])
-
-    const handleAddMemberss = async (token, groupId, addmembers) => {
+// console.log("addmembers",addmembers)
+    const handleAddMemberss = async (token, groupId, addmembers) => {   
         try {
             const response = await addMembersToGroup(token, groupId, addmembers)
-             console.log(response, "<____handleAddMemberss")
-        } catch (error) {
+            console.log("response",response)
+         } catch (error) {
         }
     }
      const buttonBlur = () => {
@@ -58,9 +59,12 @@ const AddFrindModal = ({ visible, onClose, groupId, token ,fetchGroups}) => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <SelectFriendCom token={token} 
+                    <AddSelectFriendComCopy token={token} 
 groupId={groupId}
                      type={"Friend"} setAddMembers={setAddMembers} />
+                    {/* <SelectFriendCom token={token} 
+groupId={groupId}
+                     type={"Friend"} setAddMembers={setAddMembers} /> */}
                     {/* Buttons */}
                     <View style={styles.bottomButtonContainer}>
                         <View style={styles.blurBackground}>

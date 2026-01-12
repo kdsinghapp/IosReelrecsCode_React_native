@@ -720,10 +720,14 @@ export const useCompareComponent = (token: string) => {
         setMid(newMid);
         midRef.current = newMid;
       }
-      console.log('skip__wortk__fulll', 'low--', lowRef.current, 'high---', highRef.current, '--', lastAction);
+      console.log("Skip api call,",lowRef)
+      // console.log("highRef,",highRef)
+      // console.log('skip__wortk__fulll', 'low--', lowRef.current, 'high---', highRef.current, '--', comparisonMovies[midRef.current]);
+      // console.log('skip__wortk__fulll', 'low--', lowRef.current, 'high---', highRef.current, '--', lastAction);
       // Check if we are out of bounds → finalize rating
+      // if (lowRef.current > highRef.current || !comparisonMovies[midRef.current]) {
       if (lowRef.current > highRef.current || !comparisonMovies[midRef.current]) {
-        console.log("✅_No_more_movies_→_closing modal after skip", 'low--', lowRef.current, 'high---', highRef.current);
+        // console.log("✅ skip _\ modal after ", 'low--', lowRef.current, 'high---', highRef.current);
         setComparisonVisible(false);
         setStepsModalVisible(true);
 
@@ -747,8 +751,9 @@ export const useCompareComponent = (token: string) => {
 
   const handleSelectFirst = useCallback(async () => {
     if (!selectedMovie || !secondMovieData || !userPreference.preference) return;
+console.log("left side ------ ", selectedMovie.imdb_id)
 console.log("selectedMovie --34455",selectedMovie)
-console.log("userPreference -- 1222",userPreference)
+console.log("right slide -----  id  -- ",secondMovieData?.imdb_id)
     try {
       // Record user preference
       setLastAction('first');
@@ -766,7 +771,7 @@ console.log("userPreference -- 1222",userPreference)
           preference: userPreference.preference,
           imdb_id_1: selectedMovie.imdb_id,
           imdb_id_2: secondMovieData.imdb_id,
-          winner:secondMovieData.imdb_id
+          winner:selectedMovie.imdb_id
           // winner: selectedMovie.imdb_id
 
         }
@@ -813,7 +818,10 @@ console.log("userPreference -- 1222",userPreference)
 
   const handleSelectSecond = useCallback(async () => {
     if (!selectedMovie || !secondMovieData || !userPreference.preference) return;
-
+console.log("right side ------ ", secondMovieData.imdb_id)
+console.log("type side ------ ", userPreference.preference)
+    console.log("selectedMovie --34455",selectedMovie)
+    console.log("left slide -----  id  -- ",selectedMovie?.imdb_id)
     try {
       setLastAction('second');
 

@@ -22,10 +22,12 @@ const GroupAllAvatars = ({ group }:any) => {
         }
     };
     const renderUserImages = () => {
-        // const groupMemberImage = group.members.map((item) => item.avatar)
-        const users = group?.members || group?.map((item) => item?.avatar);
-        // console.log(users, "GroupAllAvatars_renderUserImages")
-        const totalUsers = users?.length;
+       const users = group?.members
+  ? group?.members?.map((item) => item?.avatar)
+  : group?.map((item) => item?.avatar) || []; // fallback if group is an array
+
+// Total number of users
+const totalUsers = users.length;
         // const renderImage = (user, style, key = null) => (
         //     <Image
         //         key={key || user?.userId}

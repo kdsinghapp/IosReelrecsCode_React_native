@@ -124,9 +124,8 @@ const [delayActionPreference , setDelayActionPreference] = useState(false)
     if (groupRecommend.length > 0) {
       fetchActivity();
     }
-  }, [  token, delayActionPreference]);
+  }, [token, delayActionPreference]);
   // }, [groupId, groupRecommend, activeIndex, token, delayActionPreference]);
-
 
   useEffect(()=> {
     setTimeout(()=> {

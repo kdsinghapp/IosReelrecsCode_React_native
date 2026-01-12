@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     // flex:1,
     color: Color.whiteText,
     marginBottom: 24,
-    fontFamily:font.PoppinsRegular
+     fontFamily:font.PoppinsRegular
   },
   saveButton: {
     // marginHorizontal: 120,

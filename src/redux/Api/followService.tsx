@@ -18,8 +18,7 @@ export const followUser = async (token: string, username: string) => {
         // console.log('followdatate', res.data)
         return res.data;
     } catch (error) {
-      errorToast("oijhuj")
-        console.error('❌ Follow failed:', error);
+         console.error('❌ Follow failed:', error);
         throw error;
     }
 };

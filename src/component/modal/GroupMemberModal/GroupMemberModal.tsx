@@ -43,12 +43,10 @@ const GroupMembersModal: React.FC<GroupMembersModalProps> = ({ visible,
   const [members, setMembers] = useState(groupMembers);
   const [loading, setLoading] = useState<string | null>(null)
   const [loadingUsername, setLoadingUsername] = useState<string | null>(null);
-
-  useEffect(()=>{
+   useEffect(()=>{
     setMembers(groupMembers)
   },[groupMembers])
-  console.log('members__group_create_data',groupMembers )
-
+ 
 const filteredMembers = members?.filter(member =>
   (member?.name ?? member?.username)?.toLowerCase().includes(searchText.toLowerCase())
 );
@@ -77,8 +75,7 @@ const filteredMembers = members?.filter(member =>
 
       setMembers(updatedMembers);
     } catch (err) {
-      console.log(err, "eeee__________------------__________")
-      console.error('❌ toggleFollow error:', err);
+       console.error('❌ toggleFollow error:', err);
     } finally {
       setLoadingUsername(null); // ✅ reset
 
@@ -395,7 +392,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
-    width: 100,
+    width: 104,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -217,7 +217,7 @@ interface Props {
   muted?: boolean;
 }
 
-const CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
+const   CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
   const videoRef = useRef<Video>(null);
   const hideTimer = useRef<any>(null);
 

@@ -87,15 +87,9 @@ const GroupSettingModal = ({ visible, onClose, group, groupId, token, group_name
   },[]) 
   const [group1, setGroup] = useState<any>([]);
 const fetchGroups = async () => {
- 
-
   try {
     const groupsRes = await getGroupMembers(token, groupId);
-    console.log("✅ groupsRes:", groupsRes);
-
-    if (groupsRes) {
-      setGroup(groupsRes);
-    }
+       setGroup(groupsRes);
   } catch (error) {
     console.error("❌ Error fetching group details:", error);
   }
@@ -133,12 +127,24 @@ useEffect(() => {
 }, [group1?.results?.length ||group]);
 
 useEffect(() => {
-     console.log("add --- groupMember get")
-     fetchGroups();
- 
+      fetchGroups();
 }, [groupMember,addFrindModal]);
 
- 
+const formatGroupName = (name?: string) => {
+  if (!name) return '';
+
+  return name
+    .replace(/\bnull\b/gi, '')        // remove "null"
+    .replace(/\s+/g, ' ')             // extra spaces remove
+    .trim()
+    // 🔥 agar last name comma ke bina hai → usse ", lastName" bana do
+    .replace(/ ([^,]+)$/g, ', $1')
+    .split(',')                       
+    .map(n => n.trim())
+    .filter(n => n.length > 0)
+    .join(', ');
+};
+
 
   return (
     <Modal transparent visible={visible} animationType="slide" onRequestClose={onClose}
@@ -175,7 +181,8 @@ useEffect(() => {
             <View style={styles.groupNameRow}  >
                               <Image source={imageIndex.edit} style={{ height: 24, width: 24, tintColor: Color.background , }} resizeMode='contain' />
 
-               <Text style={styles.groupName} numberOfLines={2} >{group_name}</Text>
+               <Text style={styles.groupName} numberOfLines={2} >{formatGroupName(group_name)}</Text>
+               {/* <Text style={styles.groupName} numberOfLines={2} >{group_name}</Text> */}
 
               <TouchableOpacity  onPress={() => setEditNameModal(true)} >
                 <Image source={imageIndex.edit} style={{ height: 24, width: 24, tintColor: Color.primary , marginLeft:5,}} resizeMode='contain' />
@@ -189,7 +196,11 @@ useEffect(() => {
             <Image source={imageIndex.usersGroup} style={{ marginLeft: 6, height: 24, width: 24 }} resizeMode='contain' />
 
             {/* <Feather name="users" size={20} color="#fff" /> */}
-            <Text style={styles.optionText}>Members {`(${userCount1})`} </Text>
+            {/* <Text style={styles.optionText}>Members {`(${userCount1})`} </Text> */}
+            <Text style={styles.optionText}>
+  Members {`(${group1?.results?.length || 0})`}
+</Text>
+
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.optionRow} onPress={() => setAddFrindModal(true)} >

@@ -145,6 +145,8 @@ export const recordPairwiseDecision = async (token: string, payload: {
     payload,
     { headers: { Authorization: `Token ${token}` } }
   );
+
+  console.log( ' Raking response___of__recordPairwiseDecision',response.data)
   return response.data;
 };
 export const recordPairwiseDecision1 = async (token: string, payload: {

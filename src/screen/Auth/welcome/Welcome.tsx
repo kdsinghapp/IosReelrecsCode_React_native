@@ -81,7 +81,7 @@ const Welcome = () => {
         />
         <View style={styles.contentWrapper}>
           <View style={styles.contentWrapp}>
-            <Image source={imageIndex.appLogo} style={styles.logo} resizeMode='contain' />
+            <Image source={imageIndex.appLogo} style={styles.logo} resizeMode='stretch' />
             <CustomText
               size={28}
               color={Color.primary}
@@ -246,10 +246,17 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
   logo: {
-    width: 130,
-    height: 90,
-    marginBottom: 10,
-  },
+  width: 60,         // make width = height for square
+  height: 72,        // same as width
+  marginBottom: 10,    // reduced bottom margin to move it up
+  marginTop: 5,       // smaller top margin to move it higher
+  borderRadius: 8,    // optional: slightly rounded corners    
+  // width: 90,          // make width = height for a square
+  // height: 100,         // same as width
+  // marginBottom: 15,    // reduce bottom margin to move it up
+  // marginTop: 10,      // optional: add top margin if needed
+  // borderRadius: 8,    // optional: slightly rounded corners
+   },
   heading: {
     fontSize: 28,
     // fontFamily: font.PoppinsBold,

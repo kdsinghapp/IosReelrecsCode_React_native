@@ -70,6 +70,7 @@ const fetchFriendsPage = useCallback(async (opts: { page?: number; query?: strin
       : await getAllFriends(token, pageToLoad, PAGE_SIZE);
 
     const results = resp?.results ?? [];
+    console.log("results",results)
     const formatted = results?.map(item => ({
       id: item?.username,
       name: item?.name,
@@ -77,6 +78,9 @@ const fetchFriendsPage = useCallback(async (opts: { page?: number; query?: strin
       send: false,
       online: true,
     }));
+
+    console.log("formatted",formatted)
+
     // Update members
    setMembers(prev => {
   const newMembers = formatted?.map(item => {
@@ -104,8 +108,7 @@ const fetchFriendsPage = useCallback(async (opts: { page?: number; query?: strin
     setPage(pageToLoad);
     setTotalPages(resp?.total_pages ?? 1);
   } catch (err) {
-    console.error('fetchFriendsPage err', err);
-  } finally {
+   } finally {
     isFetchingRef.current = false;
     setIsLoading(false);
     setIsLoadingMore(false);
@@ -142,12 +145,10 @@ useEffect(() => {
 // Filter members locally
 const formattedFriends = useMemo(() => {
   if (!search.trim()) return members;
-console.log('members__ka__data',members)
   return members.filter(m => {
     const displayName = m.name?.trim() || m.id;
 
-    console.log('__displayName__',displayName)
-    return displayName.toLowerCase();
+     return displayName.toLowerCase();
     // return displayName.toLowerCase().includes(search.toLowerCase());
   });
 }, [members, search]);
@@ -155,19 +156,19 @@ console.log('members__ka__data',members)
 
 useEffect(()=> {
 const re = formattedFriends
-console.log('__le__re__data',re)
-}, [members, search]);
+ }, [members, search]);
 
   const toggleSelect = useCallback((id: string) => {
+
+
     const updated = members.map((m) =>
       m.id === id ? { ...m, send: !m.send } : m
     );
-    setMembers(updated);
-    console.log('ddd__dswdads',updated)
-    const selected = updated.filter((m) => m.send);
-    const filteridforAddfriend =  selected.map((item)=> item.id)
-    // console.log(filteridforAddfriend  , "selected bbh")
-    onSelectionChange?.(selected);
+     setMembers(updated);
+     const selected = updated?.filter((m) => m.send);
+    const filteridforAddfriend =  selected?.map((item)=> item.id)
+
+     onSelectionChange?.(selected);
     setAddMembers?.(filteridforAddfriend);           //  selected members for add in group
   }, [members, onSelectionChange , setAddMembers , ]);
 
@@ -228,11 +229,12 @@ const loadData = async () => {
   }
 };
 
- 
-  const filteredUsers = formattedFriends?.filter(
-  user => !addmembers1?.some(a => a?.username === user?.id)
+const filteredUsers = formattedFriends?.filter(user => {
+  return !addmembers1?.some(a =>
+    a?.username?.toLowerCase() === user?.id?.toLowerCase()
+  );
+});
 
-);
  
   return (
     <View style={{ height: type === "Friend" ? Dimensions.get('window').height * 0.5 : Dimensions.get('window').height * 0.8 }}>

@@ -125,7 +125,7 @@ export const addMembersToGroup = async (
         },
       }
     );
-    console.log(response, "_______addMembersToGroup_________")
+    console.log(response, " add -----_______addMembersToGroup_________")
     return response.data;
   } catch (error) {
     console.error("❌ addMembersToGroup Error:", error?.response?.data || error.message);
@@ -321,7 +321,7 @@ export const recordGroupPreference = async (
         },
       }
     );
-    console.log('✅ Preference recorded:', response.data);
+    console.log('✅ Preference recorded:', response);
     return response.data;
   } catch (error) {
   console.log(token , groupId , imdbId , preference , "-------_____recordGroupPreference" )

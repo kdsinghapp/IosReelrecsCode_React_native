@@ -193,7 +193,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     // height:  Dimensions.get('window').height * 0.7,
-    maxHeight: Dimensions.get('window').height * 0.63,
+    // maxHeight: Dimensions.get('window').height * 0.63,
+
+    maxHeight:
+      Dimensions.get('window').height *
+      (Platform.OS === 'ios' ? 0.63 : 0.62 ),  
     height: Dimensions.get('window').height * 0.66,
   },
   header: {

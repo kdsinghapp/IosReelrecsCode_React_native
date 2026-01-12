@@ -9,6 +9,7 @@ import {
   Image,
   Dimensions,
   ActivityIndicator,
+  Platform,
 } from 'react-native';
 import imageIndex from '../../../assets/imageIndex';
 import { Color } from '../../../theme/color';
@@ -87,6 +88,7 @@ useEffect(() => {
 
 }, [visible, sessionList]);
 
+const { height } = Dimensions.get('window');
 
   const [selectedSortId, setSelectedSortId] = useState(sessionData[0]?.session || "session 1");
  
@@ -316,13 +318,17 @@ const styles = StyleSheet.create({
    },
   modalContent: {
     backgroundColor: Color.modalBg,
-    paddingTop: 20,
+    paddingTop: 16,
     paddingBottom: 12,
     paddingHorizontal: 16,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     // height:  Dimensions.get('window').height * 0.7,
-    maxHeight: Dimensions.get('window').height * 0.63,
+maxHeight:
+      Dimensions.get('window').height *
+      (Platform.OS === 'ios' ? 0.63 : 0.58 ),    
+
+    // maxHeight: Dimensions.get('window').height * 0.63,
     height: Dimensions.get('window').height * 0.66,
   },
   header: {

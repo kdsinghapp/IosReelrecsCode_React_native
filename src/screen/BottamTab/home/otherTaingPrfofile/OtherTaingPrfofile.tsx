@@ -102,10 +102,15 @@ const [hasMore, setHasMore] = useState(true);
       let response;
 
       if (title === "History" && my_profile) {
+                  setLoading(false);
+
         response = await getHistoryApi(token, username, pageToLoad);
       } else if (my_profile) {
+          setLoading(false);
         response = await getRatedMovies(token, pageToLoad);
       } else {
+                  setLoading(false);
+
         response = await getOtherUserRatedMovies(token, username, pageToLoad);
       }
 
@@ -116,6 +121,7 @@ setMovies(prev => append ? [...prev, ...newResults] : newResults);
 
       // setMovies(prev => (append ? [...prev, ...newResults] : newResults));
       setHasMore(next);
+          setLoading(false);
 
       // update refs
       hasMoreRef.current = next;
@@ -123,6 +129,8 @@ setMovies(prev => append ? [...prev, ...newResults] : newResults);
 
       console.log("✅ Loaded page:", pageToLoad, "| Items:", newResults.length, "| next:", next);
     } catch (err) {
+                setLoading(false);
+
       console.error("❌ API error:", err);
     } finally {
       setLoading(false);
@@ -131,15 +139,13 @@ setMovies(prev => append ? [...prev, ...newResults] : newResults);
   };
 
   useEffect(() => {
-    console.log("🎬 Fetching first page");
-    bothBookMovie(1, false);
+     bothBookMovie(1, false);
   }, [token, username]);
 
   const handleLoadMore = () => {
-    if (loadingRef.current || !hasMoreRef.current) {
-      console.log("⛔ Skip: loading or no more pages");
-      return;
-    }
+    // if (loadingRef.current || !hasMoreRef.current) {
+    //    return;
+    // }
     const nextPage = pageRef.current + 1;
     console.log("🔽 onEndReached → Fetch page", nextPage);
     bothBookMovie(nextPage, true);
@@ -192,8 +198,7 @@ const handleNavigation = (imdb_id: string, token: string) => {
   const renderMovie = useCallback(({ item, index }) => {
     if (!item) return null; 
     // setIsSaved(item?.is_bookmarked ?? false)
-    console.log('ranking__data__here', item)
-
+ 
     return (
       <View style={[styles.movieCard, { paddingHorizontal: 0 }]} >
         <TouchableOpacity  activeOpacity={0.8}   onPress={() => handleNavigation(item?.imdb_id, token)} >

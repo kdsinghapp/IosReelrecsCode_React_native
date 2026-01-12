@@ -32,7 +32,7 @@ import { styles } from './FeedCardstyle';
 
 
 const FeedCardHome = ({
-  screenName,
+  screenName,activity,
   avatar, user, title, comment, poster, videoUri, isPaused, shouldAutoPlay, is_bookMark, videoIndex,
   rankPress, isVisible, ranked, imdb_id, created_date, token, release_year, shouldPlay, scoreType, username
 }: any) => {
@@ -210,25 +210,29 @@ const FeedCardHome = ({
       NativeModules?.DeviceInfo?.isLowRamDevice?.().then(setIsLowMemoryDevice);
     }
   }, []);
- const hasRank = ranked && ranked > 0;   // rank exists
-const hasBookmark = isBookmarked === true;
-const getActionLabel = () => {
-  if (hasRank && hasBookmark) {
-    return "ranked and bookmarked";
-  }
-  if (hasRank) {
-    return "ranked";
-  }
-  if (hasBookmark) {
-    return "bookmarked";
-  }
-  return "";
-};
 
+const hasRank =
+  activity === "bookmarked"
+    ? false
+    : ranked && ranked > 0;
+ 
+  const getActionLabel = () => {
+    if (activity === "bookmarked, ranked" || activity === "ranked, bookmarked" ||activity === "bookmarked,ranked" || activity === "ranked,bookmarked" ) {
+    return " ranked and bookmarked "; // <-- replace with whatever text you want
+  }
+if(activity =="bookmarked"){
+  return " bookmarked"
+}
+  if(activity =="ranked"){
+  return " ranked"
+}
+   return "";
+};
   return (
     <View style={styles.feedCard}>
       <View style={styles.feedHeader}>
-        <TouchableOpacity
+        <TouchableOpacity 
+        activeOpacity={1}
           onPress={() =>
             navigation.navigate(ScreenNameEnum.OtherProfile, { item: item })
           }
@@ -243,7 +247,9 @@ const getActionLabel = () => {
           
           />
         </TouchableOpacity>
-        <TouchableOpacity
+        <TouchableOpacity 
+                activeOpacity={1}
+
           style={{ flex: 1, flexDirection: "row", alignItems: "center", }}
           onPress={() => {
             handleNavigation(imdb_id, token);
@@ -262,7 +268,10 @@ const getActionLabel = () => {
                 color={Color.whiteText}
                 style={styles.rankedText}
                 font={font.PoppinsRegular}
-              > {getActionLabel()}
+              > 
+              {getActionLabel()}
+
+
               </CustomText>
             </CustomText>
 
@@ -284,7 +293,10 @@ const getActionLabel = () => {
           </View>
             {/* FRIEND SCORE → ONLY WHEN RANK EXISTS */}
   {hasRank && (
-           <TouchableOpacity style={{ alignSelf: 'flex-start' }} onPress={() => setShowFirstModal(!showFirstModal)} >
+           <TouchableOpacity  
+                   activeOpacity={1}
+
+           style={{ alignSelf: 'flex-start' }} onPress={() => setShowFirstModal(!showFirstModal)} >
 
       <RankingWithInfo
         score={ranked}
@@ -335,7 +347,10 @@ const getActionLabel = () => {
       {/* Video / Poster */}
       <TouchableOpacity onPress={handleTogglePause}>
         <View style={styles.videoWrapper}>
-          <TouchableOpacity activeOpacity={1} onPress={() => { navigateOnPoster(imdb_id, token) }} style={styles.posterOverlay}>
+          <TouchableOpacity  
+                  activeOpacity={1}
+
+          activeOpacity={1} onPress={() => { navigateOnPoster(imdb_id, token) }} style={styles.posterOverlay}>
             {/* {!isPlaying && poster && posterVisible && ( */}
             {!isPlaying && (
               <FastImage
@@ -407,7 +422,9 @@ const getActionLabel = () => {
 
 
           {!paused && (
-            <TouchableOpacity
+            <TouchableOpacity 
+                    activeOpacity={1}
+
               style={styles.tButton}
               // onPress={() => setMuted(!muted)}
               onPress={() => dispatch(toggleMute())}
@@ -424,7 +441,9 @@ const getActionLabel = () => {
 
       {/* Footer Actions */}
       <View style={styles.footerActions}>
-        <TouchableOpacity
+        <TouchableOpacity 
+                activeOpacity={1}
+
           onPress={() =>
             handleRankingPress({
               imdb_id,

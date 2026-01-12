@@ -1859,7 +1859,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import debounce from 'lodash.debounce';
 import FastImage from 'react-native-fast-image';
 
@@ -1891,8 +1891,7 @@ import GroupMovieModal from '../../../../component/modal/groupMovieModal/groupMo
 import GroupMembersModal from '../../../../component/modal/GroupMemberModal/GroupMemberModal';
 import GroupSettingModal from '../../../../component/modal/WatchGroupSetting/WatchGroupSetting';
 import Notification from '../../home/homeScreen/Notification/Notification';
-import WatchGroupMemberModal from '../../../../component/modal/GroupMemberModal/WatchGroupMemberModal';
- const { width, height } = Dimensions.get('window');
+  const { width, height } = Dimensions.get('window');
 const ITEM_WIDTH = width * 0.4;
 const SPACING = 20;
 const ITEM_SIZE = ITEM_WIDTH + SPACING;
@@ -1955,32 +1954,17 @@ const BackgroundImage = memo(({ imageUri }) => {
 });
 
 // Main Component
-const WatchWithFrind = ({ route }) => {
+const WatchWithFrind = () => {
+  const route = useRoute()
   const token = useSelector((state: RootState) => state.auth.token);
   const navigation = useNavigation();
   const { groupProps: passedGroupProps, type, groupId } = route.params || {};
-
-  // States
   const [group, setGroup] = useState(passedGroupProps);
   const [group1, setgroup1] = useState();
- 
-  useEffect(() => {
-    if (groupSettingModal || modalVisible || groupMember) {
-      fetchGroups();
-    }
-      fetchGroups();
-  }, [groupSettingModal, modalVisible, groupMember]);
-
   const fetchGroups = async () => {
-    try {
+     try {
       const groupsRes = await getGroupMembers(token,groupId);
-      // const groupsRes = await getAllGroups(token);
-      // const filteredGroup = groupsRes?.results?.find(
-      //   (group: any) => group.group_id === groupId
-      // );
-  
-   
-      setgroup1(groupsRes); // ✅ state me set karo
+       setgroup1(groupsRes); // ✅ state me set karo
     } catch (error) {
       console.error("❌ Error fetching group details:", error);
     }
@@ -2023,22 +2007,24 @@ const WatchWithFrind = ({ route }) => {
 
   // Modals
   const { setInfoModal, InfoModal, thinkModal, setthinkModal } = useMovie();
-
+useEffect(() => {
+     fetchGroups();
+ 
+}, [groupMember]); // 👈 modal open hone par trigger
   // Preload images function
   const preloadImages = useCallback((images) => {
-    if (!images || images.length === 0) return;
+    if (!images || images?.length === 0) return;
     
     const uris = images
       .filter(movie => movie?.cover_image_url)
-      .map(movie => ({ uri: movie.cover_image_url }));
+      .map(movie => ({ uri: movie?.cover_image_url }));
     
     if (uris.length > 0) {
       FastImage.preload(uris);
     }
   }, []);
 
-  // Load group from AsyncStorage if not passed
-  useEffect(() => {
+   useEffect(() => {
     const fetchStoredGroup = async () => {
       if (!passedGroupProps) {
         try {
@@ -2056,8 +2042,7 @@ const WatchWithFrind = ({ route }) => {
     fetchStoredGroup();
   }, [passedGroupProps]);
 
-  // Keyboard listeners
-  useEffect(() => {
+   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
       () => setKeyboardVisible(true)
@@ -2072,9 +2057,8 @@ const WatchWithFrind = ({ route }) => {
     };
   }, []);
 
-  // Preload images when groupRecommend changes
-  useEffect(() => {
-    if (groupRecommend.length > 0) {
+   useEffect(() => {
+    if (groupRecommend?.length > 0) {
       preloadImages(groupRecommend);
     }
   }, [groupRecommend, preloadImages]);
@@ -2089,11 +2073,10 @@ const WatchWithFrind = ({ route }) => {
   // Preload adjacent images when activeIndex changes
   useEffect(() => {
     const movies = comment.trim() !== '' ? searchResult : groupRecommend;
-    if (movies.length === 0) return;
+    if (movies?.length === 0) return;
 
     const imagesToPreload = [];
-    
-    // Preload current image
+  
     const current = movies[activeIndex];
     if (current?.cover_image_url) {
       imagesToPreload.push({ uri: current.cover_image_url });
@@ -2111,7 +2094,12 @@ const WatchWithFrind = ({ route }) => {
       FastImage.preload(imagesToPreload);
     }
   }, [activeIndex, groupRecommend, searchResult, comment]);
-
+ 
+  useEffect(() => {
+       fetchGroups();
+ 
+     
+  }, [notificationModal]);
   // Fetch group activities
   useEffect(() => {
     const fetchGrouchActivities = async () => {
@@ -2119,7 +2107,7 @@ const WatchWithFrind = ({ route }) => {
       if (response?.results?.length > 0) {
         response.results.forEach(item => {
           const imdbId = item.movie?.imdb_id;
-          if (item.preference === "like") {
+          if (item?.preference === "like") {
             setLikes(prev => ({ ...prev, [imdbId]: true }));
           } else if (item.preference === "dislike") {
             setDislikes(prev => ({ ...prev, [imdbId]: true }));
@@ -2147,11 +2135,12 @@ const WatchWithFrind = ({ route }) => {
       fetchActivity();
     }
   }, [token, delayActionPreference, activeIndex]);
- useFocusEffect(
-    useCallback(() => {
-      fetchGroups();
-    }, []) // dependencies here if needed
-  );
+  
+  useEffect(() => {
+       fetchGroups();
+ 
+     
+  }, [notificationModal]);
   // Trigger preference update
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -2345,7 +2334,7 @@ const WatchWithFrind = ({ route }) => {
           useNativeDriver: true,
           listener: (event) => {
             // Track scroll offset for immediate background update
-            const offsetX = event.nativeEvent.contentOffset.x;
+            const offsetX = event?.nativeEvent?.contentOffset.x;
             scrollOffsetRef.current = offsetX;
             
             // Calculate current index based on scroll position
@@ -2507,6 +2496,7 @@ const WatchWithFrind = ({ route }) => {
     );
   };
 const totalMembers = memberCount ?? group1?.results?.length ?? 0;
+// const remainingMembers = Math.max(totalMembers, 0);
 const remainingMembers = Math.max(totalMembers - 1, 0);
   // Movie cards with animations
   const movieCard = useMemo(() => {
@@ -2567,6 +2557,11 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
       );
     });
   }, [displayMovies, likes, dislikes, scrollX]);
+const cleanGroupName = group_name
+  ?.replace(/\bnull\b/gi, '')             // remove "null"
+  ?.replace(/\s{2,}/g, ' ')               // extra spaces
+  ?.trim()
+  ?.replace(/ ([^,]+)$/g, ' , $1');       // last word se pehle comma
 
   return (
     <KeyboardAvoidingView
@@ -2582,7 +2577,10 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
         {/* Header */}
         <View style={styles.header}>
           <View style={{ flexDirection: "row", alignItems: "center",  }}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity   onPress={() => {
+    fetchGroups();      // call API
+    navigation.goBack(); // navigate back
+  }}>
               <Image source={imageIndex.backArrow} style={styles.backArrow} />
             </TouchableOpacity>
             <View style={[styles.backArrow,{
@@ -2590,11 +2588,6 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
             }]} >
               
             </View>
-          
-           
-          
-           
-         
           </View>
  <CustomText
               size={16}
@@ -2603,7 +2596,9 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
               font={font.PoppinsBold}
               numberOfLines={1}
             > 
-              {group_name ?? 'Group Name'}
+           {cleanGroupName}
+              {/* {group_name ?? 'Group Name'} */}
+              
             </CustomText>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity onPress={() => 
@@ -2815,7 +2810,7 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
           />
         )}
 
-        {groupMember && (
+        {/* {groupMember && (
           <WatchGroupMemberModal
             visible={groupMember}
 
@@ -2825,7 +2820,12 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
             token={token}
             heading={"Group Members"}
           />
-        )}
+        )} */}
+                <GroupMembersModal visible={groupMember}
+          groupMembers={group1?.results || group?.members}
+          onClose={() => setGroupMember(false)}
+          token={token}
+          heading={"Group Members"} />
         {/* {groupMember && (
           <GroupMembersModal
             visible={groupMember}
@@ -2848,6 +2848,7 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
             group_name={group_name}
             setGroup_name={setGroup_name}
           onClose={(cc) => {
+            fetchGroups()
    setmemberCount(cc);
   setGroupSettingModal(false)
 }}
@@ -2856,7 +2857,10 @@ const remainingMembers = Math.max(totalMembers - 1, 0);
         {/* )} */}
 <Notification
             visible={notificationModal}
-             onClose={() => setNotificationModal(false)}
+            onClose={() => {
+        fetchGroups();          // call API
+        setNotificationModal(false); // close modal
+    }}
              bgColor={true}
          />
         {/* <View style={{

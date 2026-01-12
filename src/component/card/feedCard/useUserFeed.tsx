@@ -30,9 +30,8 @@ console.log(type ,"type")
  if (feedData && page ===1) {
       setLoadingFeed(false);
 
-  // setFeedData(res.results)
-   setPage( page + 1);
-} else if (res.current_page >= res.total_pages) {
+    setPage( page + 1);
+} else if (res.current_page >= res?.total_pages) {
         setHasMore(false);
       } else {
                     setLoadingFeed(false);
@@ -43,10 +42,14 @@ console.log(type ,"type")
         }, 600);
       }
     } catch (err) {
+              setHasMore(false);
+
             setLoadingFeed(false);
 
       console.log("❌ Feed error:", err);
     } finally {
+              setHasMore(false);
+
       setLoadingFeed(false);
     }
   };

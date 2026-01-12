@@ -48,16 +48,14 @@ const OtherTaingPrfofile = () => {
     try {
       const response = await getRatedMovies(token);
       setMovies(response?.results)
-      console.log('data__arha_haui__eress__', response?.results)
-    } catch (error) {
+      } catch (error) {
       console.error('getCommonBookmarks', error)
     };
   }
 
   useEffect(() => {
     bothBookMovie()
-    console.log('ffgfdfsde')
-  }, [token, username])
+   }, [token, username])
 
   const handleToggleLovedImage = useCallback((movieId: string) => {
     setLovedImageMap(prev => ({
@@ -81,8 +79,7 @@ const OtherTaingPrfofile = () => {
   };
 
 
-  console.log('ranking_profile__file__here')
-  const compareHook = useCompareComponent(token);
+   const compareHook = useCompareComponent(token);
   const handleRankingPress = (movie) => {
     compareHook.openFeedbackModal(movie);
     console.log(movie, "movie in handleRankingPress");

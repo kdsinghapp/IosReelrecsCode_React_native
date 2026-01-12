@@ -51,6 +51,7 @@ import { toggleMute } from '../../../../redux/feature/videoAudioSlice';
 import MovieDetailsShimmer from './MovieDetailsShimmer';
 import VideoPlayer from '../../../../utils/NewNativeView';
 import CustomVideoPlayer from '../../../../component/common/CustomVideoPlayerios';
+import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom';
 // import CommentModal from '../../../../component/modal/comment/CommentModal';
 const CommentModal = React.lazy(() =>
   import('../../../../component/modal/comment/CommentModal')
@@ -311,8 +312,7 @@ const MovieDetailScreen = () => {
 
 
   const fetchNextMovieFromQueue = async (prevImdb) => {
-    console.log(prevImdb, 'fdfdfdfdf__fff')
-    try {
+     try {
       setLoadingMore(true);
       setIsLoading(true)
       let queue = [...matchingQueue];
@@ -351,8 +351,7 @@ const MovieDetailScreen = () => {
       return meta;
     } catch (error) {
             setIsLoading(false)
-      console.error("❌ Error fetching movie:", error);
-      return null;
+       return null;
     } finally {
       setLoadingMore(false);
     }
@@ -1185,7 +1184,7 @@ const handleCloseEpisodesModal = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
+       <FlatList
         ref={flatListRef}
         data={movieData}
         keyExtractor={(item, index) => item?.imdb_id ? item.imdb_id : `placeholder-${index}`}

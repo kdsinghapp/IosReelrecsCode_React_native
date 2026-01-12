@@ -489,8 +489,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
     paddingTop: 16,
-    maxHeight: Dimensions.get('window').height * 0.66,
-    minHeight: Dimensions.get('window').height * 0.66,
+    maxHeight:
+      Dimensions.get('window').height *
+      (Platform.OS === 'ios' ? 0.63 : 0.58 ),    
+
+    // maxHeight: Dimensions.get('window').height * 0.63,
+    height: Dimensions.get('window').height * 0.66,
+    // maxHeight: Dimensions.get('window').height * 0.66,
+    // minHeight: Dimensions.get('window').height * 0.66,
   },
   header: {
     flexDirection: 'row',

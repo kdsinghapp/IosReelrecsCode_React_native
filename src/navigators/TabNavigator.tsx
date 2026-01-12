@@ -74,67 +74,76 @@ export default function TabNavigator() {
     []
   );
 
-  const getTabBarStyle = useCallback(
-    (routeName: string) => {
-      const shouldHide = tabConfig.hideTabBarOnRoutes.includes(routeName);
-      const shouldTransparent = tabConfig.transparentTabBar.includes(routeName);
-      const shouldAbsolute = tabConfig.absolutePositionTabBar.includes(routeName);
-      const hidden = isKeyboardVisible || isMultiSelect || shouldHide;
-      return {
-        opacity: hidden ? 0 : 1,
-        height: hidden ? 0 :   Platform.OS == "android"?  58 : 68,
-        backgroundColor: shouldTransparent
-          ? "transparent"
-          : Color.background,
-        position: shouldTransparent || shouldAbsolute ? "absolute" : "relative",
-        borderTopWidth: 0,
-        elevation: 0,
-      };
-    },
-    [isKeyboardVisible, isMultiSelect, tabConfig]
-  );
+const getTabBarStyle = useCallback(
+  (routeName: string) => {
+    const shouldHide = tabConfig.hideTabBarOnRoutes.includes(routeName);
+    const shouldTransparent = tabConfig.transparentTabBar.includes(routeName);
+    const shouldAbsolute = tabConfig.absolutePositionTabBar.includes(routeName);
+
+    const hidden = isKeyboardVisible || isMultiSelect || shouldHide;
+
+    return {
+     height: hidden
+  ? 0
+  : Platform.OS === "android"
+  ? 58   // ⬆️ was 64
+  : 88,  // ⬆️ was 78
+
+paddingTop: 3,               // ⬆️ was 8
+paddingBottom: Platform.OS === "android" ? 12 : 20, // ⬆️ more space
+
+      backgroundColor: shouldTransparent ? "transparent" : Color.background,
+      position:
+        shouldTransparent || shouldAbsolute ? "absolute" : "relative",
+      borderTopWidth: 0,
+      elevation: 0,
+    };
+  },
+  [isKeyboardVisible, isMultiSelect, tabConfig]
+);
+
 
   const tabScreens = useMemo(() => _routes().BOTTOMTAB_ROUTE, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: Color.background }}>
-      <Tab.Navigator
-        initialRouteName={ScreenNameEnum.RankingTab}
-        lazy={true} // 🔹 Mount tabs only when focused
-        detachInactiveScreens={true} // 🔹 Free memory from inactive tabs
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarHideOnKeyboard: true,
-          animationEnabled: false,
-          sceneContainerStyle: { backgroundColor: Color.background },
-        }}
-      >
-        {tabScreens.map((screen) => (
-          <Tab.Screen
-            key={screen.name}
-            name={screen.name}
-            component={screen.Component}
-            options={({ route }) => {
-              const focusedRouteName =
-                getFocusedRouteNameFromRoute(route) ?? route.name;
-              const tabBarStyle = getTabBarStyle(focusedRouteName);
+    <Tab.Navigator
+  initialRouteName={ScreenNameEnum.RankingTab}
+  lazy
+  detachInactiveScreens
+  screenOptions={{
+    headerShown: false,
+    tabBarShowLabel: false,
+    tabBarHideOnKeyboard: true,
+    animationEnabled: false,
+    sceneContainerStyle: { backgroundColor: Color.background },
+  }}
+>
+  {tabScreens.map((screen) => (
+    <Tab.Screen
+      key={screen.name}
+      name={screen.name}
+      component={screen.Component}
+      options={({ route }) => {
+        const focusedRouteName =
+          getFocusedRouteNameFromRoute(route) ?? route.name;
 
-              return {
-                tabBarStyle,
-                tabBarIcon: ({ focused }) => (
-                  <TabIcon
-                    focused={focused}
-                    logo={screen.logo}
-                    logo1={screen.logo1}
-                    label={screen.label}
-                  />
-                ),
-              };
-            }}
-          />
-        ))}
-      </Tab.Navigator>
+        return {
+          tabBarStyle: getTabBarStyle(focusedRouteName),
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              logo={screen.logo}
+              logo1={screen.logo1}
+              label={screen.label}
+            />
+          ),
+        };
+      }}
+    />
+  ))}
+</Tab.Navigator>
+
     </View>
   );
 }

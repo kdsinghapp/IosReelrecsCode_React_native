@@ -68,7 +68,7 @@ const filteredMembers = members?.filter(member =>
       }
 
       // ui update
-      const updatedMembers = members.map(member =>
+      const updatedMembers = members?.map(member =>
         member.username === username
           ? { ...member, following: !member.following }
           : member
@@ -82,12 +82,10 @@ const filteredMembers = members?.filter(member =>
   if (error?.response?.data?.error) {
    setLoadingUsername(null); // ✅ reset
 
-    errorToast(error?.response?.data?.error);
-  } else {
+   } else {
         setLoadingUsername(null); // ✅ reset
 
-    errorToast("Something went wrong");
-  }
+   }
 }
 
   };
@@ -406,9 +404,10 @@ const styles = StyleSheet.create({
   followText: {
     color: Color.whiteText,
     fontFamily: font.PoppinsBold,
-    fontSize: 12,
+    fontSize: 11,
 
     lineHeight: 16,
+    textAlign:"center"
   },
 
 

@@ -59,6 +59,7 @@ const CreateGroupScreen = () => {
 
 
   const handleCreateGroup = async () => {
+    console.log("Creating group with members:", selectedMembers);
     if (!selectedMembers || selectedMembers.length === 0) {
       showToast("Please select at least one friend.", false);
       return;
@@ -71,18 +72,18 @@ const CreateGroupScreen = () => {
           ? `${selectedMembers[0].name} & ${selectedMembers[1].name}`
           : `${selectedMembers
             .slice(0, -1)
-            .map(member => member.name)
-            .join(', ')} & ${selectedMembers[selectedMembers.length - 1].name}`;
+            .map(member => member.name || member.username)
+            .join(',')} ${selectedMembers[selectedMembers.length - 1].name}`;
 
+            console.log(finalGroupName, "finalGroupName - - ")
     setGroupNameState(finalGroupName);
     setloder(true)
     console.log(selectedMembers, "selectedMembers - - ")
     try {
       // const memberUsernames = selectedMembers.map(member => member.username); // ✅ FIXED
       const memberUsernames = selectedMembers.map(member => member.id);
-
-      console.log(typeof memberUsernames, "memberUsernames <-<-,-<-,------")
-      console.log(memberUsernames, "memberUsernames <-<-,-<-,------")
+      // console.log(typeof memberUsernames, "memberUsernames <-<-,-<-,------")
+      // console.log(memberUsernames, "memberUsernames <-<-,-<-,------")
       const response = await createGroup(token, finalGroupName, memberUsernames);
       const createdGroupId = response?.data?.messaged?.split(' ')[0]?.trim();
       setGroup_Id(createdGroupId);

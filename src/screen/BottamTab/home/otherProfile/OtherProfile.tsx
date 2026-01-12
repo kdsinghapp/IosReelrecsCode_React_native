@@ -261,13 +261,11 @@ const OtherProfile = () => {
       const restoreIndex = async () => {
         try {
           const savedIndex = await AsyncStorage.getItem('otherProfileIndex');
-          console.log('savedIndex__data', savedIndex)
-          if (savedIndex !== null && isActive && !restoredRef.current) {
+           if (savedIndex !== null && isActive && !restoredRef.current) {
             const index = parseInt(savedIndex, 10);
             setCurrentVisibleIndex(index + 1); // scroll to last index
             setPlayIndex(index); // play previous video
-            console.log('Restored last played index:', index);
-            restoredRef.current = true;
+             restoredRef.current = true;
           }
         } catch (err) {
           console.error('Error restoring otherProfileIndex:', err);
@@ -285,8 +283,7 @@ const OtherProfile = () => {
     let indexForVideo = currentVisibleIndex - 1
     try {
       await AsyncStorage.setItem('otherProfileIndex', indexForVideo.toString());
-      console.log('Saved otherProfileIndex__data_For_video__play:', currentVisibleIndex);
-    } catch (err) {
+     } catch (err) {
       console.error('Error saving otherProfileIndex:', err);
     }
   };
@@ -310,8 +307,7 @@ const OtherProfile = () => {
       const res = await getOthereUsers(token, item?.username);
       await AsyncStorage.setItem('otherProfileIndex', videoNUllVideo.toString());
       setOtherUserData(res?.data)
-      console.log('user_dfata__here', res?.data)
-      setIsFollowing(res.data?.following_bool)
+       setIsFollowing(res.data?.following_bool)
       // console.log(res.data?.following_bool, "_lolou_superdata")
       // console.log(res.data, 'Fetched other user profile');
     } catch (err) {
@@ -462,7 +458,7 @@ const OtherProfile = () => {
 
 
   const MemoFeedCardRender = useCallback((item, index, avatarUri, posterUri) => {
-    return (
+     return (
       // <MemoFeedCard
       //   key={item.movie?.imdb_id} // <-- unique key per video
 
@@ -497,10 +493,12 @@ const OtherProfile = () => {
       // />
         <MemoFeedCardHome
         key={item.movie?.imdb_id} // <-- unique key per video
-
+activity={item?.activity}
         avatar={{ uri: avatarUri }}         //  string
         poster={{ uri: posterUri }}        //  string
-        user={item.user?.name}
+        // user={item.user?.name}
+                user={item.user?.name ||item.user?.username}
+
         title={item.movie?.title}
         comment={item.comment}
         release_year={item?.movie?.release_year?.toString()}
@@ -662,8 +660,9 @@ const filteredData = useMemo(() => {
       )
     );
   });
-}, [combinedData]);
-  return (
+}, [combinedData]); 
+
+   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar />
       <HeaderCustom

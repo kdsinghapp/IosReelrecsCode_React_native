@@ -79,7 +79,7 @@ const onLongPress = useCallback(async () => {
   //     setIsSettingsMode(true);
   //   }
   // }, [isMultiSelectMode]);
-  
+  console.log("group ----",group)
   return (
     <TouchableOpacity 
    onPress={handlePress}
@@ -123,10 +123,9 @@ const WatchGroupCom = ({
   setSelectedGroup,
   setIsSettingsMode,
   // groupTest={groupTest}
-}) => {
-  const navigation = useNavigation()
-  console.log(groups, "groups____groups___WatchGroupCom")
-  return (
+}:any) => {
+  console.log(" ----- groups ----",groups)
+    return (
     <FlatList
       data={groups}
       keyExtractor={(item) => item.groupId.toString()}

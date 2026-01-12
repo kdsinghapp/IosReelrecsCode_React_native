@@ -233,14 +233,12 @@ const WatchScreen = () => {
         groupsRes.results.map(async (group) => {
           let activities = [];
           let members = [];
-          const groupId = group?.group_id;
-          const groupName = group?.name;
+          const groupId = group?.group_id || group.username;
+          const groupName = group?.name || group?.username;
           const isMuted = group?.notification
           // console.log(isMuted, "isMuted__________isMuted")
            members = group?.members;
             console.log(typeof members, "members in watch screen data  -  -")
- 
-
             // activities
              activities = group?.activities;
            // try {
@@ -269,7 +267,7 @@ const WatchScreen = () => {
       );
       const filteredGroups = enrichedGroups.filter(Boolean);
 
-      console.log("filteredGroups",filteredGroups)
+      console.log("---- fffff -rr ",filteredGroups)
       setGroupsData(filteredGroups);
 
       // console.log(typeof filteredGroups, " Final enrichedGroups");
@@ -557,6 +555,7 @@ const UserActions = memo(({ groupsData , isSettingsMode,isMultiSelectMode}) => {
     </View>
   )
 })
+console.log(groupsData , "groupsData in user action")
 const GroupList = memo(({  groupsData ,isMultiSelectModel }) => {
  
 

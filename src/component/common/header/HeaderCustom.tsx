@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, Pressable, } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, Pressable, Platform, } from 'react-native';
 import { Color } from '../../../theme/color';
 import font from '../../../theme/font';
 
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     // marginTop: 10,
-    marginBottom: 20,
+marginBottom: Platform.OS === 'ios' ? 10 : 27,
     // marginHorizontal: 16,
     // backgroundColor:'red'
     paddingHorizontal: 16

@@ -210,6 +210,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
       setPreferenceMsg(true)
     }
   };
+  console.log(poster, "preferenceMsgpreferenceMsg")
 
   return (
     <Modal visible={visible} animationType="fade" transparent onRequestClose={onClose}>

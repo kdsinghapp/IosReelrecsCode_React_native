@@ -13,40 +13,114 @@ const GroupInterestCycle = ({ group,
   selectedGroupIds }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   console.log("group",group);
-  const interestUsers =
+  // const interestUsers =
+  // group?.activities && group.activities.length > 0
+  //   ? group.activities
+  //       .map((activity) => {
+  //         const member = group?.members?.find(
+  //           (mem) => mem?.username === activity.user?.username
+  //         );
+
+  //         return {
+  //           userName: member?.name || activity.user?.username || 'Unknown User',
+  //           avatar: member?.avatar || '/avatar/default.jpg',
+  //           userInterest: {
+  //             action: activity.preference === 'like',
+  //             actionTime: activity?.pref_record_date || null,
+  //             movieName: activity.movie?.title || 'a movie',
+  //           },
+  //         };
+  //       })
+  //       .filter(Boolean)
+  //   : [
+  //       // 🔹 Dummy Data (jab activities empty ho)
+  //       {
+  //         userName:group?.members[group?.members?.length-1]?.username,
+  //         avatar: group?.members[group?.members?.length-1]?.avatar,
+  //         userInterest: {
+  //            movieName: 'has been added to the group',
+  //         },
+  //       },
+  //     ];
+ 
+ 
+// const interestUsers =
+//   group?.activities && group.activities.length > 0
+//     ? group.activities.map(activity => {
+//         const member = group?.members?.find(
+//           mem => mem?.username === activity.user?.username
+//         );
+
+//         return {
+//           userName: member?.name || activity.user?.username || '',
+//           avatar: member?.avatar || '/avatar/default.jpg',
+//           userInterest: {
+//             action: activity.preference === 'like',
+//             actionTime: activity?.pref_record_date || null,
+//             movieName: activity.movie?.title || '',
+//           },
+//         };
+//       })
+//     : (() => {
+//         // 🔹 find newly added member (not current user)
+//         const addedMember = group?.members?.find(
+//           mem => mem?.username !== group?.created_by
+//         );
+
+//         return [
+//           {
+//             userName: addedMember?.name || addedMember?.username || 'Someone',
+//             avatar: addedMember?.avatar || '/avatar/default.jpg',
+//             userInterest: {
+//               movieName: 'has been added to the group',
+//               action:"other"
+//              },
+//           },
+//         ];
+//       })();
+
+ 
+const interestUsers =
   group?.activities && group.activities.length > 0
-    ? group.activities
-        .map((activity) => {
-          const member = group?.members?.find(
-            (mem) => mem?.username === activity.user?.username
-          );
+    ? group.activities.map(activity => {
+        const member = group?.members?.find(
+          mem => mem?.username === activity.user?.username
+        );
 
-          return {
-            userName: member?.name || activity.user?.username || 'Unknown User',
-            avatar: member?.avatar || '/avatar/default.jpg',
-            userInterest: {
-              action: activity.preference === 'like',
-              actionTime: activity?.pref_record_date || null,
-              movieName: activity.movie?.title || 'a movie',
-            },
-          };
-        })
-        .filter(Boolean)
-    : [
-        // 🔹 Dummy Data (jab activities empty ho)
-        {
-          userName:group?.members[group?.members?.length-1]?.username,
-          avatar: group?.members[group?.members?.length-1]?.avatar,
+        return {
+          userName: member?.name || activity.user?.username || '',
+          avatar: member?.avatar || '/avatar/default.jpg',
           userInterest: {
-             movieName: 'has been added to the group',
+            action: activity.preference === 'like',
+            actionTime: activity?.pref_record_date || null,
+            movieName: activity.movie?.title || '',
           },
-        },
-      ];
+        };
+      })
+    : (() => {
+        // ✅ get latest added member (excluding creator)
+        const addedMember = [...(group?.members || [])]
+          .filter(mem => mem?.username !== group?.created_by)
+          .sort(
+            (a, b) =>
+              new Date(b?.created_at || 0).getTime() -
+              new Date(a?.created_at || 0).getTime()
+          )[0];
 
+        return [
+          {
+            userName: addedMember?.name || addedMember?.username || 'Someone',
+            avatar: addedMember?.avatar || '/avatar/default.jpg',
+            userInterest: {
+              movieName: 'has been added to the group',
+              action: 'other',
+            },
+          },
+        ];
+      })();
 
   const isSelected = Array.isArray(selectedGroupIds) && selectedGroupIds?.includes(group?.groupId);
-console.log("group",group)
-  // useEffect(() => {
+   // useEffect(() => {
   //   if (currentIndex >= interestUsers?.length - 1) return;
 
   //   const interval = setInterval(() => {
@@ -67,8 +141,7 @@ console.log("group",group)
 
   const user = interestUsers?.[currentIndex] ?? null;
    const interest = user?.userInterest ?? null;
-  console.log(interest, "interest___________")
-
+ 
 
   // Inside your component:
   const slideAnim = useRef(new Animated.Value(50)).current; // Start 50px below
@@ -135,8 +208,15 @@ console.log("group",group)
   group?.members?.[0] || null;
 
 const creatorAvatar = creator?.avatar || imageIndex.Addplus;
+const cleanGroupName = group?.groupName
+  ?.replace(/\bnull\b/gi, '')             // remove "null"
+  ?.replace(/\s{2,}/g, ' ')               // extra spaces
+  ?.trim()
+  ?.replace(/ ([^,]+)$/g, ' , $1');       // last word se pehle comma
 
-  //  console.log(interest , "backlash_interest")
+console.log(group?.groupName);
+
+
   return (
 
     <View style={styles.groupInfo}>
@@ -150,7 +230,8 @@ const creatorAvatar = creator?.avatar || imageIndex.Addplus;
           font={font.PoppinsBold}
           numberOfLines={1}
         >
-          {group?.groupName}
+          {cleanGroupName}
+          {/* {group?.groupName} */}
         </CustomText>
         {isMultiSelectMode && (
           <TouchableOpacity
@@ -225,7 +306,7 @@ const creatorAvatar = creator?.avatar || imageIndex.Addplus;
                 {user?.userName}
               </Text>
 
-{interest?.action && (
+{/* {interest?.action && ( */}
      <CustomText
                 size={12}
                 lineHeight={12}
@@ -236,10 +317,15 @@ const creatorAvatar = creator?.avatar || imageIndex.Addplus;
                 }}
                 font={font.PoppinsRegular}
                 numberOfLines={1}
-              >
-                {interest?.action ? 'liked' : 'disliked'}
+              > {user?.userInterest?.action === "other" ? null : (<>
+    {interest?.action ? "liked" : "disliked"}
+  </>
+)}
+
+
+               
               </CustomText>
-) }
+{/* ) } */}
            
 
               <CustomText
