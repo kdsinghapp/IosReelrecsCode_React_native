@@ -43,7 +43,7 @@ lineHeight:18,
     alignItems:'center',
     marginBottom:20,
     paddingHorizontal:18,
-    marginTop: Platform.OS === 'ios' ? 40 : 18,
+    marginTop: Platform.OS === 'ios' ? 0 : 18,
     justifyContent:"center"
   },
   action: {

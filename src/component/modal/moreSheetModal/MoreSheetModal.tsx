@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
 
     maxHeight:
       Dimensions.get('window').height *
-      (Platform.OS === 'ios' ? 0.63 : 0.62 ),  
+      (Platform.OS === 'ios' ? 0.63 : 0.63 ),  
     height: Dimensions.get('window').height * 0.66,
   },
   header: {

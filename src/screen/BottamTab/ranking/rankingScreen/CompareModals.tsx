@@ -8,12 +8,10 @@ import { setModalClosed } from '../../../../redux/feature/modalSlice/modalSlice'
 const CompareModals = ({
   token,
   useCompareHook,
-
-
 }: {
   token: string;
   useCompareHook: ReturnType<typeof import('./useCompareComponent').useCompareComponent>;
-  
+
 }) => {
   const {
     selectedMovie,
@@ -44,7 +42,7 @@ const CompareModals = ({
   // console.log(selectedMovie?.imdb_id , 'ssssssss____s')
   // console.log(isStepsModalVisible, currentStep, 'isStepsModalVisible___currentStep')
 
- useEffect(() => {
+  useEffect(() => {
     if (isStepsModalVisible) {
       dispatch(setModalClosed(true));
     } else {
@@ -54,38 +52,38 @@ const CompareModals = ({
 
 
   return (
-    <> 
-     {isFeedbackVisible && (
-      <FeedbackModal
-        visible={isFeedbackVisible}
-        onClose={() => {
-          setFeedbackVisible(false);
-          resetComparisonData();
-        }}
-        setFeedbackVisible={setFeedbackVisible}
-        token={token}
-        selectedMovie={selectedMovie}
-        imdb_id={selectedMovie?.imdb_id}
-        movieTitle={selectedMovie?.title}
-        movieYear={selectedMovie?.release_year?.toString()}
-        poster={{ uri: selectedMovie?.cover_image_url }}
-        
-        // submitPreference={handleFeedbackSubmit}
-        onOpenSecondModal={() => {
-          // Alert.alert(
-          //   "Select a movie",)
-            setFeedbackVisible(false)
-          setFeedbackVisible(false);
-          setComparisonVisible(true);
+    <>
+      {isFeedbackVisible && (
+        <FeedbackModal
+          visible={isFeedbackVisible}
+          onClose={() => {
+            setFeedbackVisible(false);
+            resetComparisonData();
+          }}
+          setFeedbackVisible={setFeedbackVisible}
+          token={token}
+          selectedMovie={selectedMovie}
+          imdb_id={selectedMovie?.imdb_id}
+          movieTitle={selectedMovie?.title}
+          movieYear={selectedMovie?.release_year?.toString()}
+          poster={{ uri: selectedMovie?.cover_image_url }}
 
-        }}
-        onSubmit={(preference) => {
-          // console.log(preference, 'preference___km')
-          setUserPreference({ preference }); // Save it in hook state
-          handleFeedbackSubmit(preference); // additional
-        }}
-      />
-     )}
+          // submitPreference={handleFeedbackSubmit}
+          onOpenSecondModal={() => {
+            // Alert.alert(
+            //   "Select a movie",)
+            setFeedbackVisible(false)
+            setFeedbackVisible(false);
+            setComparisonVisible(true);
+
+          }}
+          onSubmit={(preference) => {
+            // console.log(preference, 'preference___km')
+            setUserPreference({ preference }); // Save it in hook state
+            handleFeedbackSubmit(preference); // additional
+          }}
+        />
+      )}
       {/* {console.log(isComparisonVisible, selectedMovie?.title, '  ---  ', secondMovieData?.title, "modalOpen__work")} */}
       {isComparisonVisible && selectedMovie && secondMovieData && (
         <ComparisonModal
@@ -117,11 +115,8 @@ const CompareModals = ({
           onSelectSecond={handleSelectSecond}
           comparisonMovies={comparisonMovies}
           onSkipSelect={handleSkipSetFirst}
-        handleCloseRating={handleCloseRating}  // close modal by close
+          handleCloseRating={handleCloseRating}  // close modal by close
         // currentComparisonIndex={currentComparisonIndex}
-          
-
-
         />
       )}
       {currentStep > 6 ?

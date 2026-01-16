@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Pressable, Image, TouchableOpacity, Modal, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, Pressable, Image, TouchableOpacity, Modal, StyleSheet, Dimensions, ActivityIndicator, FlatList } from 'react-native';
 import { Color } from '../../../../theme/color';
 import imageIndex from '../../../../assets/imageIndex';
 import font from '../../../../theme/font';
@@ -16,7 +16,7 @@ const PlatformModales = ({ visible,
     platformsData,
     selectedPlatforms,
     setSelectedPlatforms }) => {
-    console.log(platformsData, "platformsData____modalScreec__")
+    // console.log(platformsData, "platformsData____modalScreec__")
 
     const token = useSelector((state: RootState) => state.auth.token);
     const [toestMess, setToestMess] = useState(false)
@@ -62,49 +62,70 @@ const PlatformModales = ({ visible,
     //     );
     // };
 
-    const togglePlatformForRestore = (index) => {
-        setSelectedPlatforms(prev =>
-            prev.includes(index)
-                ? prev                 // already selected, do nothing
-                : [...prev, index]     // add if not present
-        );
-    };
+    // const togglePlatformForRestore = (index) => {
+    //     setSelectedPlatforms(prev =>
+    //         prev.includes(index)
+    //             ? prev                 // already selected, do nothing
+    //             : [...prev, index]     // add if not present
+    //     );
+    // };
+const restoreFormSetting = async () => {
+    try {
+        const response = await getUserSubscriptions(token);
+
+        // Extract subscriptions
+        const restoredPlatforms = response?.data.map(item => item.subscription) || [];
+
+        // Update state ONCE
+        setSelectedPlatforms(restoredPlatforms);
+
+        // Show toast
+        setToastMessage("Saved platforms restored!");
+        setToestMessGreen(true);
+        setToestMess(true);
+
+    } catch (error) {
+        setToastMessage("Failed to restore platforms!");
+        setToestMessGreen(false);
+        setToestMess(true);
+    }
+};
 
 
 
-    const restoreFormSetting = async () => {
-        try {
-            const response = await getUserSubscriptions(token);
-            let lengthItem = response?.data.length;
-            console.log(lengthItem, response?.data, "dsds_dnjsjhskjs");
+    // const restoreFormSetting = async () => {
+    //     try {
+    //         const response = await getUserSubscriptions(token);
+    //         let lengthItem = response?.data.length;
+    //         console.log(lengthItem, response?.data, "dsds_dnjsjhskjs");
 
-            response?.data.map((ok) => {
-                console.log(
-                    ok.subscription,
-                    "response__platddssfrom_dfgh__data_select"
-                );
-                togglePlatformForRestore(ok.subscription);
-            });
-
-
-            setToastMessage("Saved platforms restored!");
-            setToestMessGreen(true);
-            setToestMess(true);
+    //         response?.data.map((ok) => {
+    //             console.log(
+    //                 ok.subscription,
+    //                 "response__platddssfrom_dfgh__data_select"
+    //             );
+    //             togglePlatformForRestore(ok.subscription);
+    //         });
 
 
-            setTimeout(() => {
-                setToestMess(false);
-            }, 2000);
-        } catch (error) {
-            setToastMessage("Failed to restore platforms!");
-            setToestMessGreen(false);
-            setToestMess(true);
+    //         setToastMessage("Saved platforms restored!");
+    //         setToestMessGreen(true);
+    //         setToestMess(true);
 
-            setTimeout(() => {
-                setToestMess(false);
-            }, 2000);
-        }
-    };
+
+    //         setTimeout(() => {
+    //             setToestMess(false);
+    //         }, 2000);
+    //     } catch (error) {
+    //         setToastMessage("Failed to restore platforms!");
+    //         setToestMessGreen(false);
+    //         setToestMess(true);
+
+    //         setTimeout(() => {
+    //             setToestMess(false);
+    //         }, 2000);
+    //     }
+    // };
 
 
     const selectAll = () => {
@@ -200,7 +221,48 @@ const PlatformModales = ({ visible,
                             />
                         ):(
                             <>
-   {platformsData?.map((platform) => (
+  
+ <FlatList
+    data={platformsData}
+    keyExtractor={(item) => item.supported_platform}
+    renderItem={({ item }) => {
+        const isSelected = selectedPlatforms.includes(item.supported_platform);
+
+        return (
+            <Pressable
+                onPress={() => togglePlatform(item.supported_platform)}
+                style={[styles.modalItem]} // optional selected style
+            >
+                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                    <Image
+                        source={{ uri: item.icon }}
+                        style={styles.platformIcon}
+                        resizeMode="contain"
+                    />
+                    <CustomText
+                        size={14}
+                        color={Color.whiteText}
+                        style={[styles.modalItemText, { marginLeft: 10 }]}
+                        font={font.PoppinsMedium}
+                        numberOfLines={1}
+                    >
+                        {item.supported_platform}
+                    </CustomText>
+                </View>
+
+                {/* Just show the checkbox, no need for TouchableOpacity */}
+                <Image
+                    source={isSelected ? imageIndex.checKBoxActive : imageIndex.checkBox}
+                    style={styles.checkboxIcon}
+                />
+            </Pressable>
+        );
+    }}
+    extraData={selectedPlatforms} // ensures re-render when selection changes
+/>
+
+
+   {/* {platformsData?.map((platform) => (
                             <Pressable
                                 key={platform.supported_platform}
                                 onPress={() => togglePlatform(platform.supported_platform)}
@@ -231,7 +293,7 @@ const PlatformModales = ({ visible,
                                     />
                                 </TouchableOpacity>
                             </Pressable>
-                        ))}
+                        ))} */}
 
                             </>
                         )}

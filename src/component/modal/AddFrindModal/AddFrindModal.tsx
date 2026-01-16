@@ -199,8 +199,8 @@ const styles = StyleSheet.create({
         width: "47%",
         // paddingHorizontal: "20%",
         paddingVertical: 10,
-        height:43
-
+        height:42 ,
+ 
     },
     addBtn: {
         backgroundColor: Color.primary,
@@ -209,7 +209,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         // paddingHorizontal: 24,
         width: "47%",
-        height:43,
+            height:42 ,
+
          borderWidth: 1,
         marginLeft: 15,
     },

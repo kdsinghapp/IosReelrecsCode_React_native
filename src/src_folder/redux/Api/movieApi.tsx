@@ -140,7 +140,7 @@ export const recordPairwiseDecision = async (token: string, payload: {
     payload,
     { headers: { Authorization: `Token ${token}` } }
   );
-  console.log('recordPairwiseDecision_____', response)
+  console.log('v1/record-pairwise-decision-and-calculate-rating ', response)
   return response.data;
 };
 
@@ -291,7 +291,7 @@ export const calculateMovieRating = async (
   token: string,
   payload: CalculateRatingPayload
 ): Promise<any> => {
-  console.log(payload, "ranking flow last step")
+  console.log(payload, "calculate ranking flow last step")
   try {
     const response = await axiosInstance.post(
       '/calculate-movie-rating',

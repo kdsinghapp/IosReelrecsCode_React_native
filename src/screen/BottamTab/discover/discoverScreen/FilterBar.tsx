@@ -7,18 +7,15 @@ import {
   Modal,
   StyleSheet,
   Image,
-  Pressable,
-  ScrollView,
+ 
   Alert,
 } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-import { filters, genres, platformsData } from './DisCoverData';
+ import { filters, genres, platformsData } from './DisCoverData';
 import { Color } from '../../../../theme/color';
 import PlatformModales from './PlatformModales';
 import { GenreModal } from '../../../../component';
 import font from '../../../../theme/font';
-import { cacheStores } from '../../../../../metro.config';
-import { getUniqueGenres } from '../../../../redux/Api/movieApi';
+ import { getUniqueGenres } from '../../../../redux/Api/movieApi';
 import { getUniquePlatforms } from '../../../../redux/Api/SettingApi';
 import CustomText from '../../../../component/common/CustomText';
 
@@ -77,12 +74,12 @@ const FilterBar = ({ isSelectList,
 
   const isSelected = (item) => {
     if (['1', '2', '5'].includes(item.id)) {
-      console.log(item.id, " item.id - - - ")
+      // console.log(item.id, " item.id - - - ")
 
       return selectedSimpleFilter === item.id;
 
     }
-    console.log(selectedSimpleFilter, "selectedSimpleFilter")
+    // console.log(selectedSimpleFilter, "selectedSimpleFilter")
 
     if (item.id === '3') return selectedGenres.length > 0;
     if (item.id === '4') return selectedPlatforms.length > 0;

@@ -14,42 +14,6 @@
             "avatar": "/avatar/sunny23.jpg"
         },
         "movie": {
-            "imdb_id": "tt1751634",
-            "title": "The Sandman",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt1751634.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt1751634/tt1751634.m3u8"
-        },
-        "rec_score": -1,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "Today",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt5304688",
-            "title": "Bad Sister",
-            "horizontal_poster_url": "",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt5304688/tt5304688.m3u8"
-        },
-        "rec_score": 6.6,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "Today",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
             "imdb_id": "tt0266543",
             "title": "Finding Nemo",
             "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0266543.jpg",
@@ -68,202 +32,18 @@
             "avatar": "/avatar/sunny23.jpg"
         },
         "movie": {
-            "imdb_id": "tt26743210",
-            "title": "How to Train Your Dragon",
-            "horizontal_poster_url": "",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt26743210/tt26743210.m3u8"
+            "imdb_id": "tt5109280",
+            "title": "Raya and the Last Dragon",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt5109280.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt5109280/tt5109280.m3u8"
         },
-        "rec_score": -1,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "Yesterday",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt7826376",
-            "title": "Upload",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt7826376.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt7826376/tt7826376.m3u8"
-        },
-        "rec_score": 5,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "Yesterday",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt5950044",
-            "title": "Superman",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt5950044.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt5950044/tt5950044.m3u8"
-        },
-        "rec_score": 3.4,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "Yesterday",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt10919420",
-            "title": "Squid Game",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt10919420.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt10919420/tt10919420.m3u8"
-        },
-        "rec_score": 4.7,
+        "rec_score": 9.9,
         "is_bookmarked": false,
         "type": "feed"
     },
     {
         "activity": "ranked",
-        "created_date": "07 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt7826376",
-            "title": "Upload",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt7826376.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt7826376/tt7826376.m3u8"
-        },
-        "comment": "What",
-        "rec_score": 5,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "ranked",
-        "created_date": "07 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt5304688",
-            "title": "Bad Sister",
-            "horizontal_poster_url": "",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt5304688/tt5304688.m3u8"
-        },
-        "comment": "",
-        "rec_score": 6.6,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "07 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt0101058",
-            "title": "The Carol Burnett Show",
-            "horizontal_poster_url": "",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/star_wars/star_wars.m3u8"
-        },
-        "rec_score": 7.5,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "07 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt0436339",
-            "title": "G-Force",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0436339.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt0436339/tt0436339.m3u8"
-        },
-        "rec_score": 7.8,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "ranked",
-        "created_date": "06 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt5950044",
-            "title": "Superman",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt5950044.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt5950044/tt5950044.m3u8"
-        },
-        "comment": "Ok I will check",
-        "rec_score": 3.4,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "ranked",
-        "created_date": "06 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt0266543",
-            "title": "Finding Nemo",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0266543.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt0266543/tt0266543.m3u8"
-        },
-        "comment": "",
-        "rec_score": 8.7,
-        "is_bookmarked": false,
-        "type": "feed"
-    },
-    {
-        "activity": "bookmarked",
-        "created_date": "06 Jan 2026",
-        "user": {
-            "username": "sunny23",
-            "name": "Johnfh Greta’s r",
-            "avatar": "/avatar/sunny23.jpg"
-        },
-        "movie": {
-            "imdb_id": "tt1345836",
-            "title": "The Dark Knight Rises",
-            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt1345836.jpg",
-            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt1345836/tt1345836.m3u8"
-        },
-        "rec_score": 9.3,
-        "is_bookmarked": true,
-        "type": "feed"
-    },
-    {
-        "activity": "ranked",
-        "created_date": "05 Jan 2026",
+        "created_date": "Today",
         "user": {
             "username": "sunny23",
             "name": "Johnfh Greta’s r",
@@ -276,7 +56,235 @@
             "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt4007502/tt4007502.m3u8"
         },
         "comment": "",
-        "rec_score": 9.3,
+        "rec_score": 8.9,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt0266543",
+            "title": "Finding Nemo",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0266543.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt0266543/tt0266543.m3u8"
+        },
+        "comment": "",
+        "rec_score": 8.7,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt3021746",
+            "title": "Vai Que Cola",
+            "horizontal_poster_url": "",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/star_wars/star_wars.m3u8"
+        },
+        "comment": "",
+        "rec_score": 3.4,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt15573636",
+            "title": "LOL: Last One Laughing Brazil",
+            "horizontal_poster_url": "",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/star_wars/star_wars.m3u8"
+        },
+        "comment": "",
+        "rec_score": 6.7,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt28502014",
+            "title": "LOL: Last One Laughing Colombia",
+            "horizontal_poster_url": "",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/star_wars/star_wars.m3u8"
+        },
+        "comment": "",
+        "rec_score": 5.7,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt8160834",
+            "title": "Follow Me",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt8160834.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt8160834/tt8160834.m3u8"
+        },
+        "comment": "",
+        "rec_score": 7.3,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt15576504",
+            "title": "The Night Manager",
+            "horizontal_poster_url": "",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt15576504/tt15576504.m3u8"
+        },
+        "comment": "",
+        "rec_score": 6.1,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt0250371",
+            "title": "The Other Side of Heaven",
+            "horizontal_poster_url": "",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt0250371/tt0250371.m3u8"
+        },
+        "comment": "",
+        "rec_score": 4.5,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt11006642",
+            "title": "Walker",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt11006642.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt11006642/tt11006642.m3u8"
+        },
+        "comment": "",
+        "rec_score": 4.6,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt0203259",
+            "title": "Law & Order: Special Victims Unit",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0203259.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/star_wars/star_wars.m3u8"
+        },
+        "comment": "",
+        "rec_score": 5.9,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt0344651",
+            "title": "Good Eats",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0344651.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/star_wars/star_wars.m3u8"
+        },
+        "comment": "",
+        "rec_score": 5.7,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt0418279",
+            "title": "Transformers",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt0418279.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt0418279/tt0418279.m3u8"
+        },
+        "comment": "",
+        "rec_score": 6.2,
+        "is_bookmarked": false,
+        "type": "feed"
+    },
+    {
+        "activity": "ranked",
+        "created_date": "Today",
+        "user": {
+            "username": "sunny23",
+            "name": "Johnfh Greta’s r",
+            "avatar": "/avatar/sunny23.jpg"
+        },
+        "movie": {
+            "imdb_id": "tt3581920",
+            "title": "The Last of Us",
+            "horizontal_poster_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/posters/horizontal/compressed/tt3581920.jpg",
+            "trailer_url": "https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed_h265/tt3581920/tt3581920.m3u8"
+        },
+        "comment": "Best",
+        "rec_score": 6,
         "is_bookmarked": false,
         "type": "feed"
     }

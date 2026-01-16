@@ -53,6 +53,7 @@ const filteredMembers = members?.filter(member =>
   const currentUser = filteredMembers?.find(member => member?.username === ProfileUserName);
   const otherUsers = filteredMembers?.filter(member => member?.username !== ProfileUserName);
   const toggleFollow = async (username: string) => {
+    console.log("------- >>>>>>> ", username);
     setLoadingUsername(username)
     try {
 
@@ -170,8 +171,10 @@ const filteredMembers = members?.filter(member =>
                     <FlatList
                       data={otherUsers}
                       keyExtractor={(item) => item.username}
-                      renderItem={({ item }) => (
-                        <View style={styles.memberItem}>
+                      renderItem={({ item }) =>  {
+ 
+                        return(
+                              <View style={styles.memberItem}>
                           <TouchableOpacity
                             style={{ marginRight: 12 }}
                             onPress={() => navigation.navigate(ScreenNameEnum.OtherProfile)}
@@ -219,7 +222,8 @@ const filteredMembers = members?.filter(member =>
 
 
                         </View>
-                      )}
+                        )
+                      }}
                       contentContainerStyle={styles.listContent}
                       showsVerticalScrollIndicator={false}
                       initialNumToRender={8}

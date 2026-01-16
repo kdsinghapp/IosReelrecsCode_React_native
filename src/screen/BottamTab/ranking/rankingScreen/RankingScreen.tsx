@@ -1058,6 +1058,8 @@ const RankingScreen = () => {
       // setRatedMovie(res_All_Rated?.results?.slice(0,9) ?? []);
       setRatedMovie(res_All_Rated?.results ?? []);
     } catch (error) {
+      setLoading(false);
+    setRefreshing(false);
       console.error("❌ Error fetching rated movies:", error);
     } finally {
       setLoading(false);
@@ -1217,7 +1219,7 @@ const RankingScreen = () => {
 
       const res = await recordPairwiseDecision1(token, payload);
       // const res = await recordPairwiseDecision(token, payload);
-      console.log('Pairwise decision recorded', res);
+      console.log('up/down  Raking recorded', res);
 
       // Update scores
       setTimeout(() => {
@@ -1521,8 +1523,11 @@ const RankingScreen = () => {
   useEffect(() => {
     // console.log('avvvv================')
     setDisplayMovies(filteredMovies);
+    console.log("filteredMovies",filteredMovies)
   }, [filteredMovies ,visibleCount]);
-  return (
+
+
+   return (
     <SafeAreaView style={styles.maincontainer}>
       <CustomStatusBar />
 

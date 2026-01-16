@@ -753,7 +753,7 @@ const seekForward = () => {
       if (!item) {
         return renderShimmerEffect();
       } 
-// console.log("item?.friends_rec_score",item?.friends_rec_score)
+console.log("item?.friends_rec_score",item)
       saveBookMark_Ref.current = item?.is_bookmarked
       return (
         <View style={{ height: ITEM_HEIGHT, flexDirection: "column", paddingTop: 6, }}>

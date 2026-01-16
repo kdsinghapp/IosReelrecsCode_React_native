@@ -557,7 +557,8 @@ ListEmptyComponent={() => {
           avatar={{ uri: avatarUri }}
           poster={{ uri: posterUri }}
           activity={item?.activity}
-          user={item.user?.name}
+        user={item.user?.name ||item.user?.username}
+          // user={item.user?.name}
           title={item.movie?.title}
           comment={item.comment}
           release_year={item?.movie?.release_year?.toString()}

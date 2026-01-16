@@ -265,7 +265,7 @@ const {setFeedBAckSucc}  =  route.params || {}
               {
                 backgroundColor: isCheckBox ? Color.primary : "transparent",
                 borderWidth: isCheckBox ? 0 : 1 ,
-                borderRadius:4
+                borderRadius:4.5
               }
             ]}
             onPress={() => setIsCheckBox(!isCheckBox)}
@@ -599,8 +599,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   checkStyle: {
-    height: 16,
-    width: 16,
+    height: 15,
+    width: 15,
     tintColor: Color.whiteText,
  
   },

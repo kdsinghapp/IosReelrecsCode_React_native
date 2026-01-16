@@ -261,7 +261,9 @@ const handleNavigation = (imdb_id: string, token: string) => {
             />
           </View>
 
-          <View style={{ flexDirection: 'row', marginTop: 18, }} >
+          <View style={{ flexDirection: 'row', marginTop: 18, 
+
+            }} >
             {/* <TouchableOpacity style={styles.iconprimary}
             onPress={() => { setIsVisible(true) }}
           > */}

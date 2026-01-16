@@ -208,13 +208,13 @@ const interestUsers =
   group?.members?.[0] || null;
 
 const creatorAvatar = creator?.avatar || imageIndex.Addplus;
-const cleanGroupName = group?.groupName
-  ?.replace(/\bnull\b/gi, '')             // remove "null"
-  ?.replace(/\s{2,}/g, ' ')               // extra spaces
-  ?.trim()
-  ?.replace(/ ([^,]+)$/g, ' , $1');       // last word se pehle comma
+// const cleanGroupName = group?.groupName
+//   ?.replace(/\bnull\b/gi, '')             // remove "null"
+//   ?.replace(/\s{2,}/g, ' ')               // extra spaces
+//   ?.trim()
+//   ?.replace(/ ([^,]+)$/g, ' , $1');       // last word se pehle comma
 
-console.log(group?.groupName);
+// console.log( "group -0-454545454545 ",group);
 
 
   return (
@@ -230,7 +230,7 @@ console.log(group?.groupName);
           font={font.PoppinsBold}
           numberOfLines={1}
         >
-          {cleanGroupName}
+          {group?.groupName}
           {/* {group?.groupName} */}
         </CustomText>
         {isMultiSelectMode && (

@@ -465,13 +465,14 @@ const App = () => {
   });
 
   const MemoFeedCardRender = useCallback((item, index, avatarUri, posterUri) => {
+    console.log("item",item?.user?.username)
     return (
       <MemoFeedCardHome
         avatar={{ uri: avatarUri }}
         poster={{ uri: posterUri }}
         activity={item?.activity}
         key={item.movie?.imdb_id}
-        user={item.user?.name}
+        user={item.user?.name ||item.user?.username}
         title={item.movie?.title}
         comment={item.comment}
         release_year={item?.movie?.release_year?.toString()}
@@ -570,6 +571,68 @@ const App = () => {
     });
   }, [navigation]);
 
+  function mergeFeedByImdbId(data = []) {
+  const result = [];
+  const feedMap = new Map();
+
+  data.forEach(item => {
+    // 1️⃣ Non-feed items
+    if (item?.type !== "feed") {
+      result.push(item);
+      return;
+    }
+
+    const imdbId = item?.movie?.imdb_id;
+
+    // 2️⃣ Invalid feed → skip
+    if (!imdbId || !item.activity || item.rec_score === -1) {
+      return;
+    }
+
+    // 3️⃣ First occurrence
+    if (!feedMap.has(imdbId)) {
+      feedMap.set(imdbId, {
+        ...item,
+        _activities: new Set([item.activity]),
+      });
+      return;
+    }
+
+    // 4️⃣ Merge
+    const existing = feedMap.get(imdbId);
+
+    existing._activities.add(item.activity);
+
+    // // ranked has priority
+    // if (item.activity === "ranked") {
+    //   existing.rec_score = item.rec_score;
+    //   existing.comment = item.comment;
+    // }
+
+    // bookmarked once → always bookmarked
+    if (item.is_bookmarked === true) {
+      existing.is_bookmarked = true;
+    }
+  });
+
+  // 5️⃣ Finalize
+  feedMap.forEach(item => {
+    const activityOrder = ["ranked", "bookmarked"];
+
+    item.activity = activityOrder
+      .filter(a => item._activities.has(a))
+      .join(", ");
+
+    delete item._activities;
+    result.push(item);
+  });
+
+  return result;
+}
+  const fiter = mergeFeedByImdbId(combinedData)
+
+
+  // console.log("HomeScreen Rendered",combinedData);
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar />
@@ -597,7 +660,7 @@ const App = () => {
       </View>
       
       <FlatList
-        data={filteredData}
+        data={fiter}
         renderItem={renderItem}
         keyExtractor={(item, index) => item?.id?.toString() || `index-${index}`}
         onEndReached={() => {

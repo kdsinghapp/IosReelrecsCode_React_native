@@ -5,7 +5,7 @@ import font from '../../../../theme/font';
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Color.background, },
-  header: { paddingTop: 5, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20 },
+  header: { paddingTop: 5, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 19.8 },
   filterRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 10 },
   filterButton: {
     // paddingBottom:40,

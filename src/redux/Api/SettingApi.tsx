@@ -64,7 +64,7 @@ export const getUserSubscriptions  = async (token:string)=> {
         }
       } 
     )
-    console.log(response.data , "getUserSubscriptions______<>___")
+    // console.log(response.data , "getUserSubscriptions______<>___")
 return response
   } catch (error) {
     console.error("Error ")

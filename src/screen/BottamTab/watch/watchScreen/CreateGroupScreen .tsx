@@ -57,34 +57,64 @@ const CreateGroupScreen = () => {
     };
   }, []);
 
-
   const handleCreateGroup = async () => {
     console.log("Creating group with members:", selectedMembers);
     if (!selectedMembers || selectedMembers.length === 0) {
       showToast("Please select at least one friend.", false);
       return;
     }
-    const finalGroupName = groupNameState.trim().length > 0
-      ? groupNameState.trim()
-      : selectedMembers.length === 1
-        ? selectedMembers[0].name
-        : selectedMembers.length === 2
-          ? `${selectedMembers[0].name} & ${selectedMembers[1].name}`
-          : `${selectedMembers
-            .slice(0, -1)
-            .map(member => member.name || member.username)
-            .join(',')} ${selectedMembers[selectedMembers.length - 1].name}`;
+    const getMemberName = (member) =>
+  (member?.name || member?.username || member?.id).trim();
 
-            console.log(finalGroupName, "finalGroupName - - ")
-    setGroupNameState(finalGroupName);
-    setloder(true)
-    console.log(selectedMembers, "selectedMembers - - ")
+const finalGroupName = groupNameState?.trim()
+  ? groupNameState.trim()
+  : selectedMembers.length === 1
+    ? getMemberName(selectedMembers[0])
+    : selectedMembers.length === 2
+      ? `${getMemberName(selectedMembers[0])} & ${getMemberName(selectedMembers[1])}`
+      : selectedMembers.length > 2
+        ? `${selectedMembers
+            .slice(0, -1)
+            .map(getMemberName)
+            .join(', ')} & ${getMemberName(selectedMembers[selectedMembers.length - 1])}`
+        : '';
+
+console.log(finalGroupName, ' ---- finalGroupName');
+console.log(selectedMembers, '--- selectedMembers');
+console.log(groupNameState, '---- groupNameState');
+
+const createGroupName = (groupNameState: string, selectedMembers: any[]) => {
+  // If user manually entered a group name, use that
+  if (groupNameState?.trim()) {
+    return groupNameState.trim();
+  }
+ 
+  const names = selectedMembers.map(getMemberName).filter(Boolean);
+ 
+  if (names.length === 0) return '';
+ 
+  if (names.length === 1) {
+    return names[0];
+  }
+ 
+  if (names.length === 2) {
+    return `${names[0]} & ${names[1]}`;
+  }
+ 
+  // 3 or more members
+  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`;
+};
+
+setloder(true)
+    // console.log(selectedMembers, "selectedMembers - - ")
     try {
-      // const memberUsernames = selectedMembers.map(member => member.username); // ✅ FIXED
-      const memberUsernames = selectedMembers.map(member => member.id);
-      // console.log(typeof memberUsernames, "memberUsernames <-<-,-<-,------")
-      // console.log(memberUsernames, "memberUsernames <-<-,-<-,------")
-      const response = await createGroup(token, finalGroupName, memberUsernames);
+      const finalGroupName = createGroupName(groupNameState, selectedMembers);
+      // console.log("Final Group Name:", finalGroupName);
+     const memberUsernames = selectedMembers.map(member => member?.username ||  member?.name ||member?.id); // ✅ FIXED
+      // const memberUsernames = selectedMembers.map(member => member.id);
+       console.log(memberUsernames, "memberUsernames  -------")
+        // console.log(finalGroupName, "finalGroupName  ---- ")
+       const response = await createGroup(token, finalGroupName, memberUsernames);
       const createdGroupId = response?.data?.messaged?.split(' ')[0]?.trim();
       setGroup_Id(createdGroupId);
       setGroup_api_create(true);

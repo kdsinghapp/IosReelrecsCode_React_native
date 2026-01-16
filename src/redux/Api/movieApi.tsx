@@ -130,14 +130,13 @@ export const getAllRated_with_preference = async (token: string, preference: str
 
 
 
-
 export const recordPairwiseDecision = async (token: string, payload: {
   imdb_id_1: string;
   imdb_id_2: string;
   winner: string;
   preference: "love" | "like" | "dislike";
 }) => {
-  console.log(payload, 'payload___of__recordPairwiseDecision')
+  // console.log(payload, 'payload___of__recordPairwiseDecision')
   const response = await axios.post(
     "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision",
     // "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision-and-calculate-rating",
@@ -146,7 +145,8 @@ export const recordPairwiseDecision = async (token: string, payload: {
     { headers: { Authorization: `Token ${token}` } }
   );
 
-  console.log( ' Raking response___of__recordPairwiseDecision',response.data)
+  console.log( 'v1/record-pairwise-decision',response.data)
+  console.log( 'api call right and left',response)
   return response.data;
 };
 export const recordPairwiseDecision1 = async (token: string, payload: {
@@ -155,7 +155,7 @@ export const recordPairwiseDecision1 = async (token: string, payload: {
   winner: string;
   preference: "love" | "like" | "dislike";
 }) => {
-  console.log(payload, 'payload___of__recordPairwiseDecision')
+  console.log('up/down --  /v1/record-pairwise-decision-and-calculate-rating',payload)
   const response = await axios.post(
     // "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision",
   "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision-and-calculate-rating",
@@ -163,6 +163,7 @@ export const recordPairwiseDecision1 = async (token: string, payload: {
     payload,
     { headers: { Authorization: `Token ${token}` } }
   );
+  console.log("response.data",response.data)
   return response.data;
 };
 
@@ -326,6 +327,7 @@ export const calculateMovieRating = async (
         headers: { Authorization: `Token ${token}` },
       }
     );
+    
     console.log('Api response last step.', response.data);
     return true;
     // return response.data;

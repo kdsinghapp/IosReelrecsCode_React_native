@@ -150,8 +150,10 @@ export const toggleBookmark = async (token: string, imdb_id: string): Promise<bo
   try {
     // Try adding first
     const addRes = await axios.post(BASE_URL, { imdb_id }, { headers });
-    console.log('call_api___toggleBookmark---')
+ 
     if (addRes.status === 200 || addRes.status === 201) {
+                 console.log('call_api___toggleBookmark---',addRes?.data)
+
       console.log("✅ Bookmark Added:", imdb_id);
       return true; // Added
     }
@@ -163,6 +165,8 @@ export const toggleBookmark = async (token: string, imdb_id: string): Promise<bo
         headers,
         data: { imdb_id }, // use `data` key for DELETE with body
       });
+
+      console.log('call_api___deleteBookmark---',delRes?.data?.message)
       if (delRes.status === 200) {
         console.log("🗑️ Bookmark Removed:", imdb_id);
         return false; // Removed

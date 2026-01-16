@@ -1964,7 +1964,8 @@ const WatchWithFrind = () => {
   const fetchGroups = async () => {
      try {
       const groupsRes = await getGroupMembers(token,groupId);
-       setgroup1(groupsRes); // ✅ state me set karo
+      console.log("_____getGroupMembers____",groupsRes);
+      setgroup1(groupsRes); // ✅ state me set karo
     } catch (error) {
       console.error("❌ Error fetching group details:", error);
     }
@@ -2497,8 +2498,9 @@ useEffect(() => {
   };
 const totalMembers = memberCount ?? group1?.results?.length ?? 0;
 // const remainingMembers = Math.max(totalMembers, 0);
+// const remainingMembers = totalMembers;
 const remainingMembers = Math.max(totalMembers - 1, 0);
-  // Movie cards with animations
+   // Movie cards with animations
   const movieCard = useMemo(() => {
     return displayMovies?.map((movie, index) => {
       const inputRange = [
@@ -2562,6 +2564,10 @@ const cleanGroupName = group_name
   ?.replace(/\s{2,}/g, ' ')               // extra spaces
   ?.trim()
   ?.replace(/ ([^,]+)$/g, ' , $1');       // last word se pehle comma
+const membersData =
+  (group?.members?.length || 0) >= (group1?.results?.length || 0)
+    ? group?.members
+    : group1?.results;
 
   return (
     <KeyboardAvoidingView
@@ -2596,8 +2602,8 @@ const cleanGroupName = group_name
               font={font.PoppinsBold}
               numberOfLines={1}
             > 
-           {cleanGroupName}
-              {/* {group_name ?? 'Group Name'} */}
+           {/* {cleanGroupName} */}
+              {group_name ?? 'Group Name'}
               
             </CustomText>
           <View style={{ flexDirection: "row" }}>
@@ -2623,7 +2629,7 @@ const cleanGroupName = group_name
             ]}
           >
             {type === 'createGroup'
-              ? group1?.results?.slice(0, 3).map((user, index) => (
+              ? membersData?.slice(0, 3).map((user, index) => (
                   <FastImage
                     key={index}
                     style={styles.memberAvatar}
@@ -2634,7 +2640,7 @@ const cleanGroupName = group_name
                     }}
                   />
                 ))
-              : group1?.results?.slice(0, 3).map((user, index) => (
+              : membersData?.slice(0, 3).map((user, index) => (
                   <FastImage
                     key={index}
                     style={styles.memberAvatar}
@@ -2822,7 +2828,8 @@ const cleanGroupName = group_name
           />
         )} */}
                 <GroupMembersModal visible={groupMember}
-          groupMembers={group1?.results || group?.members}
+          groupMembers={membersData}
+          // groupMembers={group1?.results || group?.members}
           onClose={() => setGroupMember(false)}
           token={token}
           heading={"Group Members"} />
@@ -2870,7 +2877,8 @@ const cleanGroupName = group_name
          </View> */}
            <GroupMovieModal
             visible={modalVisible}
-            group={group1?.results ||group}
+            group={membersData}
+            // group={group1?.results ||group.member}
             // group={group}
             groupId={groupId}
             token={token}

@@ -181,8 +181,8 @@ const formatGroupName = (name?: string) => {
             <View style={styles.groupNameRow}  >
                               <Image source={imageIndex.edit} style={{ height: 24, width: 24, tintColor: Color.background , }} resizeMode='contain' />
 
-               <Text style={styles.groupName} numberOfLines={2} >{formatGroupName(group_name)}</Text>
-               {/* <Text style={styles.groupName} numberOfLines={2} >{group_name}</Text> */}
+               {/* <Text style={styles.groupName} numberOfLines={2} >{formatGroupName(group_name)}</Text> */}
+               <Text style={styles.groupName} numberOfLines={2} >{group_name}</Text>
 
               <TouchableOpacity  onPress={() => setEditNameModal(true)} >
                 <Image source={imageIndex.edit} style={{ height: 24, width: 24, tintColor: Color.primary , marginLeft:5,}} resizeMode='contain' />

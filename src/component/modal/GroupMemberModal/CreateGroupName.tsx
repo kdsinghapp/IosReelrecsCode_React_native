@@ -147,7 +147,7 @@ borderRadius: 8,
 alignItems: 'center',
 justifyContent: 'center',
 width: "47%",
- height:47
+ height:44
 
   },
   cancelButton: {
@@ -158,7 +158,7 @@ justifyContent: 'center',
 width: "47%",
  borderWidth: 1,
 marginLeft: 15,
-height:47
+height:44.2
 
 
   },

@@ -62,7 +62,7 @@ class TokenService {
   static async getToken(): Promise<string | null> {
     // 1. Return memory token if available (fastest)
     if (this.token) {
-      console.log('[DIAG] [TokenService] Token found in memory');
+      // console.log('[DIAG] [TokenService] Token found in memory');
       return this.token;
     }
 

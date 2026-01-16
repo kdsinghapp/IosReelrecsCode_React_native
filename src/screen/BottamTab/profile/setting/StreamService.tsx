@@ -695,7 +695,7 @@ const styles = StyleSheet.create({
     fontFamily: font.PoppinsMedium,
     width: '85%',
     height: 45,
-  },
+   },
   crossImg: {
     height: 14,
     width: 14,
