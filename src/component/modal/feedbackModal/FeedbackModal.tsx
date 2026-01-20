@@ -217,7 +217,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
       <TouchableWithoutFeedback>
         <View style={styles.overlay}>
           {/* <View style={styles.modalContent}> */}
-          <TouchableOpacity style={{ alignSelf: 'flex-end', right: 22, position: 'absolute', top: 30, zIndex: 777 }}
+          <TouchableOpacity style={{ alignSelf: 'flex-end', right: 22, position: 'absolute', top: 55, zIndex: 777 }}
             onPress={handleCloseRating}
           >
             <Image source={imageIndex.closeCircle} style={{ height: 24, width: 24, tintColor: Color.placeHolder, resizeMode: 'contain' }} />

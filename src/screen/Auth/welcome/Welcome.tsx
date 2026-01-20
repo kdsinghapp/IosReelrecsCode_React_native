@@ -30,9 +30,11 @@ const Welcome = () => {
 
   const goToInitialScreen = () => {
     if (token) {
-      navigation.replace(ScreenNameEnum.TabNavigator, {
-        screen: ScreenNameEnum.RankingTab,
-      });
+      // navigation.replace(ScreenNameEnum.TabNavigator, {
+      //   screen: ScreenNameEnum.RankingTab,
+      // });
+            navigation.navigate(ScreenNameEnum.OnboardingScreen);
+
     } else {
       navigation.navigate(ScreenNameEnum.LoginScreen);
     }

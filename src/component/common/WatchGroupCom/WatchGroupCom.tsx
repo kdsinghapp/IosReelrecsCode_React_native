@@ -131,6 +131,9 @@ const WatchGroupCom = ({
       keyExtractor={(item) => item.groupId.toString()}
       initialNumToRender={5}
       maxToRenderPerBatch={10}
+        contentContainerStyle={{
+    paddingBottom: 70, // ya 40, 50 as needed
+  }}
       windowSize={5}
       removeClippedSubviews={true}
       style={{

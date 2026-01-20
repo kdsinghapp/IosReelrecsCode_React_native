@@ -49,6 +49,7 @@ export default {
   profielImg: require('./images/profielImg.png'),
   save: require('./images/save.png'),
   largPoster: require('./images/largPoster.png'),
+  WatchNowButton: require('./images/WatchNowButton.png'),
   largPoster1: require('./images/largPoster1.png'),
   kanbag: require('./images/kanbag.png'),
   checkBox: require('./images/checkBox.png'),
@@ -124,6 +125,15 @@ export default {
   normalNotification: require('../assets/images/normalNotification.png'),
   rankingTab: require('../assets/images/rankingTab.png'),
   closeCircle: require('../assets/images/closeCircle.png'),
+  Introduction: require('../assets/images/Introduction.png'),
+  step1: require('../assets/images/step1.png'),
+  step2: require('../assets/images/step2.png'),
+  step3: require('../assets/images/step3.png'),
+  WatchNowButton2: require('../assets/images/WatchNowButton2.png'),
+  step4: require('../assets/images/step4.png'),
+  SingleMovi: require('../assets/images/SingleMovi.png'),
+  SingleMovieSlide2: require('../assets/images/SingleMovieSlide2.png'),
+  SingleMovieSlide3: require('../assets/images/SingleMovieSlide3.png'),
   // closeCircle: require('../assets/images/closeCircle.png'),
 
 
@@ -144,7 +154,7 @@ export default {
 
 
   welcomePost1: require('../assets/welcomePost/welcomePost1.png'),
-  welcomePost2: require('../assets/welcomePost/welcomePost2.png'),
+   welcomePost2: require('../assets/welcomePost/welcomePost2.png'),
   welcomePost3: require('../assets/welcomePost/welcomePost3.png'),
   welcomePost4: require('../assets/welcomePost/welcomePost4.png'),
   welcomePost5: require('../assets/welcomePost/welcomePost5.png'),

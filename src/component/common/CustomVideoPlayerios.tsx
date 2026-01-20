@@ -197,7 +197,7 @@
 //     fontSize: 12,
 //   },
 // });
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import {
   View,
   TouchableOpacity,
@@ -209,7 +209,7 @@ import {
 } from "react-native";
 import Video from "react-native-video";
 import SvgImage from "../../assets/svg/svgImage";
-
+import { useNavigation  ,useFocusEffect} from "@react-navigation/native";
 const { width, height } = Dimensions.get("window");
 
 interface Props {
@@ -217,15 +217,22 @@ interface Props {
   muted?: boolean;
 }
 
-const   CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
+const CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false, paused = false ,  isModalOpen ,
+ }) => {
   const videoRef = useRef<Video>(null);
   const hideTimer = useRef<any>(null);
-
-  const [paused, setPaused] = useState(false);
+ 
   const [showControls, setShowControls] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [progressWidth, setProgressWidth] = useState(0);
+
+  // ✅ Internal paused state for proper control
+  const [isPaused, setIsPaused] = useState(paused);
+
+  // useEffect(() => {
+  //   setIsPaused(paused);
+  // }, [paused]);
 
   /* ================= AUTO HIDE ================= */
   const startAutoHide = () => {
@@ -246,6 +253,7 @@ const   CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
     const s = Math.floor(sec % 60);
     return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
+ 
 
   /* ================= SEEK ================= */
   const seekBy = (sec: number) => {
@@ -255,15 +263,47 @@ const   CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
     startAutoHide();
   };
 
+const handlePlayPause = () => {
+  if (isModalOpen == true) {
+    setIsPaused(true); // ⏸ force pause
+    return;
+  }
+
+  setIsPaused(prev => !prev);
+  startAutoHide();
+};
+
+
+// useEffect(() => {
+//   if (!isModalOpen) {
+//     setIsPaused(true);          // ⏸ lock
+//     videoRef.current?.seek(0);  // optional reset
+//   }
+// }, [isModalOpen]);
+
+
+
   const onSeekPress = (e: any) => {
-    if (!duration) return;
+    if (!duration || !progressWidth) return;
     const x = e.nativeEvent.locationX;
     const seekTime = (x / progressWidth) * duration;
     videoRef.current?.seek(seekTime);
     setCurrentTime(seekTime);
   };
+  console.log("11111",isModalOpen)
+// useFocusEffect(
+//   useCallback(() => {
+//     if (isModalOpen == "true") {
+//       setIsPaused(true);
+//       videoRef.current?.seek(0);
+//     }
+//   }, [isModalOpen])
+// );
 
-  return (
+
+
+// console.log("isPaused",isPaused)
+   return (
     <TouchableWithoutFeedback
       onPress={() => {
         setShowControls(true);
@@ -273,15 +313,16 @@ const   CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
       <View style={styles.container}>
         {/* VIDEO */}
         <Video
-          ref={videoRef}
+         ref={videoRef}
           source={{ uri: videoUrl }}
           style={styles.video}
           resizeMode="contain"
-          paused={paused}
+          paused={isPaused} // ✅ use internal state
           muted={muted}
           onProgress={(d) => setCurrentTime(d.currentTime)}
           onLoad={(d) => setDuration(d.duration)}
           progressUpdateInterval={250}
+
         />
 
         {/* OVERLAY */}
@@ -294,13 +335,16 @@ const   CustomVideoPlayer: React.FC<Props> = ({ videoUrl, muted = false }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
+              onPress={handlePlayPause}
                 style={styles.playBtn}
-                onPress={() => {
-                  setPaused(!paused);
-                  startAutoHide();
-                }}
+                // onPress={() => {
+                //   // setPaused(!paused);
+                  
+                //   startAutoHide();
+                // }}
               >
-                {paused ? <SvgImage.Play /> : <SvgImage.Pause />}
+                {isPaused ? <SvgImage.Play /> : <SvgImage.Pause />}
+                {/* {paused ? <SvgImage.Play /> : <SvgImage.Pause />} */}
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => seekBy(15)}>

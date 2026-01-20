@@ -614,6 +614,7 @@ const GroupList = memo(({  groupsData ,isMultiSelectModel }) => {
   navigation={navigation}
   setIsSettingsMode={setIsSettingsMode}
 />
+ 
 <GroupList
   groupsData={groupsData}
   isSettingsMode={isSettingsMode}
@@ -623,6 +624,7 @@ const GroupList = memo(({  groupsData ,isMultiSelectModel }) => {
   setSelectedGroup={setSelectedGroup}
   setIsSettingsMode={setIsSettingsMode}
 /> 
+ 
 
       </View>
 

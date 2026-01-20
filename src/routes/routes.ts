@@ -14,6 +14,8 @@ import EmailVerify from "../screen/Auth/addUsername/EmailVerify";
 
 // import EmailVerify from "../screen/Auth/addUsername/EmailVerify";
 import Login from "../screen/Auth/login/Login";
+import OnboardingScreen from "../screen/Auth/onboardingScreen/OnboardingScreen";
+import OnboardingScreen2 from "../screen/Auth/onboardingScreen/OnboardingScreen2";
 import NewPassword from "../screen/Auth/passwordReset/NewPassword";
 import PasswordReset from "../screen/Auth/passwordReset/PasswordReset";
 import Signup from "../screen/Auth/signup/Signup";
@@ -46,6 +48,8 @@ const _routes = () => {
       { name: ScreenNameEnum.CreateGroupScreen, Component: CreateGroupScreen },
       { name: ScreenNameEnum.WatchScreen, Component: WatchScreen },
       { name: ScreenNameEnum.StreamService, Component: StreamService },
+      { name: ScreenNameEnum.OnboardingScreen, Component: OnboardingScreen },
+      { name: ScreenNameEnum.OnboardingScreen2, Component: OnboardingScreen2 },
       
       // { name: ScreenNameEnum.WatchWithFrind, Component: WatchWithFrind },
       

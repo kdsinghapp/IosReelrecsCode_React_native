@@ -743,7 +743,8 @@ const seekForward = () => {
   setCurrentTime(newTime);
 };
 
-
+const [paused, setPaused] = useState(true);
+ 
   // Render movie item
   const renderMovieDetail = useCallback(
     ({ item, index }) => {
@@ -753,8 +754,7 @@ const seekForward = () => {
       if (!item) {
         return renderShimmerEffect();
       } 
-console.log("item?.friends_rec_score",item)
-      saveBookMark_Ref.current = item?.is_bookmarked
+       saveBookMark_Ref.current = item?.is_bookmarked
       return (
         <View style={{ height: ITEM_HEIGHT, flexDirection: "column", paddingTop: 6, }}>
           {/* header */}
@@ -782,9 +782,14 @@ console.log("item?.friends_rec_score",item)
               onPress={handlerShowMuteImg}
             /> */}
             {Platform.OS == "ios" ? <>
- <CustomVideoPlayer videoUrl={item.trailer_url}
-  muted={isMuted}
- />
+
+<CustomVideoPlayer
+  videoUrl={item.trailer_url}
+  paused={paused}
+  onTogglePause={() => setPaused(p => !p)}
+    isModalOpen ={isFeedbackModal}
+
+/>
  
 
               {/* <Video
@@ -1100,6 +1105,8 @@ console.log("item?.friends_rec_score",item)
 
                    }]}
                   onPress={() => {
+                                        
+
                     handleRankingPress({
                       imdb_id: item?.imdb_id,
                       title: item?.title,

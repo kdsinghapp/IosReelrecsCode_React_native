@@ -9,6 +9,7 @@ enum ScreenNameEnum {
   MovieRecommendations = "MovieRecommendations",
   DiscoverScreen = "DiscoverScreen",
   RankingScreen = "RankingScreen",
+  OnboardingScreen2="OnboardingScreen2",
   WatchScreen = "WatchScreen",
   ProfileScreen = "ProfileScreen",
   Followers="Followers",
