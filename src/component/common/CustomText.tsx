@@ -25,11 +25,14 @@ const CustomText: React.FC<CustomTextProps> = ({
   align = 'left',
   numberOfLines,
   style,
+  disabled,
   ...props
 }) => {
   // console.log('custom__text')
   return (
-    <Text
+    <Text 
+      disabled={disabled}
+ 
       allowFontScaling={false}
       numberOfLines={numberOfLines }
       {...(numberOfLines ? { numberOfLines } : {})}

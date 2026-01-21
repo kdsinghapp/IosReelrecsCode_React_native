@@ -30,7 +30,7 @@ const data = [
   },
    {
     id: '2',
-    image: imageIndex.step2,
+    image: imageIndex.step1,
     title: 'Rate 5 titles to unlock Rec Scores',
     desc: 'a Rec Score is the projected score of how much we think a user will like a title.',
           img: imageIndex.WatchNowButton2
@@ -55,7 +55,10 @@ const nav  = useNavigation()
     if (index < data.length - 1) {
       ref.current?.scrollToIndex({ index: index + 1 });
     }
+    else{
     nav.navigate(ScreenNameEnum.OnboardingScreen2)
+
+    }
   };
 
   return (

@@ -289,31 +289,44 @@ const StreamService = () => {
   }, [searchQuery]);
 
 const goToRankingScreen = () => {
-  navigation.reset({
-    index: 0,
-    routes: [
-      {
-        name: ScreenNameEnum.TabNavigator,
-        state: {
-          index: 0,
-          routes: [
-            {
-              name: ScreenNameEnum.RankingTab,
-              state: {
-                index: 0,
-                routes: [
-                  {
-                    name: ScreenNameEnum.RankingScreen,
-                    params: { openTooltipModal: true },
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    ],
-  });
+      // navigation.reset(ScreenNameEnum.OnboardingScreen);
+
+
+
+     navigation.reset({
+  index: 0,
+  routes: [
+    { name: ScreenNameEnum.OnboardingScreen }
+  ],
+});
+
+
+
+  // navigation.reset({
+  //   index: 0,
+  //   routes: [
+  //     {
+  //       name: ScreenNameEnum.TabNavigator,
+  //       state: {
+  //         index: 0,
+  //         routes: [
+  //           {
+  //             name: ScreenNameEnum.RankingTab,
+  //             state: {
+  //               index: 0,
+  //               routes: [
+  //                 {
+  //                   name: ScreenNameEnum.RankingScreen,
+  //                   params: { openTooltipModal: true },
+  //                 },
+  //               ],
+  //             },
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   ],
+  // });
 };
 
 

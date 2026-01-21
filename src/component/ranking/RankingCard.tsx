@@ -73,7 +73,7 @@ const RankingCard: React.FC<Props> = ({ ranked, loading = false }) => {
           fontFamily={font.PoppinsBold}
           textAnchor="middle"
         >
-          {displayText}
+          {displayText} 
         </SvgText>
       )}
     </Svg>

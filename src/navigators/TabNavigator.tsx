@@ -76,7 +76,7 @@ export default function TabNavigator() {
 
 const getTabBarStyle = useCallback(
   (routeName: string) => {
-    const shouldHide = tabConfig.hideTabBarOnRoutes.includes(routeName);
+    const shouldHide = tabConfig?.hideTabBarOnRoutes?.includes(routeName);
     const shouldTransparent = tabConfig.transparentTabBar.includes(routeName);
     const shouldAbsolute = tabConfig.absolutePositionTabBar.includes(routeName);
 

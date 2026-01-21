@@ -21,7 +21,8 @@ const moviePosters = [
   [imageIndex.welcomePost1, imageIndex.welcomePost2, imageIndex.welcomePost3, imageIndex.welcomePost4, imageIndex.welcomePost5, imageIndex.welcomePost6],
   [imageIndex.welcomePost7, imageIndex.welcomePost8, imageIndex.welcomePost9, imageIndex.welcomePost10, imageIndex.welcomePost11, imageIndex.welcomePost12],
   [imageIndex.welcomePost13, imageIndex.welcomePost14, imageIndex.welcomePost15, imageIndex.welcomePost16, imageIndex.welcomePost17, imageIndex.welcomePost18],
-  [imageIndex.welcomePost19, imageIndex.welcomePost20, imageIndex.welcomePost21, imageIndex.welcomePost22, imageIndex.welcomePost23, imageIndex.welcomePost24],
+  [imageIndex.welcomePost19, imageIndex.welcomePost20, imageIndex.welcomePost21, imageIndex.welcomePost22,  ],
+  // [imageIndex.welcomePost19, imageIndex.welcomePost20, imageIndex.welcomePost21, imageIndex.welcomePost22, imageIndex.welcomePost23, imageIndex.welcomePost24],
 ];
 const Welcome = () => {
   const { navigation } = useWelcome()
@@ -30,15 +31,14 @@ const Welcome = () => {
 
   const goToInitialScreen = () => {
     if (token) {
-      navigation.replace(ScreenNameEnum.TabNavigator, {
-        screen: ScreenNameEnum.RankingTab,
-      });
-        // navigation.navigate(ScreenNameEnum.OnboardingScreen);
+      // navigation.replace(ScreenNameEnum.TabNavigator, {
+      //   screen: ScreenNameEnum.RankingTab,
+      // });
+       navigation.navigate(ScreenNameEnum.OnboardingScreen);
 
     } else {
-        navigation.navigate(ScreenNameEnum.OnboardingScreen);
 
-      // navigation.navigate(ScreenNameEnum.LoginScreen);
+      navigation.navigate(ScreenNameEnum.LoginScreen);
     }
   };
   return (

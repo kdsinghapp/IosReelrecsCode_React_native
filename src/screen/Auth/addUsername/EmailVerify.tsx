@@ -226,13 +226,13 @@ console.log(  'response _resend__otp', response )
           </TouchableOpacity>
         </View>
       </ScrollView>
-      {toestMess && (
+      {/* {toestMess && (
               <SuccessMessageCustom
                 textColor={Color.whiteText}
                 color={toestMessColorGreen ? Color.green : Color.red}
                 message={toastMessage}
               />
-            )}
+            )} */}
       {/* {toestMess && (
         <SuccessMessageCustom textColor={Color.whiteText} color={Color.green} message="We’ve sent a new verification code to your email. Please check your inbox!" />
       )} */}

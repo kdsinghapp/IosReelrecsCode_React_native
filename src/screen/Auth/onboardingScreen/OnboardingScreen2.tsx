@@ -31,8 +31,32 @@ const OnboardingScreen2 = () => {
   const token = useSelector((state: RootState) => state.auth.token);
 
   const goToInitialScreen = () => {
-     
-      navigation.navigate(ScreenNameEnum.LoginScreen);
+       navigation.reset({
+    index: 0,
+    routes: [
+      {
+        name: ScreenNameEnum.TabNavigator,
+        state: {
+          index: 0,
+          routes: [
+            {
+              name: ScreenNameEnum.RankingTab,
+              state: {
+                index: 0,
+                routes: [
+                  {
+                    name: ScreenNameEnum.RankingScreen,
+                    params: { openTooltipModal: true },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    ],
+  });
+      // navigation.navigate(ScreenNameEnum.LoginScreen);
     
   };
 

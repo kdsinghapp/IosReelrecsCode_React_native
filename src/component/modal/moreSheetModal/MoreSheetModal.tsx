@@ -69,6 +69,8 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
         try {
           setLoading(true);
           const response = await getMatchingMovies(token, imdb_idData);
+          console.log("imdb_idData",imdb_idData)
+          console.log("response",response)
           setMoreMovie(response?.results || []);
         } catch (error) {
           console.error('Error fetching similar movies:', error);

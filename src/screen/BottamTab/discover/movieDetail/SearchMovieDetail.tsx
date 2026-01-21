@@ -342,7 +342,7 @@ const MovieDetailScreen = () => {
       setMatchingQueue(queue);
       // console.log('fdff_fdffdfdd___queue', queue)
       const meta = await getMovieMetadata(token, nextMovie?.imdb_id);
-      saveBookMark_Ref.current = meta?.is_bookmarked
+       saveBookMark_Ref.current = meta?.is_bookmarked
       // Alert.alert(meta.imdb_id)
             setLoadingMore(true);
       setIsLoading(false)
@@ -755,7 +755,7 @@ const seekForward = () => {
       if (!item) {
         return renderShimmerEffect();
       } 
-// console.log("item?.friends_rec_score",item?.friends_rec_score)
+  console.log("item? -- ",item)
       saveBookMark_Ref.current = item?.is_bookmarked
       return (
         <View style={{ height: ITEM_HEIGHT, flexDirection: "column", paddingTop: 6, }}>
@@ -1183,7 +1183,8 @@ const handleCloseEpisodesModal = () => {
  
 
  };
-
+console.log("movieData",movieData)
+console.log("selectedMovie",selectedMovie)
   return (
     <SafeAreaView style={styles.container}>
        <FlatList

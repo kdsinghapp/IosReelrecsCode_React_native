@@ -754,7 +754,9 @@ const [paused, setPaused] = useState(true);
       if (!item) {
         return renderShimmerEffect();
       } 
-       saveBookMark_Ref.current = item?.is_bookmarked
+       saveBookMark_Ref.current = item?.is_bookmarked 
+
+       console.log(" Moves -- -----item",item)
       return (
         <View style={{ height: ITEM_HEIGHT, flexDirection: "column", paddingTop: 6, }}>
           {/* header */}
@@ -950,16 +952,20 @@ const [paused, setPaused] = useState(true);
               </View>
 
               <View style={[styles.scoreRow, {marginTop:4.5}]}>
-                <TouchableOpacity style={styles.scoreBoxGreen} onPress={() => setShowFirstModal(true)}>
+                <TouchableOpacity style={styles.scoreBoxGreen} 
+                disabled={true}
+                // onPress={() => setShowFirstModal(true)}
+                
+                >
                   {/* <RankingCard ranked={item?.rec_score} /> */}
-                  <View style={{  }} >
-                    <RankingWithInfo
+                     <RankingWithInfo
                       score={item?.rec_score}
                       title="Rec Score"
                       description="This score predicts how much you'll enjoy this movie/show, based on your ratings and our custom algorithm."
                     />
-                  </View>
-                  <CustomText
+            <TouchableOpacity    disabled={true}>
+                  <CustomText 
+               
                     size={14}
                     color={Color.whiteText}
                     style={{ marginLeft: 6 }}
@@ -967,10 +973,15 @@ const [paused, setPaused] = useState(true);
                   >
                     Rec Score
                   </CustomText>
+                  </TouchableOpacity>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={[styles.scoreBoxGreen,{
-                 }]} onPress={() => setShowSecondModal(true)}>
+                 }]} 
+                //  onPress={() => setShowSecondModal(true)}
+                 
+                     disabled={true}
+                 >
                   {/* <RankingCard ranked={item?.friends_rec_score} /> */}
                   <View style={{  }} >
 
