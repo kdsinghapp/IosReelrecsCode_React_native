@@ -151,13 +151,11 @@ const OnboardingScreen = () => {
       navigation.navigate(ScreenNameEnum.OnboardingScreen2);
     }
   };
-// const slideAnim = useRef(new Animated.Value(40)).current;
-// const fadeAnim = useRef(new Animated.Value(0)).current;
-// const scaleAnim = useRef(new Animated.Value(0.96)).current;
+ 
 
-   const slideAnim = useRef(new Animated.Value(40)).current; // starting Y offset
-  const fadeAnim = useRef(new Animated.Value(0)).current;    // starting opacity
-  const scaleAnim = useRef(new Animated.Value(0.96)).current; // starting scale
+   const slideAnim = useRef(new Animated.Value(40)).current;  
+  const fadeAnim = useRef(new Animated.Value(0)).current;    
+  const scaleAnim = useRef(new Animated.Value(0.96)).current;  
 
 useEffect(() => {
   // Reset values

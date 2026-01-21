@@ -788,9 +788,10 @@ const [paused, setPaused] = useState(true);
 <CustomVideoPlayer
   videoUrl={item.trailer_url}
   paused={paused}
+  muted={isMuted}
   onTogglePause={() => setPaused(p => !p)}
-    isModalOpen ={isFeedbackModal}
-
+  onToggleMute={() => dispatch(toggleMute())}
+  isModalOpen={isFeedbackModal}
 />
  
 

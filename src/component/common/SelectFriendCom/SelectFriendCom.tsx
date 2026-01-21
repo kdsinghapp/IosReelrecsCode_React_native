@@ -234,7 +234,8 @@ const filteredUsers = formattedFriends?.filter(user => {
     a?.username?.toLowerCase() === user?.id?.toLowerCase()
   );
 });
-
+console.log("formattedFriends",formattedFriends)
+console.log("formattedFriends",addmembers1)
  
   return (
     <View style={{ height: type === "Friend" ? Dimensions.get('window').height * 0.5 : Dimensions.get('window').height * 0.8 }}>
