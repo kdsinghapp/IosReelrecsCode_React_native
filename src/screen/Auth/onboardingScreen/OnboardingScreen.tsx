@@ -8,6 +8,7 @@ import {
   Dimensions,
   Platform,
   Animated,
+  Easing
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -69,17 +70,9 @@ const data = [
       'A Rec Score is the projected score of how much we think a user will like a title.',
     img: imageIndex.WatchNowButton,
   },
+ 
   {
     id: '2',
-    image: imageIndex.step1,
-       title: 'Rate 5 titles',
-    title1: 'to unlock Rec Scores',
-    desc:
-      'Your ratings help us fine-tune recommendations just for you.',
-    img: imageIndex.WatchNowButton2,
-  },
-  {
-    id: '3',
     image: imageIndex.step3,
     title: 'The more you rate, the smarter it gets',
     desc: '',
@@ -158,17 +151,37 @@ const OnboardingScreen = () => {
       navigation.navigate(ScreenNameEnum.OnboardingScreen2);
     }
   };
-const translateX = useRef(new Animated.Value(-80)).current; // thoda hi left
+// const slideAnim = useRef(new Animated.Value(40)).current;
+// const fadeAnim = useRef(new Animated.Value(0)).current;
+// const scaleAnim = useRef(new Animated.Value(0.96)).current;
+
+   const slideAnim = useRef(new Animated.Value(40)).current; // starting Y offset
+  const fadeAnim = useRef(new Animated.Value(0)).current;    // starting opacity
+  const scaleAnim = useRef(new Animated.Value(0.96)).current; // starting scale
 
 useEffect(() => {
-  translateX.setValue(-10); // reset LEFT only
+  // Reset values
+  slideAnim.setValue(40);
+  fadeAnim.setValue(0);
+  scaleAnim.setValue(0.96);
 
-  Animated.timing(translateX, {
-    toValue: 0,
-    duration: 1000, // slow
-    useNativeDriver: true,
-  }).start();
-}, []); // 👈 sirf item change pe
+  Animated.parallel([
+    Animated.spring(slideAnim, {
+      toValue: 0,
+      friction: 8, // lower friction = more bouncy
+      tension: 40, // adjust speed
+      useNativeDriver: true,
+    }),
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 800,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: true,
+    }),
+  
+  ]).start();
+}, [index]);
+
 
 
   return (
@@ -201,6 +214,11 @@ useEffect(() => {
       <View style={styles.content}>
         <FlatList
           ref={ref}
+           
+  scrollEventThrottle={16}
+  onMomentumScrollEnd={(e) =>
+    setIndex(Math.round(e.nativeEvent.contentOffset.x / width))
+  }
           data={data}
           horizontal
           pagingEnabled
@@ -213,14 +231,19 @@ useEffect(() => {
             <View style={styles.slide} 
  
             >
-              <Animated.View
+<Animated.View
   style={[
     styles.slide,
     {
-      transform: [{ translateX }],
+      opacity: fadeAnim,
+      transform: [
+        { translateX: slideAnim },
+        { scale: scaleAnim },
+      ],
     },
   ]}
 >
+
 
               <Image source={item.image} 
                style={styles.poster} />
@@ -242,7 +265,7 @@ useEffect(() => {
             </View>
           )}
         />
-<LinearGradient
+{/* <LinearGradient
   colors={[
     'rgba(0,108,157,0.35)',
     'rgba(0,24,35,0.75)',
@@ -254,7 +277,7 @@ useEffect(() => {
       //     "rgba(10, 22, 40, 1)"
       //   ]}
         locations={[10, 0.9, 0.9, 10]}
- />
+ /> */}
 
 
 
@@ -313,7 +336,7 @@ const styles = StyleSheet.create({
   slide: {
     width,
     alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 90 : 90,
+    paddingTop: Platform.OS === 'ios' ? 90 : 55,
   },
 
   poster: {
