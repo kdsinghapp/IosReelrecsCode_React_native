@@ -1,5 +1,3 @@
-
-
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
   Modal,
@@ -11,9 +9,9 @@ import {
   Image,
   ActivityIndicator,
   ScrollView,
-  Alert,
   Platform,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import imageIndex from '../../../assets/imageIndex';
 import { Color } from '../../../theme/color';
 import RankingCard from '../../ranking/RankingCard';
@@ -23,6 +21,7 @@ import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
 import ScreenNameEnum from '../../../routes/screenName.enum';
 import CustomText from '../../common/CustomText';
+import { StatusBar } from 'react-native';
 
 interface Movie {
   id: string;
@@ -47,15 +46,15 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
 }) => {
   const [moreMovie, setMoreMovie] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+  const insets = useSafeAreaInsets();
 
   const goToDetail = useCallback(
     (item: Movie) => {
       console.log('Pressed movie:', item?.title);
-      console.log('Pressed movie:', item?.title);
       onClose();
       setTimeout(() => {
-        navigation.replace(ScreenNameEnum.MovieDetailScreen, {
+        navigation.navigate(ScreenNameEnum.MovieDetailScreen, {
           imdb_idData: item?.imdb_id,
           token,
         });
@@ -67,13 +66,10 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
   useEffect(() => {
     if (visible && imdb_idData) {
       const seeMoreLikeMovie = async () => {
-        console.log('imdb_idData___', imdb_idData)
-        // Alert.alert(imdb_idData);
         try {
           setLoading(true);
           const response = await getMatchingMovies(token, imdb_idData);
           setMoreMovie(response?.results || []);
-          // console.log('Similar movies fetched:', response?.results);
         } catch (error) {
           console.error('Error fetching similar movies:', error);
         } finally {
@@ -86,6 +82,11 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
 
   if (!visible) return null;
 
+  // Calculate modal height dynamically
+  const modalHeight = height * 0.7;
+  const maxModalHeight = height - insets.top - 20;
+  const finalHeight = Math.min(modalHeight, maxModalHeight);
+
   return (
     <Modal
       visible={visible}
@@ -94,30 +95,33 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
       onRequestClose={onClose}
       statusBarTranslucent
     >
-      <View style={styles.modalOverlay} pointerEvents="box-none">
-           
-        <View style={styles.contentContainer} pointerEvents="auto">
+      <View style={styles.modalOverlay}>
+        <View 
+          style={[
+            styles.contentContainer,
+            {
+              height: finalHeight,
+              paddingBottom: Math.max(insets.bottom + 12, 20),
+            }
+          ]}
+        >
+          {/* Header */}
           <View style={styles.header}>
-           
-              <View style={{
-                    height: 24,
-    width: 24,
-              }}></View>
-               <CustomText
-                          size={16}
-                          color={Color.whiteText}
-                          style={{
-                            color:Color.whiteText
-                          }}
-                          font={font.PoppinsBold}
-                        >
-                          More Like This
-                        </CustomText>
+            <View style={styles.headerPlaceholder} />
+            <CustomText
+              size={16}
+              color={Color.whiteText}
+              style={styles.headerTitle}
+              font={font.PoppinsBold}
+            >
+              More Like This
+            </CustomText>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
               <Image source={imageIndex.closeimg} style={styles.closeIcon} />
             </TouchableOpacity>
           </View>
 
+          {/* Content */}
           {loading ? (
             <View style={styles.loaderContainer}>
               <ActivityIndicator size="large" color={Color.primary} />
@@ -126,27 +130,26 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
           ) : moreMovie.length > 0 ? (
             <ScrollView
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.listContent}
+              contentContainerStyle={styles.scrollContent}
             >
-              <View style={styles.rowWrap}>
+              <View style={styles.gridContainer}>
                 {moreMovie.map((item, index) => (
                   <TouchableOpacity
                     key={item.imdb_id || index.toString()}
                     activeOpacity={0.7}
                     onPress={() => goToDetail(item)}
-                    style={styles.cardContainer}
+                    style={styles.movieCard}
                   >
                     <FastImage
                       source={{
                         uri: item?.cover_image_url,
-                        priority: FastImage.priority.low,
+                        priority: FastImage.priority.normal,
                         cache: FastImage.cacheControl.immutable,
                       }}
-                      style={styles.image}
-                      resizeMode={FastImage.resizeMode.stretch}
+                      style={styles.movieImage}
+                      resizeMode={FastImage.resizeMode.cover}
                     />
-
-                    <View style={styles.ratingBadge} pointerEvents="none">
+                    <View style={styles.ratingBadge}>
                       <RankingCard ranked={item?.rec_score} />
                     </View>
                   </TouchableOpacity>
@@ -155,109 +158,110 @@ const MoreSheetModal: React.FC<MoreSheetModalProps> = ({
             </ScrollView>
           ) : (
             <View style={styles.emptyState}>
-              <Image
-                source={imageIndex.emptyState}
-                style={styles.emptyIcon}
-                resizeMode="contain"
-              />
-              <Text style={styles.emptyText}>No similar movies found</Text>
+               <Text style={styles.emptyText}>No similar movies found</Text>
               <Text style={styles.emptySubText}>
                 We couldn't find any movies similar to this one.
               </Text>
             </View>
           )}
         </View>
-  
       </View>
     </Modal>
   );
 };
 
-// export default memo(MoreSheetModal);
 export default MoreSheetModal;
 
+// Responsive calculations
 const { width, height } = Dimensions.get('window');
-const CARD_WIDTH = (width - 48) / 3; // 3 columns with margin
+const isSmallDevice = width < 375;
+const HORIZONTAL_PADDING = 16;
+const CARD_GAP = isSmallDevice ? 8 : 10;
+const NUM_COLUMNS = 3;
+
+// Calculate card width to fit exactly 3 columns
+const availableWidth = width - (HORIZONTAL_PADDING * 2);
+const totalGapWidth = CARD_GAP * (NUM_COLUMNS - 1);
+const CARD_WIDTH = (availableWidth - totalGapWidth) / NUM_COLUMNS;
+const CARD_HEIGHT = CARD_WIDTH * 1.5; // Standard movie poster ratio
 
 const styles = StyleSheet.create({
   modalOverlay: {
-    flex: 1,
-    // backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-end',
+      top:
+      Platform.OS === 'android'
+        ?  40
+        : 57, // safe for iOS notch
+ 
   },
   contentContainer: {
-    backgroundColor: Color.modalBg,
-    paddingTop: 16,
-    paddingBottom: 12,
-    paddingHorizontal: 16,
+ backgroundColor: Color.modalBg,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    // height:  Dimensions.get('window').height * 0.7,
-    // maxHeight: Dimensions.get('window').height * 0.63,
-
-    maxHeight:
-      Dimensions.get('window').height *
-      (Platform.OS === 'ios' ? 0.63 : 0.62 ),  
-    height: Dimensions.get('window').height * 0.66,
+    paddingHorizontal: HORIZONTAL_PADDING,
+    
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16,
-    marginTop: 12,
-    alignItems:"center" ,
-   },
-  title: {
-    fontSize: 20,
-    lineHeight: 24,
-    fontFamily: font.PoppinsBold,
-    color: Color.whiteText,
+    alignItems: 'center',
+    paddingTop: 16,
+    paddingBottom: 12,
+  },
+  headerPlaceholder: {
+    width: 24,
+    height: 24,
+  },
+  headerTitle: {
     flex: 1,
     textAlign: 'center',
   },
   closeButton: {
-    padding: 4,
+    width: 32,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   closeIcon: {
-    height: 24,
     width: 24,
+    height: 24,
     tintColor: Color.whiteText,
   },
-  listContent: {
+  scrollContent: {
     paddingBottom: 20,
   },
-  rowWrap: {
+  gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    gap: CARD_GAP,
   },
-  cardContainer: {
+  movieCard: {
     width: CARD_WIDTH,
-    height: 180,
-    borderRadius: 12,
-    backgroundColor: '#2a2a2a',
-    marginBottom: 12,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
+    height: CARD_HEIGHT,
+     backgroundColor: '#1a1a1a',
+    overflow: 'hidden',
+  
+     
+ 
   },
-  image: {
+  movieImage: {
     width: '100%',
     height: '100%',
-    borderRadius: 12,
+    borderRadius: 10,
   },
   ratingBadge: {
-   position: 'absolute',
-    bottom: 1,
-    left: 5,
+    position: 'absolute',
+    bottom: 4,
+    left: 4,
   },
   loaderContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: 200,
+    paddingVertical: 60,
   },
   loadingText: {
     color: Color.lightGrayText,
@@ -269,20 +273,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 40,
-    minHeight: 200,
+    paddingVertical: 60,
   },
   emptyIcon: {
-    width: 60,
-    height: 60,
+    fontSize: 64,
     marginBottom: 16,
-    tintColor: Color.lightGrayText,
-    opacity: 0.7,
   },
   emptyText: {
     color: Color.whiteText,
-    fontSize: 16,
-    fontFamily: font.PoppinsMedium,
+    fontSize: 18,
+    fontFamily: font.PoppinsBold,
     marginBottom: 8,
     textAlign: 'center',
   },
@@ -291,9 +291,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: font.PoppinsRegular,
     textAlign: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 32,
+    lineHeight: 20,
   },
 });
-
-
-

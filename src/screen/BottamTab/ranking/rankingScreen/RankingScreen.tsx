@@ -685,7 +685,7 @@
 //         </TouchableOpacity>
 
 //         {/* <ScrollView showsVerticalScrollIndicator={false}> */}
-        
+
 
 //           {/* Rated Movies Section */}
 //           {currentStep > 5 && (
@@ -779,7 +779,7 @@
 //               We'd like to know your thoughts!
 //             </Text>
 //           </Text>
- 
+
 //             <FlatList
 //               showsVerticalScrollIndicator={false}
 //               data={displayMovies}
@@ -805,7 +805,7 @@
 //                 ) : null
 //               }
 //             />
-   
+
 
 
 //                   </View>
@@ -814,9 +814,9 @@
 //             )
 //           )}
 
-      
 
-       
+
+
 //         {/* </ScrollView> */}
 //       </View>
 
@@ -896,7 +896,7 @@ const RankingScreen = () => {
 
   const [flatlistTop, setFlatlistTop] = useState(null);
   const listRef = useRef(null);
-  const totalSteps = 6;
+  const totalSteps = 5;
   const [hasSeenTooltip, setHasSeenTooltip] = useState(false);
   const [loading, setLoading] = useState(false);
   const [TooltipModal, setTooltipModal] = useState<boolean>(openTooltipModal || false);
@@ -1059,7 +1059,7 @@ const RankingScreen = () => {
       setRatedMovie(res_All_Rated?.results ?? []);
     } catch (error) {
       setLoading(false);
-    setRefreshing(false);
+      setRefreshing(false);
       console.error("❌ Error fetching rated movies:", error);
     } finally {
       setLoading(false);
@@ -1438,7 +1438,7 @@ const RankingScreen = () => {
               font={font.PoppinsMedium}
               numberOfLines={2}
             >
-              {item.title}  
+              {item.title}
             </CustomText>
             <CustomText
               size={14}
@@ -1523,11 +1523,11 @@ const RankingScreen = () => {
   useEffect(() => {
     // console.log('avvvv================')
     setDisplayMovies(filteredMovies);
-    console.log("filteredMovies",filteredMovies)
-  }, [filteredMovies ,visibleCount]);
+    console.log("filteredMovies", filteredMovies)
+  }, [filteredMovies, visibleCount]);
 
 
-   return (
+  return (
     <SafeAreaView style={styles.maincontainer}>
       <CustomStatusBar />
 
@@ -1543,145 +1543,154 @@ const RankingScreen = () => {
         </TouchableOpacity>
 
         {/* <ScrollView showsVerticalScrollIndicator={false}> */}
-        
 
-          {/* Rated Movies Section */}
-          {currentStep > 5 && (
-            loadingRated ? (
-              <View style={{ paddingHorizontal: 10, marginTop: 14 }}>
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <NormalMovieCardShimmer key={index.toString()} />
-                ))}
-              </View>
-            ) : (
-              // <Animated.FlatList
-              //   ref={flatListRef}
-              //   data={order}
-              //   showsVerticalScrollIndicator={false}
-              //   renderItem={({ item: id, index }) => {
-              //     const movie = ratedMovie.find(m => m.imdb_id === id);
-              //     if (!movie) return null;
-              //     return RankingMovieList({ item: movie, index });
-              //   }}
-              //   keyExtractor={(id) => id}
-              //   extraData={[ratedMovie, loadingIds, order]}
-              //   contentContainerStyle={{ paddingBottom: 20 }}
-              //   refreshing={refreshing}
-              //   onRefresh={fetchRatedMovies}
-              //   onScroll={handleScroll}
-              //   scrollEventThrottle={16}
-              //   initialNumToRender={8}
-              //   maxToRenderPerBatch={10}
-              //   windowSize={5}
-              //   removeClippedSubviews={Platform.OS === 'android'}
-              //   getItemLayout={(data, index) => ({
-              //     length: ITEM_HEIGHT,
-              //     offset: ITEM_HEIGHT * index,
-              //     index,
-              //   })}
-              //   onViewableItemsChanged={onViewableItemsChanged}
-              //   viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
-              //   ListFooterComponent={
-              //     loading ? <NormalMovieCardShimmer /> : null
-              //   }
-              // />
 
-              <Animated.FlatList
-                ref={flatListRef}
-                   showsVerticalScrollIndicator={false}
-                data={order.slice(0, visibleCount)}
-                renderItem={({ item: id, index }) => {
-                  const movie = ratedMovie.find(m => m.imdb_id === id);
-                  if (!movie) return null;
+        {/* Rated Movies Section */}
+        {currentStep > 5 && (
+          loadingRated ? (
+            <View style={{ paddingHorizontal: 10, marginTop: 14 }}>
+              {Array.from({ length: 8 }).map((_, index) => (
+                <NormalMovieCardShimmer key={index.toString()} />
+              ))}
+            </View>
+          ) : (
+            // <Animated.FlatList
+            //   ref={flatListRef}
+            //   data={order}
+            //   showsVerticalScrollIndicator={false}
+            //   renderItem={({ item: id, index }) => {
+            //     const movie = ratedMovie.find(m => m.imdb_id === id);
+            //     if (!movie) return null;
+            //     return RankingMovieList({ item: movie, index });
+            //   }}
+            //   keyExtractor={(id) => id}
+            //   extraData={[ratedMovie, loadingIds, order]}
+            //   contentContainerStyle={{ paddingBottom: 20 }}
+            //   refreshing={refreshing}
+            //   onRefresh={fetchRatedMovies}
+            //   onScroll={handleScroll}
+            //   scrollEventThrottle={16}
+            //   initialNumToRender={8}
+            //   maxToRenderPerBatch={10}
+            //   windowSize={5}
+            //   removeClippedSubviews={Platform.OS === 'android'}
+            //   getItemLayout={(data, index) => ({
+            //     length: ITEM_HEIGHT,
+            //     offset: ITEM_HEIGHT * index,
+            //     index,
+            //   })}
+            //   onViewableItemsChanged={onViewableItemsChanged}
+            //   viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
+            //   ListFooterComponent={
+            //     loading ? <NormalMovieCardShimmer /> : null
+            //   }
+            // />
 
-                  return RankingMovieList({ item: movie, index });
-                }}
-                keyExtractor={(id) => id}
-
-                initialNumToRender={10}
-                maxToRenderPerBatch={10}
-                updateCellsBatchingPeriod={50}
-                windowSize={7}
-                removeClippedSubviews={true}
-
-                onEndReachedThreshold={0.2}
-                onEndReached={loadMoreItems}
-                ListHeaderComponent={()=>  
-                  <View>{
-                  currentStep >= 1 && (
-            <StepProgressBar
-              totalSteps={totalSteps}
-              disable={true}
-              currentStepModal={currentStep}
-            />
-          )}</View> 
-                }
-                ListFooterComponent={()=>
-
-                  <View>
-
-    {currentStep > 5 && (
-            <ButtonCustom
-              title="Discover"
-              onPress={() => navigation.navigate(ScreenNameEnum.DiscoverTab, {
-                screen: ScreenNameEnum.DiscoverScreen, 
-                params: { type: 'recs' },
-              })}
-              textStyle={
-                {
-                  color:Color.whiteText
-                }
-              }
-              buttonStyle={{
-                marginTop:5
-              }}
-            />
-          )}
-
-          <Text style={styles.heading}>
-            Have you had a chance to watch these yet?{"\n"}
-            <Text style={{ color: Color.whiteText }}>
-              We'd like to know your thoughts!
-            </Text>
-          </Text>
- 
-            <FlatList
+            <Animated.FlatList
+              ref={flatListRef}
               showsVerticalScrollIndicator={false}
-              data={displayMovies}
-              keyExtractor={(item, index) => `${index}-${String(item?.imdb_id ?? index)}`}
-              ref={listRef}
-              onLayout={handleLayout}
-              renderItem={renderMovie}
-              extraData={displayMovies}
+              data={order.slice(0, visibleCount)}
+              renderItem={({ item: id, index }) => {
+                const movie = ratedMovie.find(m => m.imdb_id === id);
+                if (!movie) return null;
+
+                return RankingMovieList({ item: movie, index });
+              }}
+              keyExtractor={(id) => id}
+
               initialNumToRender={10}
               maxToRenderPerBatch={10}
-              windowSize={8}
-              contentContainerStyle={{ paddingBottom: 20, marginTop: 10 }}
-              onEndReached={() => {
-                if (suggestionHasMore && !suggestionLoading) {
-                  fetchSuggestionMovies(suggestionPage + 1);
-                }
-              }}
+              updateCellsBatchingPeriod={50}
+              windowSize={7}
+              removeClippedSubviews={true}
+
               onEndReachedThreshold={0.2}
-              extraData={[filteredMovies, suggestionLoading, suggestionHasMore]}
-              ListFooterComponent={
-                suggestionLoading ? (
-                  <ActivityIndicator size="large" color={Color.primary} />
-                ) : null
+              onEndReached={loadMoreItems}
+              ListHeaderComponent={() =>
+                //         <View>{
+                //         currentStep >= 1 && (
+                //   <StepProgressBar
+                //     totalSteps={totalSteps}
+                //     disable={true}
+                //     currentStepModal={currentStep}
+                //   />
+                // )}</View> 
+                <View>
+                  {currentStep >= 1 && currentStep < totalSteps && (
+                    <StepProgressBar
+                      totalSteps={totalSteps}
+                      disable={true}
+                      currentStepModal={currentStep}
+                    />
+                  )}
+                </View>
+              }
+              ListFooterComponent={() =>
+
+                <View>
+
+                  {currentStep > 5 && (
+                    <ButtonCustom
+                      title="Discover"
+                      onPress={() => navigation.navigate(ScreenNameEnum.DiscoverTab, {
+                        screen: ScreenNameEnum.DiscoverScreen,
+                        params: { type: 'recs' },
+                      })}
+                      textStyle={
+                        {
+                          color: Color.whiteText
+                        }
+                      }
+                      buttonStyle={{
+                        marginTop: 5
+                      }}
+                    />
+                  )}
+
+                  <Text style={styles.heading}>
+                    Have you had a chance to watch these yet?{"\n"}
+                    <Text style={{ color: Color.whiteText }}>
+                      We'd like to know your thoughts!
+                    </Text>
+                  </Text>
+
+                  <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={displayMovies}
+                    keyExtractor={(item, index) => `${index}-${String(item?.imdb_id ?? index)}`}
+                    ref={listRef}
+                    onLayout={handleLayout}
+                    renderItem={renderMovie}
+                    extraData={displayMovies}
+                    initialNumToRender={10}
+                    maxToRenderPerBatch={10}
+                    windowSize={8}
+                    contentContainerStyle={{ paddingBottom: 20, marginTop: 10 }}
+                    onEndReached={() => {
+                      if (suggestionHasMore && !suggestionLoading) {
+                        fetchSuggestionMovies(suggestionPage + 1);
+                      }
+                    }}
+                    onEndReachedThreshold={0.2}
+                    extraData={[filteredMovies, suggestionLoading, suggestionHasMore]}
+                    ListFooterComponent={
+                      suggestionLoading ? (
+                        <ActivityIndicator size="large" color={Color.primary} />
+                      ) : null
+                    }
+                  />
+
+
+
+                </View>
               }
             />
-   
+          )
+        )}
 
 
-                  </View>
-                }
-              />
-            )
-          )}
 
-      
 
-       
         {/* </ScrollView> */}
       </View>
 

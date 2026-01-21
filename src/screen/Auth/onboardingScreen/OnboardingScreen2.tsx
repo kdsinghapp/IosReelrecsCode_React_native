@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { View, Image, Animated, Dimensions, StyleSheet, ImageBackground } from "react-native";
 import imageIndex from "../../../assets/imageIndex";
-import { Color } from "../../../theme/color";
-import useWelcome from "../../../screen/Auth/welcome/useWelcome";
+ import useWelcome from "../../../screen/Auth/welcome/useWelcome";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import ScreenNameEnum from "../../../routes/screenName.enum";
@@ -10,280 +9,261 @@ import { Button, CustomStatusBar } from "../../../component";
 import CustomText from "../../../component/common/CustomText";
 import font from "../../../theme/font";
 import LinearGradient from "react-native-linear-gradient";
-const { width } = Dimensions.get("window");
-const columnWidth = 120;
-const posterHeight = 170;
-const posterGap = 12;
-const horizontalGap = 14;
 
-// Dummy Posters
+const { width, height } = Dimensions.get("window");
+
+// Calculate sizes for 3 columns
+const HORIZONTAL_PADDING = 15;
+const POSTER_GAP = 9;
+const totalAvailableWidth = width - (HORIZONTAL_PADDING * 2);
+const columnWidth = (totalAvailableWidth - (POSTER_GAP * 2)) / 3;
+const posterHeight = columnWidth * 1.45; // Movie poster aspect ratio
+// SingleMovie7 2
+// Movie Posters - 3 columns with 4 posters each
 const moviePosters = [
-  [imageIndex.SingleMovi, imageIndex.SingleMovi, imageIndex.SingleMovieSlide2,  ],
-  [imageIndex.SingleMovieSlide3, imageIndex.welcomePost8, imageIndex.SingleMovi, ],
-  [imageIndex.welcomePost13, imageIndex.welcomePost14, imageIndex.welcomePost15, ],
-  [imageIndex.welcomePost19, imageIndex.SingleMovieSlide2, imageIndex.welcomePost21,  ],
+  [imageIndex.SingleMovi,  imageIndex.SingleMovie4    ,imageIndex.SingleMovie7   ,imageIndex.LargePortraitPoster ],
+  [ imageIndex.SingleMovieSlide2   ,  imageIndex.SingleMovie5  ,   imageIndex.SingleMovie8   , imageIndex.LargePortraitPoster1 ],
+  [imageIndex.SingleMovieSlide3   ,   imageIndex.SingleMovie6    ,  imageIndex.SingleMovie9  , imageIndex.LargePortraitPoster2],
 ];
+
 const OnboardingScreen2 = () => {
-  const { navigation } = useWelcome()
-  const token = useSelector((state: RootState) => state.auth.token)
-  const userProfile = useSelector((state: RootState) => state.auth.userGetData);
+  const { navigation } = useWelcome();
+  const token = useSelector((state: RootState) => state.auth.token);
 
   const goToInitialScreen = () => {
-    if (token) {
-      // navigation.replace(ScreenNameEnum.TabNavigator, {
-      //   screen: ScreenNameEnum.RankingTab,
-      // });
- 
-    } else {
+     
       navigation.navigate(ScreenNameEnum.LoginScreen);
-    }
+    
   };
+
   return (
-    <ImageBackground style={styles.container} 
+    <ImageBackground 
     source={imageIndex.Introduction}
-    >
-      <CustomStatusBar backgroundColor="transparent" translucent />
-      {/* Poster Columns */}
-      <View style={styles.posterWrapper}>
+    
+    style={styles.container}>
+      <CustomStatusBar backgroundColor="#0A1628" barStyle="light-content" />
+      
+       <View style={styles.posterWrapper}>
         {moviePosters.map((column, columnIndex) => {
-          const isAtTop = columnIndex % 1 === 0;
+          const isUpward = columnIndex === 0; // Only middle column goes up
           return (
-            <View style={{
-              marginHorizontal:20
-            }}>
             <FloatingColumn
               key={`column-${columnIndex}`}
               posters={column}
               columnIndex={columnIndex}
-              isAtTop={isAtTop}
-            /> 
-            </View>
+              isUpward={isUpward}
+            />
           );
         })}
       </View>
-      <View style={styles.container}>
-        {/* Overlays */}
-        <View style={styles.overlayLeft} />
-        {/* <View style={styles.overlayColorCenter} /> */}
-        {/* Gradient Overlay */}
-        <LinearGradient
-          colors={[
-            "rgba(0, 0, 0, 0.11)",
-            "rgba(0, 0, 0, 0.9)",
-            "rgba(0, 0, 0, 0.9)"
-          ]}
-          locations={[0, 0.4, 0.7]}
-          style={styles.gradientOverlay}
-        />
-        <View style={styles.overlayColor} />
-     
-        {/* <LinearGradient
-          colors={["rgba(180, 192, 198, 0.2)", "rgba(0, 108, 157,0.25)",]}
-          style={styles.overlayRight}
-        /> */}
-        <View style={styles.contentWrapper}>
-          <View style={styles.contentWrapp}>
-            <Image source={imageIndex.WatchNowButton2} style={styles.logo} resizeMode='stretch' />
-            <CustomText
-              size={20}
-              color={Color.primary}
-              style={styles.heading}
-              font={font.PoppinsBold}
-            >
-              The more you rate, the sharper your recommendations get
-            </CustomText>
-            {/* <Text style={styles.heading}>Find Great Shows and Movies in Seconds</Text> */}
- 
-            {/* <Text style={styles.subHeading}>
-                    </Text> */}
-          </View>
-          {/* <Button title="Get Started" onPress={goToInitialScreen} /> */}
+       <LinearGradient
+        colors={[
+          "rgba(10, 22, 40, 0)",
+          "rgba(10, 22, 40, 0.7)",
+          "rgba(10, 22, 40, 0.95)",
+          "rgba(10, 22, 40, 1)"
+        ]}
+        locations={[0, 0.8, 0.99, 1]}
+        style={styles.gradientOverlay}
+      />
 
-          {/* <Button title='Get Started' onPress={() => navigation.navigate(ScreenNameEnum.LoginScreen)} /> */}
-          <Button
-          textStyle={{color:'#FFFFFF'}}
-            title="Get Started"
-            onPress={() => { goToInitialScreen() }}
-            buttonStyle={{
-              backgroundColor:"#35C75A"
-            }}
+      {/* Large Center Play Button */}
+      <View style={{
+          position: 'absolute',
+     left: 0,
+    right: 0,
+    bottom:220,
+       zIndex: 5, 
+       alignItems:"center"
+      }}>
+  <View style={styles.playButtonShadow}>
+          <Image 
+            source={imageIndex.WatchNowButton2} 
+            style={styles.largePlayIcon}
+            resizeMode="contain"
           />
         </View>
+</View>
+      <View style={{
+          position: 'absolute',
+     left: 0,
+    right: 0,
+    bottom:100,
+       zIndex: 5, 
+       alignItems:"center"
+      }}>
+  <View style={styles.playButtonShadow}>
+          <CustomText
+          size={18}
+          color="#FFFFFF"
+          style={styles.heading}
+          font={font.PoppinsBold}
+        >
+          The more you rate, the sharper your recommendations get
+        </CustomText>
+        </View>
+</View>
+      {/* Bottom Content */}
+      <View style={styles.bottomContent}>
+             
+       
 
-      </View>
+ 
+        <Button
+          textStyle={{ color: '#FFFFFF', fontFamily: font.PoppinsBold }}
+          title="Next"
+          onPress={goToInitialScreen}
+          buttonStyle={styles.button}
+        />
+        </View>
+    
     </ImageBackground>
   );
 };
 
-// Floating Column Component
-const FloatingColumn = ({ posters, columnIndex, isAtTop }) => {
+// Floating Column Component with Animation
+interface FloatingColumnProps {
+  posters: any[];
+  columnIndex: number;
+  isUpward: boolean;
+}
+
+const FloatingColumn: React.FC<FloatingColumnProps> = ({ posters, columnIndex, isUpward }) => {
   const translateY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const direction = isAtTop ? -130 : 130;
+    const direction = isUpward ? -5 : 5;
 
     Animated.loop(
       Animated.sequence([
         Animated.timing(translateY, {
-          toValue: direction,
+           toValue: direction,
           duration: 5000,
           useNativeDriver: true,
         }),
         Animated.timing(translateY, {
           toValue: 0,
-          duration: 5000,
+          duration: 10000,
           useNativeDriver: true,
         }),
       ])
     ).start();
-  }, [translateY, isAtTop]);
+  }, [translateY, isUpward]);
 
   return (
     <Animated.View
       style={[
         styles.column,
         {
-          left: columnIndex * (columnWidth + horizontalGap),
-          top: isAtTop ? 104 : 0,
+          left: HORIZONTAL_PADDING + (columnIndex * (columnWidth + POSTER_GAP)),
           transform: [{ translateY }],
         },
       ]}
     >
-      {posters.map((poster, posterIndex) => (
-        <Image
-          key={`poster-${columnIndex}-${posterIndex}`}
-          source={poster}
-          style={styles.poster}
-          resizeMode="cover"
-        />
+      {posters.map((poster: any, posterIndex: number) => (
+        <View key={`poster-${columnIndex}-${posterIndex}`} style={styles.posterContainer}>
+          <Image
+            source={poster}
+            style={styles.poster}
+            resizeMode="cover"
+          />
+        </View>
       ))}
-
-
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+   },
+  posterWrapper: {
     position: "absolute",
-    top: 0,
+    top: 90,
     left: 0,
     right: 0,
-    height: '100%',
+    height: height * 0.68,
     overflow: "hidden",
-      // backgroundColor:Color.background,
   },
-  posterWrapper: {
-    position: "relative",
-     height: "100%",
-   
-   },
   column: {
     position: "absolute",
     width: columnWidth,
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    top: 0,
+  },
+  posterContainer: {
+    position: 'relative',
+    marginBottom: POSTER_GAP,
+    borderRadius: 8,
+    overflow: 'hidden',
+    backgroundColor: '#1a2a3a',
   },
   poster: {
-    width: "100%",
+    width: columnWidth,
     height: posterHeight,
-    marginBottom: posterGap, // vertical gap
+  },
+  playIconOverlay: {
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    width: 24,
+    height: 24,
     borderRadius: 12,
+    backgroundColor: 'rgba(53, 199, 90, 0.9)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  overlayLeft: {
-    position: "absolute",
-    width: columnWidth / 2,
-    height: "100%",
-    top: 0,
-    left: 0,
-    // backgroundColor: "rgba(0,0,0,0.8)", // first column half hide
-  },
-  overlayRight: {
-    position: "absolute",
-    width: "100%",
-    // width: columnWidth / 2,
-    height: "100%",
-    top: 0,
-    right: 0,
-    // backgroundColor: "rgba(0, 108, 157,0.23)", // last column half hide
+  smallPlayIcon: {
+    width: 14,
+    height: 14,
+    tintColor: '#FFFFFF',
   },
   gradientOverlay: {
     position: "absolute",
     width: "100%",
-    height: "28%",
-    bottom: '17%',
-    left: 0,
-  },
-  // last opecity
-  overlayColor: {
-    position: "absolute",
-    width: "100%",
     height: "100%",
-    top: "80%",
+    top: 10,
+    bottom:115,
     left: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.99)"
   },
-  overlayColorCenter: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    top: "70%",
-    left: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
+  centerPlayButton: {
+    position: 'relative',
+    top: 0,
+    alignSelf: 'center',
+    zIndex: 10, 
+    bottom:0
   },
-  overlayBottom: {
-    position: "absolute",
-    width: "100%",
-    height: "40%",
-    top: "60%",
-    left: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+  playButtonShadow: {
+    shadowColor: '#35C75A',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    elevation: 8,
   },
-  logo: {
-  width: 68,         // make width = height for square
-  height: 68,  
-  bottom:11
-  // same as width
- 
-   },
-  heading: {
-    fontSize: 20,
-    // fontFamily: font.PoppinsBold,
-    color: Color.whiteText,
-    textAlign: 'center',
-    marginBottom: 6,
+  largePlayIcon: {
+    width: 68,
+    height: 68,
   },
-  subHeading: {
-    fontSize: 16,
-    // fontFamily: font.PoppinsRegular,
-    color: Color.whiteText,
-    textAlign: 'center',
-    marginBottom: 20,
-    marginTop: 18,
-    lineHeight: 22
-  },
-  contentWrapper: {
-    marginHorizontal: 16,
-    position: "absolute",
-    bottom: 28,
+  bottomContent: {
+    position: 'absolute',
+    bottom: 0,
     left: 0,
     right: 0,
-    zIndex: 10,
+    paddingHorizontal: 24,
+    paddingBottom: 40,
+     zIndex: 5,
   },
-
-  contentWrapp: {
-    alignItems: 'center',
+  heading: {
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 26,
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: '#35C75A',
+    borderRadius: 8,
+    paddingVertical: 16,
   },
 });
 
 export default OnboardingScreen2;
-
-
-
-
-
-
-
-
-

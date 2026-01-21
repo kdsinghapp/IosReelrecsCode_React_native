@@ -85,7 +85,7 @@ const watchTogetherGroups = [
                 userChat: "Classic pick 😍",
                 isOnline: true,
                 recentMessageTime: "2025-06-05T08:35:00Z",
-                userImage: imageIndex.profile3,
+                userImage: imageIndex.profile1,
                 userInterest: {
                     action: true,
                     movieName: "The Dark Night",
@@ -98,7 +98,7 @@ const watchTogetherGroups = [
                 userChat: "Classic pick 😍",
                 isOnline: true,
                 recentMessageTime: "2025-06-05T08:35:00Z",
-                userImage: imageIndex.profile3,
+                userImage: imageIndex.profile1,
                 userInterest: {
                     action: true,
                     movieName: "Impossible",
@@ -175,7 +175,7 @@ const watchTogetherGroups = [
                 userChat: "Let’s start with Demon Slayer!",
                 isOnline: true,
                 recentMessageTime: "2025-06-05T11:40:00Z",
-                userImage: imageIndex.profile3,
+                userImage: imageIndex.profile1,
                 userInterest: {
                     action: true,
                     movieName: "The Run",
@@ -207,7 +207,7 @@ const watchTogetherGroups = [
       userChat: "Let’s start with Demon Slayer!",
       isOnline: true,
       recentMessageTime: "2025-06-05T11:40:00Z",
-      userImage: imageIndex.profile3,
+      userImage: imageIndex.profile1,
       userInterest: {
         action: true,
         movieName: "The Run",
@@ -273,7 +273,7 @@ const watchTogetherGroups = [
                 userChat: "Matrix or Interstellar?",
                 isOnline: true,
                 recentMessageTime: "2025-06-05T00:10:00Z",
-                userImage: imageIndex.profile3,
+                userImage: imageIndex.profile1,
                 userInterest: {
                     action: false,
                     movieName: "The Run",

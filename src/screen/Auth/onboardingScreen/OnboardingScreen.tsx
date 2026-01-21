@@ -21,6 +21,22 @@ const { width, height } = Dimensions.get('window');
 
 const data = [
    {
+    id: '1',
+    image: imageIndex.step1,
+    title: 'Rate 5 titles to unlock Rec Scores',
+    desc: 'a Rec Score is the projected score of how much we think a user will like a title.',
+          img: imageIndex.WatchNowButton
+
+  },
+   {
+    id: '2',
+    image: imageIndex.step2,
+    title: 'Rate 5 titles to unlock Rec Scores',
+    desc: 'a Rec Score is the projected score of how much we think a user will like a title.',
+          img: imageIndex.WatchNowButton2
+
+  },
+   {
     id: '3',
     image: imageIndex.step3,
     title: 'The more you rate, the sharper your recommendations get',
@@ -108,7 +124,7 @@ const styles = StyleSheet.create({
   slide: {
     width,
     alignItems: 'center',
-    paddingTop: Platform.OS === "ios" ? 60 : 58,
+    paddingTop: Platform.OS === "ios" ? 70 : 58,
   },
 
   poster: {

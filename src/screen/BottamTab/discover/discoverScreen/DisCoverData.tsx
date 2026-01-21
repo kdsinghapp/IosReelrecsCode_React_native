@@ -71,22 +71,12 @@ export const contentType = [
   { id: 3, type: "TV" ,params :"tv_series"}
 ];
 export const DATA = [
-  {
-    id: '1',
-    title: 'Into the Woods',
-    image: imageIndex.largPoster1,
-    rating: '9.8',
-  },
-  {
-    id: '2',
-    title: 'Teenage Kraken',
-    image: imageIndex.movieBag,
-    rating: '6.1',
-  },
+   
+ 
   {
     id: '3',
     title: 'Kandahar',
-    image: imageIndex.kanbag,
+    image: imageIndex.welcomePost1,
     rating: '9.3',
   },
   {
@@ -95,40 +85,20 @@ export const DATA = [
     image: imageIndex.moviesPoster,
     rating: '5.8',
   },
-  {
-    id: '5',
-    title: 'The Little Mermaid',
-    image: imageIndex.moviesPoster,
-    rating: '5.8',
-  },
+ 
   {
     id: '6',
     title: 'The Little Mermaid',
-    image: imageIndex.kanbag,
+    image: imageIndex.welcomePost1,
     rating: '3.8',
   },
-  {
-    id: '7',
-    title: 'The Little Mermaid',
-    image: imageIndex.largPoster1,
-    rating: '9.8',
-  },
+ 
   {
     id: '8',
     title: 'The Little Mermaid',
-    image: imageIndex.kanbag,
+    image: imageIndex.welcomePost1,
     rating: '9.8',
   },
-  {
-    id: '9',
-    title: 'The Little Mermaid',
-    image: imageIndex.movieBag,
-    rating: '9.8',
-  },
-  {
-    id: '10',
-    title: 'The Little Mermaid',
-    image: imageIndex.kanbag,
-    rating: '9.8',
-  },
+ 
+ 
 ];
