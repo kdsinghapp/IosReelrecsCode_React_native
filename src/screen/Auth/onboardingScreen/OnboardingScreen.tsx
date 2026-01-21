@@ -70,7 +70,6 @@ const data = [
       'A Rec Score is the projected score of how much we think a user will like a title.',
     img: imageIndex.WatchNowButton,
   },
- 
   {
     id: '2',
     image: imageIndex.step3,
@@ -94,8 +93,8 @@ const horizontalGap = 14;
 const FloatingColumn = ({ posters, columnIndex, isAtTop }: any) => {
   const translateY = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    const direction = isAtTop ? -55 : 55;
+useEffect(() => {
+    const direction = isAtTop ? -130 : 130;
 
     Animated.loop(
       Animated.sequence([
@@ -109,10 +108,9 @@ const FloatingColumn = ({ posters, columnIndex, isAtTop }: any) => {
           duration: 5000,
           useNativeDriver: true,
         }),
-      ]),
+      ])
     ).start();
   }, [translateY, isAtTop]);
-
   return (
     <Animated.View
       style={[
@@ -137,50 +135,116 @@ const FloatingColumn = ({ posters, columnIndex, isAtTop }: any) => {
 };
 
 /* ----------------------------------
+   SLIDE COMPONENT
+-----------------------------------*/
+const SlideItem = ({ item, index, currentIndex }: any) => {
+  const slideAnim = useRef(new Animated.Value(100)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.88)).current;
+
+  useEffect(() => {
+    // Only animate when this slide becomes active
+    if (index === currentIndex) {
+      // Reset animation values
+      slideAnim.setValue(100);
+      fadeAnim.setValue(0);
+      scaleAnim.setValue(0.88);
+
+      Animated.parallel([
+        Animated.spring(slideAnim, {
+          toValue: 0,
+          useNativeDriver: true,
+          damping: 20,
+          stiffness: 80,
+          mass: 1,
+          overshootClamping: false,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 2000,
+          easing: Easing.out(Easing.exp),
+          useNativeDriver: true,
+        }),
+        Animated.spring(scaleAnim, {
+          toValue: 1,
+          useNativeDriver: true,
+          damping: 20,
+          stiffness: 80,
+          mass: 1,
+          overshootClamping: false,
+        }),
+      ]).start();
+    } else {
+      // Reset to initial state for inactive slides
+      slideAnim.setValue(100);
+      fadeAnim.setValue(0);
+      scaleAnim.setValue(0.88);
+    }
+  }, [currentIndex, index]);
+
+  // Don't render if not current or adjacent slide (for performance)
+  if (Math.abs(index - currentIndex) > 1) {
+    return null;
+  }
+
+  return (
+    <Animated.View
+      style={[
+        styles.slide,
+        {
+          opacity: fadeAnim,
+          transform: [
+            { translateX: slideAnim },
+            { scale: scaleAnim },
+            {
+              rotateZ: slideAnim.interpolate({
+                inputRange: [0, 100],
+                outputRange: ['0deg', '5deg'],
+              }),
+            },
+          ],
+        },
+      ]}
+    >
+      <View style={styles.slideContent}>
+        <Image source={item.image} style={styles.poster} />
+        
+        <View style={styles.bottomContainer}>
+          <Image source={item.img} style={styles.playBtn} />
+          
+          <View style={styles.textBox}>
+            <Text style={styles.title}>{item.title}</Text>
+            {item.title1 && <Text style={styles.title}>{item.title1}</Text>}
+            {!!item.desc && <Text style={styles.desc}>{item.desc}</Text>}
+          </View>
+        </View>
+      </View>
+    </Animated.View>
+  );
+};
+
+/* ----------------------------------
    MAIN SCREEN
 -----------------------------------*/
 const OnboardingScreen = () => {
-  const [index, setIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef<FlatList>(null);
   const navigation = useNavigation();
 
   const onNext = () => {
-    if (index < data.length - 1) {
-      ref.current?.scrollToIndex({ index: index + 1 });
+    if (currentIndex < data.length - 1) {
+      ref.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {
       navigation.navigate(ScreenNameEnum.OnboardingScreen2);
     }
   };
- 
 
-   const slideAnim = useRef(new Animated.Value(40)).current;  
-  const fadeAnim = useRef(new Animated.Value(0)).current;    
-  const scaleAnim = useRef(new Animated.Value(0.96)).current;  
-
-useEffect(() => {
-  // Reset values
-  slideAnim.setValue(40);
-  fadeAnim.setValue(0);
-  scaleAnim.setValue(0.96);
-
-  Animated.parallel([
-    Animated.spring(slideAnim, {
-      toValue: 0,
-      friction: 8, // lower friction = more bouncy
-      tension: 40, // adjust speed
-      useNativeDriver: true,
-    }),
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 800,
-      easing: Easing.out(Easing.ease),
-      useNativeDriver: true,
-    }),
-  
-  ]).start();
-}, [index]);
-
-
+  const handleScrollEnd = (e: any) => {
+    const newIndex = Math.round(e.nativeEvent.contentOffset.x / width);
+    if (newIndex !== currentIndex) {
+      setCurrentIndex(newIndex);
+    }
+  };
 
   return (
     <View style={styles.root}>
@@ -197,94 +261,43 @@ useEffect(() => {
       </View>
 
       {/* 🔹 Gradient Overlay */}
-<LinearGradient
-  colors={[
-    'rgba(0,108,157,0.35)',
-    'rgba(0,24,35,0.75)',
-  ]}
- 
-        locations={[0, 0.5, 0.2, 0]}
-  style={StyleSheet.absoluteFill}
-/>
-
+      <LinearGradient
+        colors={['rgba(0,108,157,0.35)', 'rgba(0,24,35,0.75)']}
+        locations={[0, 0.5]}
+        style={StyleSheet.absoluteFill}
+      />
 
       {/* 🔹 Foreground Content */}
       <View style={styles.content}>
         <FlatList
           ref={ref}
-           
-  scrollEventThrottle={16}
-  onMomentumScrollEnd={(e) =>
-    setIndex(Math.round(e.nativeEvent.contentOffset.x / width))
-  }
           data={data}
           horizontal
           pagingEnabled
+          scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
-          onMomentumScrollEnd={(e) =>
-            setIndex(Math.round(e.nativeEvent.contentOffset.x / width))
-          }
-          renderItem={({ item }) => (
-            <View style={styles.slide} 
- 
-            >
-<Animated.View
-  style={[
-    styles.slide,
-    {
-      opacity: fadeAnim,
-      transform: [
-        { translateX: slideAnim },
-        { scale: scaleAnim },
-      ],
-    },
-  ]}
->
-
-
-              <Image source={item.image} 
-               style={styles.poster} />
-
-    </Animated.View>
-    <View style={{
-  alignItems:"center"
-  }}>
-              <Image source={item.img} style={styles.playBtn} />
-
-              <View style={styles.textBox}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.title}>{item.title1}</Text>
-                {!!item.desc && (
-                  <Text style={styles.desc}>{item.desc}</Text>
-                )}
-              </View>
-               </View>
-            </View>
+          onMomentumScrollEnd={handleScrollEnd}
+          getItemLayout={(_, index) => ({
+            length: width,
+            offset: width * index,
+            index,
+          })}
+          renderItem={({ item, index }) => (
+            <SlideItem
+              item={item}
+              index={index}
+              currentIndex={currentIndex}
+            />
           )}
         />
-{/* <LinearGradient
-  colors={[
-    'rgba(0,108,157,0.35)',
-    'rgba(0,24,35,0.75)',
-  ]}
-      // colors={[
-      //     "rgba(10, 22, 40, 0)",
-      //     "rgba(10, 22, 40, 0.7)",
-      //     "rgba(10, 22, 40, 0.95)",
-      //     "rgba(10, 22, 40, 1)"
-      //   ]}
-        locations={[10, 0.9, 0.9, 10]}
- /> */}
-
-
 
         <View style={styles.btnWrap}>
           <Button
             title="Next"
             onPress={onNext}
             buttonStyle={{
-              backgroundColor: index === data.length - 1 ? '#35C75A' : '#00A8F5',
+              backgroundColor: currentIndex === data.length - 1 ? '#35C75A' : '#00A8F5',
             }}
           />
         </View>
@@ -303,7 +316,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
   },
-
   posterWrapper: {
     position: 'absolute',
     width: width + columnWidth,
@@ -312,54 +324,55 @@ const styles = StyleSheet.create({
     left: -(columnWidth / 2),
     flexDirection: 'row',
   },
-
   column: {
     position: 'absolute',
     width: columnWidth,
     alignItems: 'center',
   },
-
   bgPoster: {
     width: '100%',
     height: posterHeight,
     marginBottom: posterGap,
     borderRadius: 12,
   },
-
   content: {
     flex: 1,
     zIndex: 10,
   },
-
   slide: {
-    width,
+    width: width,
     alignItems: 'center',
+    justifyContent: 'center',
     paddingTop: Platform.OS === 'ios' ? 90 : 55,
   },
-
+  slideContent: {
+    width: '100%',
+    alignItems: 'center',
+  },
   poster: {
     width: width * 0.9,
     height: height * 0.5,
     resizeMode: 'stretch',
   },
-
+  bottomContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
   playBtn: {
     width: 69,
     height: 69,
-    },
-
-  textBox: {
-     paddingHorizontal: 30,
-    alignItems: 'center',
   },
-
+  textBox: {
+    paddingHorizontal: 30,
+    alignItems: 'center',
+    marginTop: 10,
+  },
   title: {
     color: '#FFF',
     fontSize: 20,
     textAlign: 'center',
     fontFamily: font.PoppinsBold,
   },
-
   desc: {
     color: '#FFF',
     fontSize: 14,
@@ -368,7 +381,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontFamily: font.PoppinsRegular,
   },
-
   btnWrap: {
     marginHorizontal: 16,
     marginBottom: 16,
