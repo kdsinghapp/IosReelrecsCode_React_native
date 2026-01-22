@@ -870,8 +870,7 @@ import {
 import NormalMovieCard from '../../../../component/common/NormalMovieCard/NormalMovieCard';
 import StepProgressBar from '../../../../component/modal/stepProgressModal/StepProgressBar';
 import LayeredShadowText from '../../../../component/common/LayeredShadowText/LayeredShadowText';
-import FastImage from 'react-native-fast-image';
-import { useCompareComponent } from './useCompareComponent';
+ import { useCompareComponent } from './useCompareComponent';
 import CompareModals from './CompareModals';
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import font from '../../../../theme/font';
@@ -1359,6 +1358,15 @@ const RankingScreen = () => {
       });
     }
   };
+  const [showList, setShowList] = useState(false);
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowList(true);
+  }, 5000); // ⏱️ 5 seconds
+
+  return () => clearTimeout(timer);
+}, []);
+
    // PanResponder for drag gesture
   const panResponder = (id) => PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -1626,7 +1634,7 @@ console.log("currentStep",currentStep)
                 <View>
 {ratedMovie.length  > 0 ? null    :
 <>
-  {currentStep >= 5 && (
+  {/* {currentStep >= 5 && (
                     <ButtonCustom
                       title="Discover"
                       onPress={() => navigation.navigate(ScreenNameEnum.DiscoverTab, {
@@ -1642,7 +1650,7 @@ console.log("currentStep",currentStep)
                         marginTop: 5
                       }}
                     />
-                  )}
+                  )} */}
 </>
 
 }
@@ -1669,23 +1677,38 @@ console.log("currentStep",currentStep)
  )}
 
 
-  {/* {currentStep >= 0 && currentStep < totalSteps && (
-                    <StepProgressBar
-                      totalSteps={totalSteps}
-                       currentStepModal={currentStep}
-                    />
-                  )} */}
-                
-                 { refreshing  ?  null: displayMovies?.length  > 0 ? null    : <>
-                   <Text style={styles.heading}>
-                    Have you had a chance to watch these yet?{"\n"}
-                    <Text style={{ color: Color.whiteText }}>
-                      We'd like to know your thoughts!
-                    </Text>
-                  </Text>
-                 </>} 
-           {order?.length == 0 && (
-  <FlatList
+ {!showList ? null : (
+  <>
+<>
+                    {/* <ButtonCustom
+                      title="Discover"
+                      onPress={() => navigation.navigate(ScreenNameEnum.DiscoverTab, {
+                        screen: ScreenNameEnum.DiscoverScreen,
+                        params: { type: 'recs' },
+                      })}
+                      textStyle={
+                        {
+                          color: Color.whiteText
+                        }
+                      }
+                      buttonStyle={{
+                        marginTop: 5
+                      }}
+                    /> */}
+              
+
+</>
+  
+    {/* {showList  && (
+      <Text style={styles.heading}>
+        Have you had a chance to watch these yet?{"\n"}
+        <Text style={{ color: Color.whiteText }}>
+          We'd like to know your thoughts!
+        </Text>
+      </Text>
+    )} */}
+
+   <FlatList
     showsVerticalScrollIndicator={false}
     data={displayMovies}
     keyExtractor={(item, index) =>
@@ -1711,7 +1734,45 @@ console.log("currentStep",currentStep)
       ) : null
     }
   />
+  </>
 )}
+
+                
+                 {/* { refreshing  ?  null: displayMovies?.length  > 0 ? null    : <>
+                   <Text style={styles.heading}>
+                    Have you had a chance to watch these yet?{"\n"}
+                    <Text style={{ color: Color.whiteText }}>
+                      We'd like to know your thoughts!
+                    </Text>
+                  </Text>
+                 </>} 
+   <FlatList
+    showsVerticalScrollIndicator={false}
+    data={displayMovies}
+    keyExtractor={(item, index) =>
+      `${index}-${String(item?.imdb_id ?? index)}`
+    }
+    ref={listRef}
+    onLayout={handleLayout}
+    renderItem={renderMovie}
+    initialNumToRender={10}
+    maxToRenderPerBatch={10}
+    windowSize={8}
+    contentContainerStyle={{ paddingBottom: 20, marginTop: 10 }}
+    onEndReached={() => {
+      if (suggestionHasMore && !suggestionLoading) {
+        fetchSuggestionMovies(suggestionPage + 1);
+      }
+    }}
+    onEndReachedThreshold={0.2}
+    extraData={[filteredMovies, suggestionLoading, suggestionHasMore]}
+    ListFooterComponent={
+      suggestionLoading ? (
+        <ActivityIndicator size="large" color={Color.primary} />
+      ) : null
+    }
+  /> */}
+{/* )} */}
 
                   
         </ScrollView>  

@@ -1,6 +1,6 @@
 enum ScreenNameEnum {
   //Auth Screens
-  WEICOME = 'Welcome',
+  WELCOME = 'Welcome',
   WatchTab = "WatchTab",
   OnboardingScreen = "OnboardingScreen",
   LoginScreen = "LoginScreen",

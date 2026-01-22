@@ -24,7 +24,7 @@ const Stack = createNativeStackNavigator();
 const SimplifiedMainNavigator = React.memo(() => {
   return (
     <Stack.Navigator
-      initialRouteName={ScreenNameEnum.WEICOME}
+      initialRouteName={ScreenNameEnum.WELCOME}
       screenOptions={{
         headerShown: false,
         // Simple animations
@@ -37,7 +37,7 @@ const SimplifiedMainNavigator = React.memo(() => {
       }}
     >
       {/* Auth Flow */}
-      <Stack.Screen name={ScreenNameEnum.WEICOME} component={Welcome} />
+      <Stack.Screen name={ScreenNameEnum.WELCOME} component={Welcome} />
       <Stack.Screen name={ScreenNameEnum.LoginScreen} component={Login} />
       <Stack.Screen name={ScreenNameEnum.SignUpScreen} component={Signup} />
 

@@ -184,9 +184,12 @@ const App = () => {
   }).current;
 
   const fetchRecentUsers = useCallback(async () => {
+          setUserLoading(true);
+
     try {
-      setUserLoading(true);
       const users = await getRecentActiveUsers(token);
+                setUserLoading(false);
+
       setRecentUsers(users.data?.results || []);
     } catch (err) {
       console.error("Error fetching users", err);

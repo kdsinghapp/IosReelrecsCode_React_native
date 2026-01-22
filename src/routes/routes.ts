@@ -35,7 +35,7 @@ const _routes = () => {
 
   return {
     REGISTRATION_ROUTE: [
-      { name: ScreenNameEnum.WEICOME, Component: Welcome },
+      { name: ScreenNameEnum.WELCOME, Component: Welcome },
        { name: ScreenNameEnum.LoginScreen, Component: Login },
        { name: ScreenNameEnum.SignUpScreen, Component: Signup },
        { name: ScreenNameEnum.PasswordReset, Component: PasswordReset },
