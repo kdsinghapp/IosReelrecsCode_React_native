@@ -30,6 +30,13 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
     const [groupValue, setGroupValue] = useState(0);
     const [sliderWidth, setSliderWidth] = useState(0);
      const group_members = group?.members || group;
+const group_membersCount = group_members?.map(item => ({
+    ...item,
+    active: (item.activities_cnt ?? 0) > 0,
+  }))
+  .filter(item => item.active === true)
+  .length;
+
  
     let countfilter = 0;
     
@@ -57,16 +64,16 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
 
     // PERFECT BUBBLE POSITIONING - Centers bubble over thumb in ALL cases
     const getBubblePosition = () => {
-        if (groupTotalMember === 0 || sliderWidth === 0) return 0;
+        if (group_membersCount111111 === 0 || sliderWidth === 0) return 0;
         if(groupValue ==0){
 
         } else if(groupValue == 4 )
      {           const trackWidth = sliderWidth - THUMB_SIZE;
    
-         if (groupValue === groupTotalMember) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
+         if (groupValue === group_membersCount111111) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
         
         // Calculate percentage of current value
-        const percentage = groupValue / groupTotalMember;
+        const percentage = groupValue / group_membersCount111111;
           const thumbCenter = (percentage * trackWidth) + (THUMB_SIZE / 2);
  const bubbleLeft = thumbCenter - (BUBBLE_WIDTH / 
     
@@ -83,10 +90,10 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
         console.log("groupValue",groupValue)
          // Handle edge cases
         if (groupValue === 0) return 0;
-        if (groupValue === groupTotalMember) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
+        if (groupValue === group_membersCount111111) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
         
         // Calculate percentage of current value
-        const percentage = groupValue / groupTotalMember;
+        const percentage = groupValue / group_membersCount111111;
           const thumbCenter = (percentage * trackWidth) + (THUMB_SIZE / 2);
  const bubbleLeft = thumbCenter - (BUBBLE_WIDTH / 
     
@@ -242,7 +249,7 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
                                                 style={[
                                                     styles.bubbleContainer,
                                                     { 
-left: groupValue  == 0 ?  -9.5 :  groupValue  == groupTotalMember ?   sliderWidth-42:getBubblePosition(),                                                    }
+left: groupValue  == 0 ?  -9.5 :  groupValue  == group_membersCount ?   sliderWidth-42:getBubblePosition(),                                                    }
                                                 ]}
                                             >
                                                 <View style={styles.bubble}>
@@ -261,7 +268,7 @@ left: groupValue  == 0 ?  -9.5 :  groupValue  == groupTotalMember ?   sliderWidt
                                         <Slider
                                             style={styles.slider}
                                             minimumValue={0}
-                                            maximumValue={groupTotalMember}
+                                            maximumValue={group_members}
                                             step={1}
                                             value={groupValue}
                                             onValueChange={value => setGroupValue(Math.round(value))}
@@ -273,7 +280,7 @@ left: groupValue  == 0 ?  -9.5 :  groupValue  == groupTotalMember ?   sliderWidt
                                     </View>
                                 </View>
                                 
-                                <Text style={styles.groupValue}>{groupTotalMember}</Text>
+                                <Text style={styles.groupValue}>{group_membersCount}</Text>
                             </View>
                         )}
 

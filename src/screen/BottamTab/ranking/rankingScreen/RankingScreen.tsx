@@ -1055,6 +1055,8 @@ const RankingScreen = () => {
     setRefreshing(true);
     try {
       const res_All_Rated = await getAllRatedMovies(token);
+            setRefreshing(false);
+
       // setRatedMovie(res_All_Rated?.results?.slice(0,9) ?? []);
       setRatedMovie(res_All_Rated?.results ?? []);
     } catch (error) {
@@ -1357,8 +1359,7 @@ const RankingScreen = () => {
       });
     }
   };
-
-  // PanResponder for drag gesture
+   // PanResponder for drag gesture
   const panResponder = (id) => PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onMoveShouldSetPanResponder: (_, gestureState) => {
@@ -1647,13 +1648,6 @@ console.log("currentStep",currentStep)
 }
                 
 
-                  <Text style={styles.heading}>
-                    Have you had a chance to watch these yet?{"\n"}
-                    <Text style={{ color: Color.whiteText }}>
-                      We'd like to know your thoughts!
-                    </Text>
-                  </Text>
-
                 
 
 
@@ -1664,39 +1658,62 @@ console.log("currentStep",currentStep)
             />
           )
         )}
+{refreshing  ?  null:
+ displayMovies?.length > 0 &&
+ currentStep >= 0 &&
+ currentStep < totalSteps && (
+   <StepProgressBar
+     totalSteps={totalSteps}
+     currentStepModal={currentStep}
+   />
+ )}
 
-  {currentStep >= 0 && currentStep < totalSteps && (
+
+  {/* {currentStep >= 0 && currentStep < totalSteps && (
                     <StepProgressBar
                       totalSteps={totalSteps}
                        currentStepModal={currentStep}
                     />
-                  )}
-
+                  )} */}
+                
+                 { refreshing  ?  null: displayMovies?.length  > 0 ? null    : <>
+                   <Text style={styles.heading}>
+                    Have you had a chance to watch these yet?{"\n"}
+                    <Text style={{ color: Color.whiteText }}>
+                      We'd like to know your thoughts!
+                    </Text>
+                  </Text>
+                 </>} 
+           {order?.length == 0 && (
   <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={displayMovies}
-                    keyExtractor={(item, index) => `${index}-${String(item?.imdb_id ?? index)}`}
-                    ref={listRef}
-                    onLayout={handleLayout}
-                    renderItem={renderMovie}
-                    extraData={displayMovies}
-                    initialNumToRender={10}
-                    maxToRenderPerBatch={10}
-                    windowSize={8}
-                    contentContainerStyle={{ paddingBottom: 20, marginTop: 10 }}
-                    onEndReached={() => {
-                      if (suggestionHasMore && !suggestionLoading) {
-                        fetchSuggestionMovies(suggestionPage + 1);
-                      }
-                    }}
-                    onEndReachedThreshold={0.2}
-                    extraData={[filteredMovies, suggestionLoading, suggestionHasMore]}
-                    ListFooterComponent={
-                      suggestionLoading ? (
-                        <ActivityIndicator size="large" color={Color.primary} />
-                      ) : null
-                    }
-                  />
+    showsVerticalScrollIndicator={false}
+    data={displayMovies}
+    keyExtractor={(item, index) =>
+      `${index}-${String(item?.imdb_id ?? index)}`
+    }
+    ref={listRef}
+    onLayout={handleLayout}
+    renderItem={renderMovie}
+    initialNumToRender={10}
+    maxToRenderPerBatch={10}
+    windowSize={8}
+    contentContainerStyle={{ paddingBottom: 20, marginTop: 10 }}
+    onEndReached={() => {
+      if (suggestionHasMore && !suggestionLoading) {
+        fetchSuggestionMovies(suggestionPage + 1);
+      }
+    }}
+    onEndReachedThreshold={0.2}
+    extraData={[filteredMovies, suggestionLoading, suggestionHasMore]}
+    ListFooterComponent={
+      suggestionLoading ? (
+        <ActivityIndicator size="large" color={Color.primary} />
+      ) : null
+    }
+  />
+)}
+
+                  
         </ScrollView>  
       </View>
 

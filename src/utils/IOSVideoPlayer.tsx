@@ -272,7 +272,7 @@ const IOSVideoPlayer = React.forwardRef<VideoPlayerHandle, Props>((props, ref) =
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    // backgroundColor: 'black',
     overflow: 'hidden',
   },
   videoContainer: {
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
   },
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    // backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 2,
