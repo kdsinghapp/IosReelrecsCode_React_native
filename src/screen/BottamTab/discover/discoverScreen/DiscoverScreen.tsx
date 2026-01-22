@@ -49,8 +49,7 @@ const TabPaginationScreen = () => {
       return (
         <View style={styles.footer}>
           <ActivityIndicator size="small" color="#007AFF" />
-          <Text style={styles.footerText}>Loading...</Text>
-        </View>
+         </View>
       );
     }
     
@@ -175,6 +174,7 @@ const TabPaginationScreen = () => {
     }
     
     if (!token) {
+      setLoadingMore(false)
       console.error('❌ No token available');
       return;
     }
@@ -183,10 +183,11 @@ const TabPaginationScreen = () => {
     
     // Set loading states
     if (reset) {
+      
       setLoading(true);
       setTrending([]); // Clear existing data immediately for better UX
     } else {
-      setLoadingMore(true);
+      setLoadingMore(false);
     }
     
     isFetchingRef.current = true;
@@ -198,7 +199,7 @@ const TabPaginationScreen = () => {
       
       const params = { token, url };
       const result = await Trending_without_Filter(params);
-      
+      setLoadingMore(false)
       console.log('✅ API Response:', {
         page: result?.current_page,
         totalPages: result?.total_pages,
@@ -207,9 +208,12 @@ const TabPaginationScreen = () => {
       });
       
       if (result?.results) {
+          setLoadingMore(false)
         if (reset) {
+            setLoadingMore(false)
           setTrending(result.results);
         } else {
+            setLoadingMore(false)
           // Prevent duplicates
           setTrending(prev => {
             const existingIds = new Set(prev.map(m => m?.imdb_id));
@@ -221,7 +225,7 @@ const TabPaginationScreen = () => {
         const currentPageNum = result.current_page || page;
         const totalPagesNum = result.total_pages || 1;
         const hasMoreData = currentPageNum < totalPagesNum;
-        
+          setLoadingMore(false)
         setCurrentPage(currentPageNum);
         setTotalPages(totalPagesNum);
         setHasMore(hasMoreData);
@@ -229,9 +233,11 @@ const TabPaginationScreen = () => {
         console.log(`📊 Updated state - Page: ${currentPageNum}, Has More: ${hasMoreData}, Total Items: ${trending.length + result.results.length}`);
       }
     } catch (error) {
+        setLoadingMore(false)
       console.error('❌ Error fetching movies:', error);
       setHasMore(false);
     } finally {
+        setLoadingMore(false)
       setLoading(false);
       setLoadingMore(false);
       isFetchingRef.current = false;
@@ -249,7 +255,8 @@ const TabPaginationScreen = () => {
     if (filterFingerprintRef.current !== currentFingerprint) {
       console.log('🔄 Filters changed, fetching new data...');
       filterFingerprintRef.current = currentFingerprint;
-      
+            setLoadingMore(false)
+
       // Reset pagination and fetch first page
       setCurrentPage(1);
       setHasMore(true);

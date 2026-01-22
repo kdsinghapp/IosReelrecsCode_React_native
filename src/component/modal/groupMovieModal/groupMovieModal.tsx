@@ -30,10 +30,18 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
     const [groupValue, setGroupValue] = useState(0);
     const [sliderWidth, setSliderWidth] = useState(0);
      const group_members = group?.members || group;
-    
+ 
     let countfilter = 0;
     
     const toggleUser = (id: number) => {
+
+        console.log("group_members",group_members)
+        // Double-check that we're only toggling active users
+        const user = group_members?.find(member => member?.username === id);
+        if (user && (user?.active === false)) {
+            return; // Don't toggle inactive users
+        }
+        
         setSelectedUsers(prev =>
             prev.includes(id) ? prev.filter(uid => uid !== id) : [...prev, id]
         );
@@ -144,10 +152,19 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
                                     keyExtractor={item => item?.username.toString()}
                                     renderItem={({ item }) => {
                                         const selected = selectedUsers.includes(item?.username);
+                                        const isActive = item?.active ?? true; // Default to true for backward compatibility
+                                        const activitiesCount = item?.activities_cnt ?? 0;
+                                        
                                         return (
-                                            <View style={styles.userItem}>
+                                            <View style={[
+                                                styles.userItem,
+                                                !isActive && styles.userItemInactive
+                                            ]}>
                                                 <FastImage
-                                                    style={styles.avatar}
+                                                    style={[
+                                                        styles.avatar,
+                                                        !isActive && styles.avatarInactive
+                                                    ]}
                                                     source={{
                                                         uri: `${BASE_IMAGE_URL}${item?.avatar}`,
                                                         priority: FastImage.priority.low,
@@ -155,15 +172,34 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
                                                     }}
                                                     resizeMode={FastImage.resizeMode.cover}
                                                 />
-                                                <Text style={styles.userName}>{item?.name ? item?.name : item?.username }</Text>
-                                                <TouchableOpacity onPress={() => toggleUser(item?.username)}>
+                                                <View style={styles.userInfo}>
+                                                    <Text style={[
+                                                        styles.userName,
+                                                        !isActive && styles.userNameInactive
+                                                    ]}>
+                                                        {item?.name ? item?.name : item?.username}
+                                                    </Text>
+                                                    {activitiesCount > 0 && (
+                                                        <Text style={styles.activityCount}>
+                                                            {activitiesCount} {activitiesCount === 1 ? 'activity' : 'activities'}
+                                                        </Text>
+                                                    )}
+                                                </View>
+                                                <TouchableOpacity 
+                                                    onPress={() => isActive && toggleUser(item?.username)}
+                                                    disabled={!isActive}
+                                                    style={styles.checkboxContainer}
+                                                >
                                                     <Image
                                                         source={
-                                                            selected
+                                                            selected && isActive
                                                                 ? imageIndex.checKBoxActive
                                                                 : imageIndex.checkBox
                                                         }
-                                                        style={styles.checkboxIcon}
+                                                        style={[
+                                                            styles.checkboxIcon,
+                                                            !isActive && styles.checkboxInactive
+                                                        ]}
                                                     />
                                                 </TouchableOpacity>
                                             </View>
@@ -318,21 +354,45 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
     },
+    userItemInactive: {
+        opacity: 0.5,
+    },
     avatar: {
         width: 32,
         height: 32,
         borderRadius: 16,
         marginRight: 10,
     },
-    userName: {
+    avatarInactive: {
+        opacity: 0.6,
+    },
+    userInfo: {
         flex: 1,
+        justifyContent: 'center',
+    },
+    userName: {
         color: 'white',
         fontSize: 16,
         fontFamily: font.PoppinsMedium
     },
+    userNameInactive: {
+        color: '#888',
+    },
+    activityCount: {
+        color: Color.primary,
+        fontSize: 11,
+        fontFamily: font.PoppinsRegular,
+        marginTop: 2,
+    },
+    checkboxContainer: {
+        padding: 4,
+    },
     checkboxIcon: {
         width: 20,
         height: 20,
+    },
+    checkboxInactive: {
+        opacity: 0.3,
     },
     groupValue: {
         color: 'white',

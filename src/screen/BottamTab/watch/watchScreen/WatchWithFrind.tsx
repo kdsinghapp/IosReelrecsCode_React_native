@@ -2569,6 +2569,7 @@ const membersData =
     ? group?.members
     : group1?.results;
 
+ console.log("iiuiuiuds",group1?.results)
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -2877,7 +2878,7 @@ const membersData =
          </View> */}
            <GroupMovieModal
             visible={modalVisible}
-            group={membersData}
+            group={group1?.results || group.member}
             // group={group1?.results ||group.member}
             // group={group}
             groupId={groupId}

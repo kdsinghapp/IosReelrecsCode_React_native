@@ -290,9 +290,6 @@ const StreamService = () => {
 
 const goToRankingScreen = () => {
       // navigation.reset(ScreenNameEnum.OnboardingScreen);
-
-
-
      navigation.reset({
   index: 0,
   routes: [

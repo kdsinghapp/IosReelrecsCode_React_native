@@ -123,7 +123,7 @@ export default function Signup() {
                 source={imageIndex.google}
                 style={Styles.iconImage}
               />
-            </TouchableOpacity> -
+            </TouchableOpacity> 
             {/* Button 3 */}
             <TouchableOpacity style={Styles.iconButton}>
 

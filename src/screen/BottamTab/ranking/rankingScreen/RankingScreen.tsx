@@ -1525,7 +1525,7 @@ const RankingScreen = () => {
     setDisplayMovies(filteredMovies);
     console.log("filteredMovies", filteredMovies)
   }, [filteredMovies, visibleCount]);
-
+console.log("currentStep",currentStep)
 
   return (
     <SafeAreaView style={styles.maincontainer}>
@@ -1542,11 +1542,11 @@ const RankingScreen = () => {
           </View>
         </TouchableOpacity>
 
-        {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+        <ScrollView showsVerticalScrollIndicator={false}>
 
 
         {/* Rated Movies Section */}
-        {currentStep > 5 && (
+        {currentStep >= 5 && (
           loadingRated ? (
             <View style={{ paddingHorizontal: 10, marginTop: 14 }}>
               {Array.from({ length: 8 }).map((_, index) => (
@@ -1616,20 +1616,16 @@ const RankingScreen = () => {
                 //   />
                 // )}</View> 
                 <View>
-                  {currentStep >= 1 && currentStep < totalSteps && (
-                    <StepProgressBar
-                      totalSteps={totalSteps}
-                      disable={true}
-                      currentStepModal={currentStep}
-                    />
-                  )}
+                
                 </View>
               }
               ListFooterComponent={() =>
+<>
 
                 <View>
-
-                  {currentStep > 5 && (
+{ratedMovie.length  > 0 ? null    :
+<>
+  {currentStep >= 5 && (
                     <ButtonCustom
                       title="Discover"
                       onPress={() => navigation.navigate(ScreenNameEnum.DiscoverTab, {
@@ -1646,6 +1642,10 @@ const RankingScreen = () => {
                       }}
                     />
                   )}
+</>
+
+}
+                
 
                   <Text style={styles.heading}>
                     Have you had a chance to watch these yet?{"\n"}
@@ -1654,7 +1654,25 @@ const RankingScreen = () => {
                     </Text>
                   </Text>
 
-                  <FlatList
+                
+
+
+
+                </View>
+</>
+              }
+            />
+          )
+        )}
+
+  {currentStep >= 0 && currentStep < totalSteps && (
+                    <StepProgressBar
+                      totalSteps={totalSteps}
+                       currentStepModal={currentStep}
+                    />
+                  )}
+
+  <FlatList
                     showsVerticalScrollIndicator={false}
                     data={displayMovies}
                     keyExtractor={(item, index) => `${index}-${String(item?.imdb_id ?? index)}`}
@@ -1679,19 +1697,7 @@ const RankingScreen = () => {
                       ) : null
                     }
                   />
-
-
-
-                </View>
-              }
-            />
-          )
-        )}
-
-
-
-
-        {/* </ScrollView> */}
+        </ScrollView>  
       </View>
 
       <CompareModals token={token} useCompareHook={compareHook} />

@@ -8,7 +8,7 @@ import { Color } from '../../../theme/color';
 import font from '../../../theme/font';
 
 // interface StepProgressBarProps {
-//   totalSteps: number;
+//   totalSteps: number;  
 //   disable?: boolean;
 //   onClose?:any;
 //   currentStepRanking: number;
@@ -218,7 +218,7 @@ const StepProgressBar: React.FC<StepProgressBarProps> = ({
       </View>
       <Text allowFontScaling={false} style={styles.subText}>
        {/* Rate a few more movies/shows to get your personalized recommendations. */}
-       You’ve completed ranking for 6 movies! Your personalized Rec Score is now available.
+       You’ve completed ranking for 5 movies! Your personalized Rec Score is now available.
       </Text>
     </TouchableOpacity>
   );

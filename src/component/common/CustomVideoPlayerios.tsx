@@ -33,7 +33,7 @@ const CustomVideoPlayer: React.FC<Props> = ({
   isModalOpen,
   onTogglePause,
   onToggleMute
-}) => {
+ }) => {
   const videoRef = useRef<any>(null);
   const hideTimer = useRef<any>(null);
  
@@ -57,12 +57,22 @@ const CustomVideoPlayer: React.FC<Props> = ({
     return () => hideTimer.current && clearTimeout(hideTimer.current);
   }, []);
 
+  /* ================= SYNC WITH PARENT PAUSED STATE ================= */
+  useEffect(() => {
+    if (!isModalOpen) {
+      // Only sync with parent when modal is not open
+      setIsPaused(paused);
+    }
+  }, [paused, isModalOpen]);
+
   /* ================= AUTO PAUSE ON MODAL OPEN/CLOSE ================= */
   useEffect(() => {
     if (isModalOpen === true) {
       setIsPaused(true);
       setShowControls(false);
     } else if (isModalOpen === false) {
+      // Resume video playback when modal closes
+      setIsPaused(false);
       setTimeout(() => {
         setShowControls(true);
         startAutoHide();
@@ -87,12 +97,12 @@ const CustomVideoPlayer: React.FC<Props> = ({
     startAutoHide();
   };
 
-  const handlePlayPause = () => {
+const handlePlayPause = () => {
     if (isModalOpen === true) return;
 
-    setIsPaused(prev => !prev);
-    startAutoHide();
-  };
+  setIsPaused(prev => !prev);
+  startAutoHide();
+};
 
   const handleToggleMute = () => {
     if (onToggleMute) {
@@ -117,9 +127,9 @@ const CustomVideoPlayer: React.FC<Props> = ({
       onPanResponderMove: (evt) => {
         if (isModalOpen === true) return;
         const x = Math.max(0, Math.min(evt.nativeEvent.locationX, progressWidth));
-        const seekTime = (x / progressWidth) * duration;
-        videoRef.current?.seek(seekTime);
-        setCurrentTime(seekTime);
+    const seekTime = (x / progressWidth) * duration;
+    videoRef.current?.seek(seekTime);
+    setCurrentTime(seekTime);
       },
       onPanResponderRelease: () => {
         setIsScrubbing(false);
@@ -128,19 +138,19 @@ const CustomVideoPlayer: React.FC<Props> = ({
     })
   ).current;
 
-  return (
+   return (
     <TouchableWithoutFeedback
       onPress={() => {
         if (!isModalOpen) {
-          setShowControls(true);
-          startAutoHide();
+        setShowControls(true);
+        startAutoHide();
         }
       }}
     >
       <View style={styles.container}>
         {/* VIDEO */}
         <Video
-          ref={videoRef}
+         ref={videoRef}
           source={{ uri: videoUrl }}
           style={styles.video}
           resizeMode="contain"
@@ -179,7 +189,7 @@ const CustomVideoPlayer: React.FC<Props> = ({
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={handlePlayPause}
+              onPress={handlePlayPause}
                 style={styles.playBtn}
               >
                 {isPaused ? <SvgImage.Play /> : <SvgImage.Pause />}
@@ -199,26 +209,26 @@ const CustomVideoPlayer: React.FC<Props> = ({
                 }
                 {...panResponder.panHandlers}
               >
-                <View style={styles.progressBg}>
-                  <View
-                    style={[
-                      styles.progressFill,
-                      {
-                        width: duration
-                          ? `${(currentTime / duration) * 100}%`
-                          : "0%",
-                      },
-                    ]}
-                  >
-                    <View style={{
-                      position: "absolute",
-                      right: -6,
-                      top: -5,
-                      width: 15,
-                      height: 15,
-                      borderRadius: 10,
-                      backgroundColor: "#fff",
-                    }} />
+                  <View style={styles.progressBg}>
+                    <View
+                      style={[
+                        styles.progressFill,
+                        {
+                          width: duration
+                            ? `${(currentTime / duration) * 100}%`
+                            : "0%",
+                        },
+                      ]}
+                    >
+       <View style={{
+  //         position: "absolute",
+  //                     right: -6,
+  // top: -5,
+  // width: 15,
+  // height: 15,
+  // borderRadius: 10,
+  // backgroundColor: "#fff",
+       }} />
                   </View>
                 </View>
               </View>
@@ -229,15 +239,15 @@ const CustomVideoPlayer: React.FC<Props> = ({
         {/* TIME DISPLAY */}
         {!isModalOpen && (
           <View style={[styles.timeRow, { marginLeft: 13 }]}>
-            <Text style={styles.timeText}>
+                <Text style={styles.timeText}>
               <Text style={{ color: "white" }}>
-                {formatTime(currentTime)}
-              </Text>
+                  {formatTime(currentTime)}  
+                  </Text>
               <Text style={{ color: "gray" }}>
                 {" "} {formatTime(duration)}
-              </Text>
-            </Text>
-          </View>
+                   </Text>
+                </Text>
+              </View>
         )}
       </View>
     </TouchableWithoutFeedback>
@@ -264,8 +274,7 @@ const styles = StyleSheet.create({
     top: Platform.OS === "ios" ? 33 : 10,
     right: 10,
     zIndex: 1000,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    borderRadius: 20,
+     borderRadius: 20,
     padding: 8,
   },
   muteIcon: {
@@ -285,19 +294,19 @@ const styles = StyleSheet.create({
   },
   bottomBar: {
     paddingHorizontal: 10,
-    bottom: 90,
-  },
+    bottom: 15,
+   },
   progressWrapper: {
     width: "100%",
   },
   progressBg: {
     height: 4.5,
     backgroundColor: "rgba(255,255,255,0.4)",
-  },
+   },
   progressFill: {
     height: 4.5,
     backgroundColor: "#fff",
-  },
+   },
   timeRow: {
     flexDirection: "row",
     justifyContent: "space-between",
