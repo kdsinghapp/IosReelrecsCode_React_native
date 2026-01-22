@@ -231,9 +231,12 @@ const WatchScreen = () => {
       const groupsRes = await getAllGroups(token); // groupsRes.results = array of groups
        const enrichedGroups = await Promise.all(
         groupsRes.results.map(async (group) => {
-          let activities = [];
+
+
+           let activities = [];
           let members = [];
           const groupId = group?.group_id || group.username;
+          const max_activities_cnt =  group.max_activities_cnt;
           const groupName = group?.name || group?.username;
           const isMuted = group?.notification
           // console.log(isMuted, "isMuted__________isMuted")
@@ -262,12 +265,13 @@ const WatchScreen = () => {
             isMuted,
             members,
             activities,
+            max_activities_cnt
           };
         })
       );
       const filteredGroups = enrichedGroups.filter(Boolean);
 
-      console.log("---- fffff -rr ",filteredGroups)
+      console.log("---- fffff -rr]",filteredGroups)
       setGroupsData(filteredGroups);
 
       // console.log(typeof filteredGroups, " Final enrichedGroups");

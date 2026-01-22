@@ -22,8 +22,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 }) => {
   const navigation = useNavigation();
-// console.log(group , "GroupListItemGroupListItem")
-  // const handlePress = useCallback(() => {
+   // const handlePress = useCallback(() => {
   //   if (isMultiSelectMode) {
   //     // ✅ Checkbox select + Modal open both
   //     //       onGroupSelect(group);           // selection logic
@@ -54,10 +53,11 @@ const handlePress = useCallback(async () => {
   // } 
   
   else if (!navigationOff) {
-    await AsyncStorage.setItem('selected_group', JSON.stringify(group)); // ✅ Store
+     await AsyncStorage.setItem('selected_group', JSON.stringify(group)); // ✅ Store
     navigation.navigate(ScreenNameEnum.WatchWithFrind, {
       groupProps: group,
       groupId: group?.groupId,
+      maxActivitiescnt: group?.max_activities_cnt
     });
   };
 }, [isMultiSelectMode, group, selectedGroupIds]);

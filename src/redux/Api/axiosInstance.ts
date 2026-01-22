@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken, getTokenWithFallback } from './GlobalToken';
+import { getToken } from './GlobalToken';
 import TokenService from '../../services/TokenService';
 
 // TODO: Change to HTTPS for production - currently using HTTP for development

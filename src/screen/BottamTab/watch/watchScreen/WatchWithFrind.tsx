@@ -1958,7 +1958,7 @@ const WatchWithFrind = () => {
   const route = useRoute()
   const token = useSelector((state: RootState) => state.auth.token);
   const navigation = useNavigation();
-  const { groupProps: passedGroupProps, type, groupId } = route.params || {};
+  const { groupProps: passedGroupProps, type, groupId ,maxActivitiescnt } = route.params || {};
   const [group, setGroup] = useState(passedGroupProps);
   const [group1, setgroup1] = useState();
   const fetchGroups = async () => {
@@ -2159,8 +2159,7 @@ useEffect(() => {
         setGroupRecommend(response.results);
         setGroupRecommendCopyData(response.results);
       } catch (err) {
-        console.log("Error fetching recommendations:", err);
-        setError(true);
+         setError(true);
       } finally {
         setLoading(false);
       }
@@ -2569,7 +2568,7 @@ const membersData =
     ? group?.members
     : group1?.results;
 
- console.log("iiuiuiuds",group1?.results)
+ console.log("iiuiuiuds",group1)
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -2888,7 +2887,8 @@ const membersData =
             }
             onClose={() => setModalVisible(false)}
             setTotalFilterApply={setTotalFilterApply}
-            groupTotalMember={group.members.length}
+            groupTotalMember={maxActivitiescnt}
+            // groupTotalMember={group.members.length}
           />
  
       </SafeAreaView>
