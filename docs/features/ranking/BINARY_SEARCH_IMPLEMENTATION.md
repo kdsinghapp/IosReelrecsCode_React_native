@@ -71,7 +71,7 @@ Converged: Position found!
 ## 💻 Current Implementation
 
 ### File Location
-`/src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.tsx`
+`/src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.tsx`
 
 ### Key Variables
 ```javascript

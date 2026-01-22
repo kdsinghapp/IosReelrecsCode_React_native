@@ -3,15 +3,15 @@ import React, { FunctionComponent } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import _routes from '../routes/routes';
 import ScreenNameEnum from '../routes/screenName.enum';
-import OtherProfile from '../screen/BottamTab/home/otherProfile/OtherProfile';
-import HomeScreen from '../screen/BottamTab/home/homeScreen/HomeScreen'
-import OtherTaingPrfofile from '../screen/BottamTab/home/otherTaingPrfofile/OtherTaingPrfofile';
-import WatchSaveUser from '../screen/BottamTab/home/watchSaveUser/WatchSaveUser';
-import OtherWantPrfofile from '../screen/BottamTab/home/otherTaingPrfofile/OtherWantPrfofile';
-import Followers from '../screen/BottamTab/profile/followerTab/Followers';
-import MovieDetailScreen from '../screen/BottamTab/discover/movieDetail/MovieDetailScreen';
-import WoodsScreen from '../screen/BottamTab/ranking/woodsScreen/WoodsScreen';
-import SearchMovieDetail from '../screen/BottamTab/discover/movieDetail/SearchMovieDetail';
+import OtherProfile from '../screen/BottomTab/home/otherProfile/OtherProfile';
+import HomeScreen from '../screen/BottomTab/home/homeScreen/HomeScreen'
+import OtherTaingPrfofile from '../screen/BottomTab/home/otherTaingPrfofile/OtherTaingPrfofile';
+import WatchSaveUser from '../screen/BottomTab/home/watchSaveUser/WatchSaveUser';
+import OtherWantPrfofile from '../screen/BottomTab/home/otherTaingPrfofile/OtherWantPrfofile';
+import Followers from '../screen/BottomTab/profile/followerTab/Followers';
+import MovieDetailScreen from '../screen/BottomTab/discover/movieDetail/MovieDetailScreen';
+import WoodsScreen from '../screen/BottomTab/ranking/woodsScreen/WoodsScreen';
+import SearchMovieDetail from '../screen/BottomTab/discover/movieDetail/SearchMovieDetail';
 const Stack = createNativeStackNavigator();
 
 

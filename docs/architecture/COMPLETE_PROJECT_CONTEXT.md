@@ -160,7 +160,7 @@ The pairwise comparison modal is supposed to show different movies as the binary
 │   │   │   └── CustomText.tsx
 │   │   └── ErrorBoundary.tsx  [Added for debugging]
 │   ├── screen/
-│   │   └── BottamTab/
+│   │   └── BottomTab/
 │   │       └── ranking/
 │   │           └── rankingScreen/
 │   │               ├── useCompareComponent.tsx  [CRITICAL - Binary search logic]

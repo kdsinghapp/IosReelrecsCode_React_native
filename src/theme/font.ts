@@ -17,4 +17,4 @@ export default {
     PoppinsExtraLightItalic: 'Poppins-ExtraLightItalic',
   };
 
-//    allowFontScaling={false} 
+ 

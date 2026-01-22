@@ -30,7 +30,6 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
     const [groupValue, setGroupValue] = useState(0);
     const [sliderWidth, setSliderWidth] = useState(0);
      const group_members = group?.members || group;
-     console.log("groupTotalMember,",groupTotalMember)
 // const groupTotalMember = group_members?.map(item => ({
 //     ...item,
 //     active: (item.activities_cnt ?? 0) > 0,
@@ -65,16 +64,16 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
 
     // PERFECT BUBBLE POSITIONING - Centers bubble over thumb in ALL cases
     const getBubblePosition = () => {
-        if (groupTotalMember111111 === 0 || sliderWidth === 0) return 0;
+        if (groupTotalMember === 0 || sliderWidth === 0) return 0;
         if(groupValue ==0){
 
         } else if(groupValue == 4 )
      {           const trackWidth = sliderWidth - THUMB_SIZE;
    
-         if (groupValue === groupTotalMember111111) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
+         if (groupValue === groupTotalMember) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
         
         // Calculate percentage of current value
-        const percentage = groupValue / groupTotalMember111111;
+        const percentage = groupValue / groupTotalMember;
           const thumbCenter = (percentage * trackWidth) + (THUMB_SIZE / 2);
  const bubbleLeft = thumbCenter - (BUBBLE_WIDTH / 
     
@@ -91,10 +90,10 @@ const GroupMovieModal = ({ visible, onClose, setTotalFilterApply, group, groupId
         console.log("groupValue",groupValue)
          // Handle edge cases
         if (groupValue === 0) return 0;
-        if (groupValue === groupTotalMember111111) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
+        if (groupValue === groupTotalMember) return trackWidth - (BUBBLE_WIDTH / 2) + (THUMB_SIZE / 2);
         
         // Calculate percentage of current value
-        const percentage = groupValue / groupTotalMember111111;
+        const percentage = groupValue / groupTotalMember;
           const thumbCenter = (percentage * trackWidth) + (THUMB_SIZE / 2);
  const bubbleLeft = thumbCenter - (BUBBLE_WIDTH / 
     
@@ -269,7 +268,7 @@ left: groupValue  == 0 ?  -9.5 :  groupValue  == groupTotalMember ?   sliderWidt
                                         <Slider
                                             style={styles.slider}
                                             minimumValue={0}
-                                            maximumValue={group_members}
+                                            maximumValue={groupTotalMember || 0}
                                             step={1}
                                             value={groupValue}
                                             onValueChange={value => setGroupValue(Math.round(value))}

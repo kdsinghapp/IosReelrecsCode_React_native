@@ -20,14 +20,12 @@ import NewPassword from "../screen/Auth/passwordReset/NewPassword";
 import PasswordReset from "../screen/Auth/passwordReset/PasswordReset";
 import Signup from "../screen/Auth/signup/Signup";
 import Welcome from "../screen/Auth/welcome/Welcome";
-import DiscoverScreen from "../screen/BottamTab/discover/discoverScreen/DiscoverScreen";
-import Notification from "../screen/BottamTab/home/homeScreen/Notification/Notification";
- import ProfileScreen from "../screen/BottamTab/profile/profileScreen/ProfileScreen";
-import StreamService from "../screen/BottamTab/profile/setting/StreamService";
-import WoodsScreen from "../screen/BottamTab/ranking/woodsScreen/WoodsScreen";
-import CreateGroupScreen from "../screen/BottamTab/watch/watchScreen/CreateGroupScreen ";
- import WatchScreen from "../screen/BottamTab/watch/watchScreen/WatchScreen";
-import WatchWithFrind from "../screen/BottamTab/watch/watchScreen/WatchWithFrind";
+import Notification from "../screen/BottomTab/home/homeScreen/Notification/Notification";
+import StreamService from "../screen/BottomTab/profile/setting/StreamService";
+import WoodsScreen from "../screen/BottomTab/ranking/woodsScreen/WoodsScreen";
+import CreateGroupScreen from "../screen/BottomTab/watch/watchScreen/CreateGroupScreen ";
+import WatchScreen from "../screen/BottomTab/watch/watchScreen/WatchScreen";
+ 
  import ScreenNameEnum from "./screenName.enum";
 
 

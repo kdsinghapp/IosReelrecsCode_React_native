@@ -38,7 +38,7 @@ Instead of comparing every movie pair (which is O(n²) comparisons), the app use
 
 ### Stage 1: Entry Point
 
-**File:** `/Users/willi/Dev/frontend/src/screen/BottamTab/ranking/rankingScreen/RankingScreen.tsx`
+**File:** `/Users/willi/Dev/frontend/src/screen/BottomTab/ranking/rankingScreen/RankingScreen.tsx`
 
 #### What User Sees:
 - **Ranking Screen** with two sections:
@@ -118,7 +118,7 @@ const nextPress = async () => {
 
 ### Stage 3: Fetching Comparison Movies
 
-**File:** `/Users/willi/Dev/frontend/src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.tsx`
+**File:** `/Users/willi/Dev/frontend/src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.tsx`
 
 #### What Happens After User Submits Preference:
 
@@ -205,7 +205,7 @@ Shows predicted enjoyment score based on user's history
 
 ### Stage 5: User Selects Preference
 
-**File:** `/Users/willi/Dev/frontend/src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.tsx`
+**File:** `/Users/willi/Dev/frontend/src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.tsx`
 
 #### Option A: User Selects First Movie (Left Side)
 

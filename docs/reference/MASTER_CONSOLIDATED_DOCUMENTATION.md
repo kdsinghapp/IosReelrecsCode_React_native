@@ -156,7 +156,7 @@ frontend/
 │   │   ├── modal/          # Modal components
 │   │   └── common/         # Common UI elements
 │   ├── screen/             # Screen components
-│   │   └── BottamTab/      # Bottom tab screens
+│   │   └── BottomTab/      # Bottom tab screens
 │   │       ├── discover/   # Discovery/browse screens
 │   │       ├── ranking/    # Ranking screens
 │   │       └── profile/    # User profile screens
@@ -174,7 +174,7 @@ frontend/
 
 **Key Files:**
 - `src/component/card/feedCard/FeedCard.tsx` - Main video feed component
-- `src/screen/BottamTab/discover/movieDetail/MovieDetailScreen.tsx` - Movie details screen
+- `src/screen/BottomTab/discover/movieDetail/MovieDetailScreen.tsx` - Movie details screen
 - `src/redux/Api/ProfileApi.ts` - User profile API calls
 - `src/utils/GlobalToken.ts` - Token management
 
@@ -314,9 +314,9 @@ The pairwise ranking system is the core recommendation engine of ReelRecs. It le
 4. Rankings influence future recommendations
 
 **Implementation Files:**
-- `src/screen/BottamTab/ranking/rankingScreen/RankingCom.tsx` - Main ranking component
-- `src/screen/BottamTab/ranking/rankingScreen/PairwiseComparison.tsx` - Comparison UI
-- `src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.ts` - Ranking logic hook
+- `src/screen/BottomTab/ranking/rankingScreen/RankingCom.tsx` - Main ranking component
+- `src/screen/BottomTab/ranking/rankingScreen/PairwiseComparison.tsx` - Comparison UI
+- `src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.ts` - Ranking logic hook
 - `src/redux/Api/RankingApi.ts` - API integration
 
 #### From PAIRWISE_RANKING_ANALYSIS.md
@@ -983,7 +983,7 @@ Files changed:
 - NEW: src/services/TokenService.ts - Centralized token management
 - src/screen/Auth/login/useLogin.tsx - Sets token immediately after login
 - src/redux/Api/axiosInstance.ts - Uses TokenService instead of GlobalToken
-- src/screen/BottamTab/ranking/rankingScreen/RankingScreen.tsx - Uses TokenService.waitForToken()
+- src/screen/BottomTab/ranking/rankingScreen/RankingScreen.tsx - Uses TokenService.waitForToken()
 - src/navigators/AppNavigator.tsx - Initializes TokenService at startup
 
 Key improvements:

@@ -80,7 +80,7 @@ When a user clicks "Rank Now" on a movie, the app launches an intelligent prefer
 ### Core Files
 
 ```
-/src/screen/BottamTab/ranking/rankingScreen/
+/src/screen/BottomTab/ranking/rankingScreen/
 ├── RankingScreen.tsx              (Main UI container)
 ├── useCompareComponent.tsx        (Binary search logic - core)
 ├── useComparisonModal.tsx         (Old comparison hook)
@@ -183,7 +183,7 @@ When a user clicks "Rank Now" on a movie, the app launches an intelligent prefer
 ## Important Files (by location)
 
 ### Ranking Screen Components
-- **RankingScreen.tsx** (Absolute path: `/Users/willi/Dev/frontend/src/screen/BottamTab/ranking/rankingScreen/RankingScreen.tsx`)
+- **RankingScreen.tsx** (Absolute path: `/Users/willi/Dev/frontend/src/screen/BottomTab/ranking/rankingScreen/RankingScreen.tsx`)
   - Main UI with two lists
   - Handles data fetching and item reordering
   - ~935 lines, complex, well-commented

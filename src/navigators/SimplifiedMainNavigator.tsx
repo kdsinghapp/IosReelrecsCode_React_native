@@ -12,12 +12,12 @@ import Signup from '../screen/Auth/signup/Signup';
 import SimplifiedTabNavigator from './SimplifiedTabNavigator';
 
 // Additional screens that stack on top of tabs
-import MovieDetailScreen from '../screen/BottamTab/discover/movieDetail/MovieDetailScreen';
-import OtherProfile from '../screen/BottamTab/home/otherProfile/OtherProfile';
-import WoodsScreen from '../screen/BottamTab/ranking/woodsScreen/WoodsScreen';
-import EditProfile from '../screen/BottamTab/profile/editProfile/EditProfile';
-import MainSetting from '../screen/BottamTab/profile/setting/MainSetting';
-import Notification from '../screen/BottamTab/home/homeScreen/Notification/Notification';
+import MovieDetailScreen from '../screen/BottomTab/discover/movieDetail/MovieDetailScreen';
+import OtherProfile from '../screen/BottomTab/home/otherProfile/OtherProfile';
+import WoodsScreen from '../screen/BottomTab/ranking/woodsScreen/WoodsScreen';
+import EditProfile from '../screen/BottomTab/profile/editProfile/EditProfile';
+import MainSetting from '../screen/BottomTab/profile/setting/MainSetting';
+import Notification from '../screen/BottomTab/home/homeScreen/Notification/Notification';
 
 const Stack = createNativeStackNavigator();
 

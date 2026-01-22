@@ -146,7 +146,7 @@ frontend/
 │   │   └── searchmovieCom/     # Search components
 │   ├── screen/                 # Full screens
 │   │   ├── Auth/               # Login, Signup, Password Reset
-│   │   └── BottamTab/          # Main app tabs
+│   │   └── BottomTab/          # Main app tabs
 │   │       ├── home/           # Home/Feed screen
 │   │       ├── ranking/        # Ranking system screens
 │   │       ├── discover/       # Movie discovery
@@ -197,7 +197,7 @@ frontend/
 
 #### Core Screens
 
-**MovieDetailScreen** (`src/screen/BottamTab/discover/movieDetail/MovieDetailScreen.tsx`)
+**MovieDetailScreen** (`src/screen/BottomTab/discover/movieDetail/MovieDetailScreen.tsx`)
 - Displays full movie information
 - Video trailer playback with HLS
 - Episode selection for TV series
@@ -206,7 +206,7 @@ frontend/
 - Bookmark functionality
 - Related movies recommendations
 
-**RankingScreen** (`src/screen/BottamTab/ranking/rankingScreen/RankingScreen.tsx`)
+**RankingScreen** (`src/screen/BottomTab/ranking/rankingScreen/RankingScreen.tsx`)
 - Pairwise movie comparison interface
 - Shows two movies side-by-side
 - Records user preferences (Love/Like/Dislike)
@@ -221,13 +221,13 @@ frontend/
 - Mute toggle with Redux state
 - Bookmark button with optimistic UI updates
 
-**DiscoverScreen** (`src/screen/BottamTab/discover/discoverScreen/`)
+**DiscoverScreen** (`src/screen/BottomTab/discover/discoverScreen/`)
 - Browse trending movies
 - Filter by genre
 - Search functionality
 - Displays recommendations
 
-**HomeScreen** (`src/screen/BottamTab/home/homeScreen/HomeScreen.tsx`)
+**HomeScreen** (`src/screen/BottomTab/home/homeScreen/HomeScreen.tsx`)
 - Feed of friend activity
 - Social recommendations
 - Notifications
@@ -346,8 +346,8 @@ M ios/ReelRece.xcodeproj/project.pbxproj
 M package-lock.json
 M package.json
 M src/component/card/feedCard/FeedCard.tsx
-M src/screen/BottamTab/discover/movieDetail/MovieDetailScreen.tsx
-M src/screen/BottamTab/discover/movieDetail/SearchMovieDetail.tsx
+M src/screen/BottomTab/discover/movieDetail/MovieDetailScreen.tsx
+M src/screen/BottomTab/discover/movieDetail/SearchMovieDetail.tsx
 ```
 
 ### 2. Recent Commits (Last 10)

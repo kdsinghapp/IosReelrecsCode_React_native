@@ -10,8 +10,8 @@ import ScreenNameEnum from '../../../routes/screenName.enum';
 import { useBookmarks } from '../../../hook/useBookmark';
 import CustomText from '../CustomText';
 import FastImage from 'react-native-fast-image';
-import CompareModals from '../../../screen/BottamTab/ranking/rankingScreen/CompareModals';
-import { useCompareComponent } from '../../../screen/BottamTab/ranking/rankingScreen/useCompareComponent';
+import CompareModals from '../../../screen/BottomTab/ranking/rankingScreen/CompareModals';
+import { useCompareComponent } from '../../../screen/BottomTab/ranking/rankingScreen/useCompareComponent';
 const NormalMovieCard = ({
   item,
   token,

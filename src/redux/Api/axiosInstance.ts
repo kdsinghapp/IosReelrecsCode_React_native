@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getToken } from './GlobalToken';
 import TokenService from '../../services/TokenService';
 
 // TODO: Change to HTTPS for production - currently using HTTP for development
@@ -30,7 +29,7 @@ axiosInstance.interceptors.request.use(
             url: config.url,
             tokenFound: !!token,
             tokenLength: token ? token.length : 0,
-            tokenPreview: token ? `${token.substring(0, 20)}...` : 'null'
+            tokenPreview: token ? `${token.substring(0, 20)}...` : 'null',
           });
         }
 
@@ -56,7 +55,7 @@ axiosInstance.interceptors.request.use(
         method: config.method?.toUpperCase(),
         url: `${config.baseURL}${config.url}`,
         hasAuth: !!config.headers?.Authorization,
-        authHeader: config.headers?.Authorization ? `${config.headers.Authorization.substring(0, 30)}...` : 'none'
+        authHeader: config.headers?.Authorization ? `${config.headers.Authorization.substring(0, 30)}...` : 'none',
       });
     }
 
@@ -71,7 +70,7 @@ axiosInstance.interceptors.response.use(
     if (__DEV__) {
       console.log('[DIAG] [Axios Response Success]', {
         url: response.config?.url,
-        status: response.status
+        status: response.status,
       });
     }
     return response;
@@ -83,7 +82,7 @@ axiosInstance.interceptors.response.use(
         status: error.response?.status,
         data: error.response?.data,
         message: error.message,
-        hadAuthHeader: !!error.config?.headers?.Authorization
+        hadAuthHeader: !!error.config?.headers?.Authorization,
       });
 
       // If 401 and we had a token, log more details

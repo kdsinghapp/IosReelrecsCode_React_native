@@ -16,9 +16,7 @@ import imageIndex from '../../../assets/imageIndex';
 import ScreenNameEnum from '../../../routes/screenName.enum';
 import { Color } from '../../../theme/color';
 import font from '../../../theme/font';
-import CompareModals from '../../../screen/BottamTab/ranking/rankingScreen/CompareModals';
-import { useCompareComponent } from '../../../screen/BottamTab/ranking/rankingScreen/useCompareComponent';
-import { useTrailerTracker } from '../../../hook/useTrailerTracker';
+ import { useTrailerTracker } from '../../../hook/useTrailerTracker';
 import { useBookmarks } from '../../../hook/useBookmark';
 import CustomText from '../../common/CustomText';
 import ScoreIntroModal from '../../modal/ScoreIntroModal/ScoreIntroModal';
@@ -29,6 +27,8 @@ import { RootState } from '../../../redux/store';
 import { toggleMute } from '../../../redux/feature/videoAudioSlice';
 import { invalid } from 'moment'
 import { styles } from './FeedCardstyle';
+import CompareModals from '../../../screen/BottomTab/ranking/rankingScreen/CompareModals';
+import { useCompareComponent } from '../../../screen/BottomTab/ranking/rankingScreen/useCompareComponent';
 
 
 const FeedCardHome = ({

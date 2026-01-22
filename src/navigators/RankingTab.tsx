@@ -2,13 +2,13 @@ import 'react-native-gesture-handler';
 import React, { FunctionComponent } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import _routes from '../routes/routes';
-import RankingScreen from '../screen/BottamTab/ranking/rankingScreen/RankingScreen';
+ import YoutubePlayerScreen from '../component/card/feedCard/YoutubePlayerScreen';
+import RankingScreen from '../screen/BottomTab/ranking/rankingScreen/RankingScreen';
 import ScreenNameEnum from '../routes/screenName.enum';
-import WoodsScreen from '../screen/BottamTab/ranking/woodsScreen/WoodsScreen';
-import MovieDetailScreen from '../screen/BottamTab/discover/movieDetail/MovieDetailScreen';
-import OtherProfile from '../screen/BottamTab/home/otherProfile/OtherProfile';
-import SearchMovieDetail from '../screen/BottamTab/discover/movieDetail/SearchMovieDetail';
-import YoutubePlayerScreen from '../component/card/feedCard/YoutubePlayerScreen';
+import MovieDetailScreen from '../screen/BottomTab/discover/movieDetail/MovieDetailScreen';
+import OtherProfile from '../screen/BottomTab/home/otherProfile/OtherProfile';
+import WoodsScreen from '../screen/BottomTab/ranking/woodsScreen/WoodsScreen';
+import SearchMovieDetail from '../screen/BottomTab/discover/movieDetail/SearchMovieDetail';
  const Stack = createNativeStackNavigator();
 
 

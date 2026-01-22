@@ -12,7 +12,7 @@ We've added comprehensive, granular logging throughout the pairwise ranking proc
 
 ## 🔧 Files Modified with Enhanced Logging
 
-### 1. `/src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.tsx`
+### 1. `/src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.tsx`
 
 #### Enhanced Functions:
 - **handleSelectFirst** (lines 359-467)

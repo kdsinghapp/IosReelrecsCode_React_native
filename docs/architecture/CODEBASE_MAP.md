@@ -30,7 +30,7 @@
 
 ### Core Ranking Logic
 ```
-src/screen/BottamTab/ranking/rankingScreen/
+src/screen/BottomTab/ranking/rankingScreen/
 ├── useCompareComponent.tsx     [PRIMARY - Binary search & state management]
 ├── CompareModals.tsx           [Orchestrates modal flow]
 └── MovieDetailScreen.tsx       [Movie details view]
@@ -53,7 +53,7 @@ src/component/modal/
 
 ## 📁 Detailed File Purposes
 
-### `/src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.tsx`
+### `/src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.tsx`
 **Purpose**: Core hook managing the entire ranking logic
 - **Lines 50-194**: `fetchComparisonMovies()` - Fetches movies from API
 - **Lines 156-174**: Binary search initialization
@@ -70,7 +70,7 @@ src/component/modal/
 - **Lines 134-154**: Animation logic (`slideAndResetImages`)
 - **Key Issue**: Shows same movie repeatedly (current bug)
 
-### `/src/screen/BottamTab/ranking/rankingScreen/CompareModals.tsx`
+### `/src/screen/BottomTab/ranking/rankingScreen/CompareModals.tsx`
 **Purpose**: Modal orchestration and state coordination
 - **Line 133**: Conditional rendering logic
 - **Lines 146-159**: Props passing to ComparisonModal
@@ -210,7 +210,7 @@ User Action → Component State → Redux (if needed) → API Call → Update St
 ## 🔍 Where to Find Things
 
 ### Need to change ranking logic?
-→ `/src/screen/BottamTab/ranking/rankingScreen/useCompareComponent.tsx`
+→ `/src/screen/BottomTab/ranking/rankingScreen/useCompareComponent.tsx`
 
 ### Need to fix modal UI?
 → `/src/component/modal/comparisonModal/ComparisonModal.tsx`

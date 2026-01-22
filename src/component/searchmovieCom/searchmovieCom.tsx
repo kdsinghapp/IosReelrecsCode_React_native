@@ -17,9 +17,9 @@ import ScreenNameEnum from '../../routes/screenName.enum';
 import font from '../../theme/font';
 import { toggleBookmark } from '../../redux/Api/ProfileApi';
 import { searchMovies } from '../../redux/Api/movieApi';
-import CompareModals from '../../screen/BottamTab/ranking/rankingScreen/CompareModals';
-import { useCompareComponent } from '../../screen/BottamTab/ranking/rankingScreen/useCompareComponent';
-import CustomText from '../common/CustomText';
+ import CustomText from '../common/CustomText';
+import CompareModals from '../../screen/BottomTab/ranking/rankingScreen/CompareModals';
+import { useCompareComponent } from '../../screen/BottomTab/ranking/rankingScreen/useCompareComponent';
 
 const SearchMovieCom = ({
   movieData = [],
