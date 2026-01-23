@@ -1,6 +1,7 @@
 import { errorToast } from "../../utils/customToast";
 import axiosInstance from "./axiosInstance";
 import { urlEndPoint } from "./urlEndPoint";
+import { User, PaginatedResponse } from "../../types/api.types";
 
 export const followUser = async (token: string, username: string) => {
   console.log(token , username , 'usrnameFFFFollowun')
@@ -123,7 +124,7 @@ console.log('Followers Data:', res.data);
 export const getSuggestedFriends = async (
   token: string,
   query: string = ''
-): Promise<any> => {
+): Promise<PaginatedResponse<User>> => {
   try {
     const endpoint = query.trim()
       ? `/suggest-friends?query=${encodeURIComponent(query.trim())}`
@@ -136,8 +137,9 @@ export const getSuggestedFriends = async (
     });
     console.log('Suggested friends:', response.data);
     return response.data;
-  } catch (error: any) {
-    console.error('Error fetching suggested friends:', error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown }; message?: string };
+    console.error('Error fetching suggested friends:', err?.response?.data || err?.message);
     throw error;
   }
 };

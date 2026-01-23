@@ -19,8 +19,7 @@ const FollowersScreen = () => {
   const route = useRoute();
   const { tabToOpen, userName } = route.params || {};
   // const userName = useSelector((state: RootState) => state.auth.userGetData.name);
-  console.log(userName, "___userName__")
-  const initialData = {
+   const initialData = {
     Followers: [],
     Following: [],
     Suggested: [],

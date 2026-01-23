@@ -4,7 +4,6 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  
 } from 'react-native';
 import React from 'react';
 import Loading from '../../../utils/Loader';
@@ -33,8 +32,7 @@ export default function AddUsername() {
   const { email, password } = route.params || {};
     const navigating = useNavigation()
   
-  console.log(email, password , 'AddUsername___')
-  return (
+   return (
     <SafeAreaView style={{
       flex: 1,
       backgroundColor: "black"
@@ -131,8 +129,7 @@ export default function AddUsername() {
         <ButtonCustom
                             title="Next"
                         onPress={() => {
-                console.log("Pressed Next");
-                handleFinalSignup(username, email, password);
+                 handleFinalSignup(username, email, password);
               }}
                             // buttonStyle={styles.saveButton}
                           />

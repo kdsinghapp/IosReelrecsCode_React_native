@@ -238,8 +238,7 @@ const OtherProfile = () => {
 
         lastPlayedIndexRef.current = target;
         // optional debug log
-        console.log('Optimized: playIndex set to', target);
-      }
+       }
       timeoutRef.current = null;
     }, 800);
 

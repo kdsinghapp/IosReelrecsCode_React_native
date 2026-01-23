@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Text } from 'react-native';
-import watchTogetherGroups from '../../../../../watchdata';
-import WatchGroupCom from '../../../../component/common/WatchGroupCom/WatchGroupCom';
-import { useRoute } from '@react-navigation/native';
-import font from '../../../../theme/font';
+import React  from 'react';
+import { View,   StyleSheet, Text } from 'react-native';
+ import WatchGroupCom from '../../../../component/common/WatchGroupCom/WatchGroupCom';
+ import font from '../../../../theme/font';
 const GroupSearch = ({ groupData }) => {
-  console.log(groupData?.length, "----4-4-4-44--44-")
-console.log(groupData ,"groupData________groupData_____")
-  // const [searchText, setSearchText] = useState('');
+    // const [searchText, setSearchText] = useState('');
 
   // Filtered groups
   // const filteredGroups = watchTogetherGroups.filter(group =>
   //   group.groupName.toLowerCase().includes(searchText.toLowerCase())
   // );
-
   return (
     <View style={styles.container}>
 

@@ -23,8 +23,7 @@ export default function useVerifyResetPassword() {
 const toestMessFunc = ({ green = false, message = '' }) => {
     setToestMess(true);
     setToastMessage(message);
-console.log(green , "green_anna_ki_value")
-    if (green) setToestMessGreen(true);
+     if (green) setToestMessGreen(true);
 
     setTimeout(() => {
       setToestMess(false);
@@ -39,8 +38,7 @@ console.log(green , "green_anna_ki_value")
 // rest password  email otp verify 
 const handleVerify = async (codeArray, email) => {
   const code = codeArray.join('');
-  console.log(code , 'ddd_email_code_')
-  if (code.length !== 4) {
+   if (code.length !== 4) {
     Toast.show({ type: 'error', text1: 'Please enter 4-digit code' });
    toestMessFunc({ message: 'Please enter 4 digit code' });
       setLoading(false);
@@ -59,8 +57,7 @@ setTimeout(() => {
   
 }, 2000);
     } else {
-// console.log('yuhffrtyhnhbn__Igg')
-   toestMessFunc({ green: false, message:  res.message });
+    toestMessFunc({ green: false, message:  res.message });
       // Toast.show({ type: 'error', text1: res.message });
     }
   } catch (err) {

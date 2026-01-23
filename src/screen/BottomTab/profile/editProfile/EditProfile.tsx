@@ -66,8 +66,7 @@ const profileData = useMemo(() => [
       if (!token) return;
       try {
         const userData = await getUserProfile(token);
-        console.log(userData , 'userData__profile_Screen')
-        setProfileFields({
+         setProfileFields({
           name: userData.name || '',
           username: userData.username || '',
           pronouns: userData.pronouns || '',

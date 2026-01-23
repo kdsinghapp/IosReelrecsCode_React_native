@@ -269,8 +269,7 @@ import { Color } from '../../../../theme/color';
 const OtherWantPrfofile = () => {
   const route = useRoute();
   const { title, datamovie, username, imageUri, token, disableBottomSheet = false, my_profile = false } = route.params
-  console.log("All route params:", route.params);
-  const { navigation, isVisible, setIsVisible, modalVisible, setModalVisible } = useHome();
+   const { navigation, isVisible, setIsVisible, modalVisible, setModalVisible } = useHome();
   // const { isBookmarked: save, toggle: handleBookmarkToggle } = useBookmark(token,imdb_id);
   const { isBookmarked, toggleBookmark } = useBookmarks(token);
   const [isSaved, setIsSaved] = useState(my_profile);
@@ -393,8 +392,7 @@ const handleToggleBookmark = async (imdb_id: string) => {
   };
   const renderMovie = useCallback(({ item }) => {
     // setIsSaved(item?.is_bookmarked ?? false)
-    console.log('booK__data___',item.title, item.is_bookmarked)
-    return (
+     return (
       <View style={styles.movieCard}>
         <TouchableOpacity onPress={() => handleNavigation(item?.imdb_id, token)}>
           {/* <Image source={{ uri : item?.cover_image_url}} style={styles.poster} /> */}

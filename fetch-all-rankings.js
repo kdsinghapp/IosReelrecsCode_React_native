@@ -30,8 +30,7 @@ const api = axios.create({
 
 // Login and get token
 async function authenticate() {
-  console.log('🔐 Authenticating with API...');
-  try {
+   try {
     const response = await api.post('/login', {
       email_id: USER_CREDENTIALS.email,
       password: USER_CREDENTIALS.password
@@ -51,8 +50,7 @@ async function authenticate() {
 
 // Fetch ALL rated movies (not limited by pages)
 async function fetchAllRatedMovies(token) {
-  console.log(`\n📊 Fetching ALL rated movies...`);
-  const allMovies = [];
+   const allMovies = [];
   let page = 1;
   let hasMore = true;
   let totalPages = 0;
@@ -80,8 +78,7 @@ async function fetchAllRatedMovies(token) {
         // For initial testing, let's get at least 3 pages to ensure we get all categories
         if (page > 5 && allMovies.length >= 34) {
           // We should have at least 34 movies (19 loved + 10 liked + 5 disliked)
-          console.log(`  ℹ️ Fetched enough movies to cover all categories`);
-          hasMore = false;
+           hasMore = false;
           totalPages = page;
         }
       } else {
@@ -203,8 +200,7 @@ The bug we identified occurs when the API fails (500 error) after comparisons, p
 // Main function
 async function main() {
   try {
-    console.log('🚀 Starting ReelRecs Complete Rankings Fetch\n');
-
+ 
     // Authenticate
     const token = await authenticate();
 
@@ -245,12 +241,12 @@ async function main() {
       m.preference === 'not_for_me'
     );
 
-    console.log('\n📈 Movies by preference:');
-    console.log(`  Loved: ${loveMovies.length}`);
-    console.log(`  Liked: ${likeMovies.length}`);
-    console.log(`  Disliked: ${dislikeMovies.length}`);
-    console.log(`  Total categorized: ${loveMovies.length + likeMovies.length + dislikeMovies.length}`);
-    console.log(`  Total fetched: ${allMovies.length}`);
+    // console.log('\n📈 Movies by preference:');
+    // console.log(`  Loved: ${loveMovies.length}`);
+    // console.log(`  Liked: ${likeMovies.length}`);
+    // console.log(`  Disliked: ${dislikeMovies.length}`);
+    // console.log(`  Total categorized: ${loveMovies.length + likeMovies.length + dislikeMovies.length}`);
+    // console.log(`  Total fetched: ${allMovies.length}`);
 
     // Check for uncategorized movies
     const uncategorized = allMovies.length - (loveMovies.length + likeMovies.length + dislikeMovies.length);
@@ -270,11 +266,10 @@ async function main() {
     const filePath = createMarkdownFile(loveMovies, likeMovies, dislikeMovies);
 
     // Log summary
-    console.log('\n📊 Summary:');
-    console.log(`  Total: ${loveMovies.length + likeMovies.length + dislikeMovies.length} movies`);
-    console.log(`  Loved: ${loveMovies.length}`);
-    console.log(`  Liked: ${likeMovies.length}`);
-    console.log(`  Disliked: ${dislikeMovies.length}`);
+    //  console.log(`  Total: ${loveMovies.length + likeMovies.length + dislikeMovies.length} movies`);
+    // console.log(`  Loved: ${loveMovies.length}`);
+    // console.log(`  Liked: ${likeMovies.length}`);
+    // console.log(`  Disliked: ${dislikeMovies.length}`);
 
     // Show sample from each category
     if (loveMovies.length > 0) {

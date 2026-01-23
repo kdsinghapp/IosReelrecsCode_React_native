@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useLayoutEffect, useRef, Suspense, useMemo, memo } from 'react';
 import {
   View,
-  Text,
+
   
   Image,
   TouchableOpacity,
@@ -9,7 +9,6 @@ import {
   TouchableNativeFeedback,
   BackHandler,
   Animated,
-  Alert,
   ActivityIndicator
 } from 'react-native';
 import { Color } from '../../../../theme/color';
@@ -241,7 +240,7 @@ const WatchScreen = () => {
           const isMuted = group?.notification
           // console.log(isMuted, "isMuted__________isMuted")
            members = group?.members;
-            console.log(typeof members, "members in watch screen data  -  -")
+            // console.log(typeof members, "members in watch screen data  -  -")
             // activities
              activities = group?.activities;
            // try {
@@ -271,8 +270,7 @@ const WatchScreen = () => {
       );
       const filteredGroups = enrichedGroups.filter(Boolean);
 
-      console.log("---- fffff -rr]",filteredGroups)
-      setGroupsData(filteredGroups);
+       setGroupsData(filteredGroups);
 
       // console.log(typeof filteredGroups, " Final enrichedGroups");
      } catch (error) {
@@ -559,8 +557,7 @@ const UserActions = memo(({ groupsData , isSettingsMode,isMultiSelectMode}) => {
     </View>
   )
 })
-console.log(groupsData , "groupsData in user action")
-const GroupList = memo(({  groupsData ,isMultiSelectModel }) => {
+ const GroupList = memo(({  groupsData ,isMultiSelectModel }) => {
  
 
   return     (
@@ -759,8 +756,7 @@ const GroupList = memo(({  groupsData ,isMultiSelectModel }) => {
         onConfirm={() => {
           if (selectedGroup) {
             deleteSelectedGroups(selectedGroup);
-            console.log('modal__delete__group__open', selectedGroup)
-          } else if (selectedGroupIds.length > 0) {
+           } else if (selectedGroupIds.length > 0) {
             console.log('modal__delete__group__open__elseeeee')
 
             deleteSelectedGroups();

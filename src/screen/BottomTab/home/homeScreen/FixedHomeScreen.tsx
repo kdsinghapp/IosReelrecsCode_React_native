@@ -97,8 +97,7 @@ const FixedHomeScreen = () => {
 
   const fetchInitialData = async () => {
     if (!token) {
-      console.log('No token available for fetching data');
-      Alert.alert('Debug', 'No token available');
+       Alert.alert('Debug', 'No token available');
       return;
     }
 
@@ -137,7 +136,7 @@ const FixedHomeScreen = () => {
 
       // Log first item to see structure
       if (trending?.results?.[0]) {
-        console.log('[DEBUG] First trending item:', Object.keys(trending.results[0]));
+        // console.log('[DEBUG] First trending item:', Object.keys(trending.results[0]));
       } else if (trending?.movies?.[0]) {
         console.log('[DEBUG] First trending movie:', Object.keys(trending.movies[0]));
       }

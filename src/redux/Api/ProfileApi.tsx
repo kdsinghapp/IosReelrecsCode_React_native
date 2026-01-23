@@ -152,27 +152,26 @@ export const toggleBookmark = async (token: string, imdb_id: string): Promise<bo
     const addRes = await axios.post(BASE_URL, { imdb_id }, { headers });
  
     if (addRes.status === 200 || addRes.status === 201) {
-                 console.log('call_api___toggleBookmark---',addRes?.data)
-
-      console.log("✅ Bookmark Added:", imdb_id);
+ 
+  console.log("✅ Bookmark Added:", imdb_id);
       return true; // Added
     }
-  } catch (error: any) {
-    if (error.response?.status === 409) {
+  } catch (error: unknown) {
+    const err = error as { response?: { status?: number; data?: unknown } };
+    if (err?.response?.status === 409) {
       console.warn("⚠️ Already Bookmarked. Attempting to remove...");
       // Already exists → Try deleting
       const delRes = await axios.delete(BASE_URL, {
         headers,
-        data: { imdb_id }, // use `data` key for DELETE with body
+        data: { imdb_id },
       });
 
-      console.log('call_api___deleteBookmark---',delRes?.data?.message)
-      if (delRes.status === 200) {
+       if (delRes.status === 200) {
         console.log("🗑️ Bookmark Removed:", imdb_id);
         return false; // Removed
       }
     } else {
-      console.error("❌ Error adding bookmark:", imdb_id, error.response?.data || error.message);
+      console.error("❌ Error adding bookmark:", imdb_id, err?.response?.data || 'Unknown error');
       throw error;
     }
   }
@@ -184,14 +183,11 @@ export const toggleBookmark = async (token: string, imdb_id: string): Promise<bo
 
 
 export const getOtherUserBookmarks = async (token: string, username?: string,page = 1): Promise<BookmarksResponse> => {
-  console.log('getOtherUserBookmarks___', username)
-  try {
+   try {
     const response = await axiosInstance.get(`/bookmarks?username=${username}&page=${page}`, {
       headers: { Authorization: `Token ${token}` },
     });
-    console.log(" -  - -  - -   - hh-h -- ", username )
-    console.log("RRTYHSWEDDFF-  - ",response , )
-    return response.data;
+      return response.data;
   } catch (error) {
     console.error("❌ Fetch Other User Bookmarks other Error:", error);
     throw error;
@@ -208,15 +204,13 @@ export const getMatchingMovies = async (
   token: string,
   imdb_id: string
 ) => {
-  console.log('maching__data_xsd')
-  try {
+   try {
     const response = await axiosInstance.get(`/matching-movies?imdb_id=${imdb_id}`, {
       headers: {
         Authorization: `Token ${token}`,
       },
     });
-    console.log('🎯 Matching Movies Response - - :', response.data);
-    return response.data;
+     return response.data;
   } catch (error) {
     console.error('❌ Matching Movies API Error:', error);
     throw error;

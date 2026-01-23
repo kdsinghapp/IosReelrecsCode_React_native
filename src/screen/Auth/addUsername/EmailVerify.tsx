@@ -86,8 +86,7 @@ const EmailVerify = () => {
   setCode(['', '', '', ''])
   try {
 const response  = await sendOTPToEmail_GET(email)
-console.log(  'response _resend__otp', response )
-  } catch (error) {
+   } catch (error) {
     console.error('error from rsend Otp email',error)
   }
  };
@@ -170,7 +169,7 @@ console.log(  'response _resend__otp', response )
               // Then in your TextInput component:
               <TextInput
                 key={index}
-                ref={(ref) => (inputRefs.current[index] = ref)}
+                ref={(ref:any) => (inputRefs.current[index] = ref)}
                 style={[
                   styles.otpBox,
                   // focusedIndex === index && { borderColor: Color.whiteText, borderWidth: 1 },

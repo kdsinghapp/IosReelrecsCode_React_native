@@ -265,8 +265,7 @@ const MovieDetailScreen = () => {
         saveBookMark_Ref.current = meta?.is_bookmarked
         setSelectedMovie(meta?.imdb_id);
 
-        console.log('meta?.is_bookmarked____', meta?.is_bookmarked, meta?.imdb_id)
-        // Load matching movies for queue
+         // Load matching movies for queue
         // const matching = await getMatchingMovies(token, imdb_idData);
         setMatchingQueue(matching?.results || []);
                 isInitialLoad.current = false;

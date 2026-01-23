@@ -7,7 +7,6 @@ import {
   Text,
   Image,
   ScrollView,
-  
   TouchableOpacity,
   Modal,
   Dimensions,
@@ -44,15 +43,12 @@ type FeedItem = {
   groupId?: string;
 };
 
-const Notification = ({ visible, onClose, bgColor }) => {
+const Notification = ({ visible, onClose, bgColor }:any) => {
   const token = useSelector((state: RootState) => state.auth.token);
   const navigation = useNavigation();
   const [pendingInvites, setPendingInvites] = useState<FeedItem[]>([]);
   const [isLoading, setIsloading] = useState(false);
   const [isNonNotification, setIsNonNotification] = useState(false);
-
-  
-  
 
   // Combine both
   const combinedFeed: FeedItem[] = [pendingInvites];
@@ -73,8 +69,7 @@ const Notification = ({ visible, onClose, bgColor }) => {
           timeAgo: 'Just now',
           online: false,
         })) || [];
-        console.log(formatted, 'natification__data__dfsehyhfg')
-        let emptyData = formatted.length
+         let emptyData = formatted.length
 
         if (formatted.length <= 0) setIsNonNotification(true)
         setPendingInvites(formatted);
@@ -112,8 +107,7 @@ console.log(resp,'appNotification_call  ')
   const handleDecline = async () => {
     try {
       const res = await respondToGroupInvitation(token, groupId, false);
-      console.log("Declined:", res);
-    } catch (err) {
+     } catch (err) {
       console.log("Error declining invite:", err);
     }
   };

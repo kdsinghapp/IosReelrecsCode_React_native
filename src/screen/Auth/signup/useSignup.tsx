@@ -22,8 +22,7 @@ const useSignup = () => {
   const [toestMess, setToestMess] = useState(false)
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const dispatch = useDispatch();
-  console.log(email, "screen")
-
+ 
 
   const toestMessFunc = () => {
     setToestMess(true);
@@ -67,8 +66,7 @@ const useSignup = () => {
 
   const handleVerify = async (code, email, password) => {
     const enteredCode = code.join('');
-console.log(code,'Please_enter_4_digit_code')
-    if (enteredCode.length !== 4) {
+     if (enteredCode.length !== 4) {
       Toast.show({ type: 'error', text1: 'Please enter 4 digit code' });
       return;
     }
@@ -164,8 +162,7 @@ console.log(code,'Please_enter_4_digit_code')
   };
 
   const handleFinalSignup = async (usernameValue, email, password) => {
-    console.log("handleFinalSignup  -  -  user name  - ", usernameValue);
-    const trimmedUsername = usernameValue.trim();
+     const trimmedUsername = usernameValue.trim();
 
     if (!trimmedUsername) {
       setUsernameError('Username is required');
@@ -175,9 +172,7 @@ console.log(code,'Please_enter_4_digit_code')
       setLoading(true);
 
       const check = await checkUsernameAvailability(trimmedUsername);
-      console.log("✅ Username availability check:", check);
-
-      if (!check.success) {
+        if (!check.success) {
         Toast.show({ type: 'error', text1: check.message || 'Failed to check username' });
         return;
       }
@@ -198,8 +193,7 @@ console.log(code,'Please_enter_4_digit_code')
 
       Toast.show({ type: 'success', text1: 'Account created 🎉' });
       const token = await loginUser_Api(email, password);
-      console.log(token, "login token")
-      dispatch(loginSuccess({ token: token }));
+       dispatch(loginSuccess({ token: token }));
 
       navigation.reset({
         index: 0,
@@ -222,8 +216,7 @@ console.log(code,'Please_enter_4_digit_code')
       //   routes: [{ name: ScreenNameEnum.TabNavigator }],
       // });
     } catch (error) {
-      console.log("❌ Final Signup Error:", error);
-      Toast.show({ type: 'error', text1: 'Something went wrong' });
+       Toast.show({ type: 'error', text1: 'Something went wrong' });
     } finally {
       setLoading(false);
     }

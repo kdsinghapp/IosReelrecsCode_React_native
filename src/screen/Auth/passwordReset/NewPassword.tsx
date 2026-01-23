@@ -142,7 +142,7 @@ navigation.navigate(ScreenNameEnum.LoginScreen);
              <ButtonCustom
                             title="Change Password"
                            onPress={() => {changeOldPassword(password,confirmPassword, email);
-                            console.log(passwordRef.current, confirmPasswordRef.current , confirmPassword ,password , "current____confirmPasswordRef.current")
+                            // console.log(passwordRef.current, confirmPasswordRef.current , confirmPassword ,password , "current____confirmPasswordRef.current")
                            }}
                             // buttonStyle={styles.saveButton}
                           />

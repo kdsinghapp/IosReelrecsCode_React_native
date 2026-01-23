@@ -754,8 +754,7 @@ export const useCompareComponent = (token: string) => {
 // console.log("left side ------ ", selectedMovie.imdb_id)
 console.log("left side ------ ", secondMovieData.title)
   // console.log("left selectedMovie --34455",selectedMovie)
- console.log("left slide -----  id  -- ",secondMovieData?.imdb_id)
-    try {
+     try {
       // Record user preference
       setLastAction('first');
 
@@ -778,8 +777,7 @@ console.log("left side ------ ", secondMovieData.title)
         }
 
       );
-          console.log("first raking api call",)
-
+ 
 
       // Update high and mid using refs (binary search logic)
       const newHigh = midRef.current - 1;
@@ -819,8 +817,7 @@ console.log("left side ------ ", secondMovieData.title)
 
   const handleSelectSecond = useCallback(async () => {
     if (!selectedMovie || !secondMovieData || !userPreference.preference) return;
-console.log("right side ------ ", selectedMovie.imdb_id)
-console.log("right side  title  ------ ", selectedMovie.title)
+ console.log("right side  title  ------ ", selectedMovie.title)
 //  console.log("right side ------ ", userPreference.preference)
 //       console.log("right --34455",selectedMovie)
      try {

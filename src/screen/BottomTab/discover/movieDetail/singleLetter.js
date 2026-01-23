@@ -583,8 +583,7 @@ const onViewableItemsChanged = useRef(({ viewableItems }) => {
       setCommentText('')
       const currentMovie = movieData[currentIndex];
       has_rated_ref.current = currentMovie?.has_rated ?? false;
-      console.log("🎬 Synced has_rated_ref:", has_rated_ref.current);
-    }
+     }
   }, [currentIndex, movieData]);
 
 
@@ -611,10 +610,8 @@ const onViewableItemsChanged = useRef(({ viewableItems }) => {
   useEffect(() => {
     if (isModalClosed) {
 
-      console.log("🎯 has_rated_ref updated___dfghjk:", has_rated_ref.current);
-      if (movieData[currentIndex] && route.name == ScreenNameEnum.MovieDetailScreen) {
-        console.log(imdb_idData, '__show__ddd_data__22')
-        setthinkModal(false)
+       if (movieData[currentIndex] && route.name == ScreenNameEnum.MovieDetailScreen) {
+         setthinkModal(false)
         has_rated_ref.current = true;
         //         setTimeout(() => {
         // console.log('check__comment__modal_on___isModalClosed')
@@ -680,8 +677,7 @@ const onViewableItemsChanged = useRef(({ viewableItems }) => {
         return renderShimmerEffect();
       }
       
-      console.log('call_movie__render__data')
-      // saveBookMark_Ref.current = item?.is_bookmarked
+       // saveBookMark_Ref.current = item?.is_bookmarked
       return (
         <View style={{ height: ITEM_HEIGHT, flexDirection: "column", }}>
           {/* header */}
@@ -1200,8 +1196,7 @@ const onViewableItemsChanged = useRef(({ viewableItems }) => {
           onClose={() => {
             setthinkModal(false);
             if (movieData[currentIndex]?.imdb_id) {
-              console.log('commment__call_')
-              // getComment(token, movieData[currentIndex]?.imdb_id, false);
+               // getComment(token, movieData[currentIndex]?.imdb_id, false);
             }
           }}
           reviews={reviews}

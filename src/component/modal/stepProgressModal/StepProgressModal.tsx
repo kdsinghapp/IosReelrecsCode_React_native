@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {   useEffect, } from 'react';
 import {
-  Modal, View, Text, StyleSheet, TouchableWithoutFeedback, Alert
+  Modal, View, Text, StyleSheet, TouchableWithoutFeedback,  
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import StepProgressBar from './StepProgressBar'; // import component
+ import StepProgressBar from './StepProgressBar'; // import component
 import { Color } from '../../../theme/color';
 import { fileLogger } from '../../../utils/FileLogger';
 

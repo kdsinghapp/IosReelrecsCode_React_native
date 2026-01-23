@@ -1,6 +1,6 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, BackHandler, ActivityIndicator, Platform, } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity,   ActivityIndicator, Platform, } from 'react-native';
 import imageIndex from '../../../../assets/imageIndex';
 import { BottomSheet, ComparisonModal, CustomStatusBar, FeedbackModal, HeaderCustom, ProfileOther, SearchBarCustom, StepProgressModal } from '../../../../component';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -127,8 +127,7 @@ setMovies(prev => append ? [...prev, ...newResults] : newResults);
       hasMoreRef.current = next;
       pageRef.current = pageToLoad;
 
-      console.log("✅ Loaded page:", pageToLoad, "| Items:", newResults.length, "| next:", next);
-    } catch (err) {
+     } catch (err) {
                 setLoading(false);
 
       console.error("❌ API error:", err);
@@ -147,8 +146,7 @@ setMovies(prev => append ? [...prev, ...newResults] : newResults);
     //    return;
     // }
     const nextPage = pageRef.current + 1;
-    console.log("🔽 onEndReached → Fetch page", nextPage);
-    bothBookMovie(nextPage, true);
+     bothBookMovie(nextPage, true);
   };
 
   const handleToggleLovedImage = useCallback((movieId: string) => {
@@ -185,8 +183,7 @@ const handleToggleBookmark = async (imdb_id: string) => {
   const compareHook = useCompareComponent(token);
   const handleRankingPress = (movie) => {
     compareHook.openFeedbackModal(movie);
-    console.log(movie, "movie in handleRankingPress");
-  };
+   };
 
 
 const handleNavigation = (imdb_id: string, token: string) => {

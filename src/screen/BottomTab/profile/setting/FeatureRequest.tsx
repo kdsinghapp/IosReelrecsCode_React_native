@@ -154,8 +154,7 @@ const {setFeedBAckSucc}  =  route.params || {}
 
 
   const handleFormPress = async () => {
-    console.log('call handleFormPress', feedBaCkText, isCheckBox, inputValue);
-    console.log(feedBaCkText, 'isCheckBox')
+ 
 
     if (inputValue.trim() === '') {
       setToestMess(true);
@@ -171,8 +170,7 @@ const {setFeedBAckSucc}  =  route.params || {}
     try {
       const response = await userFeedback(token, feedBaCkText, isCheckBox, inputValue);
 
-      console.log('successfully submitted feedback:', response);
-      setFeedBAckSucc(true)
+       setFeedBAckSucc(true)
       // navigation.navigate(ScreenNameEnum.MainSetting);
       navigation.reset({
   index: 0,

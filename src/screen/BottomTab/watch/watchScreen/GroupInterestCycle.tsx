@@ -6,14 +6,12 @@ import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
 import font from '../../../../theme/font';
 import moment from 'moment';
 import CustomText from '../../../../component/common/CustomText';
-// import Animated from 'react-native-reanimated';
-const GroupInterestCycle = ({ group,
+ const GroupInterestCycle = ({ group,
   onGroupSelect,
   isMultiSelectMode,
   selectedGroupIds }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log("group",group);
-  // const interestUsers =
+   // const interestUsers =
   // group?.activities && group.activities.length > 0
   //   ? group.activities
   //       .map((activity) => {

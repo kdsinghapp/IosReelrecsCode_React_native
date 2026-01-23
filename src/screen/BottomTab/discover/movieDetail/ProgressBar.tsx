@@ -44,8 +44,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     const clampedX = Math.max(0, Math.min(xPosition, width));
     const newProgress = clampedX / width;
     
-    console.log('🎯 ProgressBar seeking to:', newProgress);
-    
+     
     // Update visual immediately during seek
     progressAnim.setValue(clampedX);
     
@@ -58,8 +57,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     onMoveShouldSetPanResponder: () => true,
     
     onPanResponderGrant: (evt) => {
-      console.log('🎯 Seek started');
-      setIsSeeking(true);
+       setIsSeeking(true);
       onSeekStart?.();
       handleSeek(evt.nativeEvent.locationX);
     },
@@ -73,8 +71,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     },
     
     onPanResponderRelease: () => {
-      console.log('🎯 Seek ended');
-      setIsSeeking(false);
+       setIsSeeking(false);
       onSeekEnd?.();
     },
   });

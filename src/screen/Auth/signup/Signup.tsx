@@ -33,8 +33,7 @@ export default function Signup() {
     emailError,
     passwordError,
     email, password } = useSignup()
-  console.log(email)
-  const navigating = useNavigation()
+   const navigating = useNavigation()
 
   return (
     <SafeAreaView style={{

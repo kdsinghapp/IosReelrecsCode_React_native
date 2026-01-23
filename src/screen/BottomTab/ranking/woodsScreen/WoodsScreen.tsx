@@ -29,8 +29,7 @@ const WoodsScreen = () => {
  
 
   const navigation = useNavigation();
-  console.log(type)
-  console.log("  - - full scren WoodsScreen  -  -")
+ 
 
 const {
   togglePlatform,
@@ -62,8 +61,7 @@ const {
   const token = useSelector((state: RootState) => state?.auth?.token); // ✅ outside any condition
   const compareHook = useCompareComponent(token);
 
-console.log(groupsData , ">__ˍ>_>_______groupsData>_>_>_>_>_>_>_")
-
+ 
   const handleSearch = useCallback((query: string) => {
     const lowerQuery = query.toLowerCase();
     if (!lowerQuery.trim()) {
@@ -82,8 +80,7 @@ console.log(groupsData , ">__ˍ>_>_______groupsData>_>_>_>_>_>_>_")
 
     if (type === 'group') {
       if (token) {
-console.log("GroupApiWorkHard____")
-        searchGroupFromApi(lowerQuery, token); // ✅ API based search
+         searchGroupFromApi(lowerQuery, token); // ✅ API based search
         // console.log(first)
       } else {
         console.warn("Token missing for API call");

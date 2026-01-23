@@ -179,8 +179,7 @@ const TabPaginationScreen = () => {
       return;
     }
     
-    console.log(`🚀 Fetching page ${page}, reset: ${reset}`);
-    
+     
     // Set loading states
     if (reset) {
       
@@ -242,8 +241,7 @@ const TabPaginationScreen = () => {
       setLoadingMore(false);
       isFetchingRef.current = false;
       shouldLoadMoreRef.current = true; // Allow loadMore again
-      console.log('🏁 Fetch complete');
-    }
+     }
   }, [token, buildUrl, setTrending, trending.length]);
 
   // Handle filter changes
@@ -253,8 +251,7 @@ const TabPaginationScreen = () => {
     
     // Only fetch if filters changed
     if (filterFingerprintRef.current !== currentFingerprint) {
-      console.log('🔄 Filters changed, fetching new data...');
-      filterFingerprintRef.current = currentFingerprint;
+       filterFingerprintRef.current = currentFingerprint;
             setLoadingMore(false)
 
       // Reset pagination and fetch first page

@@ -133,8 +133,7 @@ const useComparisonModal = (token: string | null, selectedMovie: Movie | null) =
     preference: PreferenceType | null;
     rating: number | null;
   }>({ preference: null, rating: null });
-  console.log('useComparisonModal_call_here')
-  // Fetch comparison movies based on selectedMovie
+   // Fetch comparison movies based on selectedMovie
   useEffect(() => {
     const fetchMatchingMovies = async () => {
       if (!selectedMovie?.imdb_id || !token) return;
@@ -167,8 +166,7 @@ const useComparisonModal = (token: string | null, selectedMovie: Movie | null) =
 
     try {
       const response = await recordUserPreferences(token, payload.preferences);
-      console.log('✅ Preference submitted:', response);
-    } catch (error) {
+     } catch (error) {
       console.error('❌ Preference submission failed:', error);
     }
   };

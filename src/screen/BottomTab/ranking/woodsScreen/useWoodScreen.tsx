@@ -77,10 +77,7 @@ const useWoodScreen = () => {
           } catch (err) {
             console.warn(`⚠️ Members fetch failed for ${groupId}:`, err.message);
           }
-  // console.log(members , "___members_______members_____")
-  // console.log(groupName , "___groupName_______groupName_____")
-  // console.log(activities , "___activities_______activities_____")
-  // console.log(groupId , "___groupId_______groupId_____")
+ 
           return {
             groupId,
             groupName,

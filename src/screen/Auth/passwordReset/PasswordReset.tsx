@@ -2,18 +2,14 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   ScrollView,
-
 } from 'react-native';
 import React from 'react';
 import Loading from '../../../utils/Loader';
 import imageIndex from '../../../assets/imageIndex';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import Styles from './style';
+ import Styles from './style';
 import {
-  Button,
-  CustomStatusBar,
+   CustomStatusBar,
   HeaderCustom,
   InputFieldCustom,
   SuccessMessageCustom,

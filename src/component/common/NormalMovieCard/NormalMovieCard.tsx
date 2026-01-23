@@ -1,10 +1,10 @@
 // NormalMovieCard.tsx
 import React, { memo, useEffect, useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View,  Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Color } from '../../../theme/color';
 import imageIndex from '../../../assets/imageIndex';
 import font from '../../../theme/font';
-import { getUserBookmarks, toggleBookmark } from '../../../redux/Api/ProfileApi';
+// import { getUserBookmarks, toggleBookmark } from '../../../redux/Api/ProfileApi';
 import { useNavigation } from '@react-navigation/native';
 import ScreenNameEnum from '../../../routes/screenName.enum';
 import { useBookmarks } from '../../../hook/useBookmark';

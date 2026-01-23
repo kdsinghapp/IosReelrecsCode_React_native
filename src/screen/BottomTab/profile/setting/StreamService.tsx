@@ -6,9 +6,7 @@ import ScreenNameEnum from '../../../../routes/screenName.enum'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Color } from '../../../../theme/color'
 import font from '../../../../theme/font'
-import { streamPlateData } from './settingdata'
-import { height } from '../../../../utils/Constant'
-import { useSelector } from 'react-redux'
+ import { useSelector } from 'react-redux'
 import { RootState } from '../../../../redux/store'
 import { deleteUserSubscriptions, getUniquePlatforms, getUserSubscriptions, registerUserSubscriptions } from '../../../../redux/Api/SettingApi'
 import debounce from 'lodash/debounce'
@@ -51,8 +49,7 @@ const StreamService = () => {
         const response = await getUserSubscriptions(token);
         const results = response.data || [];
         const subs = results.map((item) => item?.subscription);
-        console.log(subs ,'__FGHj_getUserSubscriptions' )
-        setSelectedPlatforms(subs);
+         setSelectedPlatforms(subs);
       } catch (e) {
         console.log('Error fetching subscriptions', e);
       }
@@ -117,8 +114,7 @@ const StreamService = () => {
   useEffect(() => {
     if (!token) return;
     fetchPlatformsPage({ pageToLoad: 1, query: searchQuery, replace: true });
-    console.log('api__func__call')
-  }, [token, debouncedSearch]);
+   }, [token, debouncedSearch]);
 
   useEffect(() => {
 
@@ -351,8 +347,7 @@ const goToRankingScreen = () => {
     );
   };
   useEffect(() => {
-    console.log(platefromdata, "platefromdata_____platefromdata___")
-  }, [platefromdata])
+   }, [platefromdata])
 
   const renderSelectedItem = ({ item }) => (
     <View style={styles.selectedItemContainer}>

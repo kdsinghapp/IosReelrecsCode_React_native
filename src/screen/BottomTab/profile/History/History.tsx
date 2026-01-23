@@ -1,21 +1,19 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, BackHandler, } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity,   } from 'react-native';
 import imageIndex from '../../../../assets/imageIndex';
-import { BottomSheet, ComparisonModal, CustomStatusBar, FeedbackModal, HeaderCustom, ProfileOther, SearchBarCustom, StepProgressModal } from '../../../../component';
+import { BottomSheet,   CustomStatusBar,   HeaderCustom, ProfileOther,  } from '../../../../component';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ScreenNameEnum from '../../../../routes/screenName.enum';
 import styles from './style';
 import { Color } from '../../../../theme/color';
-import RankingCard from '../../../../component/ranking/RankingCard';
-import useHome from '../homeScreen/useHome';
-import LayeredShadowText from '../../../../component/common/LayeredShadowText/LayeredShadowText';
+  import LayeredShadowText from '../../../../component/common/LayeredShadowText/LayeredShadowText';
 import CompareModals from '../../ranking/rankingScreen/CompareModals';
 import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
 import { useBookmarks } from '../../../../hook/useBookmark';
 import RankingWithInfo from '../../../../component/ranking/RankingWithInfo';
-import { getAllRatedMovies, getCommonBookmarks, getRatedMovies } from '../../../../redux/Api/movieApi';
+import {   getRatedMovies } from '../../../../redux/Api/movieApi';
 import FastImage from 'react-native-fast-image';
 
 

@@ -61,8 +61,7 @@ const useLogin = () => {
   const LoginFunction = async (): Promise<void> => {
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
-    console.log(trimmedEmail ,trimmedPassword , 'trimmedPassword___trimmedEmail' )
-    // 🔴 Basic Validation
+     // 🔴 Basic Validation
     if (!trimmedEmail || !trimmedPassword) {
       // Alert.alert('Error', 'Email AND  Password SEND BOTH are required');
       return;

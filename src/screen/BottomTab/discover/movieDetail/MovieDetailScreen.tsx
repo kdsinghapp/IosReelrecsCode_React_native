@@ -51,8 +51,7 @@ import { toggleMute } from '../../../../redux/feature/videoAudioSlice';
 import MovieDetailsShimmer from './MovieDetailsShimmer';
 import VideoPlayer from '../../../../utils/NewNativeView';
 import CustomVideoPlayer from '../../../../component/common/CustomVideoPlayerios';
-import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom';
-// import CommentModal from '../../../../component/modal/comment/CommentModal';
+ // import CommentModal from '../../../../component/modal/comment/CommentModal';
 const CommentModal = React.lazy(() =>
   import('../../../../component/modal/comment/CommentModal')
 );
@@ -265,8 +264,7 @@ const MovieDetailScreen = () => {
         saveBookMark_Ref.current = meta?.is_bookmarked
         setSelectedMovie(meta?.imdb_id);
 
-        console.log('meta?.is_bookmarked____', meta?.is_bookmarked, meta?.imdb_id)
-        // Load matching movies for queue
+         // Load matching movies for queue
         // const matching = await getMatchingMovies(token, imdb_idData);
         setMatchingQueue(matching?.results || []);
                 isInitialLoad.current = false;
@@ -302,8 +300,7 @@ const MovieDetailScreen = () => {
   const [videoDuration, setVideoDuration] = useState(0);
   const onLoad = useCallback((data: any) => {
     setVideoDuration(data.duration || 0);
-    console.log(data.duration, 'this is duration =================')
-    Animated.timing(posterOpacity, {
+     Animated.timing(posterOpacity, {
       toValue: 0,
       duration: 2000,
       useNativeDriver: true,
@@ -318,8 +315,7 @@ const MovieDetailScreen = () => {
       let queue = [...matchingQueue];
       // if (!queue.length) {
       const matching = await getMatchingMovies(token, prevImdb);
-      console.log('matching___', matching)
-      queue = matching?.results || [];
+       queue = matching?.results || [];
       // }
       if (!queue.length) return null;
       //   const randomId = Math.floor(Math.random() * 10) + 1;
@@ -450,8 +446,7 @@ const fetchAllSeasons = async () => {
       setSessionList(dynamicList);
     }
   } catch (error) {
-    console.log("❌ Error fetching seasons:", error);
-  } finally {
+   } finally {
     setEpisodesLoder(false);
   }
 };
@@ -598,10 +593,8 @@ useEffect(() => {
   useEffect(() => {
     if (isModalClosed) {
 
-      console.log("🎯 has_rated_ref updated___dfghjk:", has_rated_ref.current);
-      if (movieData[currentIndex] && route.name == ScreenNameEnum.MovieDetailScreen) {
-        console.log(imdb_idData, '__show__ddd_data__22')
-        setthinkModal(false)
+       if (movieData[currentIndex] && route.name == ScreenNameEnum.MovieDetailScreen) {
+         setthinkModal(false)
         has_rated_ref.current = true;
         //         setTimeout(() => {
         // console.log('check__comment__modal_on___isModalClosed')
@@ -657,8 +650,7 @@ useEffect(() => {
         });
       }
     } else {
-      console.log('⏸️ Skipping progress update - currently seeking');
-    }
+     }
   }, [isVideoPaused, currentIndex, isSeeking]);
 
 
@@ -756,8 +748,7 @@ const [paused, setPaused] = useState(true);
       } 
        saveBookMark_Ref.current = item?.is_bookmarked 
 
-       console.log(" Moves -- -----item",item)
-      return (
+       return (
         <View style={{ height: ITEM_HEIGHT, flexDirection: "column", paddingTop: 6, }}>
           {/* header */}
           <CustomStatusBar />

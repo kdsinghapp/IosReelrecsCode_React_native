@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { View, Image, Text, StyleSheet, Dimensions, Animated, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { View, Image, Text, StyleSheet, Dimensions, Animated, TouchableOpacity, ActivityIndicator } from 'react-native';
 import imageIndex from '../../../../assets/imageIndex';
   import { Color } from '../../../../theme/color';
  import font from '../../../../theme/font';
@@ -36,18 +36,8 @@ export default function Watchtogether({ token,
   const [loadingActivity, setLoadingActivity] = useState(false);
   const [recommgroupMemebrsScore, setRecommgroupMemebrsScore] = useState([]);
   const [scoreMovieRank, setScoreMovieRank] = useState('')
-  const [lineCount, setLineCount] = useState(0);
-  const isScrollView = useRef(false)
+   const isScrollView = useRef(false)
 const [delayActionPreference , setDelayActionPreference] = useState(false)
-
-
-  // console.log(groupRecommend, "groupRecommend_____groupRecommend")
-
-  // console.log(activeIndex,
-  //   groupId,
-  //   groupRecommend,
-  //   groupMembers, "activeIndex, groupId, groupRecommend, groupMembers")
-
   const handlePreference = async ({
     type, // 'like' or 'dislike'
     imdbId,

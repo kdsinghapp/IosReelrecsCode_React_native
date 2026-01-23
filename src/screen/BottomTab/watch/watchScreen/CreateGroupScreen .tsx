@@ -151,10 +151,8 @@ setTimeout(() => {
         setLoadingGroups(true);
 
         const groupName = groupNameState;
-        console.log(group_Id, "group_Id - - -  ")
-        const groupId = group_Id;
-        console.log(group_Id, "grtere - --  ")
-        // ✅ Fetch activities
+         const groupId = group_Id;
+         // ✅ Fetch activities
         let activities = {
           current_page: 1,
           results: [],
@@ -175,18 +173,10 @@ setTimeout(() => {
         let members = [];
         try {
           const memberData = await getGroupMembers(token, groupId);
-          // console.log(memberData, "memberData  <----<---<--- memberData  ")
-          // console.log(memberData, " typeof  memberData  <----<---<--- memberData  ")
-
-
           members = memberData?.results || [];
         } catch (err) {
           console.warn("⚠️ Failed to fetch members:", err.message);
         }
-
-        // console.log(members, "membersmembers<----<---<--- members")
-        // console.log(members, " typeof membersmembers<----<---<--- members")
-
         const finalGroup = {
           groupId,
           groupName,
@@ -196,11 +186,10 @@ setTimeout(() => {
         };
 
         setGroupsData([finalGroup]);
-        console.log("✅ Final Group Data", finalGroup);
-
+ 
         //  Navigate after slight delay (optional)
         setTimeout(() => {
-          console.log(typeof finalGroup.members, "group members typeof ---<>");
+          // console.log(typeof finalGroup.members, "group members typeof ---<>");
           // navigation.navigate('WatchWithFrind', {
           navigation.navigate('WatchWithFrind', {
             // group: finalGroup,

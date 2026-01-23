@@ -290,12 +290,19 @@ left: groupValue  == 0 ?  -9.5 :  groupValue  == groupTotalMember ?   sliderWidt
                                 <TouchableOpacity onPress={resetFilters} style={styles.selectButton}>
                                     <Text style={[styles.buttonTxt, { fontFamily: font.PoppinsMedium }]}>Reset</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity 
+                                <TouchableOpacity  
+
+  disabled={groupTotalMember<=  0}
                                     onPress={() => {
                                         onClose();
                                         filterFunc(selectedUsers, groupValue);
                                     }} 
-                                    style={styles.cancelButton}
+                                    style={[
+    styles.cancelButton,
+    groupTotalMember <=0  && {
+        opacity:0.6
+    },
+  ]}
                                 >
                                     <Text style={styles.buttonTxt}>Apply</Text>
                                 </TouchableOpacity>

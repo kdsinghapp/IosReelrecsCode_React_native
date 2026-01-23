@@ -16,8 +16,7 @@ const AccountSetting = () => {
     const navigation = useNavigation();
     const userdata = useSelector((state: RootState) => state.auth.userGetData); // ✅ outside any condition
     const user_email = userdata?.email_id ?? '********mail.com'
-    console.log(userdata?.email_id , "email__account_email")
-const maskEmail = (user_email:string) => {
+ const maskEmail = (user_email:string) => {
   if (!user_email) return "";
 
   const [localPart, domain] = user_email.split("@"); // split before and after @
@@ -28,7 +27,7 @@ const maskEmail = (user_email:string) => {
 };
 
 // Example use
-console.log(maskEmail("rkdeveloper@gmail.com"), 'chrck_email__cehcfk'); 
+// console.log(maskEmail("rkdeveloper@gmail.com"), 'chrck_email__cehcfk'); 
 // Output: rk***@gmail.com
 
 

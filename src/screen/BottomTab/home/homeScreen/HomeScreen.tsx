@@ -468,8 +468,7 @@ const App = () => {
   });
 
   const MemoFeedCardRender = useCallback((item, index, avatarUri, posterUri) => {
-    console.log("item",item?.user?.username)
-    return (
+     return (
       <MemoFeedCardHome
         avatar={{ uri: avatarUri }}
         poster={{ uri: posterUri }}

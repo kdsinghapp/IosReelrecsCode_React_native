@@ -21,8 +21,7 @@ const fetchUserProfile = useCallback(async () => {
     if (token) {
       setLoading(true);
       const res = await getUserProfile(token);
-      console.log(res , 'user_profile_data-Save_IN_redux')
-      // setUserProfileDate(res);
+       // setUserProfileDate(res);
       dispatch(setUserProfile({ userGetData: res }));
     }
   } catch (error) {
@@ -48,18 +47,13 @@ const fetchUserProfile = useCallback(async () => {
       setUploading(true);
       try {
         const response = await uploadAvatarImage(token, image);
-        console.log("🟢 Upload Response", response);
-
         // if (!response || response?.status !== 200) {
         //   throw new Error("Upload failed at response level");
         // }
 
         // Alert.alert('Avatar uploaded successfully');
-
         const updatedProfile = await getUserProfile(token);
         dispatch(setUserProfile({ userGetData: updatedProfile }));
-
-
         setGetAgain(prev => prev + 1);
       } catch (error) {
         console.error("❌ Upload Failed", error);

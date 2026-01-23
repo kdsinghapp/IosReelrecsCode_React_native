@@ -31,11 +31,9 @@ const getFolderSize = async (folderPath) => {
 export const clearVideoCache = async (mode = "all") => {
   try {
     const cacheDir = RNFS.CachesDirectoryPath;
-console.log('cacheDir___',cacheDir)
-    // 🔍 Before clear size
+     // 🔍 Before clear size
     const before = await getFolderSize(cacheDir);
-    console.log(`📦 Cache before: ${(before / (1024 * 1024)).toFixed(2)} MB`);
-
+ 
     // 🔧 Cache files fetch
     const files = await RNFS.readDir(cacheDir);
     const fileList = [];
@@ -57,13 +55,10 @@ console.log('cacheDir___',cacheDir)
       for (const file of fileList) {
         await RNFS.unlink(file.path);
       }
-      console.log("🧹 All cache files deleted!");
-    } else if (mode === "limit") {
+     } else if (mode === "limit") {
       // 📏 Keep only 3MB
       let keptSize = 0;
-      console.log('cache__dataLoad__',fileList)
-          console.log('data__Chefck___before__fetch__',keptSize / ((1024 * 1024)).toFixed(2)  , file.size )
-
+ 
       for (const file of fileList) {
         if (keptSize < 30 * 1024 * 1024) {
           keptSize += file.size;

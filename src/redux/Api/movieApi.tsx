@@ -1,5 +1,14 @@
 import axios from "axios";
 import axiosInstance from "./axiosInstance";
+import { 
+  Movie, 
+  MovieMetadata, 
+  Episode, 
+  PaginatedResponse, 
+  PairwiseDecisionPayload, 
+  CalculateRatingPayload,
+  TrailerInteractionData 
+} from "../../types/api.types";
 
 // export const Trending_without_Filter = async (params: any) => {
 //     try {
@@ -8,8 +17,7 @@ import axiosInstance from "./axiosInstance";
 //                 Authorization: `Token ${params.token}`
 //             }
 //         })
-//         console.log('✅ Trending Data:', response.data);
-//         return response;
+ //         return response;
 
 //     } catch {
 //         console.error('❌ Error fetching trending:', error?.response?.data || error.message);
@@ -17,9 +25,14 @@ import axiosInstance from "./axiosInstance";
 //     }
 // }
 
-export const Trending_without_Filter = async (params: any) => {
+interface TrendingParams {
+  url: string;
+  token: string;
+}
+
+export const Trending_without_Filter = async (params: TrendingParams): Promise<PaginatedResponse<Movie>> => {
   try {
-    const encodedUrl = encodeURI(params.url); // ✅ Safe encode
+    const encodedUrl = encodeURI(params.url);
     console.log(encodedUrl, 'encodedUrl__h')
 
     const response = await axiosInstance.get(encodedUrl, {
@@ -27,12 +40,11 @@ export const Trending_without_Filter = async (params: any) => {
         Authorization: `Token ${params.token}`,
       },
     });
-    console.log()
-    console.log('✅ Trending Data:', response.data);
-    return response.data;
-  } catch (error) {
-    console.error('❌ Error fetching trending:', error?.response?.data || error.message);
-    return { success: false, error: error?.response?.data || error.message };
+     return response.data;
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown }; message?: string };
+    console.error('❌ Error fetching trending:', err?.response?.data || err?.message);
+    throw error;
   }
 };
 
@@ -52,7 +64,7 @@ export const getUniqueGenres = async (token: string) => {
   }
 }
 
-export const searchMovies = async (query: string, token: string) => {
+export const searchMovies = async (query: string, token: string): Promise<{ data: Movie[] }> => {
   console.log(query, 'query___dsf')
   try {
     const response = await axiosInstance.get('/search?', {
@@ -60,16 +72,17 @@ export const searchMovies = async (query: string, token: string) => {
       headers: { Authorization: `Token ${token}` },
     });
     console.log(response)
-    return response || [];
-  } catch (error: any) {
-    console.error('Search API Error:', error.message);
-    return [];
+    return response;
+  } catch (error: unknown) {
+    const err = error as { message?: string };
+    console.error('Search API Error:', err?.message);
+    return { data: [] };
   }
 };
 
 
 
-export const getRatedMovies = async (token: string, page: number = 1) => {
+export const getRatedMovies = async (token: string, page: number = 1): Promise<PaginatedResponse<Movie>> => {
   try {
     const response = await axiosInstance.get(`/rated-movies?page=${page}`, {
       headers: { Authorization: `Token ${token}` }
@@ -106,8 +119,7 @@ export const getAllRatedMovies = async (token: string) => {
     const response = await axiosInstance.get(`/ranked-movies`, {
       headers: { Authorization: `Token ${token}` }
     });
-    console.log(`Get_ALL_Rated__Movie__:`, response.data);
-    return response.data;
+     return response.data;
   } catch (error) {
     console.error("Rating movie Error :- ", error);
     throw error;
@@ -130,17 +142,9 @@ export const getAllRated_with_preference = async (token: string, preference: str
 
 
 
-export const recordPairwiseDecision = async (token: string, payload: {
-  imdb_id_1: string;
-  imdb_id_2: string;
-  winner: string;
-  preference: "love" | "like" | "dislike";
-}) => {
-  // console.log(payload, 'payload___of__recordPairwiseDecision')
+export const recordPairwiseDecision = async (token: string, payload: PairwiseDecisionPayload) => {
   const response = await axios.post(
     "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision",
-    // "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision-and-calculate-rating",
-    
     payload,
     { headers: { Authorization: `Token ${token}` } }
   );
@@ -149,17 +153,11 @@ export const recordPairwiseDecision = async (token: string, payload: {
   console.log( 'api call right and left',response)
   return response.data;
 };
-export const recordPairwiseDecision1 = async (token: string, payload: {
-  imdb_id_1: string;
-  imdb_id_2: string;
-  winner: string;
-  preference: "love" | "like" | "dislike";
-}) => {
+
+export const recordPairwiseDecision1 = async (token: string, payload: PairwiseDecisionPayload) => {
   console.log('up/down --  /v1/record-pairwise-decision-and-calculate-rating',payload)
   const response = await axios.post(
-    // "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision",
-  "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision-and-calculate-rating",
-    
+    "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/record-pairwise-decision-and-calculate-rating",
     payload,
     { headers: { Authorization: `Token ${token}` } }
   );
@@ -214,16 +212,13 @@ export const getCommonBookmarkOtherUser = async (token: string,username:string, 
 }
 
 
-export const getMovieMetadata = async (token: string, imdb_id: string) => {
+export const getMovieMetadata = async (token: string, imdb_id: string): Promise<MovieMetadata> => {
   try {
     const response = await axiosInstance.get(`/movie-metadata?imdb_id=${imdb_id}`, {
-      // const response = await axiosInstance.get(`/movie-metadata?imdb_id=${'tt31510819'}`, {
       headers: { Authorization: `Token ${token}` },
     });
-    // console.log(response.data, "✅ Movie Metadata Response");
     console.log(response.data.matching_movies, 'matching_movies')
     console.log(response.data, 'response.data')
-
 
     return response.data;
   } catch (error) {
@@ -232,7 +227,7 @@ export const getMovieMetadata = async (token: string, imdb_id: string) => {
   };
 };
 
-export const getEpisodes = async (token: string, imdb_id: string) => {
+export const getEpisodes = async (token: string, imdb_id: string): Promise<Episode[]> => {
   try {
     const response = await axiosInstance.get(`episodes?imdb_id=${imdb_id}`, {
       headers: { Authorization: `Token ${token}` },
@@ -245,8 +240,7 @@ export const getEpisodes = async (token: string, imdb_id: string) => {
   }
 }
 
-
-export const getEpisodesBySeason = async (token: string, imdb_id: string, season: number) => {
+export const getEpisodesBySeason = async (token: string, imdb_id: string, season: number): Promise<Episode[]> => {
   console.log("imdb_id",imdb_id)
   try {
     const response = await axiosInstance.get(`episodes?imdb_id=${imdb_id}&season=${season}`, {
@@ -278,23 +272,18 @@ export const getRankingSuggestionMovie = async (token: string, page = 1) => {
   }
 };
 
-export const recordTrailerInteraction = async (token: string,
-  data: {
-    imdb_id: string;
-    trailer_url: string;
-    start_at: string;
-    end_at: string;
-  }) => {
+export const recordTrailerInteraction = async (
+  token: string,
+  data: TrailerInteractionData
+): Promise<{ success: boolean }> => {
   console.log("🪪 token being used:", token);
   console.log("📤 Payload__for_trailer_interaction:", data);
 
   console.log(data, "recordTrailerInteraction - - data");
   try {
-
     const response = await axiosInstance.post(`/record-user-trailer-interaction`,
       data,
       {
-
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -303,21 +292,17 @@ export const recordTrailerInteraction = async (token: string,
     console.log('✅ Tradiler interaction recorde:', response.data);
     console.log(data, "recordTrailerInteraction - - data");
     return response.data;
-  } catch (error: any) {
-    console.error("❌ Error recording trailer interaction:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown }; message?: string };
+    console.error("❌ Error recording trailer interaction:", err?.response?.data || err?.message);
     throw error;
   }
 };
 
-interface CalculateRatingPayload {
-  imdb_id: string;
-  preference: 'love' | 'like' | 'okay' | 'dislike';
-}
-
 export const calculateMovieRating = async (
   token: string,
   payload: CalculateRatingPayload
-): Promise<any> => {
+): Promise<boolean> => {
   console.log(payload, "   ----ranking flow last step.")
   try {
     const response = await axiosInstance.post(
@@ -330,9 +315,9 @@ export const calculateMovieRating = async (
     
     console.log('Api response last step.', response.data);
     return true;
-    // return response.data;
-  } catch (error: any) {
-    console.error('❌ calculateMovieRating Error:', error?.response?.data || error);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown } };
+    console.error('❌ calculateMovieRating Error:', err?.response?.data || error);
     throw error;
   }
 };
@@ -342,19 +327,20 @@ export const calculateMovieRating = async (
 export const rollbackPairwiseDecisions = async (
   token: string,
   imdbId: string
-): Promise<any> => {
+): Promise<{ success: boolean; message?: string }> => {
   console.log(imdbId, "----rollbackPairwiseDecisions----");
 
   try {
     const response = await axiosInstance.delete('/rollback-pairwise-decisions', {
       headers: { Authorization: `Token ${token}` },
-      data: { imdb_id: imdbId }, // DELETE method me axios me body bhejne ka tarika
+      data: { imdb_id: imdbId },
     });
 
     console.log('🎯 Rollback successful:', response.data);
     return response.data;
-  } catch (error: any) {
-    console.error('❌ rollbackPairwiseDecisions Error:', error?.response?.data || error);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown } };
+    console.error('❌ rollbackPairwiseDecisions Error:', err?.response?.data || error);
     throw error;
   }
 };

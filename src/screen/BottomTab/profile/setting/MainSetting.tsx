@@ -38,8 +38,7 @@ const MainSetting = () => {
   const [toestMessColorGreen, setToestMessGreen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toestMess, setToestMess] = useState(false);
-  console.log(toastTrue, 'toastTrue____mainsetting')
-  useEffect(() => {
+   useEffect(() => {
     if (toastTrue) {
       setTimeout(() => {
         setToestMess(true);
@@ -52,16 +51,14 @@ const MainSetting = () => {
 
   const dispatch = useDispatch();
   const handleLogoutConfirm = async () => {
-    console.log(token, "  -  -   -  - token ");
-    if (!token) {
+     if (!token) {
       console.warn('⚠️ No token found');
       return;
     }
     const success = await logoutApi(token);
 
     if (success) {
-      console.log("success  --------    - -  - - ")
-
+ 
       // logout()
       dispatch(logout());
       setLogoutModalVisible(false);
@@ -147,8 +144,7 @@ const MainSetting = () => {
           setLogoutModalVisible(false);
           handleLogoutConfirm()
           // TODO: Call logout logic here (e.g., clearing tokens, navigating to login screen)
-          // console.log('Logged out!');
-        }}
+         }}
       />
     </SafeAreaView>
   )

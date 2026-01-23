@@ -113,14 +113,12 @@ useFocusEffect(
     const restoreIndex = async () => {
       try {
         const savedIndex = await AsyncStorage.getItem('profileIndex');
-        console.log('savedIndex__data',savedIndex)
-        if (savedIndex !== null && isActive && !restoredRef.current) {
+         if (savedIndex !== null && isActive && !restoredRef.current) {
         // if (savedIndex !== null && isActive) {
           const index = parseInt(savedIndex, 10);
           setCurrentVisibleIndex(index + 1); // scroll to last index
           setPlayIndex(index); // play previous video
-          console.log('Restored last played index:', index);
-          restoredRef.current = true;
+           restoredRef.current = true;
         }
       } catch (err) {
         console.error('Error restoring profileIndex:', err);
@@ -219,8 +217,7 @@ const onViewableItemsChanged = useCallback(({ viewableItems }) => {
     setPlayIndex(null);
     return;
   }
-console.log('callVIew__2')
-
+ 
     const isFeedCardVisible = viewableItems.some(
       item => item?.item?.movie && item?.item?.user
     );
@@ -232,20 +229,17 @@ console.log('callVIew__2')
     }
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-console.log('callVIew__3')
-
+ 
     timeoutRef.current = setTimeout(() => {
       if (playIndex !== index - 1) {
         setCurrentVisibleIndex(index);
         setPlayIndex(index - 1);
         lastPlayedIndexRef.current = index - 1;
-        console.log("playIndex set to:", index - 1);
-      }
+       }
     }, 800);
   } else {
     setPlayIndex(null);
-console.log('callVIew__4')
-
+ 
   }
 }, [isFocused, playIndex, isVisible ]);
 
@@ -283,8 +277,7 @@ console.log('callVIew__4')
       const rated = await getRatedMovies(token);
  await AsyncStorage.setItem('profileIndex', videoNUllVideo.toString());
 
-      console.log("rated:", rated);
-      setRankingMovie(rated?.results || []);
+       setRankingMovie(rated?.results || []);
     } catch (err) {
       console.error("❌ Error loading rated movies:", err);
     } finally {
@@ -303,7 +296,54 @@ console.log('callVIew__4')
   // HISTORY MOVIES FETCH
   // -------------------------
 
+  // const fetchHistory = async () => {
+  //   try {
+  //     setLoadingRecs(true);
+  //     const history = await getHistoryApi(token);
+  //     setHistoryMovies(history?.results || []);
+  //   } catch (err) {
+  //     console.error("❌ Error loading history:", err);
+  //   } finally {
+  //     setLoadingRecs(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (!token) return;
+
+  //   fetchHistory();
+  // }, [token]);
+
+useEffect(() => {
+  if (!token) return;
+
+  let isMounted = true;
+
   const fetchHistory = async () => {
+    try {
+      if (isMounted) setLoadingRecs(true);
+
+      const history = await getHistoryApi(token);
+
+      if (isMounted) {
+        setHistoryMovies(history?.results || []);
+      }
+    } catch (err) {
+      if (isMounted) {
+        console.error("❌ Error loading history:", err);
+      }
+    } finally {
+      if (isMounted) setLoadingRecs(false);
+    }
+  };
+
+  fetchHistory();
+
+  return () => {
+    isMounted = false;
+  };
+}, [token]);
+
+  const fetchHistory1 = async () => {
     try {
       setLoadingRecs(true);
       const history = await getHistoryApi(token);
@@ -320,17 +360,14 @@ console.log('callVIew__4')
     fetchHistory();
   }, [token]);
 
-
-
   useFocusEffect(
     useCallback(() => {
       let isActive = true;
 
       const fetchData = async () => {
         try {
-          console.log('hua___re__Hua__kiuch__to__Hua')
-          await fetchBookmarks();
-          await fetchHistory();
+           await fetchBookmarks();
+          await fetchHistory1();
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -354,8 +391,7 @@ console.log('callVIew__4')
       // fetchFeed("home");
       fetchFeed("profile", email_da_data?.username);
 
-      // console.log("______homeconsoleData")
-    }
+     }
   }, [token]);
 
   useEffect(() => {
@@ -363,9 +399,7 @@ console.log('callVIew__4')
       try {
         const response = await getSuggestedFriends(token);
         setSuggestedFriend(response.results);
-        console.log(response.results, "✅ response.data");
-        // console.log(suggestedFriend, "📌 suggestedFriend AFTER set");
-      } catch (error) {
+       } catch (error) {
         console.error("Error fetching suggested friends:", error);
       }
     };
@@ -379,8 +413,7 @@ console.log('callVIew__4')
     const historymoviedata = async () => {
       const data = await getHistoryApi(token);
       setHistoryMovies(data.results);
-      console.log(data, "movieranking__data ")
-
+ 
     }
     historymoviedata()
   }, [token, navigation, getAgain])
@@ -489,7 +522,7 @@ ListEmptyComponent={() => {
                 item={item}
                 BASE_IMAGE_URL={BASE_IMAGE_URL}
                 onFollow={(username) => {
-                  console.log('Follow clicked for', item?.username);
+                  // console.log('Follow clicked for', item?.username);
                 }}
               />
             )}

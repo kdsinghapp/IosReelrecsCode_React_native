@@ -4,24 +4,17 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  
-  Alert,
-  Dimensions,
 } from 'react-native';
 import React, { useEffect } from 'react';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Loading from '../../../utils/Loader';
+ import Loading from '../../../utils/Loader';
 import imageIndex from '../../../assets/imageIndex';
-import ResponsiveSize from '../../../utils/ResponsiveSize';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+ import ScreenNameEnum from '../../../routes/screenName.enum';
 // import style from './style';
 import useLogin from './useLogin';
 import font from '../../../theme/font';
 import { Button, CustomStatusBar, InputFieldCustom, SuccessMessageCustom } from '../../../component';
 import style from '../signup/style';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
-import { Color } from '../../../theme/color';
+  import { Color } from '../../../theme/color';
 import CustomText from '../../../component/common/CustomText';
 import ButtonCustom from '../../../component/common/button/ButtonCustom';
  import styles from '../signup/style';

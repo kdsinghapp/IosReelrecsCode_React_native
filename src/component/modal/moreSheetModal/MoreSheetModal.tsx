@@ -21,8 +21,7 @@ import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
 import ScreenNameEnum from '../../../routes/screenName.enum';
 import CustomText from '../../common/CustomText';
-import { StatusBar } from 'react-native';
-
+ 
 interface Movie {
   id: string;
   imdb_id: string;

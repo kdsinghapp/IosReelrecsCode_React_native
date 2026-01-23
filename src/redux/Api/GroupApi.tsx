@@ -1,5 +1,6 @@
 import { Alert } from 'react-native';
 import axiosInstance from './axiosInstance';
+import { User, Group, Movie, PaginatedResponse, Activity } from '../../types/api.types';
 
 
 
@@ -261,8 +262,9 @@ export const getSearchGroup = async (query: string, token: string) => {
     console.log(query, "wokr___query________")
     console.log("getSearchGroup Response:", response.data.results);
     return response.data;
-  } catch (error: any) {
-    console.error("❌ getSearchGroup Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown }; message?: string };
+    console.error("❌ getSearchGroup Error:", err?.response?.data || err?.message);
     throw error;
   }
 };
@@ -272,7 +274,7 @@ export const getGroupSearchMovies = async (
   token: string,
   group_id: string,
   query: string
-): Promise<any[]> => {
+): Promise<Movie[]> => {
   try {
     const response = await axiosInstance.get(
       `/group/search-movies?group_id=${group_id}&query=${query}`,
@@ -288,14 +290,11 @@ export const getGroupSearchMovies = async (
       query,
       results: response.data?.results,
     });
-    // console.log(response.data, "📥 getGroupSearchMovies response");
-    // console.log(token , "tokenwer______---->>>")
-    // console.log(group_id , "group_idwer______---->>>")
-    // console.log(query , "querywer______---->>>")
-    return response.data?.results || []; // ✅ only return results
-  } catch (error: any) {
-    console.error("❌ Group search error:", error.message || error);
-    return []; // ✅ fallback for UI to avoid crash
+    return response.data?.results || [];
+  } catch (error: unknown) {
+    const err = error as { message?: string };
+    console.error("❌ Group search error:", err?.message || error);
+    return [];
   }
 };
 
@@ -337,7 +336,7 @@ export const getGroupActivitiesAction = async (
   token: string,
   groupId: string,
   imdbId?: string
-) => {
+): Promise<PaginatedResponse<Activity>> => {
   console.log(groupId ,imdbId , "_____getGroupActivitiesAction_____")
   try {
     let url = `/group/activities?group_id=${groupId}`;
@@ -351,9 +350,10 @@ export const getGroupActivitiesAction = async (
     });
     console.log(response.data ,"<--------_______eeeegetGroupActivitiesAction")
     return response.data;
-  } catch (error: any) {
-    console.error("❌ Failed to fetch group activities:", error.message);
-    return [];
+  } catch (error: unknown) {
+    const err = error as { message?: string };
+    console.error("❌ Failed to fetch group activities:", err?.message);
+    return { current_page: 1, total_pages: 0, results: [] };
   }
 };
 

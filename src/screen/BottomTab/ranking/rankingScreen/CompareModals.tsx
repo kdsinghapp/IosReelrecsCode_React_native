@@ -39,9 +39,6 @@ const CompareModals = ({
 
   } = useCompareHook;
   const dispatch = useDispatch();
-  // console.log(selectedMovie?.imdb_id , 'ssssssss____s')
-  // console.log(isStepsModalVisible, currentStep, 'isStepsModalVisible___currentStep')
-
   useEffect(() => {
     if (isStepsModalVisible) {
       dispatch(setModalClosed(true));
@@ -78,14 +75,12 @@ const CompareModals = ({
 
           }}
           onSubmit={(preference) => {
-            // console.log(preference, 'preference___km')
-            setUserPreference({ preference }); // Save it in hook state
+             setUserPreference({ preference }); // Save it in hook state
             handleFeedbackSubmit(preference); // additional
           }}
         />
       )}
-      {/* {console.log(isComparisonVisible, selectedMovie?.title, '  ---  ', secondMovieData?.title, "modalOpen__work")} */}
-      {isComparisonVisible && selectedMovie && secondMovieData && (
+       {isComparisonVisible && selectedMovie && secondMovieData && (
         <ComparisonModal
           visible={isComparisonVisible}
           onClose={() => {

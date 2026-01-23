@@ -6,8 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ScreenNameEnum from '../../../../routes/screenName.enum';
 import styles from './style';
-import { height, width } from '../../../../utils/Constant';
-import { Color } from '../../../../theme/color';
+ import { Color } from '../../../../theme/color';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 import FastImage from 'react-native-fast-image';
@@ -33,21 +32,18 @@ const WatchSaveUser = ({ disableBottomSheet = false }) => {
 
 
 
-  console.log('dfdd_dffdfdf', username)
-  const navigation = useNavigation();
+   const navigation = useNavigation();
   const [movies, setMovies] = useState([]);
   // const [modalVisible, setModalVisible] = useState(false);
   const [bottomModal, setBottomModal] = useState(false)
   const loginUserName = useSelector((state: RootState) => state.auth.userGetData?.username);
   const { isBookmarked, toggleBookmark } = useBookmarks(token);
   const [isSaved, setIsSaved] = useState(true);
-  console.log(datamovie, 'fdsffd_fadfsdfsdf')
-  const [isFollowing, setIsFollowing] = useState(false);
+   const [isFollowing, setIsFollowing] = useState(false);
   const avatar = useSelector((state: RootState) => state.auth.userGetData?.avatar);
   const userAvatarUrl = useMemo(() => `${BASE_IMAGE_URL}${avatar}}`, [avatar]);
   //  const userAvatarUrl = useMemo(() => `${BASE_IMAGE_URL}${avatar}?t=${Date.now()}`, [avatar]);
-  console.log(userAvatarUrl, "userAvatarUrl___in_WatchSaveUser");
-  //  const avatar = userGetData?.avatar;
+   //  const avatar = userGetData?.avatar;
   const avatarUrl1 = avatar ? `${BASE_IMAGE_URL}${avatar}` : undefined;
  // ✅ pagination refs
   const pageRef = useRef(1);
@@ -55,8 +51,7 @@ const WatchSaveUser = ({ disableBottomSheet = false }) => {
   const hasMoreRef = useRef(true);
 
 
-  console.log(avatar, "avatar_in_WatchSaveUser");
-  let changeMovie = 1;
+   let changeMovie = 1;
   const BottomData = isFollowing
     ? [
       { name: "Unfollow", action: () => { setIsFollowing(false); setBottomModal(false); } },
@@ -72,14 +67,12 @@ const WatchSaveUser = ({ disableBottomSheet = false }) => {
   const compareHook = useCompareComponent(token);
   const handleRankingPress = (movie) => {
     compareHook.openFeedbackModal(movie);
-    console.log(movie, "movie in handleRankingPress");
-  };
+   };
 
   const handleToggleBookmark = async (imdb_id: string) => {
     try {
       const newStatus = await toggleBookmark(imdb_id);
-      console.log('work__is__good', newStatus)
-      if (!newStatus) {
+       if (!newStatus) {
         setMovies(prevMovies => prevMovies.filter(movie => movie.imdb_id !== imdb_id));
         changeMovie = 2
       }
@@ -158,8 +151,7 @@ const WatchSaveUser = ({ disableBottomSheet = false }) => {
 
   const renderMovie = useCallback(({ item }) => {
     // setIsSaved(item?.is_bookmarked ?? false)
-    console.log('item__is_bookmarked__', item?.is_bookmarked)
-    return (
+     return (
       <>
         <View style={styles.movieCard}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }} >
@@ -220,8 +212,7 @@ const WatchSaveUser = ({ disableBottomSheet = false }) => {
   }, [navigation, isBookmarked, toggleBookmark, changeMovie]);
 
   // const { backnavigateTab, backnavigate } = route.params || {};
-  console.log(username, "usernamedada")
-  return (
+   return (
     <SafeAreaView style={styles.maincontainer}>
       <CustomStatusBar />
       <View style={styles.container}>
