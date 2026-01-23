@@ -9,9 +9,7 @@ import {
     Image,
     ScrollView,
     TouchableWithoutFeedback,
-    Platform,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { height } from '../../../utils/Constant';
 import imageIndex from '../../../assets/imageIndex';
 import { Color } from '../../../theme/color';
@@ -40,36 +38,19 @@ const MovieInfoModal: React.FC<Props> = ({
 }) => {
     const [expanded, setExpanded] = useState(false);
     const shortText = synopsis.slice(0, 150);
-    const insets = useSafeAreaInsets();
-    
-    // Calculate responsive height
-    const { height: screenHeight } = Dimensions.get('window');
-    const isSmallDevice = screenHeight < 700;
-    const maxModalHeight = isSmallDevice 
-        ? screenHeight * 0.75  // 75% on small devices
-        : screenHeight * 0.66; // 66% on normal/large devices
-    
-    // Dynamic padding based on safe area
-    const bottomPadding = Math.max(insets.bottom, 20) + 20;
 
     return (
         <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
             <TouchableWithoutFeedback onPress={onClose}>
                 <View style={styles.overlay}>
                     <TouchableWithoutFeedback>
-                        <View style={[
-                            styles.modalContent, 
-                            { 
-                                backgroundColor: type === "watchModal" ? Color.modalTransperant : Color.modalBg,
-                                maxHeight: maxModalHeight,
-                                paddingBottom: bottomPadding,
-                            }
-                        ]}>
+                        <View style={[styles.modalContent, { backgroundColor: type === "watchModal" ? Color.modalTransperant : Color.modalBg }]}>
                             {/* Header */}
+
                             <View style={styles.header}>
-                                <View style={{ height: 24, width: 24 }}></View>
+<View  style={{ height: 24, width: 24 }}></View>
                                 <Text style={styles.headerText}>Info</Text>
-                                <TouchableOpacity onPress={onClose} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                                <TouchableOpacity onPress={onClose}>
                                     <Image
                                         source={imageIndex.closeimg}
                                         style={{ height: 24, width: 24 }}
@@ -77,11 +58,7 @@ const MovieInfoModal: React.FC<Props> = ({
                                     />
                                 </TouchableOpacity>
                             </View>
-                            <ScrollView 
-                                showsVerticalScrollIndicator={false}
-                                bounces={false}
-                                contentContainerStyle={styles.scrollContent}
-                            >
+                            <ScrollView showsVerticalScrollIndicator={false}>
 
 
                                 {/* Title */}
@@ -123,77 +100,74 @@ const MovieInfoModal: React.FC<Props> = ({
 
 export default MovieInfoModal;
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-const isTablet = screenWidth >= 768;
-
 const styles = StyleSheet.create({
     overlay: {
         flex: 1,
         justifyContent: 'flex-end',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        // backgroundColor: 'rgba(0,0,0,0.5)',
     },
     modalContent: {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        paddingHorizontal: isTablet ? 32 : 20,
-        paddingTop: 20,
-        // paddingBottom handled dynamically in component
-        // maxHeight handled dynamically in component
-        minHeight: screenHeight * 0.3, // Minimum 30% height for content
-        ...Platform.select({
-            ios: {
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: -2 },
-                shadowOpacity: 0.25,
-                shadowRadius: 10,
-            },
-            android: {
-                elevation: 10,
-            },
-        }),
-    },
-    scrollContent: {
-        flexGrow: 1,
-        paddingBottom: 10,
+        padding: 20,
+        paddingBottom: 40,
+        maxHeight: Dimensions.get('window').height * 0.66,
+        minHeight: Dimensions.get('window').height * 0.66,
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 16,
-        paddingBottom: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(255,255,255,0.1)',
+        marginBottom: 14,
     },
     headerText: {
         color: Color.whiteText,
-        fontSize: isTablet ? 24 : 20,
+        fontSize: 20,
         fontFamily: font.PoppinsBold,
-        flex: 1,
-        textAlign: 'center',
     },
     title: {
-        fontSize: isTablet ? 28 : 24,
+        fontSize: 24,
+
         fontFamily: font.PoppinsBold,
+
         color: Color.whiteText,
-        marginBottom: 8,
+        // marginBottom: 14,
+        // marginTop: 10,
     },
     sectionTitle: {
-        fontSize: isTablet ? 16 : 14,
+        fontSize: 14,
         color: Color.whiteText,
-        marginTop: 16,
-        marginBottom: 6,
+        marginTop: 14,
         fontFamily: font.PoppinsBold,
+
     },
     text: {
-        fontSize: isTablet ? 16 : 14,
+        fontSize: 14,
         color: Color.whiteText,
-        lineHeight: isTablet ? 24 : 21,
-        marginBottom: 12,
+        marginTop: 6,
+        lineHeight: 21,
+        marginBottom: 11,
         fontFamily: font.PoppinsRegular,
     },
     readMore: {
         color: Color.whiteText,
-        fontSize: isTablet ? 15 : 13,
+        fontSize: 13,
     },
+    // closeBtnContainer: {
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     alignSelf: 'center',
+    //     borderColor: Color.placeHolder,
+    //     borderWidth: 1,
+    //     borderRadius: 10,
+    //     marginTop: 20,
+    //     marginBottom: 30,
+    // },
+    // closeText: {
+    //     fontSize: 16,
+    //     color: Color.lightGrayText,
+    //     fontFamily: font.PoppinsRegular,
+    //     marginVertical: 10,
+    //     marginHorizontal: 30,
+    // },
 });
