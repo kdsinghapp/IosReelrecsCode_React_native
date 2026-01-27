@@ -3,23 +3,23 @@ import { View, Text, FlatList, Image, TouchableOpacity, ActivityIndicator,
   RefreshControl,
  } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import imageIndex from '../../../../assets/imageIndex';
-import { CustomStatusBar } from '../../../../component';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+  import ScreenNameEnum from '@routes/screenName.enum';
 import styles from './style';
 import useDiscover from './useDiscover';
 import { sortByData, contentType } from './DisCoverData';
 import { useRoute } from '@react-navigation/native';
-import { Color } from '../../../../theme/color';
-import font from '../../../../theme/font';
-import SortByModal from '../../../../component/modal/SortbyModal/SortbyModal';
+import { Color } from '@theme/color';
+import font from '@theme/font';
+import SortByModal from '@components/modal/SortbyModal/SortbyModal';
 import FilterBar from './FilterBar';
-import { Trending_without_Filter } from '../../../../redux/Api/movieApi';
+import { Trending_without_Filter } from '@redux/Api/movieApi';
 import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
-import CustomText from '../../../../component/common/CustomText';
-import RankingWithInfo from '../../../../component/ranking/RankingWithInfo';
-import SortbyModal from '../../../../component/modal/SortbyModal/SortbyModal';
+import CustomText from '@components/common/CustomText';
+import RankingWithInfo from '@components/ranking/RankingWithInfo';
+import SortbyModal from '@components/modal/SortbyModal/SortbyModal';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar } from '@components/index';
 
 
 const TabPaginationScreen = () => {

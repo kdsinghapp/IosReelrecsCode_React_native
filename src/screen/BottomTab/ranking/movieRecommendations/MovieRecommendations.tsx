@@ -1,22 +1,22 @@
 // import React, { useCallback, useEffect, useState } from 'react';
 // import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ScrollView, Alert, } from 'react-native';
-// import imageIndex from '../../../../assets/imageIndex';
-// import { Color } from '../../../../theme/color';
-// import { ComparisonModal, CustomStatusBar, FeedbackModal, SearchBarCustom, SlideInTooltipModal, StepProgressModal } from '../../../../component';
+// import imageIndex from '@assets/imageIndex';
+// import { Color } from '@theme/color';
+// import { ComparisonModal, CustomStatusBar, FeedbackModal, SearchBarCustom, SlideInTooltipModal, StepProgressModal } from '@components';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 // import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
-// import ScreenNameEnum from '../../../../routes/screenName.enum';
-// import StepProgressBar from '../../../../component/modal/stepProgressModal/StepProgressBar';
+// import ScreenNameEnum from '@routes/screenName.enum';
+// import StepProgressBar from '@components/modal/stepProgressModal/StepProgressBar';
 // import useMovieRecommendations from './useMovieRecommendations';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-// import RankingCard from '../../../../component/ranking/RankingCard';
-// import LayeredShadowText from '../../../../component/common/LayeredShadowText/LayeredShadowText';
-// import font from '../../../../theme/font';
-// import NormalMovieCard from '../../../../component/common/NormalMovieCard/NormalMovieCard';
-// import { Trending_without_Filter } from '../../../../redux/Api/movieApi';
+// import RankingCard from '@components/ranking/RankingCard';
+// import LayeredShadowText from '@components/common/LayeredShadowText/LayeredShadowText';
+// import font from '@theme/font';
+// import NormalMovieCard from '@components/common/NormalMovieCard/NormalMovieCard';
+// import { Trending_without_Filter } from '@redux/Api/movieApi';
 // import { useSelector } from 'react-redux';
-// import { RootState } from '../../../../redux/store';
-// import { getMatchingMovies } from '../../../../redux/Api/ProfileApi';
+// import { RootState } from '@redux/store';
+// import { getMatchingMovies } from '@redux/Api/ProfileApi';
 
 
 // const MovieRecommendations = ({

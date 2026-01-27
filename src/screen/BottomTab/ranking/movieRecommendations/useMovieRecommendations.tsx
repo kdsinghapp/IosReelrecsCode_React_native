@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useState } from 'react';
-import { RootStackParamList } from '../../../../navigators/type';
+import { RootStackParamList } from '@navigators/type';
  
 const useMovieRecommendations = () => {
     type NavigationProp = NativeStackNavigationProp<RootStackParamList>;

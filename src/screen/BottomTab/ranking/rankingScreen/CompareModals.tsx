@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { ComparisonModal, FeedbackModal, StepProgressModal } from '../../../../component';
-import { useDispatch } from 'react-redux';
-import { setModalClosed } from '../../../../redux/feature/modalSlice/modalSlice';
-// import { setModalClosed } from '../../../../redux/feature/modalSlice/modalSlice';
-
+ import { useDispatch } from 'react-redux';
+ import { ComparisonModal, FeedbackModal, StepProgressModal } from '@components/index';
+import { setModalClosed } from '@redux/feature/modalSlice/modalSlice';
+  
 
 const CompareModals = ({
   token,

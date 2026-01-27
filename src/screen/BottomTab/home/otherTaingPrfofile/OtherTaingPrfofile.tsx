@@ -1,24 +1,22 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity,   ActivityIndicator, Platform, } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-import { BottomSheet, ComparisonModal, CustomStatusBar, FeedbackModal, HeaderCustom, ProfileOther, SearchBarCustom, StepProgressModal } from '../../../../component';
+ import { BottomSheet, ComparisonModal, CustomStatusBar, FeedbackModal, HeaderCustom, ProfileOther, SearchBarCustom, StepProgressModal } from '@components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import styles from './style';
-import { Color } from '../../../../theme/color';
-import RankingCard from '../../../../component/ranking/RankingCard';
-import useHome from '../homeScreen/useHome';
-import LayeredShadowText from '../../../../component/common/LayeredShadowText/LayeredShadowText';
+import { Color } from '@theme/color';
+  import LayeredShadowText from '@components/common/LayeredShadowText/LayeredShadowText';
 import CompareModals from '../../ranking/rankingScreen/CompareModals';
 import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
-import { useBookmarks } from '../../../../hook/useBookmark';
-import RankingWithInfo from '../../../../component/ranking/RankingWithInfo';
-import { getAllRatedMovies, getCommonBookmarks, getOtherUserRatedMovies, getRatedMovies } from '../../../../redux/Api/movieApi';
+import { useBookmarks } from '@hooks/useBookmark';
+import RankingWithInfo from '@components/ranking/RankingWithInfo';
+import { getAllRatedMovies, getCommonBookmarks, getOtherUserRatedMovies, getRatedMovies } from '@redux/Api/movieApi';
 import FastImage from 'react-native-fast-image';
-import { getHistoryApi } from '../../../../redux/Api/ProfileApi';
-import OutlineTextIOS from '../../../../component/NumbetTextIOS';
+import { getHistoryApi } from '@redux/Api/ProfileApi';
+import OutlineTextIOS from '@components/NumbetTextIOS';
+import imageIndex from '@assets/imageIndex';
 
 
 const OtherTaingPrfofile = () => {
@@ -26,7 +24,7 @@ const OtherTaingPrfofile = () => {
   const [lovedImageMap, setLovedImageMap] = useState<{ [key: string]: boolean }>({});
 
   const route = useRoute();
-  const { title, datamovie, username, imageUri, token, disableBottomSheet = false , my_profile=false } = route.params
+  const { title, datamovie, username, imageUri, token, disableBottomSheet = false , my_profile=false } = route?.params
   const navigation = useNavigation();
   const { isBookmarked, toggleBookmark } = useBookmarks(token);
   const [isFollowing, setIsFollowing] = useState(false);

@@ -1,8 +1,8 @@
 
 import { Platform, StyleSheet } from 'react-native';
-import { Color } from '../../../../../theme/color';
-import font from '../../../../../theme/font';
-
+import { Color } from '@theme/color';
+import font from '@theme/font';
+ 
 const styles = StyleSheet.create({
   container: { flex: 1,backgroundColor:Color.background,     marginTop: Platform.OS === 'ios' ? 15 : 4,
  },

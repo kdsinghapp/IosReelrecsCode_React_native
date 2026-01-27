@@ -3,14 +3,14 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import ProfilePhotoCom from '../ProfilePhotoCom/ProfilePhotoCom';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
-import { followUser, unfollowUser } from '../../../redux/Api/followService';
-import { getUserProfile } from '../../../redux/Api/authService';
-import { setUserProfile } from '../../../redux/feature/authSlice';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+import { RootState } from '@redux/store';
+import { followUser, unfollowUser } from '@redux/Api/followService';
+import { getUserProfile } from '@redux/Api/authService';
+import { setUserProfile } from '@redux/feature/authSlice';
+import ScreenNameEnum from '@routes/screenName.enum';
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {

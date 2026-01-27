@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Platform
 } from 'react-native';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
  
 const LoadingModal = ({ visible }:any) => {
   return (

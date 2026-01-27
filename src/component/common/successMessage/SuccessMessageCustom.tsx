@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import CustomText from '../CustomText';
 
 interface SuccessMessageCustomProps {

@@ -2,10 +2,10 @@ import React from 'react';
 import { View, ScrollView, Dimensions, StyleSheet } from 'react-native';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import LinearGradient from 'react-native-linear-gradient';
-import { CustomStatusBar, HeaderCustom } from '../../../../component';
-import imageIndex from '../../../../assets/imageIndex';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+ import ScreenNameEnum from '@routes/screenName.enum';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar, HeaderCustom } from '@components/index';
 
 const { height: windowHeight } = Dimensions.get('window');
 
@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
 // import { ScrollView, StyleSheet, Text, View } from 'react-native'
 // import React from 'react'
 // import ShimmerPlaceholder from 'react-native-shimmer-placeholder'
-// import { CustomStatusBar, HeaderCustom } from '../../../../component'
-// import imageIndex from '../../../../assets/imageIndex'
-// import ScreenNameEnum from '../../../../routes/screenName.enum'
+// import { CustomStatusBar, HeaderCustom } from '@components'
+// import imageIndex from '@assets/imageIndex'
+// import ScreenNameEnum from '@routes/screenName.enum'
 
 // const MovieDetailsShimmer = ({ITEM_HEIGHT , }) => {
 //   return (

@@ -1,5 +1,5 @@
 // import { useEffect, useState } from 'react';
-// import { getMatchingMovies, recordUserPreferences } from '../../../../redux/Api/ProfileApi';
+// import { getMatchingMovies, recordUserPreferences } from '@redux/Api/ProfileApi';
 
 // interface Movie {
 //   imdb_id: string;
@@ -113,7 +113,7 @@
 
 
 import { useEffect, useState } from 'react';
-import { getMatchingMovies, recordUserPreferences } from '../../../../redux/Api/ProfileApi';
+import { getMatchingMovies, recordUserPreferences } from '@redux/Api/ProfileApi';
 
 interface Movie {
   imdb_id: string;

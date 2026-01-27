@@ -1,10 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Animated, View, Text, TouchableOpacity, StyleSheet, Dimensions, TouchableWithoutFeedback, ImageComponent, Image } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import font from '../../../theme/font';
+import font from '@theme/font';
 
 const { width, height } = Dimensions.get('window');
 

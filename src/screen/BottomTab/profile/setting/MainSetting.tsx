@@ -1,19 +1,19 @@
 import { Alert, FlatList, Image, Modal, Pressable,  StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom'
-import { HeaderCustom, SuccessMessageCustom } from '../../../../component'
-import imageIndex from '../../../../assets/imageIndex'
-import { Color } from '../../../../theme/color'
+ 
+ import { Color } from '@theme/color'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import ScreenNameEnum from '../../../../routes/screenName.enum'
-import LogoutModal from '../../../../component/modal/logoutModal/logoutModal'
-import { logoutApi } from '../../../../redux/Api/authService'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../redux/store'
-import { logout } from '../../../../redux/feature/authSlice'
-import font from '../../../../theme/font'
+import ScreenNameEnum from '@routes/screenName.enum'
+import LogoutModal from '@components/modal/logoutModal/logoutModal'
+import { logoutApi } from '@redux/Api/authService'
+ import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@redux/store'
+import { logout } from '@redux/feature/authSlice'
+import font from '@theme/font'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import imageIndex from '@assets/imageIndex'
+import StatusBarCustom from '@components/common/statusBar/StatusBarCustom'
+import { HeaderCustom, SuccessMessageCustom } from '@components/index'
 type MenuItem = {
   icon: string;
   label: string;
@@ -32,7 +32,7 @@ const menuData: MenuItem[] = [
 const MainSetting = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { toastTrue } = route.params || {};
+  const { toastTrue } = route?.params || {};
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const token = useSelector((state: RootState) => state.auth.token); // ✅ outside any condition
   const [toestMessColorGreen, setToestMessGreen] = useState(false);

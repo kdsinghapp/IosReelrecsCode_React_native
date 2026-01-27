@@ -10,10 +10,10 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
-import { height } from '../../../utils/Constant';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { height } from '@utils/Constant';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 
 interface Props {
     visible: boolean;

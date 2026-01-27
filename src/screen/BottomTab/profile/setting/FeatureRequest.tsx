@@ -17,24 +17,24 @@ import {
   LayoutAnimation,
 } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
-import { Color } from '../../../../theme/color';
-import imageIndex from '../../../../assets/imageIndex';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
-import font from '../../../../theme/font';
+import { Color } from '@theme/color';
+ import { useNavigation, useRoute } from '@react-navigation/native';
+import ScreenNameEnum from '@routes/screenName.enum';
+import font from '@theme/font';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
-import { Button, CustomStatusBar, HeaderCustom, SuccessMessageCustom } from '../../../../component';
-import LinearGradient from 'react-native-linear-gradient';
-import { userFeedback } from '../../../../redux/Api/SettingApi';
+ import LinearGradient from 'react-native-linear-gradient';
+import { userFeedback } from '@redux/Api/SettingApi';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
+import { RootState } from '@redux/store';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import imageIndex from '@assets/imageIndex';
+import { Button, CustomStatusBar, HeaderCustom, SuccessMessageCustom } from '@components/index';
 const FeatureRequest = () => {
   const token = useSelector((state: RootState) => state.auth.token);
 
   const navigation = useNavigation();
 const route = useRoute()
-const {setFeedBAckSucc}  =  route.params || {}
+const {setFeedBAckSucc}  =  route?.params || {}
 
   const textInputRef = useRef<TextInput>(null);
   const scrollViewRef = useRef<ScrollView>(null);

@@ -16,36 +16,36 @@ import {
   FeedbackModal,
   SlideInTooltipModal,
   StepProgressModal
-} from '../../../../component';
-import imageIndex from '../../../../assets/imageIndex';
+} from '@components';
+import imageIndex from '@assets/imageIndex';
 import styles from './style';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import useHome from './useHome';
-import { Color } from '../../../../theme/color';
+import { Color } from '@theme/color';
 import Notification from './Notification/Notification';
-import HorizontalMovieList from '../../../../component/common/HorizontalMovieList/HorizontalMovieList';
-import { getMatchingMovies, getRecentActiveUsers } from '../../../../redux/Api/ProfileApi';
+import HorizontalMovieList from '@components/common/HorizontalMovieList/HorizontalMovieList';
+import { getMatchingMovies, getRecentActiveUsers } from '@redux/Api/ProfileApi';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import axiosInstance, { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import MultiApiFetcher from '../../../../redux/Api/MultiApiFetcher';
-import useUserFeed from '../../../../component/card/feedCard/useUserFeed';
+import { RootState } from '@redux/store';
+import axiosInstance, { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import MultiApiFetcher from '@redux/Api/MultiApiFetcher';
+import useUserFeed from '@components/card/feedCard/useUserFeed';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import isEqual from 'lodash.isequal';
 import CompareModals from '../../ranking/rankingScreen/CompareModals';
 import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
-import MemoFeedCard from '../../../../component/card/feedCard/MemoFeedCard';
-import CustomText from '../../../../component/common/CustomText';
-import font from '../../../../theme/font';
+import MemoFeedCard from '@components/card/feedCard/MemoFeedCard';
+import CustomText from '@components/common/CustomText';
+import font from '@theme/font';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
-import { getToken, setToken } from '../../../../redux/Api/GlobalToken';
-import { homeDiscoverApi, Trending_without_Filter } from '../../../../redux/Api/movieApi';
+import { getToken, setToken } from '@redux/Api/GlobalToken';
+import { homeDiscoverApi, Trending_without_Filter } from '@redux/Api/movieApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CacheManagerUI from '../../../../utils/NewCache/CacheManagerUI';
-import FeedCardShimmer from '../../../../component/card/feedCard/FeedCardShimmer';
+import CacheManagerUI from '@utils/NewCache/CacheManagerUI';
+import FeedCardShimmer from '@components/card/feedCard/FeedCardShimmer';
 
 const FixedHomeScreen = () => {
   const token = useSelector((state: RootState) => state.auth.token);

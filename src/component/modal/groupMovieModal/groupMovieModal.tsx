@@ -12,10 +12,10 @@ import {
     LayoutChangeEvent
 } from 'react-native';
 import Slider from '@react-native-community/slider';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
+import font from '@theme/font';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
 import FastImage from 'react-native-fast-image';
 
 const THUMB_SIZE = 24;

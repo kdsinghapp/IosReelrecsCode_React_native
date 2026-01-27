@@ -9,6 +9,16 @@ import {
   CalculateRatingPayload,
   TrailerInteractionData 
 } from "../../types/api.types";
+import {
+  validateImdbId,
+  validateUsername,
+  validatePage,
+  validatePageSize,
+  validateSearchQuery,
+  validateString,
+  createSafeParams,
+  throwValidationError,
+} from '../../utils/apiInputValidator';
 
 // export const Trending_without_Filter = async (params: any) => {
 //     try {
@@ -84,8 +94,15 @@ export const searchMovies = async (query: string, token: string): Promise<{ data
 
 export const getRatedMovies = async (token: string, page: number = 1): Promise<PaginatedResponse<Movie>> => {
   try {
-    const response = await axiosInstance.get(`/rated-movies?page=${page}`, {
-      headers: { Authorization: `Token ${token}` }
+    // Validate page
+    const pageValidation = validatePage(page);
+    if (!pageValidation.isValid) {
+      console.warn('⚠️ Invalid page, using default:', pageValidation.error);
+    }
+
+    const response = await axiosInstance.get('/rated-movies', {
+      headers: { Authorization: `Token ${token}` },
+      params: createSafeParams({ page: pageValidation.value }),
     });
     console.log(`Rated Movies (Page ${page}):`, response.data);
     return response.data;
@@ -129,8 +146,20 @@ export const getAllRatedMovies = async (token: string) => {
 // without pagination
 export const getAllRated_with_preference = async (token: string, preference: string) => {
   try {
-    const response = await axiosInstance.get(`/ranked-movies?preference=${preference}`, {
-      headers: { Authorization: `Token ${token}` }
+    // Validate preference
+    const preferenceValidation = validateString(preference, {
+      fieldName: 'Preference',
+      required: true,
+      maxLength: 50,
+    });
+    
+    if (!preferenceValidation.isValid) {
+      throwValidationError('Preference', preferenceValidation.error);
+    }
+
+    const response = await axiosInstance.get('/ranked-movies', {
+      headers: { Authorization: `Token ${token}` },
+      params: createSafeParams({ preference: preferenceValidation.sanitized }),
     });
     console.log(`GegetAllRated_with_preference__:`, response.data);
     return response.data;
@@ -198,10 +227,20 @@ export const getCommonBookmarks = async (token: string, page =1 ) => {
 
 export const getCommonBookmarkOtherUser = async (token: string,username:string, page=1) => {
   try {
-    // const response = await axiosInstance.get(`/bookmarks-common?username=${username}page=${page}`, {
-    const response = await axiosInstance.get(`/bookmarks-common?username=${username}&page=${page}`, {
+    // Validate inputs
+    const usernameValidation = validateUsername(username);
+    const pageValidation = validatePage(page);
+    
+    if (!usernameValidation.isValid) {
+      throwValidationError('Username', usernameValidation.error);
+    }
 
+    const response = await axiosInstance.get('/bookmarks-common', {
       headers: { Authorization: `Token ${token}` },
+      params: createSafeParams({ 
+        username: usernameValidation.sanitized,
+        page: pageValidation.value
+      }),
     })
     console.log("getCommonBookmarkOtherUser__", response.data)
     return response.data
@@ -214,8 +253,15 @@ export const getCommonBookmarkOtherUser = async (token: string,username:string, 
 
 export const getMovieMetadata = async (token: string, imdb_id: string): Promise<MovieMetadata> => {
   try {
-    const response = await axiosInstance.get(`/movie-metadata?imdb_id=${imdb_id}`, {
+    // Validate IMDB ID
+    const imdbIdValidation = validateImdbId(imdb_id);
+    if (!imdbIdValidation.isValid) {
+      throwValidationError('IMDB ID', imdbIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/movie-metadata', {
       headers: { Authorization: `Token ${token}` },
+      params: createSafeParams({ imdb_id: imdbIdValidation.sanitized }),
     });
     console.log(response.data.matching_movies, 'matching_movies')
     console.log(response.data, 'response.data')
@@ -229,8 +275,15 @@ export const getMovieMetadata = async (token: string, imdb_id: string): Promise<
 
 export const getEpisodes = async (token: string, imdb_id: string): Promise<Episode[]> => {
   try {
-    const response = await axiosInstance.get(`episodes?imdb_id=${imdb_id}`, {
+    // Validate IMDB ID
+    const imdbIdValidation = validateImdbId(imdb_id);
+    if (!imdbIdValidation.isValid) {
+      throwValidationError('IMDB ID', imdbIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/episodes', {
       headers: { Authorization: `Token ${token}` },
+      params: createSafeParams({ imdb_id: imdbIdValidation.sanitized }),
     })
     console.log(response.data, "✅ Episodes Data");
     return response.data;

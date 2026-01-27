@@ -13,7 +13,7 @@ import {
   Platform,
 } from 'react-native';
 import Video from 'react-native-video';
-import imageIndex from '../../../../assets/imageIndex';
+import imageIndex from '@assets/imageIndex';
 import {
   ComparisonModal,
   CustomStatusBar,
@@ -23,34 +23,34 @@ import {
   HeaderCustom,
   MoreSheetModal,
   MovieInfoModal,
-} from '../../../../component';
+} from '@components';
 import styles from './style';
 import useMovie from './useMovie';
 import ProgressBar from './ProgressBar';
-import { Color } from '../../../../theme/color';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
-import font from '../../../../theme/font';
+import { Color } from '@theme/color';
+import ScreenNameEnum from '@routes/screenName.enum';
+import font from '@theme/font';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import ScoreIntroModal from '../../../../component/modal/ScoreIntroModal/ScoreIntroModal';
+import ScoreIntroModal from '@components/modal/ScoreIntroModal/ScoreIntroModal';
 import { useFocusEffect, useIsFocused, useRoute, useNavigation } from '@react-navigation/native';
-import WatchNowModal from '../../../../component/modal/WatchNowModal/WatchNowModal';
-import { getEpisodes, getEpisodesBySeason, getMovieMetadata, recordTrailerInteraction } from '../../../../redux/Api/movieApi';
-import { getCommentsByMovie } from '../../../../redux/Api/commentService';
-import { getMatchingMovies } from '../../../../redux/Api/ProfileApi';
+import WatchNowModal from '@components/modal/WatchNowModal/WatchNowModal';
+import { getEpisodes, getEpisodesBySeason, getMovieMetadata, recordTrailerInteraction } from '@redux/Api/movieApi';
+import { getCommentsByMovie } from '@redux/Api/commentService';
+import { getMatchingMovies } from '@redux/Api/ProfileApi';
 import CompareModals from '../../ranking/rankingScreen/CompareModals';
 import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
-import { useBookmarks } from '../../../../hook/useBookmark';
-import { useTrailerTracker } from '../../../../hook/useTrailerTracker';
-import CustomText from '../../../../component/common/CustomText';
+import { useBookmarks } from '@hooks/useBookmark';
+import { useTrailerTracker } from '@hooks/useTrailerTracker';
+import CustomText from '@components/common/CustomText';
 import LinearGradient from 'react-native-linear-gradient';
-import RankingWithInfo from '../../../../component/ranking/RankingWithInfo';
-import { RootState } from '../../../../redux/store';
+import RankingWithInfo from '@components/ranking/RankingWithInfo';
+import { RootState } from '@redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMute } from '../../../../redux/feature/videoAudioSlice';
+import { toggleMute } from '@redux/feature/videoAudioSlice';
 import MovieDetailsShimmer from './MovieDetailsShimmer';
-import { getCachedMovie,  setCachedMovie } from '../../../../redux/feature/movieCacheSlice/MovieCacheManager';
-// import { clearVideoCache } from '../../../../utils/VideoCacheManager/VideoCacheManager';
-// import CommentModal from '../../../../component/modal/comment/CommentModal';
+import { getCachedMovie,  setCachedMovie } from '@redux/feature/movieCacheSlice/MovieCacheManager';
+// import { clearVideoCache } from '@utils/VideoCacheManager/VideoCacheManager';
+// import CommentModal from '@components/modal/comment/CommentModal';
 const CommentModal = React.lazy(() =>
   import('../../../../component/modal/comment/CommentModal')
 );

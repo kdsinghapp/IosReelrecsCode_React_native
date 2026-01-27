@@ -13,8 +13,8 @@ import {
   Platform,
   Alert,
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import HeaderCustom from '../../common/header/HeaderCustom';
 import { useNavigation } from '@react-navigation/native';
 // import { Feather } from '@expo/vector-icons'; // use react-native-vector-icons for CLI
@@ -26,10 +26,10 @@ import AddFrindModal from '../AddFrindModal/AddFrindModal';
 import BlurViewCom from '../../common/BlurViewCom/BlurViewCom';
 import LogoutModal from '../logoutModal/logoutModal';
 import GroupAllAvatars from '../../common/GroupAllAvatars/GroupAllAvatars';
-import font from '../../../theme/font';
+import font from '@theme/font';
 import StatusBarCustom from '../../common/statusBar/StatusBarCustom';
-import { getAllGroups, getGroupMembers, leaveGroup, renameGroup, toggleGroupNotification } from '../../../redux/Api/GroupApi';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+import { getAllGroups, getGroupMembers, leaveGroup, renameGroup, toggleGroupNotification } from '@redux/Api/GroupApi';
+import ScreenNameEnum from '@routes/screenName.enum';
 
 const { width, height } = Dimensions.get('window');
 

@@ -22,7 +22,7 @@ import Welcome from "../screen/Auth/welcome/Welcome";
 import Notification from "../screen/BottomTab/home/homeScreen/Notification/Notification";
 import StreamService from "../screen/BottomTab/profile/setting/StreamService";
 import WoodsScreen from "../screen/BottomTab/ranking/woodsScreen/WoodsScreen";
-import CreateGroupScreen from "../screen/BottomTab/watch/watchScreen/CreateGroupScreen ";
+import CreateGroupScreen from "../screen/BottomTab/watch/watchScreen/CreateGroupScreen";
 import WatchScreen from "../screen/BottomTab/watch/watchScreen/WatchScreen";
  import ScreenNameEnum from "./screenName.enum";
 

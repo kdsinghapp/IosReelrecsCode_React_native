@@ -1,15 +1,16 @@
 import { Alert, Image,  StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom'
-import { Button, HeaderCustom, SuccessMessageCustom } from '../../../../component'
-import imageIndex from '../../../../assets/imageIndex'
-import { Color } from '../../../../theme/color'
+ 
+ import { Color } from '@theme/color'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../../redux/store'
-import { changePassword, loginUser_Api } from '../../../../redux/Api/authService'
-import font from '../../../../theme/font'
+import { RootState } from '@redux/store'
+import { changePassword, loginUser_Api } from '@redux/Api/authService'
+import font from '@theme/font'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import StatusBarCustom from '@components/common/statusBar/StatusBarCustom'
+import { Button, HeaderCustom, SuccessMessageCustom } from '@components/index'
+import imageIndex from '@assets/imageIndex'
 
 
 const ChangePassSetting = () => {
@@ -191,16 +192,16 @@ const styles = StyleSheet.create({
 
 // import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 // import React, { useState } from 'react'
-// import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom'
-// import { Button, HeaderCustom } from '../../../../component'
-// import imageIndex from '../../../../assets/imageIndex'
-// import { Color } from '../../../../theme/color'
-// import ScreenNameEnum from '../../../../routes/screenName.enum'
+// import StatusBarCustom from '@components/common/statusBar/StatusBarCustom'
+// import { Button, HeaderCustom } from '@components'
+// import imageIndex from '@assets/imageIndex'
+// import { Color } from '@theme/color'
+// import ScreenNameEnum from '@routes/screenName.enum'
 // import { useNavigation } from '@react-navigation/native'
 // import { useSelector } from 'react-redux'
-// import { RootState } from '../../../../redux/store'
-// import { changePassword, loginUser_Api, resetPassword, setNewPassword as setNewPasswordData} from '../../../../redux/Api/authService'
-// import font from '../../../../theme/font'
+// import { RootState } from '@redux/store'
+// import { changePassword, loginUser_Api, resetPassword, setNewPassword as setNewPasswordData} from '@redux/Api/authService'
+// import font from '@theme/font'
 // const ChangePassSetting = () => {
 //     const token = useSelector((state: RootState) => state.auth.token);
 //     const email = useSelector((state: RootState) => state.auth.userGetData);

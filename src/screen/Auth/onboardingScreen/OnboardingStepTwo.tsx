@@ -1,3 +1,4 @@
+import imageIndex from '@assets/imageIndex';
 import React, { useEffect, useRef } from 'react';
 import {
   View,
@@ -9,14 +10,15 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
-
-import imageIndex from '../../../assets/imageIndex';
 import useWelcome from '../welcome/useWelcome';
-import { RootState } from '../../../redux/store';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { Button, CustomStatusBar } from '../../../component';
-import CustomText from '../../../component/common/CustomText';
-import font from '../../../theme/font';
+import { RootState } from '@redux/store';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { Button, CustomStatusBar } from '@components/index';
+import CustomText from '@components/common/CustomText';
+import font from '@theme/font';
+
+ 
+ 
 
 const { width, height } = Dimensions.get('window');
 

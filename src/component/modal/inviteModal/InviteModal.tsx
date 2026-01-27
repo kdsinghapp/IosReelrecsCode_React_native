@@ -12,7 +12,7 @@ import {
     Platform,
     SafeAreaView
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
+import imageIndex from '@assets/imageIndex';
 import SearchBarCustom from '../../common/searchBar/SearchBarCustom';
 const friendsData = [
     { id: '1', name: 'Jordan Sanzo', avatar: 'https://i.pravatar.cc/150?img=1' },

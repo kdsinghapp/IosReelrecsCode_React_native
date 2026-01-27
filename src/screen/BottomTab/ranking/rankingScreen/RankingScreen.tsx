@@ -5,30 +5,27 @@ import { View, Text, FlatList, TouchableOpacity, ScrollView, StatusBar, Image,  
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import imageIndex from '../../../../assets/imageIndex';
-import { Color } from '../../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import styles from './style';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
-import { RootState } from '../../../../redux/store';
-import { getAllRatedMovies, getOtherUserRatedMovies, getRankingSuggestionMovie, recordPairwiseDecision, recordPairwiseDecision1 } from '../../../../redux/Api/movieApi';
-import {
-  CustomStatusBar,
-  SearchBarCustom,
-  SlideInTooltipModal
-} from '../../../../component';
-import NormalMovieCard from '../../../../component/common/NormalMovieCard/NormalMovieCard';
-import StepProgressBar from '../../../../component/modal/stepProgressModal/StepProgressBar';
-import LayeredShadowText from '../../../../component/common/LayeredShadowText/LayeredShadowText';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { RootState } from '@redux/store';
+import { getAllRatedMovies, getOtherUserRatedMovies, getRankingSuggestionMovie, recordPairwiseDecision, recordPairwiseDecision1 } from '@redux/Api/movieApi';
+import NormalMovieCard from '@components/common/NormalMovieCard/NormalMovieCard';
+import StepProgressBar from '@components/modal/stepProgressModal/StepProgressBar';
+import LayeredShadowText from '@components/common/LayeredShadowText/LayeredShadowText';
  import { useCompareComponent } from './useCompareComponent';
 import CompareModals from './CompareModals';
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
-import font from '../../../../theme/font';
-import CustomText from '../../../../component/common/CustomText';
-import ButtonCustom from '../../../../component/common/button/ButtonCustom';
-import { setModalClosed } from '../../../../redux/feature/modalSlice/modalSlice';
-import RankingWithInfo from '../../../../component/ranking/RankingWithInfo';
-import NormalMovieCardShimmer from '../../../../component/common/NormalMovieCard/NormalMovieCardShimmer';
-import OutlineTextIOS from '../../../../component/NumbetTextIOS';
+import font from '@theme/font';
+import CustomText from '@components/common/CustomText';
+ import { setModalClosed } from '@redux/feature/modalSlice/modalSlice';
+import RankingWithInfo from '@components/ranking/RankingWithInfo';
+import NormalMovieCardShimmer from '@components/common/NormalMovieCard/NormalMovieCardShimmer';
+import OutlineTextIOS from '@components/NumbetTextIOS';
+import {    CustomStatusBar,
+   SearchBarCustom,
+   SlideInTooltipModal } from '@components/index';
 
 
 const ITEM_HEIGHT = 180; // Adjust based on your movie card height

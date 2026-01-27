@@ -1,11 +1,11 @@
 // import { useNavigation } from '@react-navigation/native';
 // import { useEffect, useState } from 'react';
 // import { Alert } from 'react-native';
-// import { getRatedMovies } from '../../../../redux/Api/movieApi';
+// import { getRatedMovies } from '@redux/Api/movieApi';
 // import { useSelector } from 'react-redux';
-// import { RootState } from '../../../../redux/store';
+// import { RootState } from '@redux/store';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { getHistoryApi } from '../../../../redux/Api/ProfileApi';
+// import { getHistoryApi } from '@redux/Api/ProfileApi';
 
 // const useRanking = () => {
 //   const navigation = useNavigation();

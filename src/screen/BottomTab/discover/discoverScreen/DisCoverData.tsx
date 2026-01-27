@@ -1,6 +1,7 @@
+import imageIndex from "@assets/imageIndex";
+
  
-import imageIndex from "../../../../assets/imageIndex";
-export const genres = [
+ export const genres = [
   'Science Fiction',
   'Action',
   'Asian',
@@ -45,14 +46,14 @@ export const sortByData = [
 // ];
 
 export const platformsData = [
-  { id: '1', name: 'Netflix', icon: imageIndex.netflix},
-  { id: '2', name: 'Disney Plus', icon: imageIndex.disney},
+  { id: '1', name: 'Netflix', icon: imageIndex.google},
+  { id: '2', name: 'Disney Plus', icon: imageIndex.google},
   { id: '3', name: 'Amazon Prime Video', icon: imageIndex.amazon},
-  { id: '4', name: 'Hulu', icon: imageIndex.hulu},
-  { id: '5', name: 'Paramount Plus', icon: imageIndex.peacock },
+  { id: '4', name: 'Hulu', icon: imageIndex.google},
+  { id: '5', name: 'Paramount Plus', icon: imageIndex.amazon },
   { id: '6', name: 'Fandango At Home', icon: imageIndex.amazon},
-  { id: '7', name: 'YouTube Premium', icon: imageIndex.disney},
-  { id: '8', name: 'ABC', icon: imageIndex.hulu},
+  { id: '7', name: 'YouTube Premium', icon: imageIndex.amazon},
+  { id: '8', name: 'ABC', icon: imageIndex.amazon},
 
 
 ];

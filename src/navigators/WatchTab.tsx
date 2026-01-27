@@ -7,7 +7,7 @@ import WatchScreen from '../screen/BottomTab/watch/watchScreen/WatchScreen';
 import OtherProfile from '../screen/BottomTab/home/otherProfile/OtherProfile';
 import MovieDetailScreen from '../screen/BottomTab/discover/movieDetail/MovieDetailScreen';
 import WoodsScreen from '../../woodmovieseaach';
-import GroupSearchScreen from '../screen/BottomTab/watch/watchScreen/GroupSearchScreen ';
+import GroupSearchScreen from '../screen/BottomTab/watch/watchScreen/GroupSearchScreen';
 import WatchWithFrind from '../screen/BottomTab/watch/watchScreen/WatchWithFrind';
 import SearchMovieDetail from '../screen/BottomTab/discover/movieDetail/SearchMovieDetail';
  

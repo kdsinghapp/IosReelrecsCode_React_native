@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
-import font from '../../../theme/font';
-import { Color } from '../../../theme/color';
+import font from '@theme/font';
+import { Color } from '@theme/color';
 
 interface Props {
   groupActivity: any[];

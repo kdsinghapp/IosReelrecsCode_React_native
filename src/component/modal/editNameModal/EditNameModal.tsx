@@ -11,13 +11,13 @@ import {
   TextInput,
   Alert
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
+import imageIndex from '@assets/imageIndex';
 import ButtonCustom from '../../common/button/ButtonCustom';
-import { Color } from '../../../theme/color';
-import { checkUsernameAvailability } from '../../../redux/Api/authService';
-import { renameGroup } from '../../../redux/Api/GroupApi';
+import { Color } from '@theme/color';
+import { checkUsernameAvailability } from '@redux/Api/authService';
+import { renameGroup } from '@redux/Api/GroupApi';
 import { G } from 'react-native-svg';
-import font from '../../../theme/font';
+import font from '@theme/font';
 
 interface EditNameModalProps {
   modalVisible: boolean;

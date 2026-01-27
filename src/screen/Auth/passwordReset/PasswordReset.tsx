@@ -5,23 +5,18 @@ import {
   ScrollView,
 } from 'react-native';
 import React from 'react';
-import Loading from '../../../utils/Loader';
-import imageIndex from '../../../assets/imageIndex';
- import Styles from './style';
-import {
-   CustomStatusBar,
-  HeaderCustom,
-  InputFieldCustom,
-  SuccessMessageCustom,
-} from '../../../component';
+  import Styles from './style';
 import styles from './style';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
 import usePasswordReset from './usePasswordReset';
-import useToastMessage from '../../../component/useToastMessage/useToastMessage';
-import font from '../../../theme/font';
-import CustomText from '../../../component/common/CustomText';
-import ButtonCustom from '../../../component/common/button/ButtonCustom';
+import useToastMessage from '@components/useToastMessage/useToastMessage';
+import font from '@theme/font';
+import CustomText from '@components/common/CustomText';
+import ButtonCustom from '@components/common/button/ButtonCustom';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { CustomStatusBar, HeaderCustom, InputFieldCustom, SuccessMessageCustom } from '@components/index';
+import LoadingModal from '@utils/Loader';
+import imageIndex from '@assets/imageIndex';
 
 export default function PasswordReset() {
   const {
@@ -41,7 +36,7 @@ export default function PasswordReset() {
     <SafeAreaView style={{ flex: 1, backgroundColor: Color.background, paddingTop: 15 }}>
       <CustomStatusBar backgroundColor="transparent" translucent />
 
-      {loading && <Loading />}
+      {loading && <LoadingModal />}
       <View style={{ marginTop: 20, }} >
         <HeaderCustom
           backIcon={imageIndex.backArrow}

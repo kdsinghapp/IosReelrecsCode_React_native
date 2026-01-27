@@ -3,8 +3,8 @@ import {
   Modal, View, Text, StyleSheet, TouchableWithoutFeedback,  
 } from 'react-native';
  import StepProgressBar from './StepProgressBar'; // import component
-import { Color } from '../../../theme/color';
-import { fileLogger } from '../../../utils/FileLogger';
+import { Color } from '@theme/color';
+import { fileLogger } from '@utils/FileLogger';
 
 // interface ProgressModalProps {
 //   visible: boolean;

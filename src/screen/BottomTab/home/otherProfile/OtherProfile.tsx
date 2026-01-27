@@ -1,36 +1,28 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator, VirtualizedList, Alert } from 'react-native';
-import {
-  BottomSheet,
-  ComparisonModal,
-  CustomStatusBar,
-  FeedbackModal,
-  HeaderCustom,
-
-  ProfileCard
-} from '../../../../component';
-import imageIndex from '../../../../assets/imageIndex';
-import styles from './style';
+ 
+ import styles from './style';
 import { useFocusEffect, useIsFocused, useRoute } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
-import FeedCard from '../../../../component/card/feedCard/FeedCard';
-// import { feedData } from '../homeScreen/HomeData';
+import ScreenNameEnum from '@routes/screenName.enum';
+ // import { feedData } from '../homeScreen/HomeData';
 import useHome from '../homeScreen/useHome';
-import { Color } from '../../../../theme/color';
-import HorizontalMovieList from '../../../../component/common/HorizontalMovieList/HorizontalMovieList';
-import { getOthereUsers, getOtherUserBookmarks } from '../../../../redux/Api/ProfileApi';
+import { Color } from '@theme/color';
+import HorizontalMovieList from '@components/common/HorizontalMovieList/HorizontalMovieList';
+import { getOthereUsers, getOtherUserBookmarks } from '@redux/Api/ProfileApi';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import { getCommonBookmarkOtherUser, getCommonBookmarks, getOtherUserRatedMovies } from '../../../../redux/Api/movieApi';
-import useUserFeed from '../../../../component/card/feedCard/useUserFeed';
-import { followUser, unfollowUser } from '../../../../redux/Api/followService';
-import MemoFeedCard from '../../../../component/card/feedCard/MemoFeedCard';
-import useUserFeedWithName from '../../../../component/card/feedCard/useUserFeedWithName';
+import { RootState } from '@redux/store';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { getCommonBookmarkOtherUser, getCommonBookmarks, getOtherUserRatedMovies } from '@redux/Api/movieApi';
+import useUserFeed from '@components/card/feedCard/useUserFeed';
+import { followUser, unfollowUser } from '@redux/Api/followService';
+import MemoFeedCard from '@components/card/feedCard/MemoFeedCard';
+import useUserFeedWithName from '@components/card/feedCard/useUserFeedWithName';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FeedCardShimmer from '../../../../component/card/feedCard/FeedCardShimmer';
-import MemoFeedCardHome from '../../../../component/card/feedCard/MemoFeedCardHome';
+import FeedCardShimmer from '@components/card/feedCard/FeedCardShimmer';
+import MemoFeedCardHome from '@components/card/feedCard/MemoFeedCardHome';
+import { BottomSheet, CustomStatusBar, HeaderCustom, ProfileCard } from '@components/index';
+import imageIndex from '@assets/imageIndex';
 
 const OtherProfile = () => {
   const token = useSelector((state: RootState) => state.auth?.token);
@@ -372,7 +364,7 @@ const OtherProfile = () => {
 
       setLoadingCommon(true);
       try {
-        const res = await getCommonBookmarkOtherUser(token, otherUserData.username);
+        const res = await getCommonBookmarkOtherUser(token, otherUserData?.username);
         setCommonUserRankingMovie(res?.results || []);
       } catch (err) {
         console.error('❌ Error fetching common bookmarks:', err);

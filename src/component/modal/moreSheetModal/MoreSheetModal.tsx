@@ -12,14 +12,14 @@ import {
   Platform,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import RankingCard from '../../ranking/RankingCard';
-import font from '../../../theme/font';
-import { getMatchingMovies } from '../../../redux/Api/ProfileApi';
+import font from '@theme/font';
+import { getMatchingMovies } from '@redux/Api/ProfileApi';
 import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import CustomText from '../../common/CustomText';
  
 interface Movie {

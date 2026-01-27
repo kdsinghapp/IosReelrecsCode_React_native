@@ -1,10 +1,8 @@
 
 import { StyleSheet } from 'react-native';
-import ResponsiveSize from '../../../../utils/ResponsiveSize';
-import { Color } from '../../../../theme/color';
-import { hp } from '../../../../utils/Constant';
-import font from '../../../../theme/font';
-
+ import { Color } from '@theme/color';
+import font from '@theme/font';
+ 
 const styles = StyleSheet.create({
   // maincontainer: {
   //   flex: 1,

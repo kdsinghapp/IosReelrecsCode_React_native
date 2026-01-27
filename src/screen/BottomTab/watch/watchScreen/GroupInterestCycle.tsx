@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Animated } from 'react-native';
- import { Color } from '../../../../theme/color';
-import imageIndex from '../../../../assets/imageIndex';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import font from '../../../../theme/font';
+ import { Color } from '@theme/color';
+ import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import font from '@theme/font';
 import moment from 'moment';
-import CustomText from '../../../../component/common/CustomText';
+import CustomText from '@components/common/CustomText';
+import imageIndex from '@assets/imageIndex';
  const GroupInterestCycle = ({ group,
   onGroupSelect,
   isMultiSelectMode,

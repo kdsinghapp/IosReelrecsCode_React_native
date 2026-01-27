@@ -12,13 +12,13 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Color } from '../../../theme/color';
-import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import font from '@theme/font';
 import { watchAvaibleData } from '../../../../watchdata';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
 import FastImage from 'react-native-fast-image';
-import { getMoviePlatforms } from '../../../redux/Api/ProfileApi';
+import { getMoviePlatforms } from '@redux/Api/ProfileApi';
 
 const filterOptions = [
   { id: 1, option: 'All' },

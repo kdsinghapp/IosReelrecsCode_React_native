@@ -1,8 +1,8 @@
 
 import { StyleSheet } from 'react-native';
-import { Color } from '../../../../theme/color';
-import font from '../../../../theme/font';
-
+import { Color } from '@theme/color';
+import font from '@theme/font';
+ 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Color.background, },
   header: { paddingTop: 5, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 19.8 },

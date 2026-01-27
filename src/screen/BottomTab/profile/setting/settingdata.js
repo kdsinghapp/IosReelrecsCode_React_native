@@ -1,4 +1,4 @@
-import imageIndex from "../../../../assets/imageIndex";
+import imageIndex from '@assets/imageIndex";
 
 export const streamPlateData = [
   { id: 1, name: "Netflix", logo: imageIndex.netflix },

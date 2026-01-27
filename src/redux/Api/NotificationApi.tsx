@@ -52,9 +52,9 @@ export const respondToGroupInvitation = async (
   }
 };
 
-// import { getPendingGroupInvites } from '../../../../redux/Api/groupApi';
+// import { getPendingGroupInvites } from '@redux/Api/groupApi';
 // import { useSelector } from 'react-redux';
-// import { RootState } from '../../../../redux/store';
+// import { RootState } from '@redux/store';
 
 // const token = useSelector((state: RootState) => state.auth.token);
 // const [pendingInvites, setPendingInvites] = useState([]);

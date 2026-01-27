@@ -1,9 +1,9 @@
 // import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-// import { recordUserPreferences } from '../../../../redux/Api/ProfileApi';
-// import { calculateMovieRating, getAllRated_with_preference, getRatedMovies, rollbackPairwiseDecisions } from '../../../../redux/Api/movieApi';
+// import { recordUserPreferences } from '@redux/Api/ProfileApi';
+// import { calculateMovieRating, getAllRated_with_preference, getRatedMovies, rollbackPairwiseDecisions } from '@redux/Api/movieApi';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { useDispatch } from 'react-redux';
-// import { setModalClosed } from '../../../../redux/feature/modalSlice/modalSlice';
+// import { setModalClosed } from '@redux/feature/modalSlice/modalSlice';
 
 // export const useCompareComponent = (token: string) => {
 //   // ---- Core state ----
@@ -550,11 +550,11 @@
 
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { calculateMovieRating, getAllRated_with_preference, getRatedMovies, recordPairwiseDecision, rollbackPairwiseDecisions } from '../../../../redux/Api/movieApi';
+import { calculateMovieRating, getAllRated_with_preference, getRatedMovies, recordPairwiseDecision, rollbackPairwiseDecisions } from '@redux/Api/movieApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
-import { setModalClosed } from '../../../../redux/feature/modalSlice/modalSlice';
-
+import { setModalClosed } from '@redux/feature/modalSlice/modalSlice';
+  
 export const useCompareComponent = (token: string) => {
   // ---- Core state ----
   const [selectedMovie, setSelectedMovie] = useState<any>(null);

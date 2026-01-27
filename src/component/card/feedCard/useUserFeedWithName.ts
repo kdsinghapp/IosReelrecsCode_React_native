@@ -1,5 +1,5 @@
 // import { useState, useEffect } from "react";
-// import { getUserFeed } from "../../../redux/Api/FeedApi";
+// import { getUserFeed } from '@redux/Api/FeedApi";
 
 // const useUserFeedWithName = (token: string) => {
 //   const [feedData, setFeedData] = useState<any[]>([]);
@@ -62,7 +62,7 @@
 
 
 // // import { useState } from 'react';
-// // import { getUserFeed } from '../../../redux/Api/FeedApi';
+// // import { getUserFeed } from '@redux/Api/FeedApi';
 
 // // const useUserFeed = (token: string) => {
 // //   const [feedData, setFeedData] = useState([]);
@@ -142,9 +142,9 @@
 
 
 
+import { getUserFeed } from "@redux/Api/FeedApi";
 import { useState, useEffect } from "react";
-import { getUserFeed } from "../../../redux/Api/FeedApi";
-
+ 
 const useUserFeedWithName = (token: string) => {
   const [feedData, setFeedData] = useState<any[]>([]);
   const [page, setPage] = useState(1);

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, View, Text, Image, TouchableOpacity, StyleSheet,  Dimensions } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import SelectFriendCom from '../../common/SelectFriendCom/SelectFriendCom';
-import font from '../../../theme/font';
+import font from '@theme/font';
 import BlurViewCom from '../../common/BlurViewCom/BlurViewCom';
 import { BlurView } from '@react-native-community/blur';
-import { addMembersToGroup, getGroupMembers } from '../../../redux/Api/GroupApi';
+import { addMembersToGroup, getGroupMembers } from '@redux/Api/GroupApi';
  
 
 interface props {

@@ -16,18 +16,19 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 import styles from './style';
-import imageIndex from '../../../../../assets/imageIndex';
-import ScreenNameEnum from '../../../../../routes/screenName.enum';
-import { CustomStatusBar } from '../../../../../component';
-import RankingCard from '../../../../../component/ranking/RankingCard';
-import ProfilePhotoCom from '../../../../../component/common/ProfilePhotoCom/ProfilePhotoCom';
+ 
+import ProfilePhotoCom from '@components/common/ProfilePhotoCom/ProfilePhotoCom';
 
-import { getPendingGroupInvites, respondToGroupInvitation } from '../../../../../redux/Api/NotificationApi';
-import { RootState } from '../../../../../redux/store';
-import { BASE_IMAGE_URL } from '../../../../../redux/Api/axiosInstance';
-import { Color } from '../../../../../theme/color';
-import { appNotification } from '../../../../../redux/Api/authService';
+import { getPendingGroupInvites, respondToGroupInvitation } from '@redux/Api/NotificationApi';
+import { RootState } from '@redux/store';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { Color } from '@theme/color';
+import { appNotification } from '@redux/Api/authService';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ScreenNameEnum from '@routes/screenName.enum';
+import RankingCard from '@components/ranking/RankingCard';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar } from '@components/index';
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 // Type for each feed item

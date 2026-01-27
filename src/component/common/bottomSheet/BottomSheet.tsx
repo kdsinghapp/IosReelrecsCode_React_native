@@ -1,7 +1,7 @@
+import { Color } from "@theme/color";
 import React from "react";
 import { View, FlatList, TouchableOpacity, Text, StyleSheet, Modal, Pressable } from "react-native";
-import { Color } from "../../../theme/color";
-
+ 
 interface DropdownModalProps {
   visible: boolean;
   options?: string[];

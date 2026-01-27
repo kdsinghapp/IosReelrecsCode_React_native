@@ -1,15 +1,16 @@
 import { Image,  StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom'
-import { HeaderCustom } from '../../../../component'
-import imageIndex from '../../../../assets/imageIndex'
+ 
+import imageIndex from '@assets/imageIndex'
 import { useNavigation } from '@react-navigation/native'
-import ScreenNameEnum from '../../../../routes/screenName.enum'
-import { Color } from '../../../../theme/color'
-import font from '../../../../theme/font'
+import ScreenNameEnum from '@routes/screenName.enum'
+import { Color } from '@theme/color'
+import font from '@theme/font'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../../redux/store'
+import { RootState } from '@redux/store'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import StatusBarCustom from '@components/common/statusBar/StatusBarCustom'
+import { HeaderCustom } from '@components/index'
 
 
 const AccountSetting = () => {

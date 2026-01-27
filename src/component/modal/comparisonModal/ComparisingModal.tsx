@@ -11,8 +11,8 @@ import {
   Dimensions,
   Animated,
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 
 interface Movie {
   title: string;

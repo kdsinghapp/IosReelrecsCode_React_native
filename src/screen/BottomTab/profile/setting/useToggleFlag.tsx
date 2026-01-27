@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import useProfile from '../profileScreen/useProfile';
-import { updateProfileFlags } from '../../../../redux/Api/authService';
-import { RootState } from '../../../../redux/store';
+import { updateProfileFlags } from '@redux/Api/authService';
+import { RootState } from '@redux/store';
 type FlagKey =
   | "autoplay_trailer"
   | "videos_start_with_sound"

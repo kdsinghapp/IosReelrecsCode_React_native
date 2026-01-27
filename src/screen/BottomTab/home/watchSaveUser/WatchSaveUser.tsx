@@ -1,24 +1,24 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, BackHandler } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-import { BottomSheet, ComparisonModal, CustomStatusBar, FeedbackModal, HeaderCustom, ProfileOther } from '../../../../component';
-import { SafeAreaView } from 'react-native-safe-area-context';
+ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import styles from './style';
- import { Color } from '../../../../theme/color';
+ import { Color } from '@theme/color';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
+import { RootState } from '@redux/store';
 import FastImage from 'react-native-fast-image';
 import CompareModals from '../../ranking/rankingScreen/CompareModals';
 import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
-import { useBookmarks } from '../../../../hook/useBookmark';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import SearchmovieCom from '../../../../component/searchmovieCom/searchmovieCom';
+import { useBookmarks } from '@hooks/useBookmark';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import SearchmovieCom from '@components/searchmovieCom/searchmovieCom';
 import useWoodScreen from '../../ranking/woodsScreen/useWoodScreen';
 import { resetCache } from '../../../../../metro.config';
-import { getCommonBookmarkOtherUser, getCommonBookmarks, getOtherUserRatedMovies } from '../../../../redux/Api/movieApi';
-import { getHistoryApi } from '../../../../redux/Api/ProfileApi';
+import { getCommonBookmarkOtherUser, getCommonBookmarks, getOtherUserRatedMovies } from '@redux/Api/movieApi';
+import { getHistoryApi } from '@redux/Api/ProfileApi';
+import imageIndex from '@assets/imageIndex';
+import { BottomSheet, CustomStatusBar, HeaderCustom, ProfileOther } from '@components/index';
 
 
 interface WatchSaveUserProps {

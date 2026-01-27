@@ -10,13 +10,13 @@
 // import FastImage from "react-native-fast-image";
 // import { SafeAreaView } from "react-native-safe-area-context";
 // import { useRoute, useNavigation } from "@react-navigation/native";
-// import { BottomSheet, CustomStatusBar, HeaderCustom, ProfileOther } from "../../../../component";
-// import imageIndex from "../../../../assets/imageIndex";
+// import { BottomSheet, CustomStatusBar, HeaderCustom, ProfileOther } from '@components';
+// import imageIndex from '@assets/imageIndex";
 // import styles from "./style";
-// import ScreenNameEnum from "../../../../routes/screenName.enum";
+// import ScreenNameEnum from '@routes/screenName.enum";
 // import { useCompareComponent } from "../../ranking/rankingScreen/useCompareComponent";
-// import { useBookmarks } from "../../../../hook/useBookmark";
-// import { getCommonBookmarks, getOtherUserBookmarks } from "../../../../redux/Api/movieApi";
+// import { useBookmarks } from '@hooks/useBookmark";
+// import { getCommonBookmarks, getOtherUserBookmarks } from '@redux/Api/movieApi";
 // import { ActivityIndicator as RNActivityIndicator } from "react-native";
 
 // const OtherWantProfile = () => {
@@ -242,33 +242,27 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-import {
-  BottomSheet,
-  ComparisonModal,
-  CustomStatusBar,
-  FeedbackModal,
-  HeaderCustom,
-  ProfileOther,
-} from '../../../../component';
+  
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import styles from './style';
 import useHome from '../homeScreen/useHome';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import { getOtherUserBookmarks, toggleBookmark } from '../../../../redux/Api/ProfileApi';
+import { RootState } from '@redux/store';
+import { getOtherUserBookmarks, toggleBookmark } from '@redux/Api/ProfileApi';
 import CompareModals from '../../ranking/rankingScreen/CompareModals';
 import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
-import { useBookmarks } from '../../../../hook/useBookmark';
-import { getCommonBookmarks } from '../../../../redux/Api/movieApi';
+import { useBookmarks } from '@hooks/useBookmark';
+import { getCommonBookmarks } from '@redux/Api/movieApi';
 import FastImage from 'react-native-fast-image';
-import { Color } from '../../../../theme/color';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import { BottomSheet, CustomStatusBar, HeaderCustom, ProfileOther } from '@components/index';
 
 const OtherWantPrfofile = () => {
   const route = useRoute();
-  const { title, datamovie, username, imageUri, token, disableBottomSheet = false, my_profile = false } = route.params
+  const { title, datamovie, username, imageUri, token, disableBottomSheet = false, my_profile = false } = route?.params
    const { navigation, isVisible, setIsVisible, modalVisible, setModalVisible } = useHome();
   // const { isBookmarked: save, toggle: handleBookmarkToggle } = useBookmark(token,imdb_id);
   const { isBookmarked, toggleBookmark } = useBookmarks(token);

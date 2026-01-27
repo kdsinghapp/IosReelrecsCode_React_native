@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Pressable, Image, TouchableOpacity, Modal, StyleSheet, Dimensions, ActivityIndicator, FlatList } from 'react-native';
-import { Color } from '../../../../theme/color';
-import imageIndex from '../../../../assets/imageIndex';
-import font from '../../../../theme/font';
-import CustomText from '../../../../component/common/CustomText';
-import { getUserSubscriptions } from '../../../../redux/Api/SettingApi';
-import { RootState } from '../../../../redux/store';
+import { Color } from '@theme/color';
+ import font from '@theme/font';
+import CustomText from '@components/common/CustomText';
+import { getUserSubscriptions } from '@redux/Api/SettingApi';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { SuccessMessageCustom } from '../../../../component';
-
+import imageIndex from '@assets/imageIndex';
+import { SuccessMessageCustom } from '@components/index';
+ 
 const PlatformModales = ({ visible,
     onClose,
     reset,
     onApply,
     platformsData,
     selectedPlatforms,
-    setSelectedPlatforms }) => {
+    setSelectedPlatforms }:any) => {
     // console.log(platformsData, "platformsData____modalScreec__")
 
     const token = useSelector((state: RootState) => state.auth.token);

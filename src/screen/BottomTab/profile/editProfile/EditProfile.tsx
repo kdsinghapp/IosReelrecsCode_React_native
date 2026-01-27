@@ -3,23 +3,22 @@ import {
   View, Text, Image, TouchableOpacity, 
   FlatList, Alert
 } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom';
-import {
-  EditNameModal, HeaderCustom, ImagePickerModal
-} from '../../../../component';
+ import StatusBarCustom from '@components/common/statusBar/StatusBarCustom';
+ 
 import styles from './style';
 import useEdit from './useEdit';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import { getUserProfile, updateUserProfile } from '../../../../redux/Api/authService';
+import { RootState } from '@redux/store';
+import { getUserProfile, updateUserProfile } from '@redux/Api/authService';
 import { useRoute } from '@react-navigation/native';
 import useProfile from '../profileScreen/useProfile';
-import LoadingModal from '../../../../utils/Loader';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import { updateUserProfileField } from '../../../../redux/feature/authSlice';
+import LoadingModal from '@utils/Loader';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { updateUserProfileField } from '@redux/feature/authSlice';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { EditNameModal, HeaderCustom, ImagePickerModal } from '@components/index';
+import imageIndex from '@assets/imageIndex';
 
 
 const EditProfile = () => {

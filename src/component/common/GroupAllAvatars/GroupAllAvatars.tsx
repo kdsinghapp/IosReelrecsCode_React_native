@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Color } from '../../../theme/color';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
+import { Color } from '@theme/color';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
 import FastImage from 'react-native-fast-image';
 
 const GroupAllAvatars = ({ group }:any) => {

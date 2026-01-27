@@ -11,10 +11,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { Color } from '../../../theme/color';
-import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import font from '@theme/font';
 import RankingCard from '../../ranking/RankingCard';
 
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
@@ -22,7 +22,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import CustomText from '../CustomText';
 import ScoreIntroModal from '../../modal/ScoreIntroModal/ScoreIntroModal';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState } from '@redux/store';
 import RankingWithInfo from '../../ranking/RankingWithInfo';
 import FastImage from 'react-native-fast-image';
 

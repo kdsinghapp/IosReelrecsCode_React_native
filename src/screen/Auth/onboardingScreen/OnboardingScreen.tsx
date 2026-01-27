@@ -13,10 +13,10 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
-import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
-import { Button } from '../../../component';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+ import font from '@theme/font';
+ import ScreenNameEnum from '@routes/screenName.enum';
+import imageIndex from '@assets/imageIndex';
+import { Button } from '@components/index';
 
 const { width, height } = Dimensions.get('window');
 

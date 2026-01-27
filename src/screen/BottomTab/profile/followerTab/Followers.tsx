@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet,  } from 'react-native';
-import { HeaderCustom, SearchBarCustom } from '../../../../component';
-import StatusBarCustom from '../../../../component/common/statusBar/StatusBarCustom';
-import imageIndex from '../../../../assets/imageIndex';
-import { Color } from '../../../../theme/color';
+  import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import { useRoute } from '@react-navigation/native';
-import ProfilePhotoCom from '../../../../component/common/ProfilePhotoCom/ProfilePhotoCom';
-import { followUser, getFollowers, getFollowing, getSuggestedFriends, unfollowUser } from '../../../../redux/Api/followService';
-import { RootState } from '../../../../redux/store';
+import ProfilePhotoCom from '@components/common/ProfilePhotoCom/ProfilePhotoCom';
+import { followUser, getFollowers, getFollowing, getSuggestedFriends, unfollowUser } from '@redux/Api/followService';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import font from '../../../../theme/font';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import font from '@theme/font';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import StatusBarCustom from '@components/common/statusBar/StatusBarCustom';
+import { HeaderCustom, SearchBarCustom } from '@components/index';
 
 
 const FollowersScreen = () => {

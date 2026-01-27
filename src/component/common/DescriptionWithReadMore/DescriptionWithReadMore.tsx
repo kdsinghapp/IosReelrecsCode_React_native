@@ -1,7 +1,7 @@
 // import React, { useState, useMemo, useEffect } from 'react';
 // import { Text, StyleSheet, TouchableOpacity, TextStyle, View, Pressable } from 'react-native';
-// import { Color } from '../../../theme/color';
-// import font from '../../../theme/font';
+// import { Color } from '@theme/color';
+// import font from '@theme/font';
 // import CustomText from '../CustomText';
 
 // interface Props {
@@ -111,8 +111,8 @@ import {
   View,
   TextStyle,
 } from 'react-native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import CustomText from '../CustomText';
 import { ScrollView } from 'react-native-gesture-handler';
 

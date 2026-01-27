@@ -1,7 +1,7 @@
 import React  from 'react';
 import { View,   StyleSheet, Text } from 'react-native';
- import WatchGroupCom from '../../../../component/common/WatchGroupCom/WatchGroupCom';
- import font from '../../../../theme/font';
+  import font from '@theme/font';
+import WatchGroupCom from '@components/common/WatchGroupCom/WatchGroupCom';
 const GroupSearch = ({ groupData }) => {
     // const [searchText, setSearchText] = useState('');
 

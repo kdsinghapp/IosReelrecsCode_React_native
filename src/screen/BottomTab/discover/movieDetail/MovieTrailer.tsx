@@ -3,9 +3,9 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { View, Image, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import Video from 'react-native-video';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMute } from '../../../../redux/feature/videoAudioSlice';
-import { Color } from '../../../../theme/color';
-import imageIndex from '../../../../assets/imageIndex';
+import { toggleMute } from '@redux/feature/videoAudioSlice';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
 import styles from './style';
 
 type MovieTrailerProps = {
@@ -157,9 +157,9 @@ export default React.memo(MovieTrailer);
 // import { View, Image, TouchableOpacity, Animated, StyleSheet, Dimensions } from 'react-native';
 // import Video from 'react-native-video';
 // import { useSelector, useDispatch } from 'react-redux';
-// import imageIndex from '../../../../assets/imageIndex';
-// import { Color } from '../../../../theme/color';
-// import { toggleMute } from '../../../../redux/feature/videoAudioSlice';
+// import imageIndex from '@assets/imageIndex';
+// import { Color } from '@theme/color';
+// import { toggleMute } from '@redux/feature/videoAudioSlice';
 // import styles from './style';
 
 // const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT  , } = Dimensions.get('window');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
 
 const SuccessMessageCustom = ({ message, heading, screen, profile }: any) => {
   if (!message) return null;

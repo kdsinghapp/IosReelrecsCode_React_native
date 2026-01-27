@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { checkEmailExists, checkUsernameAvailability, confirmEmailCodeApi, loginUser_Api, sendOTPToEmail_GET, signupWithUsername } from '../../../redux/Api/authService';
+import { checkEmailExists, checkUsernameAvailability, confirmEmailCodeApi, loginUser_Api, sendOTPToEmail_GET, signupWithUsername } from '@redux/Api/authService';
 import { RootStackParamList } from './SignupTypes';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import Toast from 'react-native-toast-message';
+ import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../../redux/feature/authSlice';
+import { loginSuccess } from '@redux/feature/authSlice';
 import { Alert, BackHandler } from 'react-native';
+import ScreenNameEnum from '@routes/screenName.enum';
 const useSignup = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [email, setEmail] = useState('');

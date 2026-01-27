@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import { CustomStatusBar } from '../../../../component';
+import { CustomStatusBar } from '@components';
 import imageIndex from '../../../../assets/imageIndex';
 import styles from './style';
 import ScreenNameEnum from '../../../../routes/screenName.enum';
@@ -19,17 +19,17 @@ import { getRecentActiveUsers } from '../../../../redux/Api/ProfileApi';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import useUserFeed from '../../../../component/card/feedCard/useUserFeed';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+ import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import isEqual from 'lodash.isequal';
-import CompareModals from '../../ranking/rankingScreen/CompareModals';
-import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
+ import { useCompareComponent } from '../../ranking/rankingScreen/useCompareComponent';
 import { homeDiscoverApi } from '../../../../redux/Api/movieApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FeedCardShimmer from '../../../../component/card/feedCard/FeedCardShimmer';
-import AvatarShimmer from '../../../../component/ShimmerCom/AvatarShimmer';
-import MemoFeedCardHome from '../../../../component/card/feedCard/MemoFeedCardHome';
+ import AvatarShimmer from '../../../../component/ShimmerCom/AvatarShimmer';
+ import MemoFeedCardHome from '@components/card/feedCard/MemoFeedCardHome';
+import useUserFeed from '@components/card/feedCard/useUserFeed';
+import FeedCardShimmer from '@components/card/feedCard/FeedCardShimmer';
+import CompareModals from '@screens/BottomTab/ranking/rankingScreen/CompareModals';
 
 const App = () => {
   const token = useSelector((state: RootState) => state.auth.token);

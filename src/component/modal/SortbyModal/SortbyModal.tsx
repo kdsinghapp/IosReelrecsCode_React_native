@@ -10,9 +10,9 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import CustomText from '../../common/CustomText';
 
 const { height } = Dimensions.get('window');

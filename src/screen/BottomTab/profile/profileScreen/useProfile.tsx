@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from 'react-native';
-import { RootState } from '../../../../redux/store';
-import { getUserProfile, uploadAvatarImage } from '../../../../redux/Api/authService';
-import { updateUserData } from '../../../../redux/feature/userSlice';
-import { setUserProfile } from '../../../../redux/feature/authSlice';
+import { RootState } from '@redux/store';
+ import { updateUserData } from '@redux/feature/userSlice';
+import { setUserProfile } from '@redux/feature/authSlice';
+import { getUserProfile, uploadAvatarImage } from '@redux/Api/authService';
 
 const useProfile = () => {
   const dispatch = useDispatch();

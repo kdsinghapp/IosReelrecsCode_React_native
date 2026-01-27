@@ -11,13 +11,13 @@ import {
   Alert,
 } from 'react-native';
  import { filters, genres, platformsData } from './DisCoverData';
-import { Color } from '../../../../theme/color';
+import { Color } from '@theme/color';
 import PlatformModales from './PlatformModales';
-import { GenreModal } from '../../../../component';
-import font from '../../../../theme/font';
- import { getUniqueGenres } from '../../../../redux/Api/movieApi';
-import { getUniquePlatforms } from '../../../../redux/Api/SettingApi';
-import CustomText from '../../../../component/common/CustomText';
+   import { getUniqueGenres } from '@redux/Api/movieApi';
+import { getUniquePlatforms } from '@redux/Api/SettingApi';
+import CustomText from '@components/common/CustomText';
+import font from '@theme/font';
+import { GenreModal } from '@components/index';
 
 
 
@@ -27,7 +27,7 @@ const FilterBar = ({ isSelectList,
   setPlatformFilterString,
   selectedSimpleFilter, setSelectedSimpleFilter,
   platformFilterString,
-  token, }) => {
+  token, }:any) => {
   const [selectedGenres, setSelectedGenres] = useState([]);  // main genre state
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [genreModalVisible, setGenreModalVisible] = useState(false);

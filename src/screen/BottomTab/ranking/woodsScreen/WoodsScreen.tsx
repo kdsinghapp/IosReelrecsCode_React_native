@@ -10,16 +10,16 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import useWoodScreen from './useWoodScreen';
-import { ComparisonModal, CustomStatusBar, FeedbackModal } from '../../../../component';
-import { Color } from '../../../../theme/color';
-import SearchMovieCom from '../../../../component/searchmovieCom/searchmovieCom';
+import { Color } from '@theme/color';
+import SearchMovieCom from '@components/searchmovieCom/searchmovieCom';
 import GroupSearch from '../../watch/watchScreen/GroupSearch';
-import imageIndex from '../../../../assets/imageIndex';
-import font from '../../../../theme/font';
+ import font from '@theme/font';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
+import { RootState } from '@redux/store';
 import CompareModals from '../rankingScreen/CompareModals';
 import { useCompareComponent } from '../rankingScreen/useCompareComponent';
+import { CustomStatusBar } from '@components/index';
+import imageIndex from '@assets/imageIndex';
 
 const WoodsScreen = () => {
   const route = useRoute();

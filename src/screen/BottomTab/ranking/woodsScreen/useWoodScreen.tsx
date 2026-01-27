@@ -1,10 +1,10 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { searchMovies as fetchSearchMovies } from '../../../../redux/Api/movieApi';
+import { searchMovies as fetchSearchMovies } from '@redux/Api/movieApi';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import { getGroupActivities, getGroupMembers, getSearchGroup } from '../../../../redux/Api/GroupApi';
+import { RootState } from '@redux/store';
+import { getGroupActivities, getGroupMembers, getSearchGroup } from '@redux/Api/GroupApi';
 
 const useWoodScreen = () => {
   const navigation = useNavigation();
@@ -139,10 +139,10 @@ export default useWoodScreen;
 
 // import { useNavigation } from '@react-navigation/native';
 // import { useCallback, useEffect, useState } from 'react';
-// import { searchMovies as fetchSearchMovies } from '../../../../redux/Api/movieApi'; // ✅
+// import { searchMovies as fetchSearchMovies } from '@redux/Api/movieApi'; // ✅
 // import { useSelector } from 'react-redux';
-// import { RootState } from '../../../../redux/store';
-// import { getGroupActivities, getGroupMembers, getSearchGroup } from '../../../../redux/Api/GroupApi';
+// import { RootState } from '@redux/store';
+// import { getGroupActivities, getGroupMembers, getSearchGroup } from '@redux/Api/GroupApi';
 
 // const useWoodScreen = () => {
 //   const navigation = useNavigation();
@@ -343,7 +343,7 @@ export default useWoodScreen;
 
 // // import { useNavigation } from '@react-navigation/native';
 // // import { useState } from 'react';
-// // import { searchMovies as fetchSearchMovies } from '../../../../redux/Api/movieApi';
+// // import { searchMovies as fetchSearchMovies } from '@redux/Api/movieApi';
 
 
 // // const useWoodScreen = () => {

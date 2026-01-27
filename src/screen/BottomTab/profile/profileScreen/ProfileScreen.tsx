@@ -1,31 +1,29 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, Image, ScrollView,  FlatList, TouchableOpacity, ActivityIndicator, VirtualizedList, Dimensions } from 'react-native';
-import { Button, ComparisonModal, CustomStatusBar, FeedbackModal, HeaderCustom, ProfileCard } from '../../../../component';
-import imageIndex from '../../../../assets/imageIndex';
-import styles from './style';
+  import styles from './style';
 import { useFocusEffect, useIsFocused, useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import useHome from '../../home/homeScreen/useHome';
 // import { feedData, mockMovies, mockMoviesw } from '../../home/homeScreen/HomeData';
-import FeedCard from '../../../../component/card/feedCard/FeedCard';
-import { Color } from '../../../../theme/color';
-import HorizontalMovieList from '../../../../component/common/HorizontalMovieList/HorizontalMovieList';
-import font from '../../../../theme/font';
+ import { Color } from '@theme/color';
+import HorizontalMovieList from '@components/common/HorizontalMovieList/HorizontalMovieList';
+import font from '@theme/font';
 import useProfile from './useProfile';
-import LoadingModal from '../../../../utils/Loader';
-import { getHistoryApi, getUserBookmarks, toggleBookmar } from '../../../../redux/Api/ProfileApi';
-import { RootState } from '../../../../redux/store';
+import LoadingModal from '@utils/Loader';
+import { getHistoryApi, getUserBookmarks, toggleBookmar } from '@redux/Api/ProfileApi';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
-import { getRatedMovies } from '../../../../redux/Api/movieApi';
-import useUserFeed from '../../../../component/card/feedCard/useUserFeed';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import { getSuggestedFriends } from '../../../../redux/Api/followService';
-import SuggestedFriendCard from '../../../../component/common/SuggestedFriendCard/SuggestedFriendCard';
-import MemoFeedCard from '../../../../component/card/feedCard/MemoFeedCard';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getRatedMovies } from '@redux/Api/movieApi';
+import useUserFeed from '@components/card/feedCard/useUserFeed';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { getSuggestedFriends } from '@redux/Api/followService';
+import SuggestedFriendCard from '@components/common/SuggestedFriendCard/SuggestedFriendCard';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FeedCardShimmer from '../../../../component/card/feedCard/FeedCardShimmer';
-import MemoFeedCardHome from '../../../../component/card/feedCard/MemoFeedCardHome';
+import FeedCardShimmer from '@components/card/feedCard/FeedCardShimmer';
+import MemoFeedCardHome from '@components/card/feedCard/MemoFeedCardHome';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar, HeaderCustom, ProfileCard } from '@components/index';
 
 
 const ProfileScreen = () => {
@@ -354,11 +352,7 @@ useEffect(() => {
       setLoadingRecs(false);
     }
   };
-  useEffect(() => {
-    if (!token) return;
-
-    fetchHistory();
-  }, [token]);
+ 
 
   useFocusEffect(
     useCallback(() => {

@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { View, Image, Text, StyleSheet, Dimensions, Animated, TouchableOpacity, ActivityIndicator } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-  import { Color } from '../../../../theme/color';
- import font from '../../../../theme/font';
+import imageIndex from '@assets/imageIndex';
+  import { Color } from '@theme/color';
+ import font from '@theme/font';
 import useMovie from '../../discover/movieDetail/useMovie';
-import { FriendthinkModal, MovieInfoModal } from '../../../../component';
- import WatchNowModal from '../../../../component/modal/WatchNowModal/WatchNowModal';
-import { DescriptionWithReadMore } from '../../../../component/common/DescriptionWithReadMore/DescriptionWithReadMore';
+import { FriendthinkModal, MovieInfoModal } from '@components';
+ import WatchNowModal from '@components/modal/WatchNowModal/WatchNowModal';
+import { DescriptionWithReadMore } from '@components/common/DescriptionWithReadMore/DescriptionWithReadMore';
 import FastImage from 'react-native-fast-image';
-import { getGroupActivitiesAction, getMembersScores, recordGroupPreference } from '../../../../redux/Api/GroupApi';
- import CustomText from '../../../../component/common/CustomText';
-import { convertRuntime } from '../../../../component/convertRuntime/ConvertRuntime';
+import { getGroupActivitiesAction, getMembersScores, recordGroupPreference } from '@redux/Api/GroupApi';
+ import CustomText from '@components/common/CustomText';
+import { convertRuntime } from '@components/convertRuntime/ConvertRuntime';
  
 const { width } = Dimensions.get('window');
 const ITEM_WIDTH = width * 0.4;

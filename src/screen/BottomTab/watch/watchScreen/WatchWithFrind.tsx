@@ -29,20 +29,14 @@ import {   useNavigation, useRoute } from '@react-navigation/native';
 import debounce from 'lodash.debounce';
 import FastImage from 'react-native-fast-image';
 
-import imageIndex from '../../../../assets/imageIndex';
-import { Color } from '../../../../theme/color';
-import font from '../../../../theme/font';
+ import { Color } from '@theme/color';
+import font from '@theme/font';
 import useMovie from '../../discover/movieDetail/useMovie';
-import {
-  FriendthinkModal,
-  MovieInfoModal,
-  CustomStatusBar,
  
-} from '../../../../component';
-import WatchNowModal from '../../../../component/modal/WatchNowModal/WatchNowModal';
-import { DescriptionWithReadMore } from '../../../../component/common/DescriptionWithReadMore/DescriptionWithReadMore';
-import CustomText from '../../../../component/common/CustomText';
-import { convertRuntime } from '../../../../component/convertRuntime/ConvertRuntime';
+import WatchNowModal from '@components/modal/WatchNowModal/WatchNowModal';
+import { DescriptionWithReadMore } from '@components/common/DescriptionWithReadMore/DescriptionWithReadMore';
+import CustomText from '@components/common/CustomText';
+import { convertRuntime } from '@components/convertRuntime/ConvertRuntime';
 import {
   getGroupActivitiesAction,
    recordGroupPreference,
@@ -50,13 +44,15 @@ import {
   getGroupRecommendedMovies,
   getGroupSearchMovies,
    getGroupMembers,
-} from '../../../../redux/Api/GroupApi';
-import { RootState } from '../../../../redux/store';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import GroupMovieModal from '../../../../component/modal/groupMovieModal/groupMovieModal';
-import GroupMembersModal from '../../../../component/modal/GroupMemberModal/GroupMemberModal';
-import GroupSettingModal from '../../../../component/modal/WatchGroupSetting/WatchGroupSetting';
+} from '@redux/Api/GroupApi';
+import { RootState } from '@redux/store';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import GroupMovieModal from '@components/modal/groupMovieModal/groupMovieModal';
+import GroupMembersModal from '@components/modal/GroupMemberModal/GroupMemberModal';
+import GroupSettingModal from '@components/modal/WatchGroupSetting/WatchGroupSetting';
 import Notification from '../../home/homeScreen/Notification/Notification';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar, FriendthinkModal, MovieInfoModal } from '@components/index';
   const { width, height } = Dimensions.get('window');
 const ITEM_WIDTH = width * 0.4;
 const SPACING = 20;
@@ -124,7 +120,7 @@ const WatchWithFrind = () => {
   const route = useRoute()
   const token = useSelector((state: RootState) => state.auth.token);
   const navigation = useNavigation();
-  const { groupProps: passedGroupProps, type, groupId ,maxActivitiescnt } = route.params || {};
+  const { groupProps: passedGroupProps, type, groupId ,maxActivitiescnt } = route?.params || {};
   const [group, setGroup] = useState(passedGroupProps);
   const [group1, setgroup1] = useState();
   const fetchGroups = async () => {

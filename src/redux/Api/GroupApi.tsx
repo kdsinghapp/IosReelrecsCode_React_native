@@ -1,15 +1,36 @@
 import { Alert } from 'react-native';
 import axiosInstance from './axiosInstance';
 import { User, Group, Movie, PaginatedResponse, Activity } from '../../types/api.types';
+import { 
+  validatePage, 
+  validatePageSize, 
+  validateSearchQuery,
+  createSafeParams,
+  throwValidationError 
+} from '../../utils/apiInputValidator';
 
 
 
 // selectfriend
 export const getAllFriends = async (token: string, page = 1, page_size = 20) => {
   try {
-    const response = await axiosInstance.get(`/group/friends?page=${page}`, {
+    // Validate inputs
+    const pageValidation = validatePage(page);
+    const pageSizeValidation = validatePageSize(page_size);
+    
+    if (!pageValidation.isValid) {
+      console.warn('⚠️ Invalid page, using default:', pageValidation.error);
+    }
+    if (!pageSizeValidation.isValid) {
+      console.warn('⚠️ Invalid page_size, using default:', pageSizeValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/friends', {
       headers: { Authorization: `Token ${token}` },
-      params: { page, page_size },
+      params: createSafeParams({ 
+        page: pageValidation.value, 
+        page_size: pageSizeValidation.value 
+      }),
     });
     console.log(response.data.results , 'adadaget___friend_')
     
@@ -22,15 +43,26 @@ export const getAllFriends = async (token: string, page = 1, page_size = 20) => 
 
 
 /// 🔹 2. Search Friends (for group search input)
-// export const searchFriends = async (token: string, query: string) => {
 export const searchFriends = async (token: string, query: string, page = 1, page_size = 20) => {
   try {
-    const response = await axiosInstance.get(`/group/search-friends?query=${query}`, {
+    // Validate inputs
+    const queryValidation = validateSearchQuery(query);
+    const pageValidation = validatePage(page);
+    const pageSizeValidation = validatePageSize(page_size);
+    
+    if (!queryValidation.isValid) {
+      throwValidationError('Search query', queryValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/search-friends', {
       headers: {
         Authorization: `Token ${token}`,
-       
       },
-       params: { query, page, page_size },
+      params: createSafeParams({ 
+        query: queryValidation.sanitized, 
+        page: pageValidation.value, 
+        page_size: pageSizeValidation.value 
+      }),
     });
     console.log(response.data, "wokrcreategroup__d__ -  -  - ",query, page, page_size)
     return response.data;
@@ -74,13 +106,21 @@ export const createGroup = async (
 // need_Change
 /// 🔹 4. Get Group Members
 export const getGroupMembers = async (token: string, groupId: string) => {
-   try {
-    const response = await axiosInstance.get(`/group/members?group_id=${groupId}`, {
+  try {
+    // Validate group ID
+    const { validateGroupId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(groupId);
+    
+    if (!groupIdValidation.isValid) {
+      throwValidationError('Group ID', groupIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/members', {
       headers: {
         Authorization: `Token ${token}`,
       },
+      params: createSafeParams({ group_id: groupIdValidation.sanitized }),
     });
-    // console.log(groupId, "  ___getGroupMembers - - -  ")
     console.log( response.data, " all getGroupMembers_getGroupMembers_api__wwwe")
     return response.data;
   } catch (error) {
@@ -191,14 +231,20 @@ export const getGroupActivities = async (token: string, groupId: string) => {
   console.log(token , groupId, "  - getGroupActivities -  ------groupId - - ")
 
   try {
-    const response = await axiosInstance.get(
-      `/group/activities?group_id=${groupId}`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    // Validate group ID
+    const { validateGroupId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(groupId);
+    
+    if (!groupIdValidation.isValid) {
+      throwValidationError('Group ID', groupIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/activities', {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      params: createSafeParams({ group_id: groupIdValidation.sanitized }),
+    });
     console.log(response.data.results, "getGroupActivities_getGroupActivities_api ")
     return response.data;
   } catch (error) {
@@ -209,22 +255,33 @@ export const getGroupActivities = async (token: string, groupId: string) => {
 
 
 // 9.2 Activities for Specific Movie
-
-
 export const getGroupActivitiesByMovie = async (
   token: string,
   groupId: string,
   imdbId: string
 ) => {
   try {
-    const response = await axiosInstance.get(
-      `/group/activities?group_id=${groupId}&imdb_id=${imdbId}`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    // Validate inputs
+    const { validateGroupId, validateImdbId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(groupId);
+    const imdbIdValidation = validateImdbId(imdbId);
+    
+    if (!groupIdValidation.isValid) {
+      throwValidationError('Group ID', groupIdValidation.error);
+    }
+    if (!imdbIdValidation.isValid) {
+      throwValidationError('IMDB ID', imdbIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/activities', {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      params: createSafeParams({ 
+        group_id: groupIdValidation.sanitized,
+        imdb_id: imdbIdValidation.sanitized
+      }),
+    });
     return response.data;
   } catch (error) {
     console.error("❌ getGroupActivitiesByMovie Error:", error?.response?.data || error.message);
@@ -238,10 +295,19 @@ export const getGroupActivitiesByMovie = async (
 export const getGroupRecommendedMovies = async (token: string, groupId: string) => {
   console.log('grou____if___re',groupId)
   try {
-    const response = await axiosInstance.get(`/group/recommend-movies?group_id=${groupId}`, {
+    // Validate group ID
+    const { validateGroupId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(groupId);
+    
+    if (!groupIdValidation.isValid) {
+      throwValidationError('Group ID', groupIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/recommend-movies', {
       headers: {
         Authorization: `Token ${token}`,
-      }
+      },
+      params: createSafeParams({ group_id: groupIdValidation.sanitized }),
     })
     console.log(response.data.results, "🎬 Recommended Movies for Group:", groupId);
     return response.data;
@@ -276,14 +342,29 @@ export const getGroupSearchMovies = async (
   query: string
 ): Promise<Movie[]> => {
   try {
-    const response = await axiosInstance.get(
-      `/group/search-movies?group_id=${group_id}&query=${query}`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
+    // Validate inputs
+    const { validateGroupId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(group_id);
+    const queryValidation = validateSearchQuery(query);
+    
+    if (!groupIdValidation.isValid) {
+      console.warn('⚠️ Invalid group_id:', groupIdValidation.error);
+      return [];
+    }
+    if (!queryValidation.isValid) {
+      console.warn('⚠️ Invalid search query:', queryValidation.error);
+      return [];
+    }
+
+    const response = await axiosInstance.get('/group/search-movies', {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      params: createSafeParams({ 
+        group_id: groupIdValidation.sanitized,
+        query: queryValidation.sanitized
+      }),
+    });
     console.log("[🔎 GroupSearch]", {
       token,
       group_id,
@@ -339,14 +420,32 @@ export const getGroupActivitiesAction = async (
 ): Promise<PaginatedResponse<Activity>> => {
   console.log(groupId ,imdbId , "_____getGroupActivitiesAction_____")
   try {
-    let url = `/group/activities?group_id=${groupId}`;
-    if (imdbId) {
-      url += `&imdb_id=${imdbId}`;
+    // Validate inputs
+    const { validateGroupId, validateImdbId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(groupId);
+    
+    if (!groupIdValidation.isValid) {
+      console.error('❌ Invalid group ID:', groupIdValidation.error);
+      return { current_page: 1, total_pages: 0, results: [] };
     }
-    const response = await axiosInstance.get(url, {
+
+    // Build params object
+    const params: Record<string, string> = { group_id: groupIdValidation.sanitized };
+    
+    if (imdbId) {
+      const imdbIdValidation = validateImdbId(imdbId);
+      if (imdbIdValidation.isValid) {
+        params.imdb_id = imdbIdValidation.sanitized;
+      } else {
+        console.warn('⚠️ Invalid IMDB ID, skipping:', imdbIdValidation.error);
+      }
+    }
+
+    const response = await axiosInstance.get('/group/activities', {
       headers: {
         Authorization: `Token ${token}`,
       },
+      params: createSafeParams(params),
     });
     console.log(response.data ,"<--------_______eeeegetGroupActivitiesAction")
     return response.data;
@@ -367,31 +466,49 @@ export const getGroupActivitiesAction = async (
   groupId,
   n_members,
   members, "______------g___etFilteredGroupMovies")
-// console.log(members.join(",") , "____members___  - -  - -  " )
-
-  let url = `/group/filter-movies?group_id=${groupId}`;
-  if (members?.length) {
-    url += `&members=${members.join(",")}`;
-  // console.log(url , "url____________members")
-  }
-  if (n_members) {
-    url += `&n_members=${n_members}`;
-  console.log(url , "url____________n_members")
-  }
-
 
   try {
-    // const response = await axiosInstance.get(`group/filter-movies?group_id=${groupId}&n_members=${members}`, {
-    const response = await axiosInstance.get(url, {
+    // Validate inputs
+    const { validateGroupId, validateStringArray } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(groupId);
+    
+    if (!groupIdValidation.isValid) {
+      console.error('❌ Invalid group ID:', groupIdValidation.error);
+      return null;
+    }
 
-    // const response = await axiosInstance.get(`/group/filter-movies?group_id=${groupId}&n_members=${n_members}`, {
+    // Build params object
+    const params: Record<string, any> = { group_id: groupIdValidation.sanitized };
+    
+    if (members && members.length > 0) {
+      const membersValidation = validateStringArray(members, {
+        fieldName: 'Members',
+        maxItems: 50,
+      });
+      if (membersValidation.isValid) {
+        params.members = membersValidation.sanitized.join(',');
+      } else {
+        console.warn('⚠️ Invalid members array:', membersValidation.error);
+      }
+    }
+    
+    if (n_members !== undefined && n_members !== null) {
+      const nMembersValidation = validatePage(n_members); // Use validatePage for positive integers
+      if (nMembersValidation.isValid) {
+        params.n_members = nMembersValidation.value;
+      } else {
+        console.warn('⚠️ Invalid n_members:', nMembersValidation.error);
+      }
+    }
+
+    const response = await axiosInstance.get('/group/filter-movies', {
       headers: {
         Authorization: `Token ${token}`,
       },
+      params: createSafeParams(params),
     });
 
-  console.log( 'no.---',n_members,members,  groupId ,response?.data , url, "<--__api__-----____s_getFilteredGroupMovies____--->")
-  // console.log(url , "url____________")
+    console.log( 'no.---',n_members,members,  groupId ,response?.data , "<--__api__-----____s_getFilteredGroupMovies____--->")
 
     return response.data;
   } catch (err) {
@@ -473,12 +590,28 @@ export const getGroupActivitiesAction = async (
 
 export const getMembersScores =  async (token:string , group_id:string ,imdb_id:string) => {
   console.log(group_id ,imdb_id , "getmemebersScroce___________" )
-  console.log(`/group/members-scores?group_id=${group_id}&imdb_id=${imdb_id}`)
+  
   try {
-    const response = await axiosInstance.get(`/group/members-scores?group_id=${group_id}&imdb_id=${imdb_id}`, {
+    // Validate inputs
+    const { validateGroupId, validateImdbId } = await import('../../utils/apiInputValidator');
+    const groupIdValidation = validateGroupId(group_id);
+    const imdbIdValidation = validateImdbId(imdb_id);
+    
+    if (!groupIdValidation.isValid) {
+      throwValidationError('Group ID', groupIdValidation.error);
+    }
+    if (!imdbIdValidation.isValid) {
+      throwValidationError('IMDB ID', imdbIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/group/members-scores', {
       headers: {
         Authorization : `Token ${token}`,
-      }
+      },
+      params: createSafeParams({ 
+        group_id: groupIdValidation.sanitized,
+        imdb_id: imdbIdValidation.sanitized
+      }),
     })
     console.log(response.data , "getMembersSCore___________")
     return response.data

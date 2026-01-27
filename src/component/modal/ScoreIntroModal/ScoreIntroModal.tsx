@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
 
 const { width } = Dimensions.get('window');
 

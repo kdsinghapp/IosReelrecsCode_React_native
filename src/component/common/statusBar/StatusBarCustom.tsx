@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar,  } from 'react-native';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
 import { SafeAreaView } from 'react-native-safe-area-context';
 type StatusBarComponentProps = {
   barStyle?: 'default' | 'light-content' | 'dark-content';

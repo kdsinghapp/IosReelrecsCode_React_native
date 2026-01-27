@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, FlatList, TouchableOpacity,  Alert } from 'react-native';
   import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
- import { Color } from '../../../theme/color';
+import ScreenNameEnum from '@routes/screenName.enum';
+ import { Color } from '@theme/color';
 // import watchTogetherGroups from '../../../../watchdata';
 import GroupAllAvatars from '../GroupAllAvatars/GroupAllAvatars';
  import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import GroupInterestCycle from '../../../screen/BottomTab/watch/watchScreen/GroupInterestCycle';
+import GroupInterestCycle from '@screens/BottomTab/watch/watchScreen/GroupInterestCycle';
  const GroupListItem = ({
 
   group,

@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import Toast from 'react-native-toast-message';
-import { verifyResetOTP } from '../../../redux/Api/authService';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-
+import { verifyResetOTP } from '@redux/Api/authService';
+import ScreenNameEnum from '@routes/screenName.enum';
+ 
 export default function useVerifyResetPassword() {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);

@@ -1,7 +1,7 @@
 // import React from 'react';
 // import { Modal, View, Text, Pressable, StyleSheet, TouchableOpacity, TouchableNativeFeedbackComponent, TouchableWithoutFeedback } from 'react-native';
-// import { Color } from '../../../theme/color';
-// import font from '../../../theme/font';
+// import { Color } from '@theme/color';
+// import font from '@theme/font';
 
 // type Props = {
 //   visible: boolean;
@@ -107,8 +107,8 @@ import {
   TouchableWithoutFeedback,
   Animated 
 } from 'react-native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 
 type Props = {
   visible: boolean;

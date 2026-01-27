@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, View, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FeedCardShimmer from './FeedCardShimmer';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
 import MemoFeedCard from './MemoFeedCard';
 
 const FeedCardScroll = ({

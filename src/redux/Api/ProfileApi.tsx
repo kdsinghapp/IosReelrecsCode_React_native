@@ -1,5 +1,11 @@
 import axiosInstance from "./axiosInstance";
 import axios from "axios";
+import {
+  validateImdbId,
+  validateString,
+  createSafeParams,
+  throwValidationError,
+} from '../../utils/apiInputValidator';
 
 const BASE_URL = "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/bookmark";
 
@@ -11,17 +17,43 @@ export const getMoviePlatforms = async ({
   
 }) => {
   try {
-    let url = `/platforms?imdb_id=${imdb_id}`;
-    if (country) url += `&country=${country}`;
-    if (watch_type) url += `&watch_type=${watch_type}`;
-    // console.log(url , "___url__herer")
-    console.log(url , "workUrl____")
-    const response = await axiosInstance.get(url, {
+    // Validate IMDB ID
+    const imdbIdValidation = validateImdbId(imdb_id);
+    if (!imdbIdValidation.isValid) {
+      throwValidationError('IMDB ID', imdbIdValidation.error);
+    }
+
+    // Build params
+    const params: Record<string, string> = { imdb_id: imdbIdValidation.sanitized };
+    
+    if (country) {
+      const countryValidation = validateString(country, {
+        fieldName: 'Country',
+        maxLength: 10,
+      });
+      if (countryValidation.isValid) {
+        params.country = countryValidation.sanitized;
+      }
+    }
+    
+    if (watch_type) {
+      const watchTypeValidation = validateString(watch_type, {
+        fieldName: 'Watch type',
+        maxLength: 50,
+      });
+      if (watchTypeValidation.isValid) {
+        params.watch_type = watchTypeValidation.sanitized;
+      }
+    }
+
+    console.log("getMoviePlatforms params:", params);
+    const response = await axiosInstance.get('/platforms', {
       headers: {
         Authorization: `Token ${token}`,
       },
+      params: createSafeParams(params),
     });
-    console.log(response.data ,url ,  "_____getMoviePlatforms")
+    console.log(response.data, "_____getMoviePlatforms")
     return response;
   } catch (error) {
     console.error("Error fetching movie platforms:", error);
@@ -183,11 +215,31 @@ export const toggleBookmark = async (token: string, imdb_id: string): Promise<bo
 
 
 export const getOtherUserBookmarks = async (token: string, username?: string,page = 1): Promise<BookmarksResponse> => {
-   try {
-    const response = await axiosInstance.get(`/bookmarks?username=${username}&page=${page}`, {
+  try {
+    // Validate inputs
+    const { validateUsername, validatePage } = await import('../../utils/apiInputValidator');
+    
+    const params: Record<string, any> = {};
+    
+    if (username) {
+      const usernameValidation = validateUsername(username);
+      if (usernameValidation.isValid) {
+        params.username = usernameValidation.sanitized;
+      } else {
+        console.warn('⚠️ Invalid username:', usernameValidation.error);
+      }
+    }
+    
+    const pageValidation = validatePage(page);
+    if (pageValidation.isValid) {
+      params.page = pageValidation.value;
+    }
+
+    const response = await axiosInstance.get('/bookmarks', {
       headers: { Authorization: `Token ${token}` },
+      params: createSafeParams(params),
     });
-      return response.data;
+    return response.data;
   } catch (error) {
     console.error("❌ Fetch Other User Bookmarks other Error:", error);
     throw error;
@@ -204,13 +256,20 @@ export const getMatchingMovies = async (
   token: string,
   imdb_id: string
 ) => {
-   try {
-    const response = await axiosInstance.get(`/matching-movies?imdb_id=${imdb_id}`, {
+  try {
+    // Validate IMDB ID
+    const imdbIdValidation = validateImdbId(imdb_id);
+    if (!imdbIdValidation.isValid) {
+      throwValidationError('IMDB ID', imdbIdValidation.error);
+    }
+
+    const response = await axiosInstance.get('/matching-movies', {
       headers: {
         Authorization: `Token ${token}`,
       },
+      params: createSafeParams({ imdb_id: imdbIdValidation.sanitized }),
     });
-     return response.data;
+    return response.data;
   } catch (error) {
     console.error('❌ Matching Movies API Error:', error);
     throw error;
@@ -221,21 +280,32 @@ export const getMatchingMovies = async (
 
 // history api
 
- export  const getHistoryApi = async (token: string, username?: string,page = 1) => {
-  // try {
-  //   let url = '/history';
-  //   if (username) {
-  //     url += `?username=${encodeURIComponent(username)}`;  // ✅ Correct query param
-  //   }
-try {
-    let url = `/history?page=${page}`;
-    if (username) {
-      url += `&username=${encodeURIComponent(username)}`;
+export const getHistoryApi = async (token: string, username?: string,page = 1) => {
+  try {
+    // Validate inputs
+    const { validateUsername, validatePage } = await import('../../utils/apiInputValidator');
+    
+    const params: Record<string, any> = {};
+    
+    const pageValidation = validatePage(page);
+    if (pageValidation.isValid) {
+      params.page = pageValidation.value;
     }
-    const response = await axiosInstance.get(url, {
+    
+    if (username) {
+      const usernameValidation = validateUsername(username);
+      if (usernameValidation.isValid) {
+        params.username = usernameValidation.sanitized;
+      } else {
+        console.warn('⚠️ Invalid username:', usernameValidation.error);
+      }
+    }
+
+    const response = await axiosInstance.get('/history', {
       headers: {
         Authorization: `Token ${token}`,
       },
+      params: createSafeParams(params),
     });
     console.log(response.data , "getHistoryApi____")
     return response.data; // ✅ return result

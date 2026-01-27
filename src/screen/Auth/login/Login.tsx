@@ -6,19 +6,19 @@ import {
   ScrollView,
 } from 'react-native';
 import React, { useEffect } from 'react';
- import Loading from '../../../utils/Loader';
-import imageIndex from '../../../assets/imageIndex';
- import ScreenNameEnum from '../../../routes/screenName.enum';
+ import imageIndex from '@assets/imageIndex';
+ import ScreenNameEnum from '@routes/screenName.enum';
 // import style from './style';
-import useLogin from './useLogin';
-import font from '../../../theme/font';
-import { Button, CustomStatusBar, InputFieldCustom, SuccessMessageCustom } from '../../../component';
+ import font from '@theme/font';
+import { Button, CustomStatusBar, InputFieldCustom, SuccessMessageCustom } from '@components';
 import style from '../signup/style';
-  import { Color } from '../../../theme/color';
-import CustomText from '../../../component/common/CustomText';
-import ButtonCustom from '../../../component/common/button/ButtonCustom';
+  import { Color } from '@theme/color';
+import CustomText from '@components/common/CustomText';
+import ButtonCustom from '@components/common/button/ButtonCustom';
  import styles from '../signup/style';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import LoadingModal from '@utils/Loader';
+import useLogin from './useLogin';
 export default function Login() {
   const {
     navigation,
@@ -42,7 +42,7 @@ export default function Login() {
     <SafeAreaView style={style.mainViewLogin}>
       <CustomStatusBar backgroundColor="transparent" translucent />
 
-      {loading ? <Loading /> : null}
+      {loading ? <LoadingModal /> : null}
       <ScrollView showsVerticalScrollIndicator={false} >
      
         <View

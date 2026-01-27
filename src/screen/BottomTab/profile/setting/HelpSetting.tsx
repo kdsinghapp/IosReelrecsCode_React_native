@@ -1,11 +1,11 @@
 import { Image,  ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { CustomStatusBar, HeaderCustom, SearchBarCustom } from '../../../../component'
-import imageIndex from '../../../../assets/imageIndex'
-import { useNavigation } from '@react-navigation/native'
-import { Color } from '../../../../theme/color'
-import font from '../../../../theme/font'
+ import { useNavigation } from '@react-navigation/native'
+import { Color } from '@theme/color'
+import font from '@theme/font'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { CustomStatusBar, HeaderCustom, SearchBarCustom } from '@components/index'
+import imageIndex from '@assets/imageIndex'
 
 const HelpSetting = () => {
   const navigation = useNavigation();

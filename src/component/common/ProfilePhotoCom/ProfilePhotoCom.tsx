@@ -1,7 +1,7 @@
 // import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 // import React from 'react'
-// import ScreenNameEnum from '../../../routes/screenName.enum'
-// import { Color } from '../../../theme/color'
+// import ScreenNameEnum from '@routes/screenName.enum'
+// import { Color } from '@theme/color'
 // import { useNavigation } from '@react-navigation/native'
 
 // const ProfilePhotoCom = ({ item , navigationScreen , uri , imageUri }) => {
@@ -72,8 +72,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { Color } from '../../../theme/color';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { Color } from '@theme/color';
 import FastImage from 'react-native-fast-image';
 
 interface Props {

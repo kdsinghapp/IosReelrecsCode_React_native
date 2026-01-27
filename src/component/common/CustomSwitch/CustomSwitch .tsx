@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
 
 const CustomSwitch = ({ value, onValueChange }) => {
   const [anim] = useState(new Animated.Value(value ? 1 : 0));

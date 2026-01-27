@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, memo } from 'react';
 import { View, PanResponder, Animated, findNodeHandle } from 'react-native';
-import { Color } from '../../../../theme/color';
+import { Color } from '@theme/color';
 
 type ProgressBarProps = {
   progress: number;

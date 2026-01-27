@@ -1,8 +1,7 @@
+import { Color } from "@theme/color";
+import font from "@theme/font";
 import { Platform, StyleSheet } from "react-native";
-import { Color } from "../../../../theme/color";
-import font from "../../../../theme/font";
-
-export const WatchStyle = StyleSheet.create({
+ export const WatchStyle = StyleSheet.create({
   mincontainer: {
     flex: 1,
     backgroundColor: Color.background,

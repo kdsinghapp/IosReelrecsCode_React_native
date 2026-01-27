@@ -4,14 +4,14 @@ import {
   ScrollView, TextInput, Dimensions, Alert,
   ActivityIndicator,
 } from 'react-native';
-import { Color } from '../../../theme/color';
-import imageIndex from '../../../assets/imageIndex';
-import { getAllFriends, getGroupMembers, searchFriends } from '../../../redux/Api/GroupApi';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import { getAllFriends, getGroupMembers, searchFriends } from '@redux/Api/GroupApi';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
 import FastImage from 'react-native-fast-image';
 import _ from 'lodash';
 import { useFocusEffect } from '@react-navigation/native';
-import font from '../../../theme/font';
+import font from '@theme/font';
 
 interface Member {
   id: string;

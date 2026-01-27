@@ -11,18 +11,16 @@ import {
   Animated,
   ActivityIndicator
 } from 'react-native';
-import { Color } from '../../../../theme/color';
-import imageIndex from '../../../../assets/imageIndex';
-import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
-import { CustomStatusBar } from '../../../../component';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
+import { Color } from '@theme/color';
+ import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
+ import ScreenNameEnum from '@routes/screenName.enum';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import { BASE_IMAGE_URL } from '../../../../redux/Api/axiosInstance';
-import { setMultiSelectMode, toggleMultiSelectMode } from '../../../../redux/feature/multiSelectSlice';
-import CustomText from '../../../../component/common/CustomText';
-import font from '../../../../theme/font';
-import LogoutModal from '../../../../component/modal/logoutModal/logoutModal';
+import { RootState } from '@redux/store';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { setMultiSelectMode, toggleMultiSelectMode } from '@redux/feature/multiSelectSlice';
+import CustomText from '@components/common/CustomText';
+import font from '@theme/font';
+import LogoutModal from '@components/modal/logoutModal/logoutModal';
 import Notification from '../../home/homeScreen/Notification/Notification';
  
 import ShimmerGroupItem from '../watchScreen/ShimmerGroupItem'
@@ -32,10 +30,12 @@ import {
   getAllGroups,
   leaveGroup,
   toggleGroupNotification
-} from '../../../../redux/Api/GroupApi';
+} from '@redux/Api/GroupApi';
 import { WatchStyle } from './WatchStyle';
-import { getUserProfile } from '../../../../redux/Api/authService';
-import { setUserProfile } from '../../../../redux/feature/authSlice';
+import { getUserProfile } from '@redux/Api/authService';
+import { setUserProfile } from '@redux/feature/authSlice';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar } from '@components/index';
 // 💤 Lazy load heavy components
 const WatchGroupCom = React.lazy(() => import('../../../../component/common/WatchGroupCom/WatchGroupCom'));
 // const Notifi cation = React.lazy(() => import('../../home/homeScreen/Notification/Notification'));

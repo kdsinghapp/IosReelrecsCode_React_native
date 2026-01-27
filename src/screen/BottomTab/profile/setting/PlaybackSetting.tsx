@@ -1,15 +1,15 @@
 import {  StyleSheet, Switch, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { Color } from '../../../../theme/color';
-import { CustomStatusBar, HeaderCustom } from '../../../../component';
-import imageIndex from '../../../../assets/imageIndex';
-import { useNavigation } from '@react-navigation/native';
+import { Color } from '@theme/color';
+ import { useNavigation } from '@react-navigation/native';
  import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
+import { RootState } from '@redux/store';
  import useToggleFlag from './useToggleFlag';
-import CustomSwitch from '../../../../component/common/CustomSwitch/CustomSwitch ';
-import font from '../../../../theme/font';
+import CustomSwitch from '@components/common/CustomSwitch/CustomSwitch ';
+import font from '@theme/font';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar, HeaderCustom } from '@components/index';
 const PlaybackSetting = () => {
 
 
