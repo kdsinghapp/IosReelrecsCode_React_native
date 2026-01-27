@@ -1,8 +1,8 @@
 
 // import { Dimensions, StyleSheet } from 'react-native';
-// import { hp, wp } from '../../../utils/Constant';
-// import { Color } from '../../../theme/color';
-// import ResponsiveSize from '../../../utils/ResponsiveSize';
+// import { hp, wp } from '@utils/Constant';
+// import { Color } from '@theme/color';
+// import ResponsiveSize from '@utils/ResponsiveSize';
 // // login
 // const styles = StyleSheet.create({
 //   mainView: { flex: 1, backgroundColor: Color.background },

@@ -3,27 +3,27 @@ import React, { FunctionComponent } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import _routes from '../routes/routes';
 import ScreenNameEnum from '../routes/screenName.enum';
-import ProfileScreen from '../screen/BottamTab/profile/profileScreen/ProfileScreen';
-import EditProfile from '../screen/BottamTab/profile/editProfile/EditProfile';
-import Followers from '../screen/BottamTab/profile/followerTab/Followers';
-import MainSetting from '../screen/BottamTab/profile/setting/MainSetting';
-import AccountSetting from '../screen/BottamTab/profile/setting/AccountSetting';
-import PlaybackSetting from '../screen/BottamTab/profile/setting/PlaybackSetting';
-import HelpSetting from '../screen/BottamTab/profile/setting/HelpSetting';
-import SettingLogOut from '../screen/BottamTab/profile/setting/SettingLogOut';
-import ChangePassSetting from '../screen/BottamTab/profile/setting/ChangePassSetting';
-import PrivacySetting from '../screen/BottamTab/profile/setting/PrivacySetting';
+import ProfileScreen from '../screen/BottomTab/profile/profileScreen/ProfileScreen';
+import EditProfile from '../screen/BottomTab/profile/editProfile/EditProfile';
+import Followers from '../screen/BottomTab/profile/followerTab/Followers';
+import MainSetting from '../screen/BottomTab/profile/setting/MainSetting';
+import AccountSetting from '../screen/BottomTab/profile/setting/AccountSetting';
+import PlaybackSetting from '../screen/BottomTab/profile/setting/PlaybackSetting';
+import HelpSetting from '../screen/BottomTab/profile/setting/HelpSetting';
+import SettingLogOut from '../screen/BottomTab/profile/setting/SettingLogOut';
+import ChangePassSetting from '../screen/BottomTab/profile/setting/ChangePassSetting';
+import PrivacySetting from '../screen/BottomTab/profile/setting/PrivacySetting';
 import HelpMessage from '../component/settingHelp/helpMessage';
-import WatchSaveUser from '../screen/BottamTab/home/watchSaveUser/WatchSaveUser';
-import OtherWantPrfofile from '../screen/BottamTab/home/otherTaingPrfofile/OtherWantPrfofile';
-import OtherTaingPrfofile from '../screen/BottamTab/home/otherTaingPrfofile/OtherTaingPrfofile';
-import GroupSearch from '../screen/BottamTab/watch/watchScreen/GroupSearch';
-import StreamService from '../screen/BottamTab/profile/setting/StreamService';
-import FeatureRequest from '../screen/BottamTab/profile/setting/FeatureRequest';
-import MovieDetailScreen from '../screen/BottamTab/discover/movieDetail/MovieDetailScreen'
-import WoodsScreen from '../screen/BottamTab/ranking/woodsScreen/WoodsScreen';
-import SearchMovieDetail from '../screen/BottamTab/discover/movieDetail/SearchMovieDetail';
-import OtherProfile from '../screen/BottamTab/home/otherProfile/OtherProfile';
+import WatchSaveUser from '../screen/BottomTab/home/watchSaveUser/WatchSaveUser';
+import OtherWantPrfofile from '../screen/BottomTab/home/otherTaingPrfofile/OtherWantPrfofile';
+import OtherTaingPrfofile from '../screen/BottomTab/home/otherTaingPrfofile/OtherTaingPrfofile';
+import GroupSearch from '../screen/BottomTab/watch/watchScreen/GroupSearch';
+import StreamService from '../screen/BottomTab/profile/setting/StreamService';
+import FeatureRequest from '../screen/BottomTab/profile/setting/FeatureRequest';
+import MovieDetailScreen from '../screen/BottomTab/discover/movieDetail/MovieDetailScreen'
+import WoodsScreen from '../screen/BottomTab/ranking/woodsScreen/WoodsScreen';
+import SearchMovieDetail from '../screen/BottomTab/discover/movieDetail/SearchMovieDetail';
+import OtherProfile from '../screen/BottomTab/home/otherProfile/OtherProfile';
 const Stack = createNativeStackNavigator();
 
 const ProfileTab: FunctionComponent = () => {

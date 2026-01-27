@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
- import { loginUser_Api } from '../../../redux/Api/authService';
-import { RootStackParamList } from './LoginTypes';
- import { loginSuccess } from '../../../redux/feature/authSlice';
+ import { RootStackParamList } from './LoginTypes';
+ import { loginSuccess } from '@redux/feature/authSlice';
  import NetInfo from "@react-native-community/netinfo";
+import { loginUser_Api } from '@redux/Api/authService';
 const useLogin = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
@@ -61,8 +61,7 @@ const useLogin = () => {
   const LoginFunction = async (): Promise<void> => {
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
-    console.log(trimmedEmail ,trimmedPassword , 'trimmedPassword___trimmedEmail' )
-    // 🔴 Basic Validation
+     // 🔴 Basic Validation
     if (!trimmedEmail || !trimmedPassword) {
       // Alert.alert('Error', 'Email AND  Password SEND BOTH are required');
       return;

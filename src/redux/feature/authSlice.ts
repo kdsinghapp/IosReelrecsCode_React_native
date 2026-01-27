@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserProfile } from '../../types/api.types';
 
 interface AuthState {
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
   isLogin: boolean;
-  userData: any;
+  userData: UserProfile | null;
   token: string | null;
-  userGetData: any;
-  logout:any;
+  userGetData: UserProfile | null;
+  logout: boolean | null;
 }
+
 interface GetSuccessPayload {
-  userGetData: any;
+  userGetData: UserProfile;
 }
 const initialState: AuthState = {
   isLoading: false,
@@ -48,7 +50,7 @@ const AuthSlice = createSlice({
   
 
      //  NEW REDUCER
-    updateUserProfileField(state, action: PayloadAction<{ key: string; value: any }>) {
+    updateUserProfileField(state, action: PayloadAction<{ key: keyof UserProfile; value: string | number | undefined }>) {
       if (state.userGetData) {
         state.userGetData = {
           ...state.userGetData,

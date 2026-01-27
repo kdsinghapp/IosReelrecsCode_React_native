@@ -1,14 +1,15 @@
+import imageIndex from "@assets/imageIndex";
+import CustomText from "@components/common/CustomText";
+import { Button } from "@components/index";
+import { RootState } from "@redux/store";
+import ScreenNameEnum from "@routes/screenName.enum";
+import useWelcome from "@screens/Auth/welcome/useWelcome";
+import { Color } from "@theme/color";
+import font from "@theme/font";
 import React, { useEffect, useRef } from "react";
 import { View, Image, Animated, Dimensions, StyleSheet } from "react-native";
-import imageIndex from "../../../assets/imageIndex";
-import { Color } from "../../../theme/color";
-import { Button } from "../..";
-import CustomText from "../../common/CustomText";
-import font from "../../../theme/font";
-import useWelcome from "../../../screen/Auth/welcome/useWelcome";
-import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
-import ScreenNameEnum from "../../../routes/screenName.enum";
+ 
 
 const { width } = Dimensions.get("window");
 const columnWidth = 120;   
@@ -266,7 +267,7 @@ export default YoutubePlayerScreen;
 
 // import React, { useEffect, useRef } from "react";
 // import { View, Image, Animated, Dimensions, StyleSheet } from "react-native";
-// import imageIndex from "../../../assets/imageIndex";
+// import imageIndex from '@assets/imageIndex";
 
 // const { width } = Dimensions.get("window");
 
@@ -471,7 +472,7 @@ export default YoutubePlayerScreen;
 //   FlatList,
 //   Dimensions,
 // } from "react-native";
-// import imageIndex from "../../../assets/imageIndex";
+// import imageIndex from '@assets/imageIndex";
 
 // const { width } = Dimensions.get("window");
 
@@ -569,7 +570,7 @@ export default YoutubePlayerScreen;
 //   FlatList,
 //   Dimensions,
 // } from "react-native";
-// import imageIndex from "../../../assets/imageIndex";
+// import imageIndex from '@assets/imageIndex";
 
 // const { width } = Dimensions.get("window");
 

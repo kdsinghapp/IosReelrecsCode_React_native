@@ -1,9 +1,9 @@
 
 import { StyleSheet } from 'react-native';
-import { hp, wp } from '../../../utils/Constant';
-import { Color } from '../../../theme/color';
-import ResponsiveSize from '../../../utils/ResponsiveSize';
-import font from '../../../theme/font';
+import { hp, wp } from '@utils/Constant';
+import { Color } from '@theme/color';
+ import font from '@theme/font';
+import ResponsiveSize from '@utils/ResponsiveSize';
 
 const styles = StyleSheet.create({
   mainView: { flex: 1, backgroundColor: Color.background },

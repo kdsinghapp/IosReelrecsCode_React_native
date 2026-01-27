@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import imageIndex from '../../../assets/imageIndex';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+import imageIndex from '@assets/imageIndex';
+import ScreenNameEnum from '@routes/screenName.enum';
 import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 
 // interface StepProgressBarProps {
 //   totalSteps: number;  

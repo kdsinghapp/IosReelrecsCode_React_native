@@ -5,10 +5,9 @@ import {
   sendResetOTP,
   verifyResetOTP,
   resetPassword,
-} from '../../../redux/Api/authService';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { Alert } from 'react-native';
-
+} from '@redux/Api/authService';
+import ScreenNameEnum from '@routes/screenName.enum';
+ 
 const usePasswordReset = (options = {}) => {
   const navigation = useNavigation();
   const route = useRoute();
@@ -64,8 +63,7 @@ console.log(trimmedEmail , 'trimmedEmail__usepasswordreset')
   try {
     setLoading(true);
     const response = await sendResetOTP(trimmedEmail);
-console.log('ffffd_fsf')
-    if (!response.success) {
+     if (!response.success) {
       showToast({ message: response.message, green: false });
       return;
     }

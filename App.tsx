@@ -5,8 +5,7 @@ import AppNavigator from './src/navigators/AppNavigator'
   import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 LogBox.ignoreAllLogs(true);
-// https://reelrecs.s3.us-east-1.amazonaws.com/static/movies/trailers/compressed/tt1645170/tt1645170.m3u8
-Text.defaultProps = Text.defaultProps || {};
+ Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
 
 TextInput.defaultProps = TextInput.defaultProps || {};

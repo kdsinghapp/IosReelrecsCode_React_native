@@ -11,22 +11,22 @@ import {
   Dimensions,
 } from 'react-native';
 import styles from './style';
-import imageIndex from '../../../assets/imageIndex';
-import { CustomStatusBar, SuccessMessageCustom } from '../../../component';
-import useSignup from '../signup/useSignup';
+ import useSignup from '../signup/useSignup';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { Color } from '../../../theme/color';
-import AuthBack from '../../../component/AuthBackBtn/AuthBack';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { Color } from '@theme/color';
+import AuthBack from '@components/AuthBackBtn/AuthBack';
 import useVerifyResetPassword from './UseVerifyResetPassword';
-import CustomText from '../../../component/common/CustomText';
-import font from '../../../theme/font';
-import ButtonCustom from '../../../component/common/button/ButtonCustom';
-import { sendOTPToEmail_GET } from '../../../redux/Api/authService';
+import CustomText from '@components/common/CustomText';
+import font from '@theme/font';
+import ButtonCustom from '@components/common/button/ButtonCustom';
+import { sendOTPToEmail_GET } from '@redux/Api/authService';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import imageIndex from '@assets/imageIndex';
+import { CustomStatusBar } from '@components/index';
 const EmailVerify = () => {
   const route = useRoute();
-  const { email, password, purpose = 'signup' } = route.params || {};
+  const { email, password, purpose = 'signup' } = route?.params || {};
 
   const {
     navigation,
@@ -86,8 +86,7 @@ const EmailVerify = () => {
   setCode(['', '', '', ''])
   try {
 const response  = await sendOTPToEmail_GET(email)
-console.log(  'response _resend__otp', response )
-  } catch (error) {
+   } catch (error) {
     console.error('error from rsend Otp email',error)
   }
  };
@@ -170,7 +169,7 @@ console.log(  'response _resend__otp', response )
               // Then in your TextInput component:
               <TextInput
                 key={index}
-                ref={(ref) => (inputRefs.current[index] = ref)}
+                ref={(ref:any) => (inputRefs.current[index] = ref)}
                 style={[
                   styles.otpBox,
                   // focusedIndex === index && { borderColor: Color.whiteText, borderWidth: 1 },

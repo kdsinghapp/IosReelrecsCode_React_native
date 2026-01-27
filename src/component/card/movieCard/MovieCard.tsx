@@ -1,8 +1,8 @@
 // import React from 'react';
 // import { Alert, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-// import imageIndex from '../../../assets/imageIndex';
-// import { Color } from '../../../theme/color';
-// import font from '../../../theme/font';
+// import imageIndex from '@assets/imageIndex';
+// import { Color } from '@theme/color';
+// import font from '@theme/font';
 // import RankingCard from '../../ranking/RankingCard';
 
 

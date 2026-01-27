@@ -8,7 +8,7 @@ import {
   Dimensions,
 
 } from 'react-native';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
 import FastImage from 'react-native-fast-image';
 
 const { height } = Dimensions.get('window');

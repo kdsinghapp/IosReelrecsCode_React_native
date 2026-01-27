@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, ActivityIndicator, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import imageIndex from '../../../assets/imageIndex';
+import imageIndex from '@assets/imageIndex';
 const PosterImage = ({ poster , style }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);

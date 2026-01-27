@@ -3,10 +3,10 @@ import React, { FunctionComponent } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import _routes from '../routes/routes';
 import ScreenNameEnum from '../routes/screenName.enum';
- import DiscoverScreen from '../screen/BottamTab/discover/discoverScreen/DiscoverScreen';
-import MovieDetailScreen from '../screen/BottamTab/discover/movieDetail/MovieDetailScreen';
-import WoodsScreen from '../screen/BottamTab/ranking/woodsScreen/WoodsScreen';
-import SearchMovieDetail from '../screen/BottamTab/discover/movieDetail/SearchMovieDetail';
+ import DiscoverScreen from '../screen/BottomTab/discover/discoverScreen/DiscoverScreen';
+import MovieDetailScreen from '../screen/BottomTab/discover/movieDetail/MovieDetailScreen';
+import WoodsScreen from '../screen/BottomTab/ranking/woodsScreen/WoodsScreen';
+import SearchMovieDetail from '../screen/BottomTab/discover/movieDetail/SearchMovieDetail';
 const Stack = createNativeStackNavigator();
 
 

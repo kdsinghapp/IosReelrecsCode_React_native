@@ -1,4 +1,6 @@
 
+import { Color } from "@theme/color";
+import font from "@theme/font";
 import React, { useState, useRef } from "react";
 import {
   View,
@@ -6,8 +8,7 @@ import {
   StyleSheet,
   TextInputProps,
 } from "react-native";
-import { Color } from "../../../theme/color"; 
-import font from "../../../theme/font";
+ 
 
 interface CustomReviewInputProps extends TextInputProps {
   text: string;

@@ -4,22 +4,21 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  
 } from 'react-native';
 import React from 'react';
-import Loading from '../../../utils/Loader';
-import imageIndex from '../../../assets/imageIndex';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+ import imageIndex from '@assets/imageIndex';
+import ScreenNameEnum from '@routes/screenName.enum';
 import Styles from './style';
-import { Button, CustomStatusBar, InputFieldCustom } from '../../../component';
+import { Button, CustomStatusBar, InputFieldCustom } from '@components';
 import styles from './style';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import useSignup from '../signup/useSignup';
-import CustomText from '../../../component/common/CustomText';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
-import ButtonCustom from '../../../component/common/button/ButtonCustom';
+import CustomText from '@components/common/CustomText';
+import { Color } from '@theme/color';
+import font from '@theme/font';
+import ButtonCustom from '@components/common/button/ButtonCustom';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import LoadingModal from '@utils/Loader';
 export default function AddUsername() {
   const {
     loading,
@@ -33,15 +32,14 @@ export default function AddUsername() {
   const { email, password } = route.params || {};
     const navigating = useNavigation()
   
-  console.log(email, password , 'AddUsername___')
-  return (
+   return (
     <SafeAreaView style={{
       flex: 1,
       backgroundColor: "black"
     }}>
       <CustomStatusBar backgroundColor="transparent" translucent />
 
-      {loading ? <Loading /> : null}
+      {loading ? <LoadingModal /> : null}
       <ScrollView showsVerticalScrollIndicator={false} >
         
         <View
@@ -131,8 +129,7 @@ export default function AddUsername() {
         <ButtonCustom
                             title="Next"
                         onPress={() => {
-                console.log("Pressed Next");
-                handleFinalSignup(username, email, password);
+                 handleFinalSignup(username, email, password);
               }}
                             // buttonStyle={styles.saveButton}
                           />

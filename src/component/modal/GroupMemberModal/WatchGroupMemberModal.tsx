@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, Image, FlatList, Dimensions, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, ActivityIndicator, StatusBar } from 'react-native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import imageIndex from '../../../assets/imageIndex';
+import ScreenNameEnum from '@routes/screenName.enum';
+import imageIndex from '@assets/imageIndex';
 import BlurViewCom from '../../common/BlurViewCom/BlurViewCom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
-import { followUser, unfollowUser } from '../../../redux/Api/followService';
-import { clearUserProfile } from '../../../redux/feature/authSlice';
+import { RootState } from '@redux/store';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { followUser, unfollowUser } from '@redux/Api/followService';
+import { clearUserProfile } from '@redux/feature/authSlice';
 import { CustomStatusBar } from '../..';
 import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
-import { errorToast } from '../../../utils/customToast';
+import { errorToast } from '@utils/customToast';
 
 interface members {
   avatar?: string,

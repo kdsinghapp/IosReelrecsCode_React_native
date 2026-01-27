@@ -1,10 +1,10 @@
+import imageIndex from "@assets/imageIndex";
+import { useNavigation } from "@react-navigation/native";
+import { Color } from "@theme/color";
+import font from "@theme/font";
 import React from "react";
 import { View, TextInput, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
-import imageIndex from "../../../assets/imageIndex";
-import { useNavigation } from "@react-navigation/native";
-import { Color } from "../../../theme/color";
-import font from "../../../theme/font";
-
+ 
 interface SearchBarProps {
   // placeholder?: string;
   // onSearchChange?: (text: string) => void;

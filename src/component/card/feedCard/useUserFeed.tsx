@@ -1,6 +1,6 @@
+import { getUserFeed } from "@redux/Api/FeedApi";
 import { useState, useEffect } from "react";
-import { getUserFeed } from "../../../redux/Api/FeedApi";
-
+ 
 const useUserFeed = (token: string,profile:any) => {
   const [feedData, setFeedData] = useState<any[]>([]);
   const [page, setPage] = useState(1);            // ✅ current page
@@ -75,7 +75,7 @@ export default useUserFeed;
 
 
 // import { useState } from 'react';
-// import { getUserFeed } from '../../../redux/Api/FeedApi';
+// import { getUserFeed } from '@redux/Api/FeedApi';
 
 // const useUserFeed = (token: string) => {
 //   const [feedData, setFeedData] = useState([]);

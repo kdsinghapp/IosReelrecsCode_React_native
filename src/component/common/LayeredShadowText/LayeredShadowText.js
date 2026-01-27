@@ -1,7 +1,7 @@
 // import React from 'react';
 // import { View, Text, StyleSheet } from 'react-native';
-// import { Color } from '../../../theme/color';
-// import font from '../../../theme/font';
+// import { Color } from '@theme/color';
+// import font from '@theme/font';
 
 // const LayeredShadowText = ({ text = "1", fontSize = 60, shadowColor = 'white', marginRight=0, marginLeft=0 }) => {
 //     return (
@@ -78,8 +78,8 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 
 const LayeredShadowText = ({ 
   text = "1", 

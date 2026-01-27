@@ -1,6 +1,12 @@
 // groupApi.ts
 
 import axiosInstance from "./axiosInstance";
+import { Group, PaginatedResponse } from "../../types/api.types";
+
+interface GroupInvitation extends Group {
+  invited_at?: string;
+  invited_by?: string;
+}
 
 
 export const getPendingGroupInvites = async (token: string) => {
@@ -23,8 +29,8 @@ export const getPendingGroupInvites = async (token: string) => {
 export const respondToGroupInvitation = async (
   token: string,
   groupId: string,
-  accepted: boolean // true = accept, false = decline
-) => {
+  accepted: boolean
+): Promise<{ success: boolean; message?: string }> => {
   try {
     const response = await axiosInstance.put(
       'group/accept-invitation',
@@ -38,18 +44,17 @@ export const respondToGroupInvitation = async (
         },
       }
     );
-console.log(response , 'respondToGroupInvitation___________')
+    console.log(response , 'respondToGroupInvitation___________')
     return response.data;
-
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error responding to group invite:', error);
     throw error;
   }
 };
 
-// import { getPendingGroupInvites } from '../../../../redux/Api/groupApi';
+// import { getPendingGroupInvites } from '@redux/Api/groupApi';
 // import { useSelector } from 'react-redux';
-// import { RootState } from '../../../../redux/store';
+// import { RootState } from '@redux/store';
 
 // const token = useSelector((state: RootState) => state.auth.token);
 // const [pendingInvites, setPendingInvites] = useState([]);

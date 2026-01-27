@@ -10,11 +10,11 @@ import imageIndex from '../assets/imageIndex';
 import ScreenNameEnum from '../routes/screenName.enum';
 
 // Direct screen imports - NO NESTED NAVIGATORS
-import HomeScreen from '../screen/BottamTab/home/homeScreen/FixedHomeScreen';
-import DiscoverScreen from '../screen/BottamTab/discover/discoverScreen/DiscoverScreen';
-import RankingScreen from '../screen/BottamTab/ranking/rankingScreen/RankingScreen';
-import WatchScreen from '../screen/BottamTab/watch/watchScreen/WatchScreen';
-import ProfileScreen from '../screen/BottamTab/profile/profileScreen/ProfileScreen';
+import HomeScreen from '../screen/BottomTab/home/homeScreen/FixedHomeScreen';
+import DiscoverScreen from '../screen/BottomTab/discover/discoverScreen/DiscoverScreen';
+import RankingScreen from '../screen/BottomTab/ranking/rankingScreen/RankingScreen';
+import WatchScreen from '../screen/BottomTab/watch/watchScreen/WatchScreen';
+import ProfileScreen from '../screen/BottomTab/profile/profileScreen/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 

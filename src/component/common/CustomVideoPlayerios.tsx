@@ -12,8 +12,7 @@ import {
 } from "react-native";
 import Video from "react-native-video";
 import SvgImage from "../../assets/svg/svgImage";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import imageIndex from "../../assets/imageIndex";
+ import imageIndex from "../../assets/imageIndex";
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,6 +42,16 @@ const CustomVideoPlayer: React.FC<Props> = ({
   const [progressWidth, setProgressWidth] = useState(0);
   const [isPaused, setIsPaused] = useState(paused);
   const [isScrubbing, setIsScrubbing] = useState(false);
+
+  // Refs to provide current values to PanResponder (avoids stale closure)
+  const progressWidthRef = useRef(0);
+  const durationRef = useRef(0);
+  const isModalOpenRef = useRef<boolean | undefined>(undefined);
+
+  // Sync refs with current values so PanResponder handlers can read them
+  useEffect(() => { progressWidthRef.current = progressWidth; }, [progressWidth]);
+  useEffect(() => { durationRef.current = duration; }, [duration]);
+  useEffect(() => { isModalOpenRef.current = isModalOpen; }, [isModalOpen]);
 
   /* ================= AUTO HIDE CONTROLS ================= */
   const startAutoHide = () => {
@@ -82,6 +91,7 @@ const CustomVideoPlayer: React.FC<Props> = ({
 
   /* ================= TIME FORMAT ================= */
   const formatTime = (sec: number) => {
+    if (!Number.isFinite(sec) || sec < 0) return "0:00";
     const m = Math.floor(sec / 60);
     const s = Math.floor(sec % 60);
     return `${m}:${s < 10 ? "0" : ""}${s}`;
@@ -117,19 +127,25 @@ const handlePlayPause = () => {
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: (evt) => {
-        if (isModalOpen === true) return;
+        // Read from refs instead of stale closure values
+        if (isModalOpenRef.current === true) return;
+        if (progressWidthRef.current <= 0 || durationRef.current <= 0) return;
+
         setIsScrubbing(true);
         const x = evt.nativeEvent.locationX;
-        const seekTime = (x / progressWidth) * duration;
+        const seekTime = (x / progressWidthRef.current) * durationRef.current;
         videoRef.current?.seek(seekTime);
         setCurrentTime(seekTime);
       },
       onPanResponderMove: (evt) => {
-        if (isModalOpen === true) return;
-        const x = Math.max(0, Math.min(evt.nativeEvent.locationX, progressWidth));
-    const seekTime = (x / progressWidth) * duration;
-    videoRef.current?.seek(seekTime);
-    setCurrentTime(seekTime);
+        // Read from refs instead of stale closure values
+        if (isModalOpenRef.current === true) return;
+        if (progressWidthRef.current <= 0 || durationRef.current <= 0) return;
+
+        const x = Math.max(0, Math.min(evt.nativeEvent.locationX, progressWidthRef.current));
+        const seekTime = (x / progressWidthRef.current) * durationRef.current;
+        videoRef.current?.seek(seekTime);
+        setCurrentTime(seekTime);
       },
       onPanResponderRelease: () => {
         setIsScrubbing(false);

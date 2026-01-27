@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal, View, Text, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Animated, Dimensions, TextInput, Keyboard } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import FastImage from 'react-native-fast-image';
 import InputFieldCustom from '../../common/inputField/InputFieldCustom';
 import CustomReviewInput from '../../common/inputField/CustomReviewInput';
 import CustomText from '../../common/CustomText';
-import { postComment } from '../../../redux/Api/commentService';
-import { rollbackPairwiseDecisions } from '../../../redux/Api/movieApi';
-import { fileLogger } from '../../../utils/FileLogger';
+import { postComment } from '@redux/Api/commentService';
+import { rollbackPairwiseDecisions } from '@redux/Api/movieApi';
+import { fileLogger } from '@utils/FileLogger';
 
 interface FeedbackModalProps {
   visible: boolean;

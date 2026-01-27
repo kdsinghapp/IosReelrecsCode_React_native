@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, View, Text, Image, TouchableOpacity, StyleSheet, FlatList, Alert, Dimensions } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import { Modal, View, Text, Image, TouchableOpacity, StyleSheet,  Dimensions } from 'react-native';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import SelectFriendCom from '../../common/SelectFriendCom/SelectFriendCom';
-import font from '../../../theme/font';
+import font from '@theme/font';
 import BlurViewCom from '../../common/BlurViewCom/BlurViewCom';
 import { BlurView } from '@react-native-community/blur';
-import { addMembersToGroup, getGroupMembers } from '../../../redux/Api/GroupApi';
-import AddSelectFriendComCopy from '../../common/SelectFriendCom/AddSelectFriendCom copy';
-
+import { addMembersToGroup, getGroupMembers } from '@redux/Api/GroupApi';
+ 
 
 interface props {
     type: boolean;
@@ -59,12 +58,16 @@ const AddFrindModal = ({ visible, onClose, groupId, token ,fetchGroups}) => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <AddSelectFriendComCopy token={token} 
+                    {/* <AddSelectFriendComCopy token={token} 
 groupId={groupId}
-                     type={"Friend"} setAddMembers={setAddMembers} />
+                     type={"Friend"} setAddMembers={setAddMembers} /> */}
                     {/* <SelectFriendCom token={token} 
 groupId={groupId}
                      type={"Friend"} setAddMembers={setAddMembers} /> */}
+
+                     <SelectFriendCom token={token} 
+groupId={groupId}
+                     type={"Friend"} setAddMembers={setAddMembers} />
                     {/* Buttons */}
                     <View style={styles.bottomButtonContainer}>
                         <View style={styles.blurBackground}>

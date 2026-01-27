@@ -13,9 +13,9 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { Color } from '../../../theme/color';
-import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import font from '@theme/font';
  
 
 const CreateGroupName = ({

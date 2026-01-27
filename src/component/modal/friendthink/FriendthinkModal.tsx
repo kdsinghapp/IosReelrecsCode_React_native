@@ -10,15 +10,15 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+import ScreenNameEnum from '@routes/screenName.enum';
 import RankingCard from '../../ranking/RankingCard';
-import font from '../../../theme/font';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
+import font from '@theme/font';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
 import RankingWithInfo from '../../ranking/RankingWithInfo';
-import { RootState } from '../../../redux/store';
+import { RootState } from '@redux/store';
 import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
 

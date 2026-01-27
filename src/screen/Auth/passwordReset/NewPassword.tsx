@@ -8,8 +8,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import Loading from '../../../utils/Loader';
-import imageIndex from '../../../assets/imageIndex';
+ import imageIndex from '@assets/imageIndex';
 import styles from './style';
 import {
   Button,
@@ -17,16 +16,17 @@ import {
   HeaderCustom,
   InputFieldCustom,
   SuccessMessageCustom,
-} from '../../../component';
-import { Color } from '../../../theme/color';
+} from '@components';
+import { Color } from '@theme/color';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import usePasswordReset from './usePasswordReset';
-import useToastMessage from '../../../component/useToastMessage/useToastMessage';
-import CustomText from '../../../component/common/CustomText';
-import font from '../../../theme/font';
-import ButtonCustom from '../../../component/common/button/ButtonCustom';
-import ScreenNameEnum from '../../../routes/screenName.enum';
+import useToastMessage from '@components/useToastMessage/useToastMessage';
+import CustomText from '@components/common/CustomText';
+import font from '@theme/font';
+import ButtonCustom from '@components/common/button/ButtonCustom';
+import ScreenNameEnum from '@routes/screenName.enum';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import LoadingModal from '@utils/Loader';
 export default function NewPassword() {
   const route = useRoute();
   const { email } = route.params || {};
@@ -61,7 +61,7 @@ navigation.navigate(ScreenNameEnum.LoginScreen);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Color.background }}>
       <CustomStatusBar backgroundColor="transparent" translucent />
-      {loading && <Loading />}
+      {loading && <LoadingModal />}
  <View style={{ marginTop: 60, marginLeft:16,}} >
     <TouchableOpacity onPress={onBackPress}>
           <Image source={imageIndex.backArrow} style={styles.icon} resizeMode="contain" />
@@ -142,7 +142,7 @@ navigation.navigate(ScreenNameEnum.LoginScreen);
              <ButtonCustom
                             title="Change Password"
                            onPress={() => {changeOldPassword(password,confirmPassword, email);
-                            console.log(passwordRef.current, confirmPasswordRef.current , confirmPassword ,password , "current____confirmPasswordRef.current")
+                            // console.log(passwordRef.current, confirmPasswordRef.current , confirmPassword ,password , "current____confirmPasswordRef.current")
                            }}
                             // buttonStyle={styles.saveButton}
                           />

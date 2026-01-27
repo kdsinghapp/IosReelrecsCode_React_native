@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, Platform, Image, ActionSheetIOS, ActivityIndicator } from 'react-native';
-import { Color } from '../../../theme/color';
-import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import font from '@theme/font';
 import CustomText from '../CustomText';
 
 // Define props type

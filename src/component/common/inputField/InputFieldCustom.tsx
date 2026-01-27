@@ -1,7 +1,7 @@
 // import { View, TextInput, Image, TouchableOpacity } from 'react-native';
 // import React, { useRef, useState } from 'react';
-// import imageIndex from '../../../assets/imageIndex';
-// import { Color } from '../../../theme/color';
+// import imageIndex from '@assets/imageIndex';
+// import { Color } from '@theme/color';
 
 // export default function InputFieldCustom({ validSuccess, ...props }) {
 //   const [showPassword, setShowPassword] = useState(props.hide );
@@ -74,9 +74,9 @@
 
 import { View, TextInput, Image, TouchableOpacity } from 'react-native';
 import React, { useRef, useState } from 'react';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 
 export default function InputFieldCustom({ validSuccess, ...props }) {
   const [showPassword, setShowPassword] = useState(props.hide);

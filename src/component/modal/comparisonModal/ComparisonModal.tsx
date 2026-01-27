@@ -10,10 +10,10 @@ import {
   Dimensions,
   Animated,
 } from 'react-native';
-import imageIndex from '../../../assets/imageIndex';
-import { Color } from '../../../theme/color';
+import imageIndex from '@assets/imageIndex';
+import { Color } from '@theme/color';
 import { Grayscale } from 'react-native-color-matrix-image-filters';
-  import font from '../../../theme/font';
+  import font from '@theme/font';
 import FastImage from 'react-native-fast-image';
 import CustomText from '../../common/CustomText';
 import RankingWithInfo from '../../ranking/RankingWithInfo';

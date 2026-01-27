@@ -11,23 +11,19 @@ import AddUsername from "../screen/Auth/addUsername/AddUsername";
 import EmailVerify from "../screen/Auth/addUsername/EmailVerify";
 // import AddUsername from "../screen/Auth/addUsername/AddUsername";
 // import AddUsername from "../screen/Auth/AddUsername/AddUsername";
-
 // import EmailVerify from "../screen/Auth/addUsername/EmailVerify";
 import Login from "../screen/Auth/login/Login";
 import OnboardingScreen from "../screen/Auth/onboardingScreen/OnboardingScreen";
-import OnboardingScreen2 from "../screen/Auth/onboardingScreen/OnboardingScreen2";
+import OnboardingStepTwo from "../screen/Auth/onboardingScreen/OnboardingStepTwo";
 import NewPassword from "../screen/Auth/passwordReset/NewPassword";
 import PasswordReset from "../screen/Auth/passwordReset/PasswordReset";
 import Signup from "../screen/Auth/signup/Signup";
 import Welcome from "../screen/Auth/welcome/Welcome";
-import DiscoverScreen from "../screen/BottamTab/discover/discoverScreen/DiscoverScreen";
-import Notification from "../screen/BottamTab/home/homeScreen/Notification/Notification";
- import ProfileScreen from "../screen/BottamTab/profile/profileScreen/ProfileScreen";
-import StreamService from "../screen/BottamTab/profile/setting/StreamService";
-import WoodsScreen from "../screen/BottamTab/ranking/woodsScreen/WoodsScreen";
-import CreateGroupScreen from "../screen/BottamTab/watch/watchScreen/CreateGroupScreen ";
- import WatchScreen from "../screen/BottamTab/watch/watchScreen/WatchScreen";
-import WatchWithFrind from "../screen/BottamTab/watch/watchScreen/WatchWithFrind";
+import Notification from "../screen/BottomTab/home/homeScreen/Notification/Notification";
+import StreamService from "../screen/BottomTab/profile/setting/StreamService";
+import WoodsScreen from "../screen/BottomTab/ranking/woodsScreen/WoodsScreen";
+import CreateGroupScreen from "../screen/BottomTab/watch/watchScreen/CreateGroupScreen";
+import WatchScreen from "../screen/BottomTab/watch/watchScreen/WatchScreen";
  import ScreenNameEnum from "./screenName.enum";
 
 
@@ -49,7 +45,7 @@ const _routes = () => {
       { name: ScreenNameEnum.WatchScreen, Component: WatchScreen },
       { name: ScreenNameEnum.StreamService, Component: StreamService },
       { name: ScreenNameEnum.OnboardingScreen, Component: OnboardingScreen },
-      { name: ScreenNameEnum.OnboardingScreen2, Component: OnboardingScreen2 },
+      { name: ScreenNameEnum.OnboardingScreen2, Component: OnboardingStepTwo },
       
       // { name: ScreenNameEnum.WatchWithFrind, Component: WatchWithFrind },
       

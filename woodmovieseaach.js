@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  View, 
-  Text, 
-  FlatList, 
-  Image, 
-  TouchableOpacity, 
+ 
   StyleSheet, 
-  Keyboard,
-  TouchableWithoutFeedback,
+ 
 
 } from 'react-native';
-import imageIndex from '../../../../assets/imageIndex';
-import { Color } from '../../../../theme/color';
-import { ComparisonModal, CustomStatusBar, FeedbackModal, SearchBarCustom, SlideInTooltipModal, StepProgressModal } from '../../../../component';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { movieData } from '../../discover/movieDetail/MovieDetailData';
-import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../../routes/screenName.enum';
-import useWoodScreen from './useWoodScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import font from '../../../../theme/font';
-import SearchMovieCom from '../../../../component/searchmovieCom/searchmovieCom';
+  import { SafeAreaView } from 'react-native-safe-area-context';
+   import useWoodScreen from './src/screen/BottomTab/ranking/woodsScreen/useWoodScreen';
+import SearchmovieCom from './src/component/searchmovieCom/searchmovieCom';
+import font from './src/theme/font';
+import { CustomStatusBar } from './src/component';
+import { Color } from './src/theme/color';
 
 const WoodsScreen = () => {
 const { navigation,
@@ -33,10 +23,10 @@ const { navigation,
  } = useWoodScreen()
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredMovies, setFilteredMovies] = useState(movieData);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const handleSearch = (query) => {
     const queryString = query ? query.toString().toLowerCase() : '';
-    const results = movieData.filter((movie) => {
+    const results = [1].filter((movie) => {
       const titleMatch = movie.title.toLowerCase().includes(queryString);
       const typeMatch = movie.type.toLowerCase().includes(queryString);
       return titleMatch || typeMatch; // Filter by either title or type
@@ -64,7 +54,7 @@ const { navigation,
     <SafeAreaView style={styles.maincontainer}>
       <CustomStatusBar />
       
- <SearchMovieCom
+ <SearchmovieCom
   navigation={navigation}
   togglePlatform={togglePlatform}
   isVisible={isVisible}

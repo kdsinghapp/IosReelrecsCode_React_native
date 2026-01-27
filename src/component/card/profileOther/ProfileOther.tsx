@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import FastImage from 'react-native-fast-image';
 
 const ProfileOther = ({ imageSource, label, onPress, imgStyle, imageSource2 }: any) => {

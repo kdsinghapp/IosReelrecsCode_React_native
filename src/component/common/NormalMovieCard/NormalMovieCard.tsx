@@ -1,17 +1,17 @@
 // NormalMovieCard.tsx
 import React, { memo, useEffect, useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Color } from '../../../theme/color';
-import imageIndex from '../../../assets/imageIndex';
-import font from '../../../theme/font';
-import { getUserBookmarks, toggleBookmark } from '../../../redux/Api/ProfileApi';
+import { View,  Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Color } from '@theme/color';
+import imageIndex from '@assets/imageIndex';
+import font from '@theme/font';
+// import { getUserBookmarks, toggleBookmark } from '@redux/Api/ProfileApi';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { useBookmarks } from '../../../hook/useBookmark';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { useBookmarks } from '@hooks/useBookmark';
 import CustomText from '../CustomText';
 import FastImage from 'react-native-fast-image';
-import CompareModals from '../../../screen/BottamTab/ranking/rankingScreen/CompareModals';
-import { useCompareComponent } from '../../../screen/BottamTab/ranking/rankingScreen/useCompareComponent';
+import CompareModals from '@screens/BottomTab/ranking/rankingScreen/CompareModals';
+import { useCompareComponent } from '@screens/BottomTab/ranking/rankingScreen/useCompareComponent';
 const NormalMovieCard = ({
   item,
   token,

@@ -3,24 +3,24 @@ import axiosInstance from './axiosInstance';
 import axiosPublic from './axiosPublic';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { UserProfile, UpdateProfileData, ProfileFlags, ApiResponse } from '../../types/api.types';
 
 
-export const loginUser_Api = async (email, password) => {
+export const loginUser_Api = async (email: string, password: string): Promise<string | null> => {
   try {
     const response = await axiosInstance.post('/login', {
       email_id: email,
       password: password,
     });
 
-
     if (response.status === 200 && response.data.token) {
-       // Alert.alert("heeh")
       return response.data.token;
     } else {
       return null;
     }
-  } catch (error) {
-    console.log('Login error:', error?.response?.data || error?.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown }; message?: string };
+    console.log('Login error:', err?.response?.data || err?.message);
     return null;
   }
 };
@@ -37,23 +37,25 @@ export const checkEmailExists = async (email: string): Promise<boolean> => {
   }
 };
 
-export const sendOTPToEmail_GET = async (email: string) => {
+export const sendOTPToEmail_GET = async (email: string): Promise<ApiResponse> => {
   try {
     const response = await axiosInstance.get(
       `/verify-email?email_id=${encodeURIComponent(email)}&purpose=signup`
     );
 
-    // ✅ Log response for debugging
     console.log("✅ OTP Response:", response.data);
-
     return { success: true, data: response.data };
-  } catch (error) {
-    const errMsg = error?.response?.data?.message || error.message;
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } }; message?: string };
+    const errMsg = err?.response?.data?.message || err?.message;
     console.log("❌ OTP GET error:", errMsg);
     return { success: false, message: errMsg || "OTP send failed" };
   }
 };
-export const confirmEmailCodeApi = async (email, code) => {
+export const confirmEmailCodeApi = async (
+  email: string, 
+  code: string
+): Promise<ApiResponse> => {
   console.log("email  - ", email)
   console.log("code  -  -", code)
   try {
@@ -66,29 +68,33 @@ export const confirmEmailCodeApi = async (email, code) => {
     return {
       success: response.status === 200 && response.data?.verification === 'success',
     };
-  } catch (error) {
-    console.log('OTP verify error:', error?.response?.data || error?.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } }; message?: string };
+    console.log('OTP verify error:', err?.response?.data || err?.message);
     return {
       success: false,
-      message: error?.response?.data?.message || 'Verification  failed',
+      message: err?.response?.data?.message || 'Verification  failed',
     };
   }
 };
 
 
-export const checkUsernameAvailability = async (username) => {
+export const checkUsernameAvailability = async (
+  username: string
+): Promise<ApiResponse<{ available: boolean }>> => {
   try {
     const response = await axiosInstance.get(`/check-username-availability?username=${username}`);
     console.log("🔍 Username Check Response:", response?.data);
     return {
       success: true,
-      available: response?.data?.username_available === "yes",
+      data: { available: response?.data?.username_available === "yes" },
     };
-  } catch (error) {
-    console.log("Username Check Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } }; message?: string };
+    console.log("Username Check Error:", err?.response?.data || err?.message);
     return {
       success: false,
-      message: error?.response?.data?.message || 'Something went wrong',
+      message: err?.response?.data?.message || 'Something went wrong',
     };
   }
 };
@@ -96,7 +102,11 @@ export const checkUsernameAvailability = async (username) => {
 
 // ✅ authService.js
 
-export const signupWithUsername = async (email, password, username) => {
+export const signupWithUsername = async (
+  email: string, 
+  password: string, 
+  username: string
+): Promise<ApiResponse<UserProfile>> => {
   try {
     const response = await axiosInstance.post('/signup', {
       email_id: email,
@@ -106,13 +116,14 @@ export const signupWithUsername = async (email, password, username) => {
 
     return {
       success: true,
-      userData: response?.data?.result, // response.result से user data मिलेगा
+      data: response?.data?.result as UserProfile,
     };
-  } catch (error) {
-    console.log("Signup Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } }; message?: string };
+    console.log("Signup Error:", err?.response?.data || err?.message);
     return {
       success: false,
-      // message: error?.response?.data?.message || 'Signup failed',
+      message: err?.response?.data?.message || 'Signup failed',
     };
   }
 };
@@ -134,14 +145,14 @@ export const logoutApi = async (token: string) => {
 
     if (response.status === 200) {
       console.log('✅ Logged out successfully:', response.data);
-      
       return true;
     } else {
       console.warn('⚠️ Logout failed:', response.status);
       return false;
     }
-  } catch (error) {
-    console.log('❌ Logout API Error:', error.message);
+  } catch (error: unknown) {
+    const err = error as { message?: string };
+    console.log('❌ Logout API Error:', err?.message);
     return false;
   }
 };
@@ -172,7 +183,7 @@ export const logoutApi = async (token: string) => {
 
 
 
-export const sendResetOTP = async (email: string) => {
+export const sendResetOTP = async (email: string): Promise<ApiResponse> => {
   console.log(email, 'email___work__fauilos')
   try {
     const response = await axiosPublic.get(`/verify-email`, {
@@ -183,17 +194,20 @@ export const sendResetOTP = async (email: string) => {
     });
     console.log("✅ OTP Sent sendResetOTP__:", response.data);
     return { success: true, message: response.data.message };
-  } catch (error) {
+  } catch (error: unknown) {
     console.log(error)
-    const msg =
-      error?.response?.data?.message || "Failed to send OTP";
+    const err = error as { response?: { data?: { message?: string } } };
+    const msg = err?.response?.data?.message || "Failed to send OTP";
     console.error("❌ OTP Send Error:", msg);
     return { success: false, message: msg };
   }
 };
 
 // 2
-export const verifyResetOTP = async (email: string, code: string) => {
+export const verifyResetOTP = async (
+  email: string, 
+  code: string
+): Promise<ApiResponse> => {
   try {
     const response = await axiosPublic.post(`/confirm-email-code`, {
       email_id: email,
@@ -202,9 +216,9 @@ export const verifyResetOTP = async (email: string, code: string) => {
     });
     console.log("✅ OTP Verified verifyResetOTP:", response.data);
     return { success: true, message: response.data.verification };
-  } catch (error) {
-    const msg =
-      error?.response?.data?.message || "OTP verification failed";
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    const msg = err?.response?.data?.message || "OTP verification failed";
     console.error("❌ OTP Verify Error:", msg);
     return { success: false, message: msg };
   }
@@ -238,17 +252,15 @@ export const verifyResetOTP = async (email: string, code: string) => {
 // };
 
 
-export const resetPassword = async (email: string, newPassword: string) => {
-  const trimmedEmail = email.trim().toLowerCase(); // 👈 trim + lowercase
+export const resetPassword = async (
+  email: string, 
+  newPassword: string
+): Promise<ApiResponse> => {
+  const trimmedEmail = email.trim().toLowerCase();
   console.log(trimmedEmail, email, newPassword, "newPassword____newPassword");
 
   try {
-    // const response = await axiosPublic.post(`/reset-password`, {
-    //   email_id: trimmedEmail,   // ✅ ab trimmedEmail use karo
-    //   password: newPassword,
-    // });
-
-const response = await axios.post(
+    const response = await axios.post(
       "http://reelrecs.us-east-1.elasticbeanstalk.com/v1/reset-password",
       {
         email_id: trimmedEmail,
@@ -256,24 +268,26 @@ const response = await axios.post(
       }
     );
 
-
-
     Alert.alert("Password changed successfully!");
     console.log("password__change");
     return {
       success: true,
       data: response?.data,
     };
-  } catch (error: any) {
-    console.log("Full error:", error.response?.data); // Debug
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    console.log("Full error:", err.response?.data);
     return {
       success: false,
-      message: error.response?.data?.message || "Password reset failed",
+      message: err.response?.data?.message || "Password reset failed",
     };
   }
 };
 
-export const changePassword = async (token: string, newPassword: string) => {
+export const changePassword = async (
+  token: string, 
+  newPassword: string
+): Promise<ApiResponse> => {
   try {
     const response = await axiosInstance.post('/change-password', {
       password: newPassword,
@@ -286,11 +300,12 @@ export const changePassword = async (token: string, newPassword: string) => {
     return {
       success: response.status === 200 && response.data?.password_reset === "success",
     };
-  } catch (error) {
-    console.log("❌ Change Password Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } }; message?: string };
+    console.log("❌ Change Password Error:", err?.response?.data || err?.message);
     return {
       success: false,
-      message: error?.response?.data?.message || "Password change failed",
+      message: err?.response?.data?.message || "Password change failed",
     };
   }
 };
@@ -302,13 +317,8 @@ export const changePassword = async (token: string, newPassword: string) => {
 
 export const updateUserProfile = async (
   token: string,
-  data: {
-    name?: string;
-    bio?: string;
-    pronouns?: string;
-    username?: string;
-  }
-) => {
+  data: UpdateProfileData
+): Promise<UserProfile> => {
   try {
     const response = await axiosInstance.put(`/user-profile`, data, {
       headers: {
@@ -316,9 +326,7 @@ export const updateUserProfile = async (
       },
     });
     console.log("✅ updateUserProfile:", data, response.data);
-
-    console.log("✅ updateUserProfile:",data ,  response.data);
-    return response.data;
+    return response.data as UserProfile;
   } catch (error) {
     console.error("❌ Error updating profile:", error);
     throw error;
@@ -326,7 +334,7 @@ export const updateUserProfile = async (
 };
 
 
-export const getUserProfile = async (token: string) => {
+export const getUserProfile = async (token: string): Promise<UserProfile> => {
   try {
     const response = await axiosInstance.get(`/user-profile`, {
       headers: {
@@ -334,7 +342,7 @@ export const getUserProfile = async (token: string) => {
       },
     });
     console.log("✅ getUserProfileop:", response.data);
-    return response.data;
+    return response.data as UserProfile;
   } catch (error) {
     console.error("❌ Error fetching profile:", error);
     throw error;
@@ -377,14 +385,23 @@ export const getUserProfile = async (token: string) => {
 //   }
 // };
 
-export const uploadAvatarImage = async (token: string, image: any) => {
+interface ImagePickerResult {
+  path?: string;
+  uri?: string;
+  mime?: string;
+}
+
+export const uploadAvatarImage = async (
+  token: string, 
+  image: ImagePickerResult
+): Promise<{ data: { avatar_url: string } }> => {
   try {
     const formData = new FormData();
     formData.append('avatar', {
       uri: image?.path || image?.uri,
       type: image?.mime || 'image/jpeg',
       name: 'avatar.jpg',
-    });
+    } as unknown as Blob);
 
     const response = await axios.post(
       'http://reelrecs.us-east-1.elasticbeanstalk.com/v1/avatar',
@@ -398,25 +415,18 @@ export const uploadAvatarImage = async (token: string, image: any) => {
     );
 
     console.log("✅ Upload Successpop:", response.data);
-
     return response; 
-  } catch (error: any) {
-    console.error("❌ Upload Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown }; message?: string };
+    console.error("❌ Upload Error:", err?.response?.data || err?.message);
     throw error;
   }
 };
 
-interface ProfileFlags {
-
-is_private  :  'yes' | 'no';
-autoplay_trailer  :  'yes' | 'no';
-videos_start_with_sound   :  'yes' | 'no';
-group_add_approval_required   :  'yes' | 'no';
-opt_out_third_party_data_sharing   :  'yes' | 'no';
-
-}
-
-export const  updateProfileFlags  = async (token:string ,  flags:ProfileFlags)=> {
+export const updateProfileFlags = async (
+  token: string, 
+  flags: ProfileFlags
+): Promise<{ data: UserProfile }> => {
   try {
     const response = await axiosInstance.put(`/user-profile`,
       flags,
@@ -425,25 +435,27 @@ export const  updateProfileFlags  = async (token:string ,  flags:ProfileFlags)=>
       }}
     )
     console.log(response , 'response_______updateProfileFlags__')
-      return response
-
-  } catch (error: any) {
-    console.error("❌ Error updating profile flags:", error.response?.data || error);
+    return response;
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown } };
+    console.error("❌ Error updating profile flags:", err.response?.data || error);
     throw error;  
   }
 }
 
 
-export  const appNotification =  async (token :string) => {
+export const appNotification = async (token: string): Promise<{ results: unknown[] }> => {
   try {
-const response =  await axiosInstance.get(`/notifications`,{
-  headers: {
-    Authorization: `Token ${token}`
-  }
-})
-console.log('appNotification____Export', response.data)
-return response.data
-  } catch (error) {
-    console.error("❌ Error updating profile flags:", error.response?.data || error);
+    const response = await axiosInstance.get(`/notifications`, {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+    console.log('appNotification____Export', response.data)
+    return response.data
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: unknown } };
+    console.error("❌ Error updating profile flags:", err?.response?.data || error);
+    throw error;
   }
 }

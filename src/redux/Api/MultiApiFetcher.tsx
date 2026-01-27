@@ -8,9 +8,11 @@ import { Trending_without_Filter } from './movieApi';
 import { Color } from '../../theme/color';
 
 
+import { Movie } from '../../types/api.types';
+
 interface MultiApiFetcherProps {
-  urls: { [key: string]: string }; // e.g. { trending: '/trending?country=US' }
-  onDataFetched: (data: { [key: string]: any[] }) => void;
+  urls: { [key: string]: string };
+  onDataFetched: (data: { [key: string]: Movie[] }) => void;
 }
 const MultiApiFetcher = ({ urls, onDataFetched }: MultiApiFetcherProps) => {
   const token = useSelector((state: RootState) => state.auth.token);

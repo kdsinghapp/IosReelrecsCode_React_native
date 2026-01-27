@@ -76,20 +76,14 @@ export const useTrailerTracker = (token: string) => {
   // };
 // Just inside triggerInteractionIfAny()
 
-// console.log("🚨 TOKEN:", token);
-  const triggerInteractionIfAny = async () => {
-    // console.log('chai_piwanba'  ,  "last.endTime")
-    const last = lastValidEntryRef.current;
-    // console.log(last, "last ", last.endTime, "last.endTime", last.startTime, "last.startTime")
-    if (!last || last.endTime <= last.startTime) {
-      // console.log(`⚠️ Skipping interaction: no meaningful watch`);
-      return;
+   const triggerInteractionIfAny = async () => {
+     const last = lastValidEntryRef.current;
+     if (!last || last.endTime <= last.startTime) {
+       return;
     }
-    // console.log('📡 1____1________1____1____:', last.imdb_id, last);
-
+ 
     try {
-      // console.log('📡 Sending trailer interaction__for:', last.imdb_id, last);
-      await recordTrailerInteraction(token, {
+       await recordTrailerInteraction(token, {
         imdb_id: last.imdb_id,
         trailer_url: last.trailer_url,
         start_at: formatSecondsToHMS(last.startTime),

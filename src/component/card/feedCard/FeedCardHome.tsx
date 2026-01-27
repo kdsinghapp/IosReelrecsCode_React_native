@@ -12,23 +12,23 @@ import {
 } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Video from 'react-native-video';
-import imageIndex from '../../../assets/imageIndex';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
-import CompareModals from '../../../screen/BottamTab/ranking/rankingScreen/CompareModals';
-import { useCompareComponent } from '../../../screen/BottamTab/ranking/rankingScreen/useCompareComponent';
-import { useTrailerTracker } from '../../../hook/useTrailerTracker';
-import { useBookmarks } from '../../../hook/useBookmark';
+import imageIndex from '@assets/imageIndex';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { Color } from '@theme/color';
+import font from '@theme/font';
+ import { useTrailerTracker } from '@hooks/useTrailerTracker';
+import { useBookmarks } from '@hooks/useBookmark';
 import CustomText from '../../common/CustomText';
 import ScoreIntroModal from '../../modal/ScoreIntroModal/ScoreIntroModal';
 import FastImage from 'react-native-fast-image';
 import RankingWithInfo from '../../ranking/RankingWithInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
-import { toggleMute } from '../../../redux/feature/videoAudioSlice';
+import { RootState } from '@redux/store';
+import { toggleMute } from '@redux/feature/videoAudioSlice';
 import { invalid } from 'moment'
 import { styles } from './FeedCardstyle';
+import CompareModals from '@screens/BottomTab/ranking/rankingScreen/CompareModals';
+import { useCompareComponent } from '@screens/BottomTab/ranking/rankingScreen/useCompareComponent';
 
 
 const FeedCardHome = ({

@@ -11,9 +11,9 @@ import {
   Image,
 } from 'react-native';
 
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
-import imageIndex from '../../../assets/imageIndex';
+import { Color } from '@theme/color';
+import font from '@theme/font';
+import imageIndex from '@assets/imageIndex';
 import CustomText from '../../common/CustomText';
 
 

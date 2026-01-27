@@ -15,16 +15,16 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import { BASE_IMAGE_URL } from '../../../redux/Api/axiosInstance';
-import { Color } from '../../../theme/color';
-import font from '../../../theme/font';
+import ScreenNameEnum from '@routes/screenName.enum';
+import { BASE_IMAGE_URL } from '@redux/Api/axiosInstance';
+import { Color } from '@theme/color';
+import font from '@theme/font';
 import RankingCard from '../../ranking/RankingCard';
-import imageIndex from '../../../assets/imageIndex';
+import imageIndex from '@assets/imageIndex';
 import { shallowEqual, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState } from '@redux/store';
 import { TextInput } from 'react-native-gesture-handler';
-import { getCommentsByMovie, postComment } from '../../../redux/Api/commentService';
+import { getCommentsByMovie, postComment } from '@redux/Api/commentService';
 import RankingWithInfo from '../../ranking/RankingWithInfo';
  import FastImage from 'react-native-fast-image';
 import ShimmerReviewItem from './ShimmerReviewItem';

@@ -51,8 +51,6 @@ export const useBookmarks = (token: string) => {
   const initializedRef = useRef(false);
 
   const toggleBookmark = async (imdb_id: string): Promise<boolean> => {
-      console.log('toggleBookmark__data___',imdb_id)
-
     try {
       const updatedStatus = await toggleBookmarkApi(token, imdb_id);
       // const updatedStatus = await toggleBookmarkApi(token, 'tt1645170');

@@ -71,8 +71,7 @@ class TokenService {
       const state = store.getState();
       if (state?.auth?.token) {
         this.token = state.auth.token;
-        console.log('[DIAG] [TokenService] Token found in Redux store');
-        // Also save to AsyncStorage for next time
+         // Also save to AsyncStorage for next time
         await AsyncStorage.setItem('authToken', this.token);
         return this.token;
       }

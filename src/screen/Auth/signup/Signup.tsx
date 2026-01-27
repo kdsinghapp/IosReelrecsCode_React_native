@@ -8,16 +8,16 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
-import Loading from '../../../utils/Loader';
-import imageIndex from '../../../assets/imageIndex';
-import ScreenNameEnum from '../../../routes/screenName.enum';
-import Styles from './style';
-import { Button, CustomStatusBar, InputFieldCustom } from '../../../component';
-import styles from './style';
+  import Styles from './style';
+  import styles from './style';
 import useSignup from './useSignup';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Color } from '../../../theme/color';
+import { Color } from '@theme/color';
+import { Button, CustomStatusBar, InputFieldCustom } from '@components/index';
+import LoadingModal from '@utils/Loader';
+import imageIndex from '@assets/imageIndex';
+import ScreenNameEnum from '@routes/screenName.enum';
 export default function Signup() {
   const {
     navigation,
@@ -33,8 +33,7 @@ export default function Signup() {
     emailError,
     passwordError,
     email, password } = useSignup()
-  console.log(email)
-  const navigating = useNavigation()
+   const navigating = useNavigation()
 
   return (
     <SafeAreaView style={{
@@ -43,7 +42,7 @@ export default function Signup() {
     }}>
       <CustomStatusBar backgroundColor="transparent" translucent />
 
-      {loading ? <Loading /> : null}
+      {loading ? <LoadingModal /> : null}
       <ScrollView showsVerticalScrollIndicator={false} >
         
         <View
